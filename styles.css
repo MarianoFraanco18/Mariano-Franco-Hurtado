@@ -541,7 +541,7 @@ button {
 }
 
 .hero__surname {
-  color: #F0EEFB;
+  color: inherit;
 }
 
 .hero__title {
@@ -1361,6 +1361,34 @@ button {
   margin-top: 2px;
 }
 
+/* Logo de universidad (imagen real) */
+.edu__item-logo {
+  flex-shrink: 0;
+  margin-top: 2px;
+  line-height: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.edu__item-logo img {
+  display: block;
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  padding: 0;
+  transition: opacity var(--transition), box-shadow var(--transition);
+}
+
+.edu__item-logo img:hover {
+  opacity: 0.88;
+  box-shadow: 0 0 0 3px var(--color-primary-light, rgba(108,63,197,0.18));
+}
+
 .edu__item-title {
   font-size: var(--text-sm);
   font-weight: 600;
@@ -1432,6 +1460,22 @@ button {
   font-weight: 600;
   color: var(--color-text);
   margin-bottom: var(--space-1);
+}
+
+.cert-item__link {
+  display: inline-block;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  text-decoration: none;
+  margin-bottom: var(--space-1);
+  transition: color var(--transition);
+}
+
+.cert-item__link:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .cert-item__issuer {
