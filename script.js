@@ -250,7 +250,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   const copy = document.querySelector('.footer__copy');
   if (!copy) return;
   const year = new Date().getFullYear();
-  copy.textContent = `© ${year} · Ingeniero Civil · Guadalajara, México`;
+  // The text is managed by the i18n system via data-i18n="footer.copy".
+  // Just prepend the © year prefix as a text node before the first child.
+  const yearNode = document.createTextNode(`© ${year} · `);
+  copy.insertBefore(yearNode, copy.firstChild);
 })();
 
 
@@ -285,104 +288,204 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
   const PROJECTS = {
     diageo: {
-      title: 'Economía Circular — Diageo',
-      date: 'Ene. 2025 – May. 2025',
-      location: 'Jalisco, México',
-      slides: [
-        { label: 'Propuesta de revalorización de vidrio', icon: '🌱' },
-        { label: 'Análisis de cadena de valor', icon: '🔄' },
-        { label: 'Modelo de economía circular', icon: '📊' },
-      ],
-      description:
-        'Proyecto para la revalorización de residuos de vidrio generados en la industria tequilera, en el marco de las metas de sustentabilidad corporativa de Diageo. Se analizó el ciclo de vida del vidrio, se identificaron puntos de mejora en la cadena de valor y se diseñó un modelo de economía circular aplicado al contexto de producción de bebidas en Jalisco.',
-      participation: [
-        'Diagnóstico del flujo de residuos de vidrio en la planta.',
-        'Diseño del modelo de revalorización y propuesta de alternativas de reutilización.',
-        'Elaboración de la presentación ejecutiva para stakeholders de Diageo.',
-        'Cálculo de indicadores de impacto ambiental y potencial de reducción de emisiones.',
-      ],
-      tools: ['Análisis de ciclo de vida', 'Excel', 'PowerPoint', 'Investigación de campo'],
-      badges: ['Sustentabilidad', 'Economía Circular', 'Industria Tequilera', 'Diageo'],
+      es: {
+        title: 'Economía Circular — Diageo',
+        date: 'Ene. 2025 – May. 2025',
+        location: 'Jalisco, México',
+        slides: [
+          { label: 'Propuesta de revalorización de vidrio', icon: '🌱' },
+          { label: 'Análisis de cadena de valor', icon: '🔄' },
+          { label: 'Modelo de economía circular', icon: '📊' },
+        ],
+        description: 'Proyecto para la revalorización de residuos de vidrio generados en la industria tequilera, en el marco de las metas de sustentabilidad corporativa de Diageo. Se analizó el ciclo de vida del vidrio, se identificaron puntos de mejora en la cadena de valor y se diseñó un modelo de economía circular aplicado al contexto de producción de bebidas en Jalisco.',
+        participation: [
+          'Diagnóstico del flujo de residuos de vidrio en la planta.',
+          'Diseño del modelo de revalorización y propuesta de alternativas de reutilización.',
+          'Elaboración de la presentación ejecutiva para stakeholders de Diageo.',
+          'Cálculo de indicadores de impacto ambiental y potencial de reducción de emisiones.',
+        ],
+        tools: ['Análisis de ciclo de vida', 'Excel', 'PowerPoint', 'Investigación de campo'],
+        badges: ['Sustentabilidad', 'Economía Circular', 'Industria Tequilera', 'Diageo'],
+      },
+      en: {
+        title: 'Circular Economy — Diageo',
+        date: 'Jan. 2025 – May 2025',
+        location: 'Jalisco, Mexico',
+        slides: [
+          { label: 'Glass waste recovery proposal', icon: '🌱' },
+          { label: 'Value chain analysis', icon: '🔄' },
+          { label: 'Circular economy model design', icon: '📊' },
+        ],
+        description: "Project focused on recovering glass waste generated in the tequila industry, within the scope of Diageo\u2019s corporate sustainability goals. The glass life cycle was analysed, improvement points in the value chain were identified, and a circular economy model was designed for the beverage production context in Jalisco.",
+        participation: [
+          'Assessment of glass waste flow throughout the plant.',
+          'Design of the recovery model and proposal of reuse alternatives.',
+          'Preparation of the executive presentation for Diageo stakeholders.',
+          'Calculation of environmental impact indicators and emission-reduction potential.',
+        ],
+        tools: ['Life cycle assessment', 'Excel', 'PowerPoint', 'Field research'],
+        badges: ['Sustainability', 'Circular Economy', 'Tequila Industry', 'Diageo'],
+      },
     },
     clj: {
-      title: 'Aeródromo Multimodal — CLJ',
-      date: 'Ene. 2024 – Jun. 2024',
-      location: 'Jalisco, México',
-      slides: [
-        { label: 'Diseño de aeropista e infraestructura', icon: '✈️' },
-        { label: 'Integración de conectividad ferroviaria', icon: '🚂' },
-        { label: 'Propuesta logística multimodal', icon: '🗺️' },
-      ],
-      description:
-        'Diseño de una propuesta de infraestructura logística para el Centro Logístico de Jalisco (CLJ), integrando una aeropista de uso privado con conexiones ferroviarias y carreteras. El objetivo fue crear un hub de conectividad multimodal que potenciara la cadena logística de la región y redujera tiempos de trasiego de mercancías.',
-      participation: [
-        'Participación en el diseño de la geometría y capacidad de la aeropista.',
-        'Elaboración de planos de distribución de infraestructura y accesos.',
-        'Análisis de normativas de aviación civil aplicables al proyecto.',
-        'Redacción del informe técnico final.',
-      ],
-      tools: ['AutoCAD', 'CivilCAD', 'Excel', 'Normativa SCT', 'BIM'],
-      badges: ['Infraestructura', 'Logística', 'Diseño multimodal', 'Aviación Civil'],
+      es: {
+        title: 'Aeródromo Multimodal — CLJ',
+        date: 'Ene. 2024 – Jun. 2024',
+        location: 'Jalisco, México',
+        slides: [
+          { label: 'Diseño de aeropista e infraestructura', icon: '✈️' },
+          { label: 'Integración de conectividad ferroviaria', icon: '🚂' },
+          { label: 'Propuesta logística multimodal', icon: '🗺️' },
+        ],
+        description: 'Diseño de una propuesta de infraestructura logística para el Centro Logístico de Jalisco (CLJ), integrando una aeropista de uso privado con conexiones ferroviarias y carreteras. El objetivo fue crear un hub de conectividad multimodal que potenciara la cadena logística de la región y redujera tiempos de trasiego de mercancías.',
+        participation: [
+          'Participación en el diseño de la geometría y capacidad de la aeropista.',
+          'Elaboración de planos de distribución de infraestructura y accesos.',
+          'Análisis de normativas de aviación civil aplicables al proyecto.',
+          'Redacción del informe técnico final.',
+        ],
+        tools: ['AutoCAD', 'CivilCAD', 'Excel', 'Normativa SCT', 'BIM'],
+        badges: ['Infraestructura', 'Logística', 'Diseño multimodal', 'Aviación Civil'],
+      },
+      en: {
+        title: 'Multimodal Airstrip — CLJ',
+        date: 'Jan. 2024 – Jun. 2024',
+        location: 'Jalisco, Mexico',
+        slides: [
+          { label: 'Airstrip and infrastructure design', icon: '✈️' },
+          { label: 'Railway connectivity integration', icon: '🚂' },
+          { label: 'Multimodal logistics proposal', icon: '🗺️' },
+        ],
+        description: 'Design of a logistics infrastructure proposal for the Jalisco Logistics Center (CLJ), integrating a private-use airstrip with railway and road connections. The goal was to create a multimodal connectivity hub that would strengthen the regional logistics chain and reduce cargo transit times.',
+        participation: [
+          'Participation in the geometry and capacity design of the airstrip.',
+          'Production of infrastructure layout and access drawings.',
+          'Analysis of applicable civil aviation regulations.',
+          'Writing of the final technical report.',
+        ],
+        tools: ['AutoCAD', 'CivilCAD', 'Excel', 'SCT Standards', 'BIM'],
+        badges: ['Infrastructure', 'Logistics', 'Multimodal design', 'Civil Aviation'],
+      },
     },
     conagua: {
-      title: 'Red de Abastecimiento — CONAGUA',
-      date: 'Ago. 2023 – Dic. 2023',
-      location: 'Guadalajara, Jalisco',
-      slides: [
-        { label: 'Diseño de red hidráulica', icon: '💧' },
-        { label: 'Modelado en EPANET', icon: '💻' },
-        { label: 'Red de alcantarillado', icon: '🗺️' },
-      ],
-      description:
-        'Proyecto aplicado al caso real de la comunidad de Mezquitic, Jalisco. Se diseñó una red de abastecimiento de agua potable y un sistema de alcantarillado sanitario, con base en criterios técnicos de cobertura, presión, velocidades de flujo y proyección de demanda poblacional.',
-      participation: [
-        'Diseño de la red de distribución de agua potable con criterios normativos.',
-        'Modelado de la red hidráulica en EPANET y verificación de presiones y velocidades.',
-        'Diseño del sistema de alcantarillado sanitario y pluvial.',
-        'Elaboración de memorias de cálculo y planos en AutoCAD.',
-      ],
-      tools: ['EPANET', 'AutoCAD', 'Excel', 'CivilCAD', 'Normas NOM'],
-      badges: ['Hidráulica', 'EPANET', 'Infraestructura', 'Agua Potable'],
+      es: {
+        title: 'Red de Abastecimiento — CONAGUA',
+        date: 'Ago. 2023 – Dic. 2023',
+        location: 'Guadalajara, Jalisco',
+        slides: [
+          { label: 'Diseño de red hidráulica', icon: '💧' },
+          { label: 'Modelado en EPANET', icon: '💻' },
+          { label: 'Red de alcantarillado', icon: '🗺️' },
+        ],
+        description: 'Proyecto aplicado al caso real de la comunidad de Mezquitic, Jalisco. Se diseñó una red de abastecimiento de agua potable y un sistema de alcantarillado sanitario, con base en criterios técnicos de cobertura, presión, velocidades de flujo y proyección de demanda poblacional.',
+        participation: [
+          'Diseño de la red de distribución de agua potable con criterios normativos.',
+          'Modelado de la red hidráulica en EPANET y verificación de presiones y velocidades.',
+          'Diseño del sistema de alcantarillado sanitario y pluvial.',
+          'Elaboración de memorias de cálculo y planos en AutoCAD.',
+        ],
+        tools: ['EPANET', 'AutoCAD', 'Excel', 'CivilCAD', 'Normas NOM'],
+        badges: ['Hidráulica', 'EPANET', 'Infraestructura', 'Agua Potable'],
+      },
+      en: {
+        title: 'Water Supply Network — CONAGUA',
+        date: 'Aug. 2023 – Dec. 2023',
+        location: 'Guadalajara, Jalisco',
+        slides: [
+          { label: 'Hydraulic network design', icon: '💧' },
+          { label: 'EPANET hydraulic modelling', icon: '💻' },
+          { label: 'Sewage network design', icon: '🗺️' },
+        ],
+        description: 'Project applied to the real case of the Mezquitic community in Jalisco. A potable water distribution network and a sanitary sewage system were designed based on technical criteria for coverage, pressure, flow velocities, and population demand projection.',
+        participation: [
+          'Design of the water distribution network following regulatory standards.',
+          'Hydraulic network modelling in EPANET and verification of pressures and velocities.',
+          'Design of the sanitary and storm sewage system.',
+          'Preparation of calculation reports and AutoCAD drawings.',
+        ],
+        tools: ['EPANET', 'AutoCAD', 'Excel', 'CivilCAD', 'NOM Standards'],
+        badges: ['Hydraulics', 'EPANET', 'Infrastructure', 'Potable Water'],
+      },
     },
     'excel-autocad': {
-      title: 'Automatización topográfica Excel → AutoCAD',
-      date: '2025 – 2026',
-      location: 'León, Guanajuato',
-      slides: [
-        { label: 'Estructuración y nomenclatura de datos topográficos', icon: '📐' },
-        { label: 'Preparación de coordenadas para AutoCAD', icon: '📊' },
-        { label: 'Estandarización del flujo de trabajo técnico', icon: '⚙️' },
-      ],
-      description:
-        'Este proyecto consistió en automatizar parte del flujo de trabajo entre Excel y AutoCAD para el procesamiento de datos topográficos y de líneas relacionadas con estudios de georradar. La solución permitió ordenar datos, generar nomenclaturas, estructurar tablas y preparar información utilizable dentro del entorno CAD, disminuyendo errores operativos y acelerando tareas repetitivas que antes se realizaban manualmente.',
-      participation: [
-        'Diseño de la lógica de automatización en Excel para transformar datos de entrada en una estructura técnicamente útil.',
-        'Estandarización del nombrado de líneas y preparación de coordenadas para AutoCAD.',
-        'Generación de tablas estructuradas que facilitan la inserción y representación de elementos en el entorno CAD.',
-        'Reducción de errores operativos mediante validaciones y nomenclaturas consistentes.',
-      ],
-      tools: ['Excel', 'AutoCAD', 'GPR-SLICE', 'Fórmulas avanzadas', 'Datos técnicos'],
-      badges: ['Topografía', 'AutoCAD', 'Excel', 'Automatización', 'Datos técnicos'],
+      es: {
+        title: 'Automatización topográfica Excel → AutoCAD',
+        date: '2025 – 2026',
+        location: 'León, Guanajuato',
+        slides: [
+          { label: 'Estructuración y nomenclatura de datos topográficos', icon: '📐' },
+          { label: 'Preparación de coordenadas para AutoCAD', icon: '📊' },
+          { label: 'Estandarización del flujo de trabajo técnico', icon: '⚙️' },
+        ],
+        description: 'Este proyecto consistió en automatizar parte del flujo de trabajo entre Excel y AutoCAD para el procesamiento de datos topográficos y de líneas relacionadas con estudios de georradar. La solución permitió ordenar datos, generar nomenclaturas, estructurar tablas y preparar información utilizable dentro del entorno CAD, disminuyendo errores operativos y acelerando tareas repetitivas que antes se realizaban manualmente.',
+        participation: [
+          'Diseño de la lógica de automatización en Excel para transformar datos de entrada en una estructura técnicamente útil.',
+          'Estandarización del nombrado de líneas y preparación de coordenadas para AutoCAD.',
+          'Generación de tablas estructuradas que facilitan la inserción y representación de elementos en el entorno CAD.',
+          'Reducción de errores operativos mediante validaciones y nomenclaturas consistentes.',
+        ],
+        tools: ['Excel', 'AutoCAD', 'GPR-SLICE', 'Fórmulas avanzadas', 'Datos técnicos'],
+        badges: ['Topografía', 'AutoCAD', 'Excel', 'Automatización', 'Datos técnicos'],
+      },
+      en: {
+        title: 'Topographic Data Automation — Excel to AutoCAD',
+        date: '2025 – 2026',
+        location: 'León, Guanajuato',
+        slides: [
+          { label: 'Topographic data structuring and naming', icon: '📐' },
+          { label: 'Coordinate preparation for AutoCAD', icon: '📊' },
+          { label: 'Technical workflow standardisation', icon: '⚙️' },
+        ],
+        description: 'This project consisted of automating part of the workflow between Excel and AutoCAD for the processing of topographic and GPR line data. The solution enabled data ordering, nomenclature generation, table structuring, and preparation of CAD-ready information, reducing operational errors and accelerating repetitive tasks previously done manually.',
+        participation: [
+          'Designed the Excel automation logic to transform raw input data into a technically useful structure.',
+          'Standardised line naming and prepared coordinate data for AutoCAD.',
+          'Generated structured tables to streamline element insertion and representation in the CAD environment.',
+          'Reduced operational errors through consistent validations and naming conventions.',
+        ],
+        tools: ['Excel', 'AutoCAD', 'GPR-SLICE', 'Advanced formulas', 'Technical data'],
+        badges: ['Surveying', 'AutoCAD', 'Excel', 'Automation', 'Technical data'],
+      },
     },
     'gpr-autohotkey': {
-      title: 'Automatización operativa GPR-SLICE con AutoHotkey',
-      date: '2025 – 2026',
-      location: 'León, Guanajuato',
-      slides: [
-        { label: 'Captura secuencial automática de radargramas', icon: '📡' },
-        { label: 'Control de ventanas emergentes y campos de entrada', icon: '🖥️' },
-        { label: 'Estandarización del proceso de exportación', icon: '⚡' },
-      ],
-      description:
-        'Este proyecto se enfocó en automatizar acciones repetitivas dentro del software GPR-SLICE mediante AutoHotkey, incluyendo la captura secuencial de radargramas, el control de campos de entrada, el manejo de ventanas emergentes y la estandarización del proceso de exportación. La automatización permitió reducir la intervención manual, ahorrar tiempo y hacer más eficiente el procesamiento operativo de información de georradar.',
-      participation: [
-        'Definición de la lógica del flujo operativo y mapeo de acciones a automatizar dentro de GPR-SLICE.',
-        'Ajuste de coordenadas de interacción con la interfaz y configuración de secuencias automáticas.',
-        'Optimización del nombrado, generación y cierre de radargramas durante la rutina automatizada.',
-        'Adaptación del comportamiento del script según las necesidades reales del proceso en campo.',
-      ],
-      tools: ['AutoHotkey', 'GPR-SLICE', 'RADAN7', 'Georradar', 'Scripting'],
-      badges: ['Georradar', 'GPR-SLICE', 'AutoHotkey', 'Automatización', 'Radargramas'],
+      es: {
+        title: 'Automatización operativa GPR-SLICE con AutoHotkey',
+        date: '2025 – 2026',
+        location: 'León, Guanajuato',
+        slides: [
+          { label: 'Captura secuencial automática de radargramas', icon: '📡' },
+          { label: 'Control de ventanas emergentes y campos de entrada', icon: '🖥️' },
+          { label: 'Estandarización del proceso de exportación', icon: '⚡' },
+        ],
+        description: 'Este proyecto se enfocó en automatizar acciones repetitivas dentro del software GPR-SLICE mediante AutoHotkey, incluyendo la captura secuencial de radargramas, el control de campos de entrada, el manejo de ventanas emergentes y la estandarización del proceso de exportación. La automatización permitió reducir la intervención manual, ahorrar tiempo y hacer más eficiente el procesamiento operativo de información de georradar.',
+        participation: [
+          'Definición de la lógica del flujo operativo y mapeo de acciones a automatizar dentro de GPR-SLICE.',
+          'Ajuste de coordenadas de interacción con la interfaz y configuración de secuencias automáticas.',
+          'Optimización del nombrado, generación y cierre de radargramas durante la rutina automatizada.',
+          'Adaptación del comportamiento del script según las necesidades reales del proceso en campo.',
+        ],
+        tools: ['AutoHotkey', 'GPR-SLICE', 'RADAN7', 'Georradar', 'Scripting'],
+        badges: ['Georradar', 'GPR-SLICE', 'AutoHotkey', 'Automatización', 'Radargramas'],
+      },
+      en: {
+        title: 'GPR-SLICE Operational Automation with AutoHotkey',
+        date: '2025 – 2026',
+        location: 'León, Guanajuato',
+        slides: [
+          { label: 'Automated sequential radargram capture', icon: '📡' },
+          { label: 'Pop-up window and input field control', icon: '🖥️' },
+          { label: 'Export process standardisation', icon: '⚡' },
+        ],
+        description: 'This project focused on automating repetitive actions within GPR-SLICE using AutoHotkey, including sequential radargram capture, input field control, pop-up window handling, and export process standardisation. The automation reduced manual intervention, saved time, and made GPR data processing operationally more efficient.',
+        participation: [
+          'Defined the operational workflow logic and mapped actions to automate within GPR-SLICE.',
+          'Adjusted interface interaction coordinates and configured automated sequences.',
+          'Optimised radargram naming, generation, and closing during the automated routine.',
+          'Adapted the script behaviour to match real-world process requirements in the field.',
+        ],
+        tools: ['AutoHotkey', 'GPR-SLICE', 'RADAN7', 'Ground Penetrating Radar', 'Scripting'],
+        badges: ['GPR', 'GPR-SLICE', 'AutoHotkey', 'Automation', 'Radargrams'],
+      },
     },
   };
 
@@ -452,8 +555,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   }, { passive: true });
 
   function openModal(projectKey) {
-    const data = PROJECTS[projectKey];
-    if (!data) return;
+    const project = PROJECTS[projectKey];
+    if (!project) return;
+    // Use current language; fall back to ES
+    const data = project[currentLang] || project.es;
 
     elDate.textContent  = data.date;
     elLoc.textContent   = data.location;
@@ -562,6 +667,71 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       'proj.gpr.title':   'Automatización GPR-SLICE con AutoHotkey',
       'proj.gpr.desc':    'Implementé scripts en AutoHotkey para automatizar tareas repetitivas dentro de GPR-SLICE, agilizando la generación de radargramas y mejorando la eficiencia operativa del flujo de trabajo.',
 
+
+      /* Sobre mí — párrafos (innerHTML) */
+      'about.p1': 'Soy Ingeniero Civil egresado del <strong>Tecnológico de Monterrey, Campus Guadalajara</strong>, con experiencia en topografía, geofísica aplicada y documentación técnica para proyectos de infraestructura y construcción.',
+      'about.p2': 'Combino bases sólidas de ingeniería con herramientas digitales como BIM, automatización de procesos e IA aplicada. Me interesa trabajar en entornos donde la <strong>precisión técnica, la innovación y la mejora continua</strong> sean parte central del trabajo.',
+
+      /* Experiencia — bullets */
+      'exp.li1a': 'Creé y consolidé el departamento de topografía, definiendo procesos y estándares de trabajo desde cero.',
+      'exp.li1b': 'Desarrollé estudios topográficos y elaboré planos georreferenciados para proyectos de detección de instalaciones subterráneas.',
+      'exp.li1c': 'Implementé automatizaciones con macros que redujeron significativamente los tiempos de procesamiento y el margen de error.',
+      'exp.li2a': 'Ejecuté estudios de Georradar (GPR) en proyectos a lo largo de la República Mexicana.',
+      'exp.li2b': 'Procesé e interpreté radargramas para la detección de instalaciones subterráneas y evaluación de condiciones del terreno.',
+      'exp.li2c': 'Apoyé la toma de decisiones en obra a partir del análisis de condiciones del subsuelo.',
+      'exp.li3a': 'Contribuí al diseño estructural de una nave industrial, desarrollando análisis y especificaciones técnicas.',
+      'exp.li3b': 'Elaboré planos técnicos y documentación MEP bajo metodología BIM.',
+
+      /* Tags comunes */
+      'tag.topography':    'Topografía',
+      'tag.automation':    'Automatización',
+      'tag.infrastructure':'Infraestructura',
+      'tag.logistics':     'Logística',
+      'tag.multimodal':    'Diseño multimodal',
+      'tag.sustainability':'Sustentabilidad',
+      'tag.circularEconomy':'Economía Circular',
+      'tag.tequilaInd':   'Industria Tequilera',
+      'tag.hydraulics':   'Hidráulica',
+      'tag.georadar':     'Georradar',
+
+      /* Proyectos — tarjetas Diageo/CLJ/CONAGUA */
+      'proj.diageo.date':     'Ene. 2025 – May. 2025',
+      'proj.diageo.location': 'Jalisco, México',
+      'proj.diageo.title':    'Economía Circular — Diageo',
+      'proj.diageo.desc':     'Desarrollé una propuesta de revalorización de vidrio dentro de la industria tequilera para reducir el impacto ambiental y apoyar metas de sustentabilidad empresarial de Diageo.',
+      'proj.clj.date':        'Ene. 2024 – Jun. 2024',
+      'proj.clj.location':    'Jalisco, México',
+      'proj.clj.title':       'Aeródromo Multimodal — CLJ',
+      'proj.clj.desc':        'Participé en el diseño de una propuesta de infraestructura logística que integra aeropista y conexiones ferroviarias para mejorar la conectividad del Centro Logístico de Jalisco.',
+      'proj.conagua.date':    'Ago. 2023 – Dic. 2023',
+      'proj.conagua.location':'Guadalajara, Jalisco',
+      'proj.conagua.title':   'Red de Abastecimiento — CONAGUA',
+      'proj.conagua.desc':    'Diseñé una red de abastecimiento de agua y alcantarillado para la comunidad de Mezquitic, Jalisco, aplicando criterios técnicos de cobertura y funcionalidad.',
+
+      /* Habilidades — grupos */
+      'skills.grp.cad':    'CAD & Diseño',
+      'skills.grp.geo':    'Geomática & Topografía',
+      'skills.grp.gpr':    'Georradar (GPR)',
+      'skills.grp.data':   'Datos & Automatización',
+      'skills.grp.struct': 'Estructuras & Hidráulica',
+
+      /* Educación — adicionales */
+      'edu.inst1':      'Tecnológico de Monterrey, Campus Guadalajara',
+      'edu.date1':      'Ago. 2021 – Jun. 2025',
+      'edu.inst2':      'Universidad de Castilla-La Mancha, Ciudad Real, España',
+      'edu.date2':      'Ago. 2024 – Ene. 2025',
+      'edu.lang1':      '🇲🇽 Español',
+      'edu.lang2':      '🇺🇸 Inglés',
+      'edu.cert1':      'Introducción a la Era Digital y Big Data',
+      'edu.cert2':      'Fundamentos de Análisis de Datos con Power BI',
+      'edu.certIssuer': 'Tecnológico de Monterrey · 2025',
+
+      /* Contacto */
+      'contact.location': 'Guadalajara, Jalisco / León, Guanajuato',
+
+      /* Footer */
+      'footer.name': 'Mariano Franco Hurtado · Ingeniero Civil',
+
       /* Habilidades */
       'skills.tag':          'Competencias',
       'skills.title':        'Habilidades',
@@ -594,6 +764,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       'contact.wa':      'WhatsApp',
       'contact.waValue': 'Escríbeme directamente',
       'contact.li':      'LinkedIn',
+
+      /* Modal */
+      'modal.desc':  'Descripción',
+      'modal.part':  'Mi participación',
+      'modal.tools': 'Herramientas y metodologías',
+      'modal.cats':  'Categorías',
 
       /* Footer / CV */
       'footer.copy': 'Topografía · BIM · Geofísica Aplicada · Guadalajara, México',
@@ -649,6 +825,71 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       'proj.gpr.title':   'GPR-SLICE Workflow Automation with AutoHotkey',
       'proj.gpr.desc':    'I implemented AutoHotkey scripts to automate repetitive tasks within GPR-SLICE, streamlining radargram generation and improving the operational efficiency of the workflow.',
 
+
+      /* Sobre mí — párrafos (innerHTML) */
+      'about.p1': 'I am a Civil Engineer graduated from <strong>Tecnológico de Monterrey, Campus Guadalajara</strong>, with experience in surveying, applied geophysics, and technical documentation for infrastructure and construction projects.',
+      'about.p2': 'I combine solid engineering fundamentals with digital tools such as BIM, process automation, and applied AI. I am driven to work in environments where <strong>technical precision, innovation, and continuous improvement</strong> are central to the work.',
+
+      /* Experiencia — bullets */
+      'exp.li1a': 'Created and consolidated the surveying department, defining workflows and standards from scratch.',
+      'exp.li1b': 'Carried out topographic surveys and produced georeferenced drawings for underground utility detection projects.',
+      'exp.li1c': 'Implemented macro-based automations that significantly reduced processing time and error margin.',
+      'exp.li2a': 'Performed Ground Penetrating Radar (GPR) surveys on projects across Mexico.',
+      'exp.li2b': 'Processed and interpreted radargrams for underground utility detection and subsurface condition assessment.',
+      'exp.li2c': 'Supported on-site decision-making based on subsurface condition analysis.',
+      'exp.li3a': 'Contributed to the structural design of an industrial warehouse, developing analyses and technical specifications.',
+      'exp.li3b': 'Produced technical drawings and MEP documentation under BIM methodology.',
+
+      /* Tags comunes */
+      'tag.topography':    'Surveying',
+      'tag.automation':    'Automation',
+      'tag.infrastructure':'Infrastructure',
+      'tag.logistics':     'Logistics',
+      'tag.multimodal':    'Multimodal design',
+      'tag.sustainability':'Sustainability',
+      'tag.circularEconomy':'Circular Economy',
+      'tag.tequilaInd':   'Tequila Industry',
+      'tag.hydraulics':   'Hydraulics',
+      'tag.georadar':     'Ground Penetrating Radar',
+
+      /* Proyectos — tarjetas Diageo/CLJ/CONAGUA */
+      'proj.diageo.date':     'Jan. 2025 – May 2025',
+      'proj.diageo.location': 'Jalisco, Mexico',
+      'proj.diageo.title':    'Circular Economy — Diageo',
+      'proj.diageo.desc':     "I developed a glass waste recovery proposal within the tequila industry to reduce environmental impact and support Diageo\u2019s corporate sustainability goals.",
+      'proj.clj.date':        'Jan. 2024 – Jun. 2024',
+      'proj.clj.location':    'Jalisco, Mexico',
+      'proj.clj.title':       'Multimodal Airstrip — CLJ',
+      'proj.clj.desc':        'I participated in the design of a logistics infrastructure proposal integrating a private airstrip and railway connections to improve connectivity at the Jalisco Logistics Center.',
+      'proj.conagua.date':    'Aug. 2023 – Dec. 2023',
+      'proj.conagua.location':'Guadalajara, Jalisco',
+      'proj.conagua.title':   'Water Supply Network — CONAGUA',
+      'proj.conagua.desc':    'I designed a water supply and sewage network for the community of Mezquitic, Jalisco, applying technical coverage and functionality criteria.',
+
+      /* Habilidades — grupos */
+      'skills.grp.cad':    'CAD & Design',
+      'skills.grp.geo':    'Geomatics & Surveying',
+      'skills.grp.gpr':    'Ground Penetrating Radar',
+      'skills.grp.data':   'Data & Automation',
+      'skills.grp.struct': 'Structures & Hydraulics',
+
+      /* Educación — adicionales */
+      'edu.inst1':      'Tecnológico de Monterrey, Campus Guadalajara',
+      'edu.date1':      'Aug. 2021 – Jun. 2025',
+      'edu.inst2':      'University of Castilla-La Mancha, Ciudad Real, Spain',
+      'edu.date2':      'Aug. 2024 – Jan. 2025',
+      'edu.lang1':      '🇲🇽 Spanish',
+      'edu.lang2':      '🇺🇸 English',
+      'edu.cert1':      'Introduction to the Digital Era and Big Data',
+      'edu.cert2':      'Fundamentals of Data Analysis with Power BI',
+      'edu.certIssuer': 'Tecnológico de Monterrey · 2025',
+
+      /* Contacto */
+      'contact.location': 'Guadalajara, Jalisco / León, Guanajuato',
+
+      /* Footer */
+      'footer.name': 'Mariano Franco Hurtado · Civil Engineer',
+
       /* Skills */
       'skills.tag':          'Competencies',
       'skills.title':        'Skills',
@@ -682,6 +923,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       'contact.waValue': 'Message me directly',
       'contact.li':      'LinkedIn',
 
+      /* Modal */
+      'modal.desc':  'Description',
+      'modal.part':  'My contribution',
+      'modal.tools': 'Tools & methodologies',
+      'modal.cats':  'Categories',
+
       /* Footer / CV */
       'footer.copy': 'Surveying · BIM · Applied Geophysics · Guadalajara, Mexico',
       'cv.file':     'CV_pdf_EN.pdf',
@@ -702,6 +949,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   function applyLang(lang) {
     const dict = T[lang];
     if (!dict) return;
+
+    // data-i18n-html: elementos donde la traducción incluye etiquetas HTML (e.g. <strong>)
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      const key = el.getAttribute('data-i18n-html');
+      const val = dict[key];
+      if (val !== undefined) el.innerHTML = val;
+    });
 
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
@@ -726,6 +980,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       } else {
         el.textContent = val;
       }
+    });
+
+    /* Tooltips bilingüe: intercambiar data-tooltip según idioma */
+    document.querySelectorAll('[data-tooltip-en]').forEach(el => {
+      const esText = el.getAttribute('data-tooltip-es') || el.getAttribute('data-tooltip');
+      const enText = el.getAttribute('data-tooltip-en');
+      if (!el.hasAttribute('data-tooltip-es')) {
+        // Primera vez: guardar el texto ES original
+        el.setAttribute('data-tooltip-es', el.getAttribute('data-tooltip'));
+      }
+      el.setAttribute('data-tooltip', lang === 'en' ? enText : el.getAttribute('data-tooltip-es'));
     });
 
     /* CV: href + texto del span interno */
