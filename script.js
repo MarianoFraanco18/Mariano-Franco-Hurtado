@@ -344,6 +344,46 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       tools: ['EPANET', 'AutoCAD', 'Excel', 'CivilCAD', 'Normas NOM'],
       badges: ['Hidráulica', 'EPANET', 'Infraestructura', 'Agua Potable'],
     },
+    'excel-autocad': {
+      title: 'Automatización topográfica Excel → AutoCAD',
+      date: '2025 – 2026',
+      location: 'León, Guanajuato',
+      slides: [
+        { label: 'Estructuración y nomenclatura de datos topográficos', icon: '📐' },
+        { label: 'Preparación de coordenadas para AutoCAD', icon: '📊' },
+        { label: 'Estandarización del flujo de trabajo técnico', icon: '⚙️' },
+      ],
+      description:
+        'Este proyecto consistió en automatizar parte del flujo de trabajo entre Excel y AutoCAD para el procesamiento de datos topográficos y de líneas relacionadas con estudios de georradar. La solución permitió ordenar datos, generar nomenclaturas, estructurar tablas y preparar información utilizable dentro del entorno CAD, disminuyendo errores operativos y acelerando tareas repetitivas que antes se realizaban manualmente.',
+      participation: [
+        'Diseño de la lógica de automatización en Excel para transformar datos de entrada en una estructura técnicamente útil.',
+        'Estandarización del nombrado de líneas y preparación de coordenadas para AutoCAD.',
+        'Generación de tablas estructuradas que facilitan la inserción y representación de elementos en el entorno CAD.',
+        'Reducción de errores operativos mediante validaciones y nomenclaturas consistentes.',
+      ],
+      tools: ['Excel', 'AutoCAD', 'GPR-SLICE', 'Fórmulas avanzadas', 'Datos técnicos'],
+      badges: ['Topografía', 'AutoCAD', 'Excel', 'Automatización', 'Datos técnicos'],
+    },
+    'gpr-autohotkey': {
+      title: 'Automatización operativa GPR-SLICE con AutoHotkey',
+      date: '2025 – 2026',
+      location: 'León, Guanajuato',
+      slides: [
+        { label: 'Captura secuencial automática de radargramas', icon: '📡' },
+        { label: 'Control de ventanas emergentes y campos de entrada', icon: '🖥️' },
+        { label: 'Estandarización del proceso de exportación', icon: '⚡' },
+      ],
+      description:
+        'Este proyecto se enfocó en automatizar acciones repetitivas dentro del software GPR-SLICE mediante AutoHotkey, incluyendo la captura secuencial de radargramas, el control de campos de entrada, el manejo de ventanas emergentes y la estandarización del proceso de exportación. La automatización permitió reducir la intervención manual, ahorrar tiempo y hacer más eficiente el procesamiento operativo de información de georradar.',
+      participation: [
+        'Definición de la lógica del flujo operativo y mapeo de acciones a automatizar dentro de GPR-SLICE.',
+        'Ajuste de coordenadas de interacción con la interfaz y configuración de secuencias automáticas.',
+        'Optimización del nombrado, generación y cierre de radargramas durante la rutina automatizada.',
+        'Adaptación del comportamiento del script según las necesidades reales del proceso en campo.',
+      ],
+      tools: ['AutoHotkey', 'GPR-SLICE', 'RADAN7', 'Georradar', 'Scripting'],
+      badges: ['Georradar', 'GPR-SLICE', 'AutoHotkey', 'Automatización', 'Radargramas'],
+    },
   };
 
   const overlay  = document.getElementById('projectModal');
@@ -515,6 +555,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       'proj.tag':   'Portafolio',
       'proj.title': 'Proyectos destacados',
       'proj.cta':   'Ver más',
+      'proj.excel.date':  '2025 – 2026',
+      'proj.excel.title': 'Automatización topográfica Excel → AutoCAD',
+      'proj.excel.desc':  'Desarrollé una solución en Excel para estructurar datos topográficos y generar información lista para su uso en AutoCAD, reduciendo tiempos de trabajo manual y mejorando la consistencia del proceso.',
+      'proj.gpr.date':    '2025 – 2026',
+      'proj.gpr.title':   'Automatización GPR-SLICE con AutoHotkey',
+      'proj.gpr.desc':    'Implementé scripts en AutoHotkey para automatizar tareas repetitivas dentro de GPR-SLICE, agilizando la generación de radargramas y mejorando la eficiencia operativa del flujo de trabajo.',
 
       /* Habilidades */
       'skills.tag':          'Competencias',
@@ -596,6 +642,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       'proj.tag':   'Portfolio',
       'proj.title': 'Featured projects',
       'proj.cta':   'Learn more',
+      'proj.excel.date':  '2025 – 2026',
+      'proj.excel.title': 'Topographic Data Automation — Excel to AutoCAD',
+      'proj.excel.desc':  'I developed an Excel-based solution to structure topographic datasets and generate CAD-ready information, reducing manual workload and improving process consistency.',
+      'proj.gpr.date':    '2025 – 2026',
+      'proj.gpr.title':   'GPR-SLICE Workflow Automation with AutoHotkey',
+      'proj.gpr.desc':    'I implemented AutoHotkey scripts to automate repetitive tasks within GPR-SLICE, streamlining radargram generation and improving the operational efficiency of the workflow.',
 
       /* Skills */
       'skills.tag':          'Competencies',
