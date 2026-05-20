@@ -409,9 +409,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     },
     'excel-autocad': {
       es: {
-        title: 'Automatización topográfica Excel → AutoCAD',
+        title: 'Automatización de datos topográficos en AutoCAD mediante Excel',
         date: '2025 – 2026',
-        location: 'León, Guanajuato',
+        location: 'Guadalajara, Jalisco',
         slides: [
           { label: 'Estructuración y nomenclatura de datos topográficos', icon: '📐' },
           { label: 'Preparación de coordenadas para AutoCAD', icon: '📊' },
@@ -430,7 +430,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       en: {
         title: 'Topographic Data Automation — Excel to AutoCAD',
         date: '2025 – 2026',
-        location: 'León, Guanajuato',
+        location: 'Guadalajara, Jalisco',
         slides: [
           { label: 'Topographic data structuring and naming', icon: '📐' },
           { label: 'Coordinate preparation for AutoCAD', icon: '📊' },
@@ -451,7 +451,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       es: {
         title: 'Automatización operativa GPR-SLICE con AutoHotkey',
         date: '2025 – 2026',
-        location: 'León, Guanajuato',
+        location: 'Guadalajara, Jalisco',
         slides: [
           { label: 'Captura secuencial automática de radargramas', icon: '📡' },
           { label: 'Control de ventanas emergentes y campos de entrada', icon: '🖥️' },
@@ -470,7 +470,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       en: {
         title: 'GPR-SLICE Operational Automation with AutoHotkey',
         date: '2025 – 2026',
-        location: 'León, Guanajuato',
+        location: 'Guadalajara, Jalisco',
         slides: [
           { label: 'Automated sequential radargram capture', icon: '📡' },
           { label: 'Pop-up window and input field control', icon: '🖥️' },
@@ -557,8 +557,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   function openModal(projectKey) {
     const project = PROJECTS[projectKey];
     if (!project) return;
-    // Use current language; fall back to ES
-    const data = project[currentLang] || project.es;
+    // Read active language from the DOM (avoids cross-IIFE scope issues)
+    const activeLangBtn = document.querySelector('.lang-btn--active');
+    const activeLang = activeLangBtn ? activeLangBtn.dataset.lang : 'es';
+    const data = project[activeLang] || project.es;
 
     elDate.textContent  = data.date;
     elLoc.textContent   = data.location;
@@ -661,10 +663,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       'proj.title': 'Proyectos destacados',
       'proj.cta':   'Ver más',
       'proj.excel.date':  '2025 – 2026',
-      'proj.excel.title': 'Automatización topográfica Excel → AutoCAD',
+      'proj.excel.title': 'Automatización de datos topográficos en AutoCAD mediante Excel',
+      'proj.excel.location': 'Guadalajara, Jalisco',
       'proj.excel.desc':  'Desarrollé una solución en Excel para estructurar datos topográficos y generar información lista para su uso en AutoCAD, reduciendo tiempos de trabajo manual y mejorando la consistencia del proceso.',
       'proj.gpr.date':    '2025 – 2026',
       'proj.gpr.title':   'Automatización GPR-SLICE con AutoHotkey',
+      'proj.gpr.location': 'Guadalajara, Jalisco',
       'proj.gpr.desc':    'Implementé scripts en AutoHotkey para automatizar tareas repetitivas dentro de GPR-SLICE, agilizando la generación de radargramas y mejorando la eficiencia operativa del flujo de trabajo.',
 
 
@@ -820,9 +824,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       'proj.cta':   'Learn more',
       'proj.excel.date':  '2025 – 2026',
       'proj.excel.title': 'Topographic Data Automation — Excel to AutoCAD',
+      'proj.excel.location': 'Guadalajara, Jalisco',
       'proj.excel.desc':  'I developed an Excel-based solution to structure topographic datasets and generate CAD-ready information, reducing manual workload and improving process consistency.',
       'proj.gpr.date':    '2025 – 2026',
       'proj.gpr.title':   'GPR-SLICE Workflow Automation with AutoHotkey',
+      'proj.gpr.location': 'Guadalajara, Jalisco',
       'proj.gpr.desc':    'I implemented AutoHotkey scripts to automate repetitive tasks within GPR-SLICE, streamlining radargram generation and improving the operational efficiency of the workflow.',
 
 
