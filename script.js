@@ -252,3 +252,472 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   const year = new Date().getFullYear();
   copy.textContent = `© ${year} · Ingeniero Civil · Guadalajara, México`;
 })();
+
+
+/* ────────── TOOLTIPS TÁCTILES EN MÓVIL ────────── */
+(function initTooltipTouch() {
+  const pills = document.querySelectorAll('.skill-pill[data-tooltip]');
+  let activePill = null;
+
+  pills.forEach(pill => {
+    pill.addEventListener('touchstart', (e) => {
+      if (window.matchMedia('(hover: hover)').matches) return;
+      e.preventDefault();
+      if (activePill && activePill !== pill) {
+        activePill.classList.remove('tooltip-visible');
+      }
+      pill.classList.toggle('tooltip-visible');
+      activePill = pill.classList.contains('tooltip-visible') ? pill : null;
+    }, { passive: false });
+  });
+
+  document.addEventListener('touchstart', (e) => {
+    if (activePill && !activePill.contains(e.target)) {
+      activePill.classList.remove('tooltip-visible');
+      activePill = null;
+    }
+  }, { passive: true });
+})();
+
+
+/* ────────── MODAL DE PROYECTOS ────────── */
+(function initProjectModals() {
+
+  const PROJECTS = {
+    diageo: {
+      title: 'Economía Circular — Diageo',
+      date: 'Ene. 2025 – May. 2025',
+      location: 'Jalisco, México',
+      slides: [
+        { label: 'Propuesta de revalorización de vidrio', icon: '🌱' },
+        { label: 'Análisis de cadena de valor', icon: '🔄' },
+        { label: 'Modelo de economía circular', icon: '📊' },
+      ],
+      description:
+        'Proyecto para la revalorización de residuos de vidrio generados en la industria tequilera, en el marco de las metas de sustentabilidad corporativa de Diageo. Se analizó el ciclo de vida del vidrio, se identificaron puntos de mejora en la cadena de valor y se diseñó un modelo de economía circular aplicado al contexto de producción de bebidas en Jalisco.',
+      participation: [
+        'Diagnóstico del flujo de residuos de vidrio en la planta.',
+        'Diseño del modelo de revalorización y propuesta de alternativas de reutilización.',
+        'Elaboración de la presentación ejecutiva para stakeholders de Diageo.',
+        'Cálculo de indicadores de impacto ambiental y potencial de reducción de emisiones.',
+      ],
+      tools: ['Análisis de ciclo de vida', 'Excel', 'PowerPoint', 'Investigación de campo'],
+      badges: ['Sustentabilidad', 'Economía Circular', 'Industria Tequilera', 'Diageo'],
+    },
+    clj: {
+      title: 'Aeródromo Multimodal — CLJ',
+      date: 'Ene. 2024 – Jun. 2024',
+      location: 'Jalisco, México',
+      slides: [
+        { label: 'Diseño de aeropista e infraestructura', icon: '✈️' },
+        { label: 'Integración de conectividad ferroviaria', icon: '🚂' },
+        { label: 'Propuesta logística multimodal', icon: '🗺️' },
+      ],
+      description:
+        'Diseño de una propuesta de infraestructura logística para el Centro Logístico de Jalisco (CLJ), integrando una aeropista de uso privado con conexiones ferroviarias y carreteras. El objetivo fue crear un hub de conectividad multimodal que potenciara la cadena logística de la región y redujera tiempos de trasiego de mercancías.',
+      participation: [
+        'Participación en el diseño de la geometría y capacidad de la aeropista.',
+        'Elaboración de planos de distribución de infraestructura y accesos.',
+        'Análisis de normativas de aviación civil aplicables al proyecto.',
+        'Redacción del informe técnico final.',
+      ],
+      tools: ['AutoCAD', 'CivilCAD', 'Excel', 'Normativa SCT', 'BIM'],
+      badges: ['Infraestructura', 'Logística', 'Diseño multimodal', 'Aviación Civil'],
+    },
+    conagua: {
+      title: 'Red de Abastecimiento — CONAGUA',
+      date: 'Ago. 2023 – Dic. 2023',
+      location: 'Guadalajara, Jalisco',
+      slides: [
+        { label: 'Diseño de red hidráulica', icon: '💧' },
+        { label: 'Modelado en EPANET', icon: '💻' },
+        { label: 'Red de alcantarillado', icon: '🗺️' },
+      ],
+      description:
+        'Proyecto aplicado al caso real de la comunidad de Mezquitic, Jalisco. Se diseñó una red de abastecimiento de agua potable y un sistema de alcantarillado sanitario, con base en criterios técnicos de cobertura, presión, velocidades de flujo y proyección de demanda poblacional.',
+      participation: [
+        'Diseño de la red de distribución de agua potable con criterios normativos.',
+        'Modelado de la red hidráulica en EPANET y verificación de presiones y velocidades.',
+        'Diseño del sistema de alcantarillado sanitario y pluvial.',
+        'Elaboración de memorias de cálculo y planos en AutoCAD.',
+      ],
+      tools: ['EPANET', 'AutoCAD', 'Excel', 'CivilCAD', 'Normas NOM'],
+      badges: ['Hidráulica', 'EPANET', 'Infraestructura', 'Agua Potable'],
+    },
+  };
+
+  const overlay  = document.getElementById('projectModal');
+  const closeBtn = document.getElementById('modalClose');
+  const elDate   = document.getElementById('modalDate');
+  const elLoc    = document.getElementById('modalLocation');
+  const elTitle  = document.getElementById('modalTitle');
+  const elDesc   = document.getElementById('modalDescription');
+  const elPart   = document.getElementById('modalParticipation');
+  const elTools  = document.getElementById('modalTools');
+  const elBadges = document.getElementById('modalBadges');
+  const track    = document.getElementById('modalTrack');
+  const dotsWrap = document.getElementById('galleryDots');
+  const prevBtn  = document.getElementById('galleryPrev');
+  const nextBtn  = document.getElementById('galleryNext');
+
+  if (!overlay) return;
+
+  let currentSlide = 0;
+  let totalSlides  = 0;
+
+  function goToSlide(idx) {
+    currentSlide = (idx + totalSlides) % totalSlides;
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    dotsWrap.querySelectorAll('.modal__gallery-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === currentSlide);
+    });
+  }
+
+  function buildGallery(slides) {
+    totalSlides  = slides.length;
+    currentSlide = 0;
+
+    track.innerHTML = slides.map(s => `
+      <div class="modal__gallery-slide">
+        <span style="font-size:2.8rem;display:block;margin-bottom:0.6rem;line-height:1">${s.icon}</span>
+        <span>${s.label}</span>
+      </div>
+    `).join('');
+
+    dotsWrap.innerHTML = slides.map((_, i) =>
+      `<button class="modal__gallery-dot${i === 0 ? ' active' : ''}" aria-label="Imagen ${i + 1}"></button>`
+    ).join('');
+
+    dotsWrap.querySelectorAll('.modal__gallery-dot').forEach((dot, i) => {
+      dot.addEventListener('click', () => goToSlide(i));
+    });
+
+    const showNav = totalSlides > 1;
+    prevBtn.style.display = showNav ? 'flex' : 'none';
+    nextBtn.style.display = showNav ? 'flex' : 'none';
+    dotsWrap.style.display = showNav ? 'flex' : 'none';
+
+    track.style.transform = 'translateX(0)';
+  }
+
+  prevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
+  nextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
+
+  // Swipe en móvil
+  let touchStartX = 0;
+  track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) goToSlide(currentSlide + (diff > 0 ? 1 : -1));
+  }, { passive: true });
+
+  function openModal(projectKey) {
+    const data = PROJECTS[projectKey];
+    if (!data) return;
+
+    elDate.textContent  = data.date;
+    elLoc.textContent   = data.location;
+    elTitle.textContent = data.title;
+    elDesc.textContent  = data.description;
+
+    elPart.innerHTML   = data.participation.map(item => `<li>${item}</li>`).join('');
+    elTools.innerHTML  = data.tools.map(t => `<span class="modal__tool-tag">${t}</span>`).join('');
+    elBadges.innerHTML = data.badges.map(b => `<span class="modal__badge">${b}</span>`).join('');
+
+    buildGallery(data.slides);
+
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => closeBtn.focus(), 50);
+  }
+
+  function closeModal() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  closeBtn.addEventListener('click', closeModal);
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!overlay.classList.contains('open')) return;
+    if (e.key === 'Escape')     closeModal();
+    if (e.key === 'ArrowLeft')  goToSlide(currentSlide - 1);
+    if (e.key === 'ArrowRight') goToSlide(currentSlide + 1);
+  });
+
+  document.querySelectorAll('.project-card[data-project]').forEach(card => {
+    function trigger() { openModal(card.dataset.project); }
+    card.addEventListener('click', trigger);
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); trigger(); }
+    });
+  });
+
+})();
+
+
+
+/* ══════════════════════════════════════════════════════════════════
+   SISTEMA I18N — BILINGÜE ES / EN
+   Estrategia: data-i18n en nodos de texto hoja solamente.
+   applyLang() solo toca el nodo de texto, nunca innerHTML/textContent
+   de contenedores con hijos.
+   ══════════════════════════════════════════════════════════════════ */
+(function initI18n() {
+
+  /* ─────────────────────────────────────────
+     DICCIONARIO COMPLETO
+  ───────────────────────────────────────── */
+  const T = {
+    es: {
+      /* Nav */
+      'nav.about':      'Sobre mí',
+      'nav.experience': 'Experiencia',
+      'nav.projects':   'Proyectos',
+      'nav.skills':     'Habilidades',
+      'nav.education':  'Educación',
+      'nav.languages':  'Idiomas',
+      'nav.contact':    'Contacto',
+
+      /* Hero */
+      'hero.label':      'Ingeniero Civil · Guadalajara, México',
+      'hero.title':      'Topografía · BIM · Ingeniería Civil',
+      'hero.bio':        'Egresado del Tecnológico de Monterrey con experiencia en topografía de precisión, detección de instalaciones subterráneas y metodología BIM. Enfocado en integrar tecnología e ingeniería para generar soluciones técnicas con impacto real.',
+      'hero.cta':        'Ver proyectos',
+      'hero.downloadCV': 'Descargar CV',
+      'hero.emailBtn':   'Contactar por correo',
+      'hero.scroll':     'Desplázate',
+
+      /* Sobre mí */
+      'about.tag':      'Perfil',
+      'about.title':    'Sobre mí',
+      'about.stat1val': '+1.5 años',
+      'about.stat1lbl': 'Experiencia profesional',
+      'about.stat2lbl': 'Proyectos destacados',
+      'about.stat3lbl': 'Herramientas técnicas',
+      'about.stat4lbl': 'Guadalajara, Jalisco',
+
+      /* Experiencia */
+      'exp.tag':   'Trayectoria',
+      'exp.title': 'Experiencia profesional',
+      'exp.role1': 'Gerente de Topografía e Ingeniero en Operaciones',
+      'exp.role2': 'Ingeniero en Operaciones',
+      'exp.role3': 'Ingeniero Junior',
+      'exp.date1': 'Ene. 2026 – Presente · Guadalajara, Jalisco',
+      'exp.date2': 'Oct. 2025 – Ene. 2026 · Guadalajara, Jalisco',
+      'exp.date3': 'Feb. 2025 – Jun. 2025 · Zapopan, Jalisco',
+
+      /* Proyectos */
+      'proj.tag':   'Portafolio',
+      'proj.title': 'Proyectos destacados',
+      'proj.cta':   'Ver más',
+
+      /* Habilidades */
+      'skills.tag':          'Competencias',
+      'skills.title':        'Habilidades',
+      'skills.technical':    'Técnicas',
+      'skills.professional': 'Profesionales',
+      'skills.soft1': 'Liderazgo y gestión de equipos',
+      'skills.soft2': 'Resolución de problemas complejos',
+      'skills.soft3': 'Comunicación técnica efectiva',
+      'skills.soft4': 'Pensamiento crítico y analítico',
+      'skills.soft5': 'Adaptabilidad e innovación',
+      'skills.soft6': 'Atención al detalle',
+
+      /* Educación */
+      'edu.tag':        'Formación',
+      'edu.title':      'Educación, idiomas y certificaciones',
+      'edu.colEdu':     'Educación',
+      'edu.degree1':    'Licenciatura en Ingeniería Civil',
+      'edu.degree2':    'Programa de Intercambio Internacional',
+      'edu.colLang':    'Idiomas',
+      'edu.langNative': 'Nativo',
+      'edu.langB2':     'Intermedio Alto · IELTS B2',
+      'edu.colCerts':   'Certificaciones',
+
+      /* Contacto */
+      'contact.tag':     'Contacto',
+      'contact.title':   'Hablemos',
+      'contact.lead':    '¿Tienes un proyecto en mente o quieres conocer más sobre mi experiencia? Estoy disponible para oportunidades profesionales y colaboraciones técnicas.',
+      'contact.email':   'Correo electrónico',
+      'contact.phone':   'Teléfono',
+      'contact.wa':      'WhatsApp',
+      'contact.waValue': 'Escríbeme directamente',
+      'contact.li':      'LinkedIn',
+
+      /* Footer / CV */
+      'footer.copy': 'Topografía · BIM · Geofísica Aplicada · Guadalajara, México',
+      'cv.file':     'CV_pdf_ES.pdf',
+    },
+
+    en: {
+      /* Nav */
+      'nav.about':      'About',
+      'nav.experience': 'Experience',
+      'nav.projects':   'Projects',
+      'nav.skills':     'Skills',
+      'nav.education':  'Education',
+      'nav.languages':  'Languages',
+      'nav.contact':    'Contact',
+
+      /* Hero */
+      'hero.label':      'Civil Engineer · Guadalajara, Mexico',
+      'hero.title':      'Surveying · BIM · Civil Engineering',
+      'hero.bio':        'Civil Engineering graduate from Tecnológico de Monterrey with experience in precision surveying, underground utility detection, and BIM methodology. Focused on integrating technology and engineering to deliver technical solutions with real-world impact.',
+      'hero.cta':        'View projects',
+      'hero.downloadCV': 'Download Resume',
+      'hero.emailBtn':   'Contact by email',
+      'hero.scroll':     'Scroll down',
+
+      /* About */
+      'about.tag':      'Profile',
+      'about.title':    'About me',
+      'about.stat1val': '+1.5 years',
+      'about.stat1lbl': 'Professional experience',
+      'about.stat2lbl': 'Featured projects',
+      'about.stat3lbl': 'Technical tools',
+      'about.stat4lbl': 'Guadalajara, Jalisco',
+
+      /* Experience */
+      'exp.tag':   'Career',
+      'exp.title': 'Professional experience',
+      'exp.role1': 'Surveying Manager & Operations Engineer',
+      'exp.role2': 'Operations Engineer',
+      'exp.role3': 'Junior Engineer',
+      'exp.date1': 'Jan. 2026 – Present · Guadalajara, Jalisco',
+      'exp.date2': 'Oct. 2025 – Jan. 2026 · Guadalajara, Jalisco',
+      'exp.date3': 'Feb. 2025 – Jun. 2025 · Zapopan, Jalisco',
+
+      /* Projects */
+      'proj.tag':   'Portfolio',
+      'proj.title': 'Featured projects',
+      'proj.cta':   'Learn more',
+
+      /* Skills */
+      'skills.tag':          'Competencies',
+      'skills.title':        'Skills',
+      'skills.technical':    'Technical',
+      'skills.professional': 'Professional',
+      'skills.soft1': 'Leadership & team management',
+      'skills.soft2': 'Complex problem solving',
+      'skills.soft3': 'Effective technical communication',
+      'skills.soft4': 'Critical & analytical thinking',
+      'skills.soft5': 'Adaptability & innovation',
+      'skills.soft6': 'Attention to detail',
+
+      /* Education */
+      'edu.tag':        'Background',
+      'edu.title':      'Education, languages & certifications',
+      'edu.colEdu':     'Education',
+      'edu.degree1':    'Bachelor of Civil Engineering',
+      'edu.degree2':    'International Exchange Program',
+      'edu.colLang':    'Languages',
+      'edu.langNative': 'Native',
+      'edu.langB2':     'Upper Intermediate · IELTS B2',
+      'edu.colCerts':   'Certifications',
+
+      /* Contact */
+      'contact.tag':     'Contact',
+      'contact.title':   "Let's talk",
+      'contact.lead':    'Have a project in mind or want to learn more about my experience? I am available for professional opportunities and technical collaborations.',
+      'contact.email':   'Email',
+      'contact.phone':   'Phone',
+      'contact.wa':      'WhatsApp',
+      'contact.waValue': 'Message me directly',
+      'contact.li':      'LinkedIn',
+
+      /* Footer / CV */
+      'footer.copy': 'Surveying · BIM · Applied Geophysics · Guadalajara, Mexico',
+      'cv.file':     'CV_pdf_EN.pdf',
+    },
+  };
+
+  /* ─────────────────────────────────────────
+     ESTADO
+  ───────────────────────────────────────── */
+  let currentLang = localStorage.getItem('portfolio-lang') || 'es';
+
+  /* ─────────────────────────────────────────
+     APPLY LANG
+     Usa innerText solo en elementos que son
+     "hoja" (sin hijos relevantes) o que tienen
+     data-i18n en un <span> interno dedicado.
+  ───────────────────────────────────────── */
+  function applyLang(lang) {
+    const dict = T[lang];
+    if (!dict) return;
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const val = dict[key];
+      if (val === undefined) return;
+
+      // Si el elemento tiene hijos de tipo elemento (tags), no tocar
+      // — significa que el data-i18n está en un contenedor grande.
+      // En ese caso buscamos su primer nodo de texto directo y lo reemplazamos.
+      const hasElementChildren = [...el.childNodes].some(n => n.nodeType === 1);
+
+      if (hasElementChildren) {
+        // Buscar nodo de texto directo y reemplazarlo
+        for (const node of el.childNodes) {
+          if (node.nodeType === 3 && node.textContent.trim() !== '') {
+            node.textContent = val;
+            return;
+          }
+        }
+        // Si no hay nodo texto directo visible, prepend uno
+        el.insertBefore(document.createTextNode(val), el.firstChild);
+      } else {
+        el.textContent = val;
+      }
+    });
+
+    /* CV: href + texto del span interno */
+    const cvBtn = document.getElementById('cvDownloadBtn');
+    if (cvBtn) {
+      const cvFile = dict['cv.file'] || 'CV_pdf_ES.pdf';
+      cvBtn.setAttribute('href', cvFile);
+      cvBtn.setAttribute('download', cvFile);
+      // El span con data-i18n="hero.downloadCV" ya se maneja arriba
+    }
+
+    /* lang en <html> */
+    document.documentElement.setAttribute('lang', lang);
+
+    /* Selector: estado activo */
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      const active = btn.dataset.lang === lang;
+      btn.classList.toggle('lang-btn--active', active);
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+
+    /* Título */
+    document.title = lang === 'en'
+      ? 'Mariano Franco Hurtado — Civil Engineer'
+      : 'Mariano Franco Hurtado — Ingeniero Civil';
+
+    localStorage.setItem('portfolio-lang', lang);
+    currentLang = lang;
+  }
+
+  /* ─────────────────────────────────────────
+     BOTONES DEL SELECTOR
+  ───────────────────────────────────────── */
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.dataset.lang !== currentLang) {
+        applyLang(btn.dataset.lang);
+      }
+    });
+  });
+
+  /* ─────────────────────────────────────────
+     INICIALIZAR AL CARGAR
+  ───────────────────────────────────────── */
+  applyLang(currentLang);
+
+})();

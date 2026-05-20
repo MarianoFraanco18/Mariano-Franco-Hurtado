@@ -34,16 +34,29 @@
 
       <nav aria-label="Navegación principal">
         <ul class="nav__links" role="list">
-          <li><a href="#sobre-mi" class="nav__link">Sobre mí</a></li>
-          <li><a href="#experiencia" class="nav__link">Experiencia</a></li>
-          <li><a href="#proyectos" class="nav__link">Proyectos</a></li>
-          <li><a href="#habilidades" class="nav__link">Habilidades</a></li>
-          <li><a href="#educacion" class="nav__link">Educación</a></li>
-          <li><a href="#contacto" class="nav__link nav__link--cta">Contacto</a></li>
+          <li><a href="#sobre-mi" class="nav__link" data-i18n="nav.about">Sobre mí</a></li>
+          <li><a href="#experiencia" class="nav__link" data-i18n="nav.experience">Experiencia</a></li>
+          <li><a href="#proyectos" class="nav__link" data-i18n="nav.projects">Proyectos</a></li>
+          <li><a href="#habilidades" class="nav__link" data-i18n="nav.skills">Habilidades</a></li>
+          <li><a href="#educacion" class="nav__link" data-i18n="nav.education">Educación</a></li>
+          <li><a href="#contacto" class="nav__link nav__link--cta" data-i18n="nav.contact">Contacto</a></li>
         </ul>
       </nav>
 
       <div class="nav__actions">
+        <!-- Selector de idioma -->
+        <div class="lang-switcher" role="group" aria-label="Selector de idioma">
+          <button class="lang-btn lang-btn--active" data-lang="es" aria-pressed="true">
+            <span class="lang-btn__flag" aria-hidden="true">&#x1F1F2;&#x1F1FD;</span>
+            <span class="lang-btn__label">ES</span>
+          </button>
+          <span class="lang-switcher__divider" aria-hidden="true"></span>
+          <button class="lang-btn" data-lang="en" aria-pressed="false">
+            <span class="lang-btn__flag" aria-hidden="true">&#x1F1FA;&#x1F1F8;</span>
+            <span class="lang-btn__label">EN</span>
+          </button>
+        </div>
+
         <button class="theme-toggle" data-theme-toggle aria-label="Cambiar tema">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="5"/>
@@ -58,13 +71,13 @@
 
     <div class="nav__mobile" id="mobileMenu" aria-hidden="true">
       <ul role="list">
-        <li><a href="#sobre-mi" class="nav__link">Sobre mí</a></li>
-        <li><a href="#experiencia" class="nav__link">Experiencia</a></li>
-        <li><a href="#proyectos" class="nav__link">Proyectos</a></li>
-        <li><a href="#habilidades" class="nav__link">Habilidades</a></li>
-        <li><a href="#educacion" class="nav__link">Educación</a></li>
-        <li><a href="#idiomas" class="nav__link">Idiomas</a></li>
-        <li><a href="#contacto" class="nav__link">Contacto</a></li>
+        <li><a href="#sobre-mi" class="nav__link" data-i18n="nav.about">Sobre mí</a></li>
+        <li><a href="#experiencia" class="nav__link" data-i18n="nav.experience">Experiencia</a></li>
+        <li><a href="#proyectos" class="nav__link" data-i18n="nav.projects">Proyectos</a></li>
+        <li><a href="#habilidades" class="nav__link" data-i18n="nav.skills">Habilidades</a></li>
+        <li><a href="#educacion" class="nav__link" data-i18n="nav.education">Educación</a></li>
+        <li><a href="#idiomas" class="nav__link" data-i18n="nav.languages">Idiomas</a></li>
+        <li><a href="#contacto" class="nav__link" data-i18n="nav.contact">Contacto</a></li>
       </ul>
     </div>
   </header>
@@ -112,23 +125,23 @@
       </div>
 
       <div class="hero__content container">
-        <div class="hero__label">Ingeniero Civil · Guadalajara, México</div>
+        <div class="hero__label" data-i18n="hero.label">Ingeniero Civil · Guadalajara, México</div>
         <h1 class="hero__name">Mariano Franco<br/><span class="hero__surname">Hurtado</span></h1>
-        <p class="hero__title">Topografía · BIM · Ingeniería Civil</p>
-        <p class="hero__bio">
+        <p class="hero__title" data-i18n="hero.title">Topografía · BIM · Ingeniería Civil</p>
+        <p class="hero__bio" data-i18n="hero.bio">
           Egresado del Tecnológico de Monterrey con experiencia en topografía de precisión,
           detección de instalaciones subterráneas y metodología BIM. Enfocado en integrar
           tecnología e ingeniería para generar soluciones técnicas con impacto real.
         </p>
         <div class="hero__actions">
-          <a href="#proyectos" class="btn btn--primary">Ver proyectos</a>
-          <a href="CV_pdf_ES.pdf" class="btn btn--outline" download>
+          <a href="#proyectos" class="btn btn--primary" data-i18n="hero.cta">Ver proyectos</a>
+          <a href="CV_pdf_ES.pdf" class="btn btn--outline" download id="cvDownloadBtn">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
-            Descargar CV
+            <span data-i18n="hero.downloadCV">Descargar CV</span>
           </a>
-          <a href="mailto:marianofraanco5@gmail.com" class="btn btn--outline">Contactar por correo</a>
+          <a href="mailto:marianofraanco5@gmail.com" class="btn btn--outline" data-i18n="hero.emailBtn">Contactar por correo</a>
           <a href="https://wa.me/524777010910" class="btn btn--whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
@@ -137,7 +150,7 @@
           </a>
         </div>
         <div class="hero__scroll-hint" aria-hidden="true">
-          <span>Desplázate</span>
+          <span data-i18n="hero.scroll">Desplázate</span>
           <svg width="16" height="20" viewBox="0 0 16 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <rect x="1" y="1" width="14" height="22" rx="7"/>
             <circle cx="8" cy="7" r="2" fill="currentColor" class="scroll-dot"/>
@@ -150,8 +163,8 @@
     <section class="section sobre-mi" id="sobre-mi">
       <div class="container">
         <div class="section__header reveal">
-          <span class="section__tag">Perfil</span>
-          <h2 class="section__title">Sobre mí</h2>
+          <span class="section__tag" data-i18n="about.tag">Perfil</span>
+          <h2 class="section__title" data-i18n="about.title">Sobre mí</h2>
         </div>
         <div class="sobre-mi__grid">
           <div class="sobre-mi__text reveal">
@@ -176,8 +189,8 @@
                 </svg>
               </div>
               <div>
-                <div class="stat-card__value">+1.5 años</div>
-                <div class="stat-card__label">Experiencia profesional</div>
+                <div class="stat-card__value" data-i18n="about.stat1val">+1.5 años</div>
+                <div class="stat-card__label" data-i18n="about.stat1lbl">Experiencia profesional</div>
               </div>
             </div>
             <div class="stat-card">
@@ -188,7 +201,7 @@
               </div>
               <div>
                 <div class="stat-card__value">3+</div>
-                <div class="stat-card__label">Proyectos destacados</div>
+                <div class="stat-card__label" data-i18n="about.stat2lbl">Proyectos destacados</div>
               </div>
             </div>
             <div class="stat-card">
@@ -199,7 +212,7 @@
               </div>
               <div>
                 <div class="stat-card__value">14+</div>
-                <div class="stat-card__label">Herramientas técnicas</div>
+                <div class="stat-card__label" data-i18n="about.stat3lbl">Herramientas técnicas</div>
               </div>
             </div>
             <div class="stat-card">
@@ -212,7 +225,7 @@
               </div>
               <div>
                 <div class="stat-card__value">GDL</div>
-                <div class="stat-card__label">Guadalajara, Jalisco</div>
+                <div class="stat-card__label" data-i18n="about.stat4lbl">Guadalajara, Jalisco</div>
               </div>
             </div>
           </div>
@@ -225,8 +238,8 @@
       <div class="section__bg-grid" aria-hidden="true"></div>
       <div class="container">
         <div class="section__header reveal">
-          <span class="section__tag">Trayectoria</span>
-          <h2 class="section__title">Experiencia profesional</h2>
+          <span class="section__tag" data-i18n="exp.tag">Trayectoria</span>
+          <h2 class="section__title" data-i18n="exp.title">Experiencia profesional</h2>
         </div>
         <div class="timeline">
 
@@ -239,10 +252,10 @@
             <div class="timeline__content">
               <div class="timeline__header">
                 <div>
-                  <h3 class="timeline__role">Gerente de Topografía e Ingeniero en Operaciones</h3>
+                  <h3 class="timeline__role" data-i18n="exp.role1">Gerente de Topografía e Ingeniero en Operaciones</h3>
                   <div class="timeline__company">Tecno Terra, Georadar y Polímeros S.A. de C.V.</div>
                 </div>
-                <span class="timeline__date">Ene. 2026 – Presente · Guadalajara, Jalisco</span>
+                <span class="timeline__date" data-i18n="exp.date1">Ene. 2026 – Presente · Guadalajara, Jalisco</span>
               </div>
               <ul class="timeline__list" role="list">
                 <li>Creé y consolidé el departamento de topografía, definiendo procesos y estándares de trabajo desde cero.</li>
@@ -268,10 +281,10 @@
             <div class="timeline__content">
               <div class="timeline__header">
                 <div>
-                  <h3 class="timeline__role">Ingeniero en Operaciones</h3>
+                  <h3 class="timeline__role" data-i18n="exp.role2">Ingeniero en Operaciones</h3>
                   <div class="timeline__company">Tecno Terra, Georadar y Polímeros S.A. de C.V.</div>
                 </div>
-                <span class="timeline__date">Oct. 2025 – Ene. 2026 · Guadalajara, Jalisco</span>
+                <span class="timeline__date" data-i18n="exp.date2">Oct. 2025 – Ene. 2026 · Guadalajara, Jalisco</span>
               </div>
               <ul class="timeline__list" role="list">
                 <li>Ejecuté estudios de Georradar (GPR) en proyectos a lo largo de la República Mexicana.</li>
@@ -295,10 +308,10 @@
             <div class="timeline__content">
               <div class="timeline__header">
                 <div>
-                  <h3 class="timeline__role">Ingeniero Junior</h3>
+                  <h3 class="timeline__role" data-i18n="exp.role3">Ingeniero Junior</h3>
                   <div class="timeline__company">AIO Constructora</div>
                 </div>
-                <span class="timeline__date">Feb. 2025 – Jun. 2025 · Zapopan, Jalisco</span>
+                <span class="timeline__date" data-i18n="exp.date3">Feb. 2025 – Jun. 2025 · Zapopan, Jalisco</span>
               </div>
               <ul class="timeline__list" role="list">
                 <li>Contribuí al diseño estructural de una nave industrial, desarrollando análisis y especificaciones técnicas.</li>
@@ -321,13 +334,13 @@
     <section class="section proyectos" id="proyectos">
       <div class="container">
         <div class="section__header reveal">
-          <span class="section__tag">Portafolio</span>
-          <h2 class="section__title">Proyectos destacados</h2>
+          <span class="section__tag" data-i18n="proj.tag">Portafolio</span>
+          <h2 class="section__title" data-i18n="proj.title">Proyectos destacados</h2>
         </div>
         <div class="projects__grid">
 
           <!-- Diageo -->
-          <article class="project-card reveal">
+          <article class="project-card reveal" role="button" tabindex="0" aria-label="Ver detalles del proyecto Economía Circular — Diageo" data-project="diageo">
             <div class="project-card__accent"></div>
             <div class="project-card__meta">
               <span class="project-card__date">Ene. 2025 – May. 2025</span>
@@ -350,10 +363,14 @@
               <span class="tag">Economía Circular</span>
               <span class="tag">Industria Tequilera</span>
             </div>
+            <div class="project-card__cta" aria-hidden="true">
+              Ver más
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
           </article>
 
           <!-- CLJ -->
-          <article class="project-card reveal">
+          <article class="project-card reveal" role="button" tabindex="0" aria-label="Ver detalles del proyecto Aeródromo Multimodal — CLJ" data-project="clj">
             <div class="project-card__accent"></div>
             <div class="project-card__meta">
               <span class="project-card__date">Ene. 2024 – Jun. 2024</span>
@@ -376,10 +393,14 @@
               <span class="tag">Logística</span>
               <span class="tag">Diseño multimodal</span>
             </div>
+            <div class="project-card__cta" aria-hidden="true">
+              Ver más
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
           </article>
 
           <!-- CONAGUA -->
-          <article class="project-card reveal">
+          <article class="project-card reveal" role="button" tabindex="0" aria-label="Ver detalles del proyecto Red de Abastecimiento — CONAGUA" data-project="conagua">
             <div class="project-card__accent"></div>
             <div class="project-card__meta">
               <span class="project-card__date">Ago. 2023 – Dic. 2023</span>
@@ -400,6 +421,10 @@
               <span class="tag">EPANET</span>
               <span class="tag">Infraestructura</span>
             </div>
+            <div class="project-card__cta" aria-hidden="true">
+              Ver más
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
           </article>
 
         </div>
@@ -411,13 +436,13 @@
       <div class="section__bg-grid" aria-hidden="true"></div>
       <div class="container">
         <div class="section__header reveal">
-          <span class="section__tag">Competencias</span>
-          <h2 class="section__title">Habilidades</h2>
+          <span class="section__tag" data-i18n="skills.tag">Competencias</span>
+          <h2 class="section__title" data-i18n="skills.title">Habilidades</h2>
         </div>
 
         <!-- Habilidades técnicas -->
         <div class="skills__subtitle reveal">
-          <h3 class="skills__sub-heading">Técnicas</h3>
+          <h3 class="skills__sub-heading" data-i18n="skills.technical">Técnicas</h3>
         </div>
         <div class="skills__grid">
 
@@ -431,10 +456,10 @@
               CAD & Diseño
             </h3>
             <div class="skill-pills">
-              <span class="skill-pill skill-pill--high">AutoCAD</span>
-              <span class="skill-pill skill-pill--high">CivilCAD</span>
-              <span class="skill-pill skill-pill--mid">Revit (BIM)</span>
-              <span class="skill-pill skill-pill--mid">SketchUp</span>
+              <span class="skill-pill" tabindex="0" data-tooltip="Software de diseño técnico y dibujo CAD para la elaboración de planos y documentación de ingeniería.">AutoCAD</span>
+              <span class="skill-pill" tabindex="0" data-tooltip="Extensión para AutoCAD enfocada en topografía, vialidades, plataformas y proyectos de infraestructura.">CivilCAD</span>
+              <span class="skill-pill" tabindex="0" data-tooltip="Software BIM para modelado de información de la construcción y coordinación multidisciplinaria de proyectos.">Revit (BIM)</span>
+              <span class="skill-pill" tabindex="0" data-tooltip="Herramienta de modelado 3D útil para conceptualización, volumétrica y presentación de proyectos.">SketchUp</span>
             </div>
           </div>
 
@@ -447,10 +472,10 @@
               Geomática & Topografía
             </h3>
             <div class="skill-pills">
-              <span class="skill-pill skill-pill--high">Leica Infinity</span>
-              <span class="skill-pill skill-pill--high">Equipos GNSS</span>
-              <span class="skill-pill skill-pill--high">Estación Total</span>
-              <span class="skill-pill skill-pill--mid">QGIS</span>
+              <span class="skill-pill" tabindex="0" data-tooltip="Software para procesamiento, ajuste y gestión de datos topográficos y geodésicos.">Leica Infinity</span>
+              <span class="skill-pill" tabindex="0" data-tooltip="Tecnología de posicionamiento satelital para levantamientos, georreferenciación y control topográfico.">Equipos GNSS</span>
+              <span class="skill-pill" tabindex="0" data-tooltip="Instrumento topográfico para medir ángulos, distancias y coordenadas con alta precisión en campo.">Estación Total</span>
+              <span class="skill-pill" tabindex="0" data-tooltip="Software de geomática para la creación de mapas, análisis espacial y gestión de información geográfica.">QGIS</span>
             </div>
           </div>
 
@@ -463,10 +488,10 @@
               Georradar (GPR)
             </h3>
             <div class="skill-pills">
-              <span class="skill-pill skill-pill--high">GPR-Slice</span>
-              <span class="skill-pill skill-pill--high">GSSI (SIR System)</span>
-              <span class="skill-pill skill-pill--mid">RADAN 7</span>
-              <span class="skill-pill skill-pill--mid">Radargramas</span>
+              <span class="skill-pill" tabindex="0" data-tooltip="Software especializado en procesamiento e interpretación de datos de georradar.">GPR-Slice</span>
+              <span class="skill-pill" tabindex="0" data-tooltip="Plataforma de adquisición y análisis de datos de georradar para detección e inspección subterránea.">GSSI (SIR System)</span>
+              <span class="skill-pill" tabindex="0" data-tooltip="Software de procesamiento de radargramas para interpretar información obtenida con equipos GPR.">RADAN 7</span>
+              <span class="skill-pill" tabindex="0" data-tooltip="Representaciones gráficas de datos GPR usadas para analizar capas, objetos y anomalías del subsuelo.">Radargramas</span>
             </div>
           </div>
 
@@ -479,10 +504,10 @@
               Datos & Automatización
             </h3>
             <div class="skill-pills">
-              <span class="skill-pill skill-pill--high">MS Excel (macros)</span>
-              <span class="skill-pill skill-pill--high">Power BI</span>
-              <span class="skill-pill skill-pill--mid">IA generativa</span>
-              <span class="skill-pill skill-pill--mid">Diseño de prompts</span>
+              <span class="skill-pill" tabindex="0" data-tooltip="Herramienta de análisis y automatización de datos mediante hojas de cálculo, fórmulas avanzadas y macros.">MS Excel (macros)</span>
+              <span class="skill-pill" tabindex="0" data-tooltip="Plataforma de visualización y análisis de datos para crear dashboards e informes interactivos.">Power BI</span>
+              <span class="skill-pill" tabindex="0" data-tooltip="Uso de inteligencia artificial para automatizar tareas, generar contenido y mejorar flujos de trabajo.">IA generativa</span>
+              <span class="skill-pill" tabindex="0" data-tooltip="Capacidad para estructurar instrucciones precisas que optimizan resultados en herramientas de IA.">Diseño de prompts</span>
             </div>
           </div>
 
@@ -495,10 +520,10 @@
               Estructuras & Hidráulica
             </h3>
             <div class="skill-pills">
-              <span class="skill-pill skill-pill--mid">STAAD.Pro</span>
-              <span class="skill-pill skill-pill--mid">RAM Elements</span>
-              <span class="skill-pill skill-pill--mid">RAM Connection</span>
-              <span class="skill-pill skill-pill--mid">EPANET</span>
+              <span class="skill-pill" tabindex="0" data-tooltip="Software de análisis y diseño estructural para evaluar elementos y sistemas constructivos.">STAAD.Pro</span>
+              <span class="skill-pill" tabindex="0" data-tooltip="Herramienta para análisis estructural y diseño de elementos de concreto y acero.">RAM Elements</span>
+              <span class="skill-pill" tabindex="0" data-tooltip="Software para diseño y verificación de conexiones estructurales en acero.">RAM Connection</span>
+              <span class="skill-pill" tabindex="0" data-tooltip="Software para modelado hidráulico de redes de distribución de agua y simulación de su comportamiento.">EPANET</span>
             </div>
           </div>
 
@@ -506,7 +531,7 @@
 
         <!-- Habilidades profesionales -->
         <div class="skills__subtitle reveal" style="margin-top: var(--space-16);">
-          <h3 class="skills__sub-heading">Profesionales</h3>
+          <h3 class="skills__sub-heading" data-i18n="skills.professional">Profesionales</h3>
         </div>
         <div class="soft-skills__grid reveal">
           <div class="soft-skill">
@@ -517,7 +542,7 @@
                 <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
               </svg>
             </div>
-            <span>Liderazgo y gestión de equipos</span>
+            <span data-i18n="skills.soft1">Liderazgo y gestión de equipos</span>
           </div>
           <div class="soft-skill">
             <div class="soft-skill__icon" aria-hidden="true">
@@ -526,7 +551,7 @@
                 <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/>
               </svg>
             </div>
-            <span>Resolución de problemas complejos</span>
+            <span data-i18n="skills.soft2">Resolución de problemas complejos</span>
           </div>
           <div class="soft-skill">
             <div class="soft-skill__icon" aria-hidden="true">
@@ -534,7 +559,7 @@
                 <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
               </svg>
             </div>
-            <span>Comunicación técnica efectiva</span>
+            <span data-i18n="skills.soft3">Comunicación técnica efectiva</span>
           </div>
           <div class="soft-skill">
             <div class="soft-skill__icon" aria-hidden="true">
@@ -542,7 +567,7 @@
                 <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
               </svg>
             </div>
-            <span>Pensamiento crítico y analítico</span>
+            <span data-i18n="skills.soft4">Pensamiento crítico y analítico</span>
           </div>
           <div class="soft-skill">
             <div class="soft-skill__icon" aria-hidden="true">
@@ -550,7 +575,7 @@
                 <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
               </svg>
             </div>
-            <span>Adaptabilidad e innovación</span>
+            <span data-i18n="skills.soft5">Adaptabilidad e innovación</span>
           </div>
           <div class="soft-skill">
             <div class="soft-skill__icon" aria-hidden="true">
@@ -559,7 +584,7 @@
                 <circle cx="12" cy="12" r="3"/>
               </svg>
             </div>
-            <span>Atención al detalle</span>
+            <span data-i18n="skills.soft6">Atención al detalle</span>
           </div>
         </div>
 
@@ -570,8 +595,8 @@
     <section class="section educacion" id="educacion">
       <div class="container">
         <div class="section__header reveal">
-          <span class="section__tag">Formación</span>
-          <h2 class="section__title">Educación, idiomas y certificaciones</h2>
+          <span class="section__tag" data-i18n="edu.tag">Formación</span>
+          <h2 class="section__title" data-i18n="edu.title">Educación, idiomas y certificaciones</h2>
         </div>
 
         <div class="edu__grid">
@@ -591,7 +616,7 @@
                 <img src="logo-tec-round.jpg" alt="Tecnológico de Monterrey" width="56" height="56" />
               </div>
               <div>
-                <div class="edu__item-title">Licenciatura en Ingeniería Civil</div>
+                <div class="edu__item-title" data-i18n="edu.degree1">Licenciatura en Ingeniería Civil</div>
                 <div class="edu__item-inst">Tecnológico de Monterrey, Campus Guadalajara</div>
                 <div class="edu__item-date">Ago. 2021 – Jun. 2025</div>
               </div>
@@ -602,7 +627,7 @@
                 <img src="UCLM-Logo.jpg" alt="Universidad de Castilla-La Mancha" width="56" height="56" />
               </div>
               <div>
-                <div class="edu__item-title">Programa de Intercambio Internacional</div>
+                <div class="edu__item-title" data-i18n="edu.degree2">Programa de Intercambio Internacional</div>
                 <div class="edu__item-inst">Universidad de Castilla-La Mancha, Ciudad Real, España</div>
                 <div class="edu__item-date">Ago. 2024 – Ene. 2025</div>
               </div>
@@ -622,7 +647,7 @@
             <div class="lang-item">
               <div class="lang-item__header">
                 <span class="lang-item__name">🇲🇽 Español</span>
-                <span class="lang-item__level">Nativo</span>
+                <span class="lang-item__level" data-i18n="edu.langNative">Nativo</span>
               </div>
               <div class="lang-bar">
                 <div class="lang-bar__fill" style="--width: 100%"></div>
@@ -631,7 +656,7 @@
             <div class="lang-item">
               <div class="lang-item__header">
                 <span class="lang-item__name">🇺🇸 Inglés</span>
-                <span class="lang-item__level">Intermedio Alto · IELTS B2</span>
+                <span class="lang-item__level" data-i18n="edu.langB2">Intermedio Alto · IELTS B2</span>
               </div>
               <div class="lang-bar">
                 <div class="lang-bar__fill" style="--width: 70%"></div>
@@ -672,11 +697,11 @@
     <section class="section contacto" id="contacto">
       <div class="container">
         <div class="section__header reveal">
-          <span class="section__tag">Contacto</span>
-          <h2 class="section__title">Hablemos</h2>
+          <span class="section__tag" data-i18n="contact.tag">Contacto</span>
+          <h2 class="section__title" data-i18n="contact.title">Hablemos</h2>
         </div>
         <div class="contacto__inner reveal">
-          <p class="contacto__lead">
+          <p class="contacto__lead" data-i18n="contact.lead">
             ¿Tienes un proyecto en mente o quieres conocer más sobre mi experiencia?
             Estoy disponible para oportunidades profesionales y colaboraciones técnicas.
           </p>
@@ -690,7 +715,7 @@
                 </svg>
               </div>
               <div>
-                <div class="contact-link__label">Correo electrónico</div>
+                <div class="contact-link__label" data-i18n="contact.email">Correo electrónico</div>
                 <div class="contact-link__value">marianofraanco5@gmail.com</div>
               </div>
               <svg class="contact-link__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -705,7 +730,7 @@
                 </svg>
               </div>
               <div>
-                <div class="contact-link__label">Teléfono</div>
+                <div class="contact-link__label" data-i18n="contact.phone">Teléfono</div>
                 <div class="contact-link__value">+52 (477) 701-0910</div>
               </div>
               <svg class="contact-link__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -720,8 +745,8 @@
                 </svg>
               </div>
               <div>
-                <div class="contact-link__label">WhatsApp</div>
-                <div class="contact-link__value">Escríbeme directamente</div>
+                <div class="contact-link__label" data-i18n="contact.wa">WhatsApp</div>
+                <div class="contact-link__value" data-i18n="contact.waValue">Escríbeme directamente</div>
               </div>
               <svg class="contact-link__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -735,7 +760,7 @@
                 </svg>
               </div>
               <div>
-                <div class="contact-link__label">LinkedIn</div>
+                <div class="contact-link__label" data-i18n="contact.li">LinkedIn</div>
                 <div class="contact-link__value">Mariano Franco Hurtado</div>
               </div>
               <svg class="contact-link__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -758,6 +783,63 @@
 
   </main>
 
+  <!-- ═══════════════════════════════ MODAL PROYECTOS ═══════════════════════════════ -->
+  <div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal" id="modalContent">
+      <button class="modal__close" id="modalClose" aria-label="Cerrar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+
+      <div class="modal__header">
+        <div class="modal__meta">
+          <span class="modal__date" id="modalDate"></span>
+          <span class="modal__location" id="modalLocation"></span>
+        </div>
+        <h2 class="modal__title" id="modalTitle"></h2>
+      </div>
+
+      <div class="modal__body">
+
+        <!-- Galería / Carrusel -->
+        <div class="modal__gallery" id="modalGallery">
+          <div class="modal__gallery-track" id="modalTrack"></div>
+          <button class="modal__gallery-btn modal__gallery-btn--prev" id="galleryPrev" aria-label="Anterior">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="modal__gallery-btn modal__gallery-btn--next" id="galleryNext" aria-label="Siguiente">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+          <div class="modal__gallery-dots" id="galleryDots"></div>
+        </div>
+
+        <!-- Descripción -->
+        <div>
+          <p class="modal__section-label">Descripción</p>
+          <p class="modal__description" id="modalDescription"></p>
+        </div>
+
+        <!-- Mi participación -->
+        <div class="modal__participation">
+          <p class="modal__section-label">Mi participación</p>
+          <ul id="modalParticipation"></ul>
+        </div>
+
+        <!-- Herramientas -->
+        <div>
+          <p class="modal__section-label">Herramientas y metodologías</p>
+          <div class="modal__tools" id="modalTools"></div>
+        </div>
+
+        <!-- Etiquetas -->
+        <div>
+          <p class="modal__section-label">Categorías</p>
+          <div class="modal__badges" id="modalBadges"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <!-- ═════════════════════════════════ FOOTER ═════════════════════════════════ -->
   <footer class="footer">
     <div class="container footer__inner">
@@ -770,7 +852,7 @@
         </svg>
         <span>Mariano Franco Hurtado · Ingeniero Civil</span>
       </div>
-      <p class="footer__copy">Topografía · BIM · Geofísica Aplicada · Guadalajara, México</p>
+      <p class="footer__copy" data-i18n="footer.copy">Topografía · BIM · Geofísica Aplicada · Guadalajara, México</p>
       <div class="footer__links">
         <a href="#inicio">Inicio</a>
         <a href="mailto:marianofraanco5@gmail.com">Email</a>
