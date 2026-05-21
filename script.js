@@ -293,9 +293,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         date: 'Ene. 2025 – May. 2025',
         location: 'Jalisco, México',
         slides: [
-          { label: 'Propuesta de revalorización de vidrio', icon: '🌱', img: 'DIAGEO-IMG1.png' },
-          { label: 'Análisis de cadena de valor', icon: '🔄', img: 'DIAGEO-IMG2.png' },
-          { label: 'Modelo de economía circular', icon: '📊', img: 'DIAGEO-IMG3.png' },
+          { label: 'Propuesta de revalorización de vidrio', icon: '🌱', img: 'DIAGEO-IMG1.png'},
+          { label: 'Análisis de cadena de valor', icon: '🔄', img: 'DIAGEO-IMG2.png'},
+          { label: 'Modelo de economía circular', icon: '📊', img: 'DIAGEO-IMG3.png'},
         ],
         description: 'Proyecto para la revalorización de residuos de vidrio generados en la industria tequilera, en el marco de las metas de sustentabilidad corporativa de Diageo. Se analizó el ciclo de vida del vidrio, se identificaron puntos de mejora en la cadena de valor y se diseñó un modelo de economía circular aplicado al contexto de producción de bebidas en Jalisco.',
         participation: [
@@ -312,9 +312,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         date: 'Jan. 2025 – May 2025',
         location: 'Jalisco, Mexico',
         slides: [
-          { label: 'Glass waste recovery proposal', icon: '🌱', img: 'DIAGEO-IMG1.png' },
-          { label: 'Value chain analysis', icon: '🔄', img: 'DIAGEO-IMG2-EN.png' },
-          { label: 'Circular economy model design', icon: '📊', img: 'DIAGEO-IMG3-EN.png' },
+          { label: 'Glass waste recovery proposal', icon: '🌱', img: 'DIAGEO-IMG1.png'},
+          { label: 'Value chain analysis', icon: '🔄', img: 'DIAGEO-IMG2-EN.png'},
+          { label: 'Circular economy model design', icon: '📊', img: 'DIAGEO-IMG3-EN.png'},
         ],
         description: "Project focused on recovering glass waste generated in the tequila industry, within the scope of Diageo\u2019s corporate sustainability goals. The glass life cycle was analysed, improvement points in the value chain were identified, and a circular economy model was designed for the beverage production context in Jalisco.",
         participation: [
