@@ -293,9 +293,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         date: 'Ene. 2025 – May. 2025',
         location: 'Jalisco, México',
         slides: [
-          { label: 'Propuesta de revalorización de vidrio', icon: '🌱', img: 'DIAGEO-IMG1.png'},
-          { label: 'Análisis de cadena de valor', icon: '🔄', img: 'DIAGEO-IMG2.png'},
-          { label: 'Modelo de economía circular', icon: '📊', img: 'DIAGEO-IMG3.png'},
+          { label: 'Propuesta de revalorización de vidrio', icon: '🌱', img: 'DIAGEO-IMG1.png' },
+          { label: 'Análisis de cadena de valor', icon: '🔄', img: 'DIAGEO-IMG2.png' },
+          { label: 'Modelo de economía circular', icon: '📊', img: 'DIAGEO-IMG3.png' },
         ],
         description: 'Proyecto para la revalorización de residuos de vidrio generados en la industria tequilera, en el marco de las metas de sustentabilidad corporativa de Diageo. Se analizó el ciclo de vida del vidrio, se identificaron puntos de mejora en la cadena de valor y se diseñó un modelo de economía circular aplicado al contexto de producción de bebidas en Jalisco.',
         participation: [
@@ -312,9 +312,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         date: 'Jan. 2025 – May 2025',
         location: 'Jalisco, Mexico',
         slides: [
-          { label: 'Glass waste recovery proposal', icon: '🌱', img: 'DIAGEO-IMG1.png'},
-          { label: 'Value chain analysis', icon: '🔄', img: 'DIAGEO-IMG2-EN.png'},
-          { label: 'Circular economy model design', icon: '📊', img: 'DIAGEO-IMG3-EN.png'},
+          { label: 'Glass waste recovery proposal', icon: '🌱', img: 'DIAGEO-IMG1-EN.png' },
+          { label: 'Value chain analysis', icon: '🔄', img: 'DIAGEO-IMG2-EN.png' },
+          { label: 'Circular economy model design', icon: '📊', img: 'DIAGEO-IMG3-EN.png' },
         ],
         description: "Project focused on recovering glass waste generated in the tequila industry, within the scope of Diageo\u2019s corporate sustainability goals. The glass life cycle was analysed, improvement points in the value chain were identified, and a circular economy model was designed for the beverage production context in Jalisco.",
         participation: [
@@ -333,9 +333,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         date: 'Ene. 2024 – Jun. 2024',
         location: 'Jalisco, México',
         slides: [
-          { label: 'Diseño de aeropista e infraestructura', icon: '✈️' },
-          { label: 'Integración de conectividad ferroviaria', icon: '🚂' },
-          { label: 'Propuesta logística multimodal', icon: '🗺️' },
+          { label: 'Diseño de aeropista e infraestructura', icon: '✈️', img: 'CLJ-IMG1.png' },
+          { label: 'Integración de conectividad ferroviaria', icon: '🚂', img: 'CLJ-IMG2.png' },
+          { label: 'Propuesta logística multimodal', icon: '🗺️', img: 'CLJ-IMG3.png' },
         ],
         description: 'Diseño de una propuesta de infraestructura logística para el Centro Logístico de Jalisco (CLJ), integrando una aeropista de uso privado con conexiones ferroviarias y carreteras. El objetivo fue crear un hub de conectividad multimodal que potenciara la cadena logística de la región y redujera tiempos de trasiego de mercancías.',
         participation: [
@@ -352,9 +352,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         date: 'Jan. 2024 – Jun. 2024',
         location: 'Jalisco, Mexico',
         slides: [
-          { label: 'Airstrip and infrastructure design', icon: '✈️' },
-          { label: 'Railway connectivity integration', icon: '🚂' },
-          { label: 'Multimodal logistics proposal', icon: '🗺️' },
+          { label: 'Airstrip and infrastructure design', icon: '✈️', img: 'CLJ-IMG1-EN.png' },
+          { label: 'Railway connectivity integration', icon: '🚂', img: 'CLJ-IMG2-EN.png' },
+          { label: 'Multimodal logistics proposal', icon: '🗺️', img: 'CLJ-IMG3-EN.png' },
         ],
         description: 'Design of a logistics infrastructure proposal for the Jalisco Logistics Center (CLJ), integrating a private-use airstrip with railway and road connections. The goal was to create a multimodal connectivity hub that would strengthen the regional logistics chain and reduce cargo transit times.',
         participation: [
@@ -373,9 +373,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         date: 'Ago. 2023 – Dic. 2023',
         location: 'Guadalajara, Jalisco',
         slides: [
-          { label: 'Diseño de red hidráulica', icon: '💧' },
-          { label: 'Modelado en EPANET', icon: '💻' },
-          { label: 'Red de alcantarillado', icon: '🗺️' },
+          { label: 'Diseño de red hidráulica', icon: '💧', img: 'CONAGUA-IMG1.png' },
+          { label: 'Modelado en EPANET', icon: '💻', img: 'CONAGUA-IMG2.png' },
+          { label: 'Red de alcantarillado', icon: '🗺️', img: 'CONAGUA-IMG3.png' },
         ],
         description: 'Proyecto aplicado al caso real de la comunidad de Mezquitic, Jalisco. Se diseñó una red de abastecimiento de agua potable y un sistema de alcantarillado sanitario, con base en criterios técnicos de cobertura, presión, velocidades de flujo y proyección de demanda poblacional.',
         participation: [
@@ -392,9 +392,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         date: 'Aug. 2023 – Dec. 2023',
         location: 'Guadalajara, Jalisco',
         slides: [
-          { label: 'Hydraulic network design', icon: '💧' },
-          { label: 'EPANET hydraulic modelling', icon: '💻' },
-          { label: 'Sewage network design', icon: '🗺️' },
+          { label: 'Hydraulic network design', icon: '💧', img: 'CONAGUA-IMG1-EN.png' },
+          { label: 'EPANET hydraulic modelling', icon: '💻', img: 'CONAGUA-IMG2-EN.png' },
+          { label: 'Sewage network design', icon: '🗺️', img: 'CONAGUA-IMG3-EN.png' },
         ],
         description: 'Project applied to the real case of the Mezquitic community in Jalisco. A potable water distribution network and a sanitary sewage system were designed based on technical criteria for coverage, pressure, flow velocities, and population demand projection.',
         participation: [
@@ -413,9 +413,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         date: '2025 – 2026',
         location: 'Guadalajara, Jalisco',
         slides: [
-          { label: 'Estructuración y nomenclatura de datos topográficos', icon: '📐' },
-          { label: 'Preparación de coordenadas para AutoCAD', icon: '📊' },
-          { label: 'Estandarización del flujo de trabajo técnico', icon: '⚙️' },
+          { label: 'Estructuración y nomenclatura de datos topográficos', icon: '📐', img: 'MACROCAD-IMG1.png' },
+          { label: 'Preparación de coordenadas para AutoCAD', icon: '📊', img: 'MACROCAD-IMG2.png' },
+          { label: 'Estandarización del flujo de trabajo técnico', icon: '⚙️', img: 'MACROCAD-IMG3.png' },
         ],
         description: 'Este proyecto consistió en automatizar parte del flujo de trabajo entre Excel y AutoCAD para el procesamiento de datos topográficos y de líneas relacionadas con estudios de georradar. La solución permitió ordenar datos, generar nomenclaturas, estructurar tablas y preparar información utilizable dentro del entorno CAD, disminuyendo errores operativos y acelerando tareas repetitivas que antes se realizaban manualmente.',
         participation: [
@@ -432,9 +432,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         date: '2025 – 2026',
         location: 'Guadalajara, Jalisco',
         slides: [
-          { label: 'Topographic data structuring and naming', icon: '📐' },
-          { label: 'Coordinate preparation for AutoCAD', icon: '📊' },
-          { label: 'Technical workflow standardisation', icon: '⚙️' },
+          { label: 'Topographic data structuring and naming', icon: '📐', img: 'MACROCAD-IMG1-EN.png' },
+          { label: 'Coordinate preparation for AutoCAD', icon: '📊', img: 'MACROCAD-IMG2-EN.png' },
+          { label: 'Technical workflow standardisation', icon: '⚙️', img: 'MACROCAD-IMG3-EN.png' },
         ],
         description: 'This project consisted of automating part of the workflow between Excel and AutoCAD for the processing of topographic and GPR line data. The solution enabled data ordering, nomenclature generation, table structuring, and preparation of CAD-ready information, reducing operational errors and accelerating repetitive tasks previously done manually.',
         participation: [
@@ -453,9 +453,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         date: '2025 – 2026',
         location: 'Guadalajara, Jalisco',
         slides: [
-          { label: 'Captura secuencial automática de radargramas', icon: '📡' },
-          { label: 'Control de ventanas emergentes y campos de entrada', icon: '🖥️' },
-          { label: 'Estandarización del proceso de exportación', icon: '⚡' },
+          { label: 'Captura secuencial automática de radargramas', icon: '📡', img: 'MACROHOTKEY-IMG1.png' },
+          { label: 'Control de ventanas emergentes y campos de entrada', icon: '🖥️', img: 'MACROHOTKEY-IMG2.png' },
+          { label: 'Estandarización del proceso de exportación', icon: '⚡', img: 'MACROHOTKEY-IMG3.png' },
         ],
         description: 'Este proyecto se enfocó en automatizar acciones repetitivas dentro del software GPR-SLICE mediante AutoHotkey, incluyendo la captura secuencial de radargramas, el control de campos de entrada, el manejo de ventanas emergentes y la estandarización del proceso de exportación. La automatización permitió reducir la intervención manual, ahorrar tiempo y hacer más eficiente el procesamiento operativo de información de georradar.',
         participation: [
@@ -472,9 +472,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         date: '2025 – 2026',
         location: 'Guadalajara, Jalisco',
         slides: [
-          { label: 'Automated sequential radargram capture', icon: '📡' },
-          { label: 'Pop-up window and input field control', icon: '🖥️' },
-          { label: 'Export process standardisation', icon: '⚡' },
+          { label: 'Automated sequential radargram capture', icon: '📡', img: 'MACROHOTKEY-IMG1-EN.png' },
+          { label: 'Pop-up window and input field control', icon: '🖥️', img: 'MACROHOTKEY-IMG2-EN.png' },
+          { label: 'Export process standardisation', icon: '⚡', img: 'MACROHOTKEY-IMG3-EN.png' },
         ],
         description: 'This project focused on automating repetitive actions within GPR-SLICE using AutoHotkey, including sequential radargram capture, input field control, pop-up window handling, and export process standardisation. The automation reduced manual intervention, saved time, and made GPR data processing operationally more efficient.',
         participation: [
@@ -520,7 +520,15 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     totalSlides  = slides.length;
     currentSlide = 0;
 
-    track.innerHTML = slides.map(s => `
+    track.innerHTML = slides.map(s => s.img ? `
+      <div class="modal__gallery-slide modal__gallery-slide--img">
+        <img src="${s.img}" alt="${s.label}" loading="lazy" onerror="this.closest('.modal__gallery-slide--img').classList.add('modal__gallery-slide--fallback');this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <div class="modal__gallery-slide__fallback" style="display:none">
+          <span style="font-size:2.8rem;display:block;margin-bottom:0.6rem;line-height:1">${s.icon}</span>
+          <span>${s.label}</span>
+        </div>
+      </div>
+    ` : `
       <div class="modal__gallery-slide">
         <span style="font-size:2.8rem;display:block;margin-bottom:0.6rem;line-height:1">${s.icon}</span>
         <span>${s.label}</span>

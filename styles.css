@@ -1899,6 +1899,35 @@ button {
   background: linear-gradient(135deg, rgba(108,63,197,0.15) 0%, rgba(26,23,48,0.9) 100%);
 }
 
+.modal__gallery-slide--img {
+  padding: 0;
+  background: #0d0c14;
+  position: relative;
+  overflow: hidden;
+}
+
+.modal__gallery-slide--img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal__gallery-slide--fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,0.3);
+  background: linear-gradient(135deg, rgba(108,63,197,0.15) 0%, rgba(26,23,48,0.9) 100%);
+}
+
+/* Legacy: keep old img rule as fallback */
 .modal__gallery-slide img {
   width: 100%;
   height: 100%;
