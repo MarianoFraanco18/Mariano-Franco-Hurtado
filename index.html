@@ -21,7 +21,7 @@
   <!-- ═══════════════════════════════════ FONDO CURVAS DE NIVEL ═══════════════════════════════════ -->
   <div class="topo-bg" aria-hidden="true">
     <svg class="topo-svg topo-svg--layer1" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
-      <g fill="none" stroke="var(--topo-stroke)" stroke-width="1" opacity="0.4">
+      <g fill="none" stroke="var(--topo-stroke)" stroke-width="1" opacity="0.35">
         <path d="M-100,700 C100,650 300,750 500,680 C700,610 900,720 1100,650 C1300,580 1500,680 1600,620" />
         <path d="M-100,650 C100,600 300,700 500,630 C700,560 900,670 1100,600 C1300,530 1500,630 1600,570" />
         <path d="M-100,600 C100,550 300,650 500,580 C700,510 900,620 1100,550 C1300,480 1500,580 1600,520" />
@@ -38,7 +38,7 @@
       </g>
     </svg>
     <svg class="topo-svg topo-svg--layer2" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
-      <g fill="none" stroke="var(--topo-stroke)" stroke-width="0.8" opacity="0.25">
+      <g fill="none" stroke="var(--topo-stroke)" stroke-width="0.8" opacity="0.2">
         <path d="M-100,720 C200,680 400,760 600,690 C800,620 1000,730 1200,660 C1400,590 1600,690 1700,630" />
         <path d="M-100,670 C200,630 400,710 600,640 C800,570 1000,680 1200,610 C1400,540 1600,640 1700,580" />
         <path d="M-100,620 C200,580 400,660 600,590 C800,520 1000,630 1200,560 C1400,490 1600,590 1700,530" />
@@ -55,7 +55,7 @@
       </g>
     </svg>
     <svg class="topo-svg topo-svg--layer3" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
-      <g fill="none" stroke="var(--topo-stroke)" stroke-width="0.6" opacity="0.15">
+      <g fill="none" stroke="var(--topo-stroke)" stroke-width="0.6" opacity="0.12">
         <path d="M-100,740 C300,710 500,770 700,710 C900,650 1100,740 1300,680 C1500,620 1700,700 1800,650" />
         <path d="M-100,690 C300,660 500,720 700,660 C900,600 1100,690 1300,630 C1500,570 1700,650 1800,600" />
         <path d="M-100,640 C300,610 500,670 700,610 C900,550 1100,640 1300,580 C1500,520 1700,600 1800,550" />
@@ -78,7 +78,7 @@
   <!-- Header minimal -->
   <header class="nav" id="nav">
     <div class="nav__inner">
-      <a href="#hero" class="nav__logo" aria-label="Inicio">
+      <a href="#" class="nav__logo" aria-label="Inicio" data-slide-to="0">
         <svg width="32" height="32" viewBox="0 0 36 36" fill="none">
           <circle cx="18" cy="18" r="16" stroke="currentColor" stroke-width="1.5"/>
           <ellipse cx="18" cy="18" rx="9" ry="6" stroke="currentColor" stroke-width="1" opacity="0.5"/>
@@ -107,28 +107,37 @@
     </div>
   </header>
 
-  <!-- Dots de navegación lateral -->
+  <!-- Dots de navegación inferior -->
   <nav class="section-dots" aria-label="Navegación de secciones">
-    <a href="#hero" class="section-dot active" data-section="hero" aria-label="Inicio"></a>
-    <a href="#about" class="section-dot" data-section="about" aria-label="Sobre mí"></a>
-    <a href="#experience" class="section-dot" data-section="experience" aria-label="Experiencia"></a>
-    <a href="#projects" class="section-dot" data-section="projects" aria-label="Proyectos"></a>
-    <a href="#skills" class="section-dot" data-section="skills" aria-label="Habilidades"></a>
-    <a href="#education" class="section-dot" data-section="education" aria-label="Educación"></a>
-    <a href="#contact" class="section-dot" data-section="contact" aria-label="Contacto"></a>
+    <button class="section-dot active" data-slide="0" aria-label="Inicio"></button>
+    <button class="section-dot" data-slide="1" aria-label="Sobre mí"></button>
+    <button class="section-dot" data-slide="2" aria-label="Experiencia"></button>
+    <button class="section-dot" data-slide="3" aria-label="Proyectos"></button>
+    <button class="section-dot" data-slide="4" aria-label="Habilidades"></button>
+    <button class="section-dot" data-slide="5" aria-label="Educación"></button>
+    <button class="section-dot" data-slide="6" aria-label="Contacto"></button>
   </nav>
 
-  <!-- Indicador de scroll -->
-  <div class="scroll-indicator" aria-hidden="true">
-    <div class="scroll-indicator__line"></div>
-    <div class="scroll-indicator__text" data-i18n="nav.scroll">Desplázate</div>
+  <!-- Flechas de navegación -->
+  <button class="carousel-arrow carousel-arrow--prev" id="arrowPrev" aria-label="Slide anterior">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <button class="carousel-arrow carousel-arrow--next" id="arrowNext" aria-label="Slide siguiente">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+
+  <!-- Indicador de slide -->
+  <div class="slide-counter" aria-hidden="true">
+    <span class="slide-counter__current" id="slideCounterCurrent">01</span>
+    <span class="slide-counter__sep">/</span>
+    <span class="slide-counter__total">07</span>
   </div>
 
   <!-- ═══════════════════════════════════ CARRUSEL PRINCIPAL ═══════════════════════════════════ -->
-  <main class="carousel">
+  <main class="carousel" id="carousel">
 
     <!-- ──────────── SLIDE 1: HERO ──────────── -->
-    <section class="slide slide--hero" id="hero" data-section="hero">
+    <section class="slide slide--hero" id="hero" data-slide="0">
       <div class="slide__content">
         <div class="hero__eyebrow" data-i18n="hero.label">Ingeniero Civil · Guadalajara, México</div>
         <h1 class="hero__name">
@@ -141,7 +150,7 @@
           detección de instalaciones subterráneas y metodología BIM.
         </p>
         <div class="hero__actions">
-          <a href="#projects" class="btn btn--primary" data-i18n="hero.cta">Ver proyectos</a>
+          <a href="#" class="btn btn--primary" data-i18n="hero.cta" data-slide-to="3">Ver proyectos</a>
           <a href="CV_pdf_ES.pdf" class="btn btn--outline" download id="cvDownloadBtn">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/>
@@ -171,7 +180,7 @@
     </section>
 
     <!-- ──────────── SLIDE 2: SOBRE MÍ ──────────── -->
-    <section class="slide" id="about" data-section="about">
+    <section class="slide" id="about" data-slide="1">
       <div class="slide__content">
         <div class="slide__header">
           <span class="slide__tag" data-i18n="about.tag">Perfil</span>
@@ -215,7 +224,7 @@
     </section>
 
     <!-- ──────────── SLIDE 3: EXPERIENCIA ──────────── -->
-    <section class="slide slide--dark" id="experience" data-section="experience">
+    <section class="slide slide--dark" id="experience" data-slide="2">
       <div class="slide__content">
         <div class="slide__header">
           <span class="slide__tag" data-i18n="exp.tag">Trayectoria</span>
@@ -305,7 +314,7 @@
     </section>
 
     <!-- ──────────── SLIDE 4: PROYECTOS ──────────── -->
-    <section class="slide" id="projects" data-section="projects">
+    <section class="slide" id="projects" data-slide="3">
       <div class="slide__content">
         <div class="slide__header">
           <span class="slide__tag" data-i18n="proj.tag">Portafolio</span>
@@ -430,7 +439,7 @@
     </section>
 
     <!-- ──────────── SLIDE 5: HABILIDADES ──────────── -->
-    <section class="slide slide--dark" id="skills" data-section="skills">
+    <section class="slide slide--dark" id="skills" data-slide="4">
       <div class="slide__content">
         <div class="slide__header">
           <span class="slide__tag" data-i18n="skills.tag">Competencias</span>
@@ -504,7 +513,7 @@
     </section>
 
     <!-- ──────────── SLIDE 6: EDUCACIÓN ──────────── -->
-    <section class="slide" id="education" data-section="education">
+    <section class="slide" id="education" data-slide="5">
       <div class="slide__content">
         <div class="slide__header">
           <span class="slide__tag" data-i18n="edu.tag">Formación</span>
@@ -574,7 +583,7 @@
     </section>
 
     <!-- ──────────── SLIDE 7: CONTACTO ──────────── -->
-    <section class="slide slide--dark" id="contact" data-section="contact">
+    <section class="slide slide--dark" id="contact" data-slide="6">
       <div class="slide__content">
         <div class="slide__header">
           <span class="slide__tag" data-i18n="contact.tag">Contacto</span>
