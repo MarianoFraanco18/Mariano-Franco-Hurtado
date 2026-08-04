@@ -777,6 +777,7 @@ body::before {
   color: var(--white);
   display: flex; align-items: center; justify-content: center;
   transition: background 0.2s var(--ease), color 0.2s var(--ease);
+  touch-action: manipulation;
 }
 .lightbox__close:hover { background: var(--white); color: var(--ink); }
 
@@ -788,6 +789,7 @@ body::before {
   margin: 0 22px;
   flex-shrink: 0;
   transition: background 0.2s var(--ease), color 0.2s var(--ease);
+  touch-action: manipulation;
 }
 .lightbox__nav:hover { background: var(--white); color: var(--ink); }
 
@@ -901,6 +903,7 @@ body::before {
   width: 26px; height: 26px;
   border: 1px solid var(--hair-strong);
   display: flex; align-items: center; justify-content: center;
+  touch-action: manipulation;
   transition: background 0.2s var(--ease), color 0.2s var(--ease);
 }
 .proj__gallery-nav button:hover { background: var(--ink); color: var(--white); }
@@ -910,6 +913,26 @@ body::before {
 
 /* ═══════════════════════ SKILLS ═══════════════════════ */
 .skills__body { flex: 1; min-height: 0; }
+
+.skills__block-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+.skills__block-label::before {
+  content: "";
+  display: inline-block;
+  width: 8px; height: 8px;
+  background: var(--red);
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
 .skills__cols {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -918,7 +941,8 @@ body::before {
 }
 .skill-group__title {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12.5px;
+  font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--red);
@@ -937,16 +961,38 @@ body::before {
   position: relative;
 }
 .skill-row { display: flex; flex-wrap: wrap; gap: 0 4px; }
+
+/* Separador hacia el bloque de habilidades blandas — menor jerarquía, sin rojo */
+.skills__divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 30px;
+  margin-bottom: 16px;
+}
+.skills__divider::before {
+  content: "";
+  flex: 1 1 auto;
+  height: 1px;
+  background: var(--hair-strong);
+}
+.skills__divider-label {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+
 .soft-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 22px;
-  margin-top: 18px;
-  padding-top: 16px;
-  border-top: 1px solid var(--hair-strong);
+  gap: 10px 28px;
 }
-.soft-row span { font-family: var(--font-mono); font-size: 11px; color: var(--ink-soft); }
-.soft-row span::before { content: "// "; color: var(--red); }
+.soft-row span { font-family: var(--font-mono); font-size: 10.5px; font-weight: 400; color: var(--ink-faint); }
+.soft-row span::before { content: "// "; color: var(--ink-faint); }
 
 /* ═══════════════════════ EDUCATION ═══════════════════════ */
 .edu__cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; flex: 1; min-height: 0; }
@@ -1015,15 +1061,33 @@ body::before {
     width: 100%;
     height: auto;
     min-height: 100vh;
+    min-height: 100dvh;
     flex: none;
     border-right: none;
     border-bottom: 1px solid var(--hair-strong);
-    padding: calc(var(--header-h) + 20px) 20px 84px;
+    padding: calc(var(--header-h) + 20px) 20px calc(var(--ruler-h) + env(safe-area-inset-bottom, 0px) + 26px);
+    overflow: visible; /* FIX: el desktop define overflow:hidden en .sheet; en móvil eso cortaba
+                           cualquier texto/imagen que excediera el ancho por 1px. El body ya tiene
+                           overflow-x:hidden como red de seguridad a nivel página. */
   }
+  .sheet__body { overflow: visible; min-width: 0; }
   /* Ningún contenedor interno debe capturar el scroll: todo fluye con la página */
   .sheet__scroll { overflow-y: visible; flex: none; min-height: 0; height: auto; }
-  .sheet__body { overflow: visible; }
   .proj__info .sheet__scroll { margin-top: 12px; }
+
+  /* ---- Fix de overflow: los hijos de grid/flex por defecto tienen min-width:auto,
+     lo que permite que texto largo empuje el ancho y se desborde/corte. ---- */
+  .proj__grid, .proj__media, .proj__info,
+  .about__grid > *, .exp-row > *, .edu__cols > *, .skills__cols > * {
+    min-width: 0;
+  }
+  .sheet__title, .proj-title, .proj__desc, .proj__list li, .exp-row__list li,
+  .exp-row__role, .about__text p, .hero__bio, .contact-link__value,
+  .tag, .skill-pill, .cert-row a {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  .proj__tags, .proj__badges, .exp-row__tags, .skill-row { max-width: 100%; }
 
   /* ---- 2) Jerarquía tipográfica: nombre y subtítulos más discretos ---- */
   .hero__name { font-size: clamp(34px, 12vw, 48px); line-height: 1.05; }
@@ -1034,23 +1098,27 @@ body::before {
   .sheet__title { font-size: clamp(24px, 7vw, 32px); margin-top: 6px; }
   .sheet__kicker { font-size: 10px; }
 
-  /* ---- 3) Cajetín (title-block) compacto en 2 filas ---- */
+  /* ---- 3) Cajetín (title-block): decoración secundaria, no contenido principal ---- */
   .title-block {
     position: static;
-    margin-top: 22px;
+    margin-top: 26px;
     grid-template-columns: 1.4fr 1fr 1fr;
     grid-template-areas:
       "project project drawn"
       "scale sheet rev";
+    border-color: var(--hair);
+    background: transparent;
+    opacity: 0.68;
   }
-  .title-block__cell { padding: 5px 8px; }
-  .title-block__label { font-size: 7.5px; margin-bottom: 1px; }
-  .title-block__value { font-size: 9px; }
+  .title-block__cell { padding: 4px 7px; border-color: var(--hair); }
+  .title-block__label { font-size: 7px; margin-bottom: 1px; }
+  .title-block__value { font-size: 8.5px; }
+  .title-block__value--rev { color: var(--ink-faint); font-weight: 500; }
   .title-block__cell:nth-child(1) { grid-area: project; }
   .title-block__cell:nth-child(2) { grid-area: drawn; }
-  .title-block__cell:nth-child(3) { grid-area: scale; border-top: 1px solid var(--hair-strong); }
-  .title-block__cell:nth-child(4) { grid-area: sheet; border-top: 1px solid var(--hair-strong); }
-  .title-block__cell:nth-child(5) { grid-area: rev; border-top: 1px solid var(--hair-strong); }
+  .title-block__cell:nth-child(3) { grid-area: scale; border-top: 1px solid var(--hair); }
+  .title-block__cell:nth-child(4) { grid-area: sheet; border-top: 1px solid var(--hair); }
+  .title-block__cell:nth-child(5) { grid-area: rev; border-top: 1px solid var(--hair); }
 
   .about__grid { grid-template-columns: 1fr; gap: 26px; }
   .stat-cell { padding: 16px 14px; }
@@ -1059,7 +1127,9 @@ body::before {
   .proj__grid { grid-template-columns: 1fr; gap: 18px; }
   .proj-title--desktop { display: none; }
   .proj-title--mobile { display: block !important; font-size: clamp(22px, 6.5vw, 28px); margin-bottom: 4px; }
-  .proj__gallery { flex: none; height: 46vh; min-height: 240px; max-height: 360px; }
+  .proj__gallery { flex: none; width: 100%; max-width: 100%; height: 46vh; height: 46dvh; min-height: 220px; max-height: 340px; }
+  .proj__gallery-frame { width: 100%; max-width: 100%; }
+  .proj__slide img { max-width: 100%; }
   .proj__meta { margin-top: 12px; flex-wrap: wrap; }
   .proj__desc { max-width: 100%; }
 
@@ -1076,10 +1146,28 @@ body::before {
   .hero__stamp { position: static; margin-bottom: 12px; transform: rotate(-4deg); }
   .sheet--hero .sheet__body { max-width: 100%; gap: 18px; }
 
-  /* ---- 7) Barra inferior de navegación: más compacta y sin conflicto con el swipe ---- */
+  /* ---- 7) Barra inferior de navegación: compacta, y SIEMPRE tocable ---- */
   :root { --ruler-h: 50px; }
-  .ruler { position: fixed; touch-action: pan-x; }
-  .ruler__track { justify-content: flex-start; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; }
+  .ruler {
+    position: fixed;
+    z-index: 65;
+    touch-action: manipulation;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    isolation: isolate;
+  }
+  .ruler__track {
+    justify-content: flex-start;
+    overscroll-behavior-x: contain;
+    /* Nota: se retira -webkit-overflow-scrolling:touch a propósito — combinado con el
+       scroll de la página, en iOS provoca que los taps sobre elementos fijos no se
+       registren hasta que el scroll termina de asentarse (bug conocido de Safari). */
+  }
+  .ruler__tick, .ruler__prev, .ruler__next {
+    touch-action: manipulation;
+    pointer-events: auto;
+    position: relative;
+    z-index: 1;
+  }
   .ruler__tick { min-width: 68px; }
   .ruler__tick-no { font-size: 9px; }
   .ruler__tick-label { font-size: 8.5px; }

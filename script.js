@@ -371,6 +371,7 @@ const T = {
     'lightbox.missing': 'Imagen de evidencia pendiente de subir',
 
     'skills.tag': 'Competencias', 'skills.title': 'Habilidades',
+    'skills.techTag': 'Habilidades técnicas', 'skills.softTag': 'Habilidades blandas',
     'skills.grp.cad': 'CAD & Diseño', 'skills.grp.geo': 'Geomática & Topografía', 'skills.grp.gpr': 'Georradar (GPR)',
     'skills.grp.data': 'Datos & Automatización', 'skills.grp.struct': 'Estructuras & Hidráulica',
     'skills.soft1': 'Liderazgo y gestión de equipos', 'skills.soft2': 'Resolución de problemas complejos',
@@ -429,6 +430,7 @@ const T = {
     'lightbox.missing': 'Evidence image pending upload',
 
     'skills.tag': 'Competencies', 'skills.title': 'Skills',
+    'skills.techTag': 'Technical skills', 'skills.softTag': 'Soft skills',
     'skills.grp.cad': 'CAD & Design', 'skills.grp.geo': 'Geomatics & Surveying', 'skills.grp.gpr': 'Ground Penetrating Radar',
     'skills.grp.data': 'Data & Automation', 'skills.grp.struct': 'Structures & Hydraulics',
     'skills.soft1': 'Leadership & team management', 'skills.soft2': 'Complex problem solving',
