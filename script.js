@@ -856,89 +856,133 @@ function initMarkPanel() {
 /* ─────────────────────────────────────────────────────────────────────────
    4c. BOCETOS DE FONDO — motivos variados de "memoria de cálculo" por hoja
 ───────────────────────────────────────────────────────────────────────── */
-const SKETCH_MOTIFS = [
-  // 0 — Viga con carga distribuida
-  `<line class="sk-line" x1="20" y1="60" x2="260" y2="60"/>
-   <path class="sk-line" d="M20,60 L6,86 L34,86 Z"/>
-   <path class="sk-line" d="M260,60 L246,86 L274,86 Z"/>
-   <g class="sk-dim"><line x1="40" y1="14" x2="40" y2="58"/><line x1="80" y1="14" x2="80" y2="58"/><line x1="120" y1="14" x2="120" y2="58"/><line x1="160" y1="14" x2="160" y2="58"/><line x1="200" y1="14" x2="200" y2="58"/><line x1="240" y1="14" x2="240" y2="58"/></g>
-   <line class="sk-line" x1="20" y1="14" x2="260" y2="14"/>
-   <text class="sk-text-sm" x="88" y="6">w = 12.5 kN/m</text>
-   <text class="sk-text-sm" x="4" y="72">A</text><text class="sk-text-sm" x="264" y="72">B</text>
-   <line class="sk-dim" x1="20" y1="104" x2="260" y2="104"/>
-   <text class="sk-text-sm" x="108" y="122">L = 6000</text>`,
+/* Motivos ESQUEMÁTICOS (mayor peso) — inspirados directamente en la hoja de
+   referencia "BEAM B1": elevación, secciones, diagramas y detalles. */
+const SKETCH_MOTIFS_DIAGRAM = [
+  // 0 — Elevación de viga con carga distribuida + apoyos A/B
+  `<text class="sk-text" x="0" y="10">BEAM B1</text>
+   <line class="sk-line" x1="0" y1="70" x2="240" y2="70"/>
+   <path class="sk-line" d="M0,70 L-14,96 L14,96 Z"/>
+   <path class="sk-line" d="M240,70 L226,96 L254,96 Z"/>
+   <g class="sk-dim"><line x1="16" y1="30" x2="16" y2="68"/><line x1="52" y1="30" x2="52" y2="68"/><line x1="88" y1="30" x2="88" y2="68"/><line x1="124" y1="30" x2="124" y2="68"/><line x1="160" y1="30" x2="160" y2="68"/><line x1="196" y1="30" x2="196" y2="68"/><line x1="224" y1="30" x2="224" y2="68"/></g>
+   <line class="sk-line" x1="0" y1="30" x2="240" y2="30"/>
+   <text class="sk-text-sm" x="74" y="24">w = 12.5 kN/m</text>
+   <text class="sk-text-sm" x="-8" y="112">A</text><text class="sk-text-sm" x="244" y="112">B</text>
+   <line class="sk-dim" x1="0" y1="128" x2="240" y2="128"/>
+   <text class="sk-text-sm" x="92" y="148">6000</text>`,
 
-  // 1 — Diagramas de cortante (V) y momento (M)
-  `<text class="sk-text" x="60" y="4">SHEAR FORCE DIAGRAM</text>
-   <line class="sk-dim" x1="10" y1="70" x2="280" y2="70"/>
-   <path class="sk-line" d="M10,70 L10,30 L145,70 L145,110 L280,70"/>
-   <text class="sk-text-sm" x="12" y="26">51.0</text>
-   <text class="sk-text-sm" x="252" y="122">-51.0</text>
-   <text class="sk-text" x="50" y="176">BENDING MOMENT DIAGRAM</text>
-   <line class="sk-dim" x1="10" y1="200" x2="280" y2="200"/>
-   <path class="sk-line" d="M10,200 Q145,150 280,200"/>
-   <text class="sk-text-sm" x="132" y="146">76.5</text>`,
+  // 1 — Sección de viga (300 × 600) con armado
+  `<text class="sk-text" x="0" y="10">SECTION 300×600</text>
+   <rect class="sk-line" x="20" y="26" width="120" height="150"/>
+   <circle class="sk-fill" cx="36" cy="44" r="3"/><circle class="sk-fill" cx="80" cy="44" r="3"/><circle class="sk-fill" cx="124" cy="44" r="3"/>
+   <circle class="sk-fill" cx="36" cy="158" r="3.4"/><circle class="sk-fill" cx="80" cy="158" r="3.4"/><circle class="sk-fill" cx="124" cy="158" r="3.4"/>
+   <rect class="sk-dim" x="28" y="34" width="104" height="132"/>
+   <text class="sk-text-sm" x="146" y="48">2⌀16</text>
+   <text class="sk-text-sm" x="146" y="100">⌀10@150</text>
+   <text class="sk-text-sm" x="146" y="162">2⌀20</text>
+   <line class="sk-dim" x1="20" y1="186" x2="140" y2="186"/>
+   <text class="sk-text-sm" x="60" y="204">25 250 25</text>`,
 
-  // 2 — Sección de columna con armado
-  `<rect class="sk-line" x="30" y="20" width="120" height="120"/>
-   <circle class="sk-dim" cx="46" cy="36" r="4"/><circle class="sk-dim" cx="134" cy="36" r="4"/>
-   <circle class="sk-dim" cx="46" cy="124" r="4"/><circle class="sk-dim" cx="134" cy="124" r="4"/>
-   <circle class="sk-dim" cx="90" cy="36" r="4"/><circle class="sk-dim" cx="90" cy="124" r="4"/>
-   <line class="sk-dim" x1="30" y1="150" x2="150" y2="150"/>
-   <text class="sk-text-sm" x="58" y="168">300 × 300</text>
-   <text class="sk-text" x="30" y="6">COL. C1</text>
-   <text class="sk-text-sm" x="168" y="66">8 Ø16</text>
-   <text class="sk-text-sm" x="168" y="84">Ø10 @150</text>`,
+  // 2 — Sección típica en T (bf / tf / h)
+  `<text class="sk-text" x="0" y="10">TYPICAL SECTION</text>
+   <path class="sk-line" d="M10,30 H190 V56 H128 V170 H72 V56 H10 Z"/>
+   <circle class="sk-fill" cx="88" cy="70" r="2.6"/><circle class="sk-fill" cx="112" cy="70" r="2.6"/>
+   <circle class="sk-fill" cx="88" cy="150" r="3"/><circle class="sk-fill" cx="112" cy="150" r="3"/>
+   <line class="sk-dim" x1="10" y1="18" x2="190" y2="18"/>
+   <text class="sk-text-sm" x="80" y="14">bf = 1200</text>
+   <line class="sk-dim" x1="204" y1="30" x2="204" y2="170"/>
+   <text class="sk-text-sm" x="208" y="102">h = 600</text>
+   <text class="sk-text-sm" x="132" y="52">2⌀16</text>
+   <text class="sk-text-sm" x="132" y="140">⌀10@150</text>`,
 
-  // 3 — Zapata / planta de cimentación
-  `<rect class="sk-line" x="20" y="16" width="220" height="140"/>
-   <rect class="sk-dim" x="90" y="60" width="80" height="54"/>
-   <line class="sk-dim" x1="20" y1="86" x2="0" y2="86"/><line class="sk-dim" x1="240" y1="86" x2="260" y2="86"/>
-   <text class="sk-text" x="60" y="4">FOOTING PLAN</text>
-   <text class="sk-text-sm" x="106" y="172">1800</text>
-   <text class="sk-text-sm" x="-4" y="90">A</text><text class="sk-text-sm" x="252" y="90">A</text>`,
+  // 3 — Diagrama de fuerza cortante
+  `<text class="sk-text" x="0" y="10">SHEAR FORCE DIAGRAM</text>
+   <line class="sk-dim" x1="0" y1="76" x2="240" y2="76"/>
+   <path class="sk-line" d="M0,76 L0,32 L120,76 L120,120 L240,76"/>
+   <text class="sk-text-sm" x="2" y="26">51.0</text>
+   <text class="sk-text" x="40" y="60">+</text>
+   <text class="sk-text" x="170" y="98">−</text>
+   <text class="sk-text-sm" x="200" y="134">-51.0</text>`,
 
-  // 4 — Notas y fórmulas de cálculo
-  `<text class="sk-text" x="0" y="8">4. FLEXURAL DESIGN</text>
-   <text class="sk-text-sm" x="0" y="30">Mu = 0.87 fy As d (1 - Asfy/f'cbd)</text>
-   <text class="sk-text-sm" x="0" y="52">f'c = 25 MPa , fy = 500 MPa</text>
-   <text class="sk-text-sm" x="0" y="74">As = 2Ø20 + 2Ø16 = 1256 mm²</text>
-   <line class="sk-dim" x1="0" y1="88" x2="180" y2="88"/>
-   <text class="sk-text-sm" x="0" y="110">φMn = 304.7 kN·m &gt; Mu OK ✓</text>`,
+  // 4 — Diagrama de momento flector
+  `<text class="sk-text" x="0" y="10">BENDING MOMENT DIAGRAM</text>
+   <line class="sk-dim" x1="0" y1="100" x2="240" y2="100"/>
+   <path class="sk-line" d="M0,100 Q120,44 240,100"/>
+   <text class="sk-text-sm" x="106" y="46">76.5</text>
+   <text class="sk-text" x="112" y="86">+</text>`,
 
-  // 5 — Conexión atornillada / detalle de estribo
-  `<rect class="sk-line" x="20" y="20" width="140" height="90" rx="12"/>
-   <text class="sk-text-sm" x="150" y="18">135° HOOK</text>
-   <line class="sk-dim" x1="146" y1="26" x2="168" y2="14"/>
-   <text class="sk-text" x="20" y="10">STIRRUP DETAIL</text>
-   <line class="sk-dim" x1="20" y1="124" x2="160" y2="124"/>
-   <text class="sk-text-sm" x="62" y="142">10 Ø @ 150</text>`,
+  // 5 — Elevación longitudinal con armado corrido y estribos
+  `<text class="sk-text" x="0" y="10">BEAM ELEVATION — REBAR</text>
+   <rect class="sk-line" x="0" y="30" width="260" height="46"/>
+   <g class="sk-dim"><line x1="18" y1="30" x2="18" y2="76"/><line x1="40" y1="30" x2="40" y2="76"/><line x1="62" y1="30" x2="62" y2="76"/><line x1="84" y1="30" x2="84" y2="76"/><line x1="106" y1="30" x2="106" y2="76"/><line x1="128" y1="30" x2="128" y2="76"/><line x1="150" y1="30" x2="150" y2="76"/><line x1="172" y1="30" x2="172" y2="76"/><line x1="194" y1="30" x2="194" y2="76"/><line x1="216" y1="30" x2="216" y2="76"/><line x1="238" y1="30" x2="238" y2="76"/></g>
+   <text class="sk-text-sm" x="4" y="98">2⌀16 CONT.</text>
+   <text class="sk-text-sm" x="100" y="98">⌀10@150</text>
+   <text class="sk-text-sm" x="200" y="98">2⌀20</text>
+   <line class="sk-dim" x1="0" y1="112" x2="260" y2="112"/>
+   <text class="sk-text-sm" x="106" y="130">5500 · 6100</text>`,
 
-  // 6 — Sección típica tipo T con armado
-  `<path class="sk-line" d="M20,20 H180 V50 H120 V140 H80 V50 H20 Z"/>
-   <circle class="sk-fill" cx="90" cy="66" r="2.5"/><circle class="sk-fill" cx="110" cy="66" r="2.5"/>
-   <circle class="sk-fill" cx="90" cy="120" r="2.5"/><circle class="sk-fill" cx="110" cy="120" r="2.5"/>
-   <line class="sk-dim" x1="20" y1="8" x2="180" y2="8"/>
-   <text class="sk-text-sm" x="82" y="4">b_f = 1200</text>
-   <line class="sk-dim" x1="194" y1="20" x2="194" y2="140"/>
-   <text class="sk-text-sm" x="198" y="82">h = 600</text>
-   <text class="sk-text" x="14" y="158">TYPICAL SECTION</text>`,
+  // 6 — Sección A-A: columna → zapata (empalme)
+  `<text class="sk-text" x="0" y="10">SECTION A-A</text>
+   <rect class="sk-line" x="70" y="18" width="40" height="90"/>
+   <path class="sk-line" d="M40,108 L140,108 L120,150 L60,150 Z"/>
+   <line class="sk-dim" x1="10" y1="150" x2="30" y2="150"/>
+   <text class="sk-text-sm" x="4" y="140">FFL</text>
+   <text class="sk-text-sm" x="6" y="60">COL. C1</text>
+   <text class="sk-text-sm" x="6" y="76">300×300</text>
+   <text class="sk-text-sm" x="118" y="60">8⌀16</text>
+   <line class="sk-dim" x1="40" y1="168" x2="140" y2="168"/>
+   <text class="sk-text-sm" x="70" y="186">1500 · 1800</text>`,
 
-  // 7 — Lista de notas generales (esquina tipo libreta de apuntes)
+  // 7 — Planta de zapata
+  `<text class="sk-text" x="0" y="10">FOOTING PLAN</text>
+   <rect class="sk-line" x="10" y="26" width="180" height="130"/>
+   <rect class="sk-dim" x="72" y="62" width="56" height="58"/>
+   <line class="sk-dim" x1="0" y1="90" x2="10" y2="90"/><line class="sk-dim" x1="190" y1="90" x2="200" y2="90"/>
+   <text class="sk-text-sm" x="0" y="86">A</text><text class="sk-text-sm" x="196" y="86">A</text>
+   <line class="sk-dim" x1="10" y1="170" x2="190" y2="170"/>
+   <text class="sk-text-sm" x="76" y="188">1800</text>`,
+
+  // 8 — Sección de losa (T corta)
+  `<text class="sk-text" x="0" y="10">SLAB SECTION</text>
+   <path class="sk-line" d="M0,40 H190 V64 H120 V96 H70 V64 H0 Z"/>
+   <line class="sk-dim" x1="6" y1="50" x2="184" y2="50"/>
+   <line class="sk-dim" x1="76" y1="80" x2="114" y2="80"/>
+   <text class="sk-text-sm" x="4" y="30">⌀8@200 (T)</text>
+   <text class="sk-text-sm" x="66" y="116">⌀8@200 (B)</text>
+   <line class="sk-dim" x1="202" y1="40" x2="202" y2="96"/>
+   <text class="sk-text-sm" x="206" y="70">120</text>`,
+
+  // 9 — Junta de construcción (superficie rugosa)
+  `<text class="sk-text" x="0" y="10">CONSTRUCTION JOINT</text>
+   <rect class="sk-line" x="10" y="26" width="70" height="110"/>
+   <path class="sk-dim" d="M80,26 L92,40 L80,54 L92,68 L80,82 L92,96 L80,110 L92,124 L80,136"/>
+   <text class="sk-text-sm" x="100" y="60">ROUGHEN</text>
+   <text class="sk-text-sm" x="100" y="78">SURFACE</text>
+   <line class="sk-dim" x1="10" y1="150" x2="80" y2="150"/>
+   <text class="sk-text-sm" x="24" y="168">200</text>`,
+
+  // 10 — Detalle de estribo (gancho 135°)
+  `<text class="sk-text" x="0" y="10">STIRRUP DETAIL</text>
+   <rect class="sk-line" x="16" y="26" width="130" height="88" rx="10"/>
+   <text class="sk-text-sm" x="152" y="24">135° HOOK</text>
+   <line class="sk-dim" x1="140" y1="34" x2="164" y2="20"/>
+   <text class="sk-text-sm" x="6" y="132">10⌀</text>
+   <line class="sk-dim" x1="16" y1="130" x2="146" y2="130"/>
+   <text class="sk-text-sm" x="62" y="150">250</text>`,
+];
+
+/* Motivos de FÓRMULAS / NOTAS (peso bajo — solo ocasionales) */
+const SKETCH_MOTIFS_NOTES = [
+  `<text class="sk-text" x="0" y="10">FLEXURAL DESIGN</text>
+   <text class="sk-text-sm" x="0" y="34">f'c = 25 MPa , fy = 500 MPa</text>
+   <text class="sk-text-sm" x="0" y="56">As = 2⌀20 + 2⌀16</text>
+   <line class="sk-dim" x1="0" y1="70" x2="180" y2="70"/>
+   <text class="sk-text-sm" x="0" y="92">øMn &gt; Mu OK ✓</text>`,
+
   `<text class="sk-text" x="0" y="10">NOTES</text>
-   <text class="sk-text-sm" x="0" y="32">1. CONCRETE: f'c = 25 MPa</text>
-   <text class="sk-text-sm" x="0" y="52">2. STEEL: fy = 500 MPa</text>
-   <text class="sk-text-sm" x="0" y="72">3. COVER: 25 mm (BEAM)</text>
-   <text class="sk-text-sm" x="0" y="92">4. ALL DIMENSIONS ARE IN mm</text>
-   <text class="sk-text-sm" x="0" y="112">5. DO NOT SCALE DRAWINGS</text>`,
-
-  // 8 — Cortante de diseño (bloque de cálculo)
-  `<text class="sk-text" x="0" y="8">5. SHEAR DESIGN</text>
-   <text class="sk-text-sm" x="0" y="30">Vc = 0.17 √f'c · bw · d = 42.9 kN</text>
-   <text class="sk-text-sm" x="0" y="52">φVc = 0.75 × 42.9 = 32.2 kN</text>
-   <text class="sk-text-sm" x="0" y="74">Vs = (Vu/φ) − Vc = 25.1 kN</text>
-   <line class="sk-dim" x1="0" y1="88" x2="190" y2="88"/>
-   <text class="sk-text-sm" x="0" y="110">Use Ø10 @ 150 mm c/c</text>`,
+   <text class="sk-text-sm" x="0" y="32">1. ALL DIMENSIONS IN mm</text>
+   <text class="sk-text-sm" x="0" y="52">2. DO NOT SCALE DRAWINGS</text>
+   <text class="sk-text-sm" x="0" y="72">3. COVER = 25mm</text>`,
 ];
 
 /* Generador determinístico pseudoaleatorio — mismo resultado en cada carga,
@@ -948,29 +992,38 @@ function seededRand(seed) {
   return x - Math.floor(x);
 }
 
-function buildSketchSVG(motifIndex, uid) {
+// Pool ponderado: los esquemas aparecen ~4× más que las notas/fórmulas
+const SKETCH_POOL = [
+  ...SKETCH_MOTIFS_DIAGRAM, ...SKETCH_MOTIFS_DIAGRAM,
+  ...SKETCH_MOTIFS_DIAGRAM, ...SKETCH_MOTIFS_DIAGRAM,
+  ...SKETCH_MOTIFS_NOTES,
+];
+
+function buildSketchSVG(motifContent, uid) {
   const seed = (uid % 9) + 1;
   return `<svg viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg">
     <filter id="pfx-${uid}" x="-25%" y="-25%" width="150%" height="150%">
       <feTurbulence type="fractalNoise" baseFrequency="0.022" numOctaves="2" seed="${seed}" result="n"/>
       <feDisplacementMap in="SourceGraphic" in2="n" scale="2.6"/>
     </filter>
-    <g filter="url(#pfx-${uid})">${SKETCH_MOTIFS[motifIndex % SKETCH_MOTIFS.length]}</g>
+    <g filter="url(#pfx-${uid})">${motifContent}</g>
   </svg>`;
 }
 
 /* Zonas seguras (evitan header, regla inferior y cajetín) donde puede caer un boceto.
    Dentro de cada zona la posición exacta se sortea con seededRand para el efecto libreta. */
 const SKETCH_ZONES = [
-  { side: 'top-right', top: [80, 150], right: [4, 12] },
-  { side: 'top-left', top: [90, 160], left: [4, 12] },
-  { side: 'mid-right', top: [220, 320], right: [3, 10] },
-  { side: 'mid-left', top: [220, 320], left: [3, 10] },
-  { side: 'bottom-right', bottom: [150, 220], right: [4, 14] },
-  { side: 'bottom-left', bottom: [150, 220], left: [4, 14] },
+  { side: 'top-right', top: [78, 140], right: [3, 11] },
+  { side: 'top-left', top: [86, 150], left: [3, 11] },
+  { side: 'mid-right', top: [210, 300], right: [2, 9] },
+  { side: 'mid-left', top: [210, 300], left: [2, 9] },
+  { side: 'bottom-right', bottom: [148, 210], right: [3, 13] },
+  { side: 'bottom-left', bottom: [148, 210], left: [3, 13] },
+  { side: 'far-right-mid', top: [340, 420], right: [1, 6] },
+  { side: 'far-left-mid', top: [340, 420], left: [1, 6] },
 ];
 
-function placeSketch(sheet, motifIndex, uid, zoneIndex, salt) {
+function placeSketch(sheet, motifContent, uid, zoneIndex, salt) {
   const zone = SKETCH_ZONES[zoneIndex % SKETCH_ZONES.length];
   const r1 = seededRand(uid * 3.1 + salt);
   const r2 = seededRand(uid * 7.7 + salt + 1);
@@ -981,7 +1034,7 @@ function placeSketch(sheet, motifIndex, uid, zoneIndex, salt) {
   wrap.className = 'page-sketch sketch-art';
   wrap.setAttribute('aria-hidden', 'true');
 
-  const width = Math.round(220 + r3 * 110); // 220–330px
+  const width = Math.round(200 + r3 * 100); // 200–300px
   wrap.style.width = width + 'px';
 
   if (zone.top) wrap.style.top = Math.round(zone.top[0] + r1 * (zone.top[1] - zone.top[0])) + 'px';
@@ -989,11 +1042,12 @@ function placeSketch(sheet, motifIndex, uid, zoneIndex, salt) {
   if (zone.left) wrap.style.left = (zone.left[0] + r2 * (zone.left[1] - zone.left[0])).toFixed(1) + '%';
   if (zone.right) wrap.style.right = (zone.right[0] + r2 * (zone.right[1] - zone.right[0])).toFixed(1) + '%';
 
-  const rotation = (r4 * 16) - 8; // -8°..8°, como si estuviera dibujado a mano alzada
-  const scale = 0.88 + r3 * 0.28; // 0.88–1.16
-  wrap.style.transform = `rotate(${rotation.toFixed(1)}deg) scale(${scale.toFixed(2)})`;
+  // Inclinación sutil tipo hoja de libreta — nunca una rotación completa
+  const sign = r4 > 0.5 ? 1 : -1;
+  const rotation = sign * (4 + r4 * 8); // ±4°..±12°
+  wrap.style.transform = `rotate(${rotation.toFixed(1)}deg)`;
 
-  wrap.innerHTML = buildSketchSVG(motifIndex, uid);
+  wrap.innerHTML = buildSketchSVG(motifContent, uid);
   sheet.insertBefore(wrap, sheet.firstChild);
 }
 
@@ -1002,19 +1056,17 @@ function injectPageSketches() {
   let uid = 0;
 
   sheets.forEach((sheet, i) => {
-    if (sheet.classList.contains('sheet--hero')) return; // la hoja 00 ya tiene su propio boceto dedicado
+    if (sheet.classList.contains('sheet--hero')) return; // la hoja 00 tiene su propio boceto dedicado
 
-    // Primer boceto — siempre presente
-    uid++;
-    const motifA = (i * 2 + 1) % SKETCH_MOTIFS.length;
-    placeSketch(sheet, motifA, uid, i, 0);
+    // 2 o 3 bocetos por hoja, según semilla propia de cada hoja
+    const countRoll = seededRand(i * 6.6 + 1);
+    const count = countRoll > 0.5 ? 3 : 2;
 
-    // Segundo boceto — aparece en ~55% de las hojas, para sensación de libreta desordenada
-    const chance = seededRand(i * 4.4 + 2);
-    if (chance > 0.45) {
+    for (let k = 0; k < count; k++) {
       uid++;
-      const motifB = (i * 2 + 4) % SKETCH_MOTIFS.length;
-      placeSketch(sheet, motifB, uid, i + 3, 10);
+      const poolRoll = seededRand(uid * 8.3 + i);
+      const motifContent = SKETCH_POOL[Math.floor(poolRoll * SKETCH_POOL.length)];
+      placeSketch(sheet, motifContent, uid, i + k * 3, k * 11);
     }
   });
 }

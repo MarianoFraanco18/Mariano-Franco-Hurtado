@@ -11,7 +11,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&family=Architects+Daughter&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2317150F'/><text x='16' y='22' font-size='16' font-family='monospace' font-weight='700' text-anchor='middle' fill='%23ECE7D8'>M</text></svg>" />
 </head>
@@ -107,13 +107,13 @@
           </filter>
 
           <g filter="url(#pencilFx)">
-            <!-- Viga simplemente apoyada con carga distribuida -->
-            <g transform="translate(70,150)">
+            <!-- BEAM B1 — elevación con carga distribuida (leve inclinación propia) -->
+            <g transform="translate(60,140) rotate(-2)">
+              <text class="sk-text" x="0" y="-18">BEAM B1</text>
+              <text class="sk-text-sm" x="0" y="-2">300 × 600</text>
               <line class="sk-line" x1="0" y1="60" x2="360" y2="60"/>
               <path class="sk-line" d="M0,60 L-16,90 L16,90 Z"/>
               <path class="sk-line" d="M360,60 L344,90 L376,90 Z"/>
-              <line class="sk-dim" x1="-26" y1="92" x2="26" y2="92"/>
-              <line class="sk-dim" x1="334" y1="92" x2="386" y2="92"/>
               <g class="sk-dim">
                 <line x1="10" y1="10" x2="10" y2="58"/><line x1="50" y1="10" x2="50" y2="58"/>
                 <line x1="90" y1="10" x2="90" y2="58"/><line x1="130" y1="10" x2="130" y2="58"/>
@@ -122,41 +122,42 @@
                 <line x1="330" y1="10" x2="330" y2="58"/><line x1="350" y1="10" x2="350" y2="58"/>
               </g>
               <line class="sk-line" x1="6" y1="10" x2="354" y2="10"/>
-              <text class="sk-text" x="150" y="0">w = 2.4 kN/m</text>
+              <text class="sk-text-sm" x="140" y="4">w = 12.5 kN/m</text>
+              <text class="sk-text-sm" x="-12" y="80">A</text><text class="sk-text-sm" x="364" y="80">B</text>
               <line class="sk-dim" x1="0" y1="118" x2="360" y2="118"/>
-              <line class="sk-dim" x1="0" y1="112" x2="0" y2="124"/>
-              <line class="sk-dim" x1="360" y1="112" x2="360" y2="124"/>
-              <text class="sk-text-sm" x="160" y="136">L = 6.00 m</text>
-              <text class="sk-text-sm" x="-14" y="112">R_A</text>
-              <text class="sk-text-sm" x="346" y="112">R_B</text>
-              <path class="sk-dim" d="M0,180 Q180,240 360,180"/>
-              <text class="sk-text-sm" x="164" y="204">M_max</text>
+              <text class="sk-text-sm" x="164" y="136">6000</text>
             </g>
 
-            <!-- Perfil de acero (sección I) -->
-            <g transform="translate(120,420)">
-              <path class="sk-line" d="M0,0 H100 V16 H58 V80 H100 V96 H0 V80 H42 V16 H0 Z"/>
-              <line class="sk-dim" x1="-16" y1="0" x2="-16" y2="96"/>
-              <text class="sk-text-sm" x="-58" y="52">d</text>
-              <line class="sk-dim" x1="0" y1="-14" x2="100" y2="-14"/>
-              <text class="sk-text-sm" x="34" y="-20">b_f</text>
-              <text class="sk-text" x="0" y="128">Perfil W250×33</text>
-              <text class="sk-text-sm" x="0" y="146">fy = 350 MPa</text>
+            <!-- Sección de viga con armado (ligera inclinación distinta) -->
+            <g transform="translate(90,340) rotate(3)">
+              <text class="sk-text" x="0" y="-10">SECTION 300×600</text>
+              <rect class="sk-line" x="0" y="6" width="130" height="160"/>
+              <circle class="sk-fill" cx="18" cy="26" r="3.4"/><circle class="sk-fill" cx="65" cy="26" r="3.4"/><circle class="sk-fill" cx="112" cy="26" r="3.4"/>
+              <circle class="sk-fill" cx="18" cy="146" r="4"/><circle class="sk-fill" cx="65" cy="146" r="4"/><circle class="sk-fill" cx="112" cy="146" r="4"/>
+              <rect class="sk-dim" x="9" y="16" width="112" height="140"/>
+              <text class="sk-text-sm" x="140" y="30">2⌀16</text>
+              <text class="sk-text-sm" x="140" y="88">⌀10@150</text>
+              <text class="sk-text-sm" x="140" y="150">2⌀20</text>
             </g>
 
-            <!-- Anotaciones sueltas -->
-            <g>
-              <text class="sk-text-sm" x="360" y="380">ΣM = 0</text>
-              <text class="sk-text-sm" x="360" y="398">ΣF_y = 0</text>
-              <text class="sk-text-sm" x="80" y="600">δ_max = 5wL⁴ / 384EI</text>
-              <text class="sk-text-sm" x="80" y="620">e = 0.15 → OK ✓</text>
-              <circle class="sk-dim" cx="330" cy="614" r="26"/>
-              <text class="sk-text-sm" x="316" y="618">DCR</text>
-              <line class="sk-dim" x1="356" y1="612" x2="410" y2="590"/>
-              <path class="sk-dim" d="M404,592 L410,590 L408,596"/>
-              <text class="sk-text-sm" x="270" y="700">Nudo 3 — revisar cortante</text>
-              <line class="sk-dim" x1="410" y1="694" x2="460" y2="676"/>
-              <path class="sk-dim" d="M454,678 L460,676 L458,682"/>
+            <!-- Diagramas de cortante y momento (con su propia inclinación) -->
+            <g transform="translate(280,560) rotate(-1.5)">
+              <text class="sk-text" x="0" y="-6">SHEAR FORCE DIAGRAM</text>
+              <line class="sk-dim" x1="0" y1="46" x2="240" y2="46"/>
+              <path class="sk-line" d="M0,46 L0,10 L120,46 L120,82 L240,46"/>
+              <text class="sk-text-sm" x="2" y="4">51.0</text>
+              <text class="sk-text-sm" x="196" y="96">-51.0</text>
+
+              <text class="sk-text" x="0" y="152">BENDING MOMENT DIAGRAM</text>
+              <line class="sk-dim" x1="0" y1="200" x2="240" y2="200"/>
+              <path class="sk-line" d="M0,200 Q120,152 240,200"/>
+              <text class="sk-text-sm" x="106" y="150">76.5</text>
+            </g>
+
+            <!-- Nota suelta, ligeramente girada como anotación al margen -->
+            <g transform="translate(90,748) rotate(2.5)">
+              <text class="sk-text-sm" x="0" y="0">f'c = 25 MPa · fy = 500 MPa</text>
+              <text class="sk-text-sm" x="0" y="20">øMn &gt; Mu OK ✓</text>
             </g>
           </g>
         </svg>
