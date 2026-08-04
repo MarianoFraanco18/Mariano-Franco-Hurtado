@@ -989,7 +989,7 @@ body::before {
     bottom: calc(100% + 10px);
     transform: translateX(-50%) translateY(4px);
     width: max-content;
-    max-width: 220px;
+    max-width: min(220px, calc(100vw - 56px));
     background: var(--paper);
     color: var(--ink-soft);
     border: 1px solid var(--ink);
@@ -1025,6 +1025,37 @@ body::before {
     visibility: visible;
     transform: translateX(-50%) translateY(0);
   }
+
+  /* FIX: centrar el tooltip sobre la píldora hacía que, cerca del borde de la pantalla
+     (p. ej. la primera píldora de cada fila, como "AutoCAD"), el cuadro se saliera del
+     viewport y quedara recortado por el overflow-x:hidden del body. Se ancla al borde
+     de la píldora en vez de centrarse cuando es la primera o última de su fila. */
+  .skill-row .skill-pill:first-child[data-desc]::after,
+  .skill-row .skill-pill:first-child[data-desc]::before {
+    left: 0;
+    transform: translateX(0) translateY(4px);
+  }
+  .skill-row .skill-pill:first-child[data-desc]::before { left: 14px; }
+  .skill-row .skill-pill:first-child[data-desc]:hover::after,
+  .skill-row .skill-pill:first-child[data-desc]:hover::before {
+    transform: translateX(0) translateY(0);
+  }
+
+  .skill-row .skill-pill:last-child[data-desc]::after,
+  .skill-row .skill-pill:last-child[data-desc]::before {
+    left: auto;
+    right: 0;
+    transform: translateX(0) translateY(4px);
+  }
+  .skill-row .skill-pill:last-child[data-desc]::before { right: 14px; left: auto; }
+  .skill-row .skill-pill:last-child[data-desc]:hover::after,
+  .skill-row .skill-pill:last-child[data-desc]:hover::before {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (max-width: 700px) {
+  .skill-pill[data-desc]::after { max-width: min(180px, calc(100vw - 40px)); font-size: 10.5px; }
 }
 
 /* Separación hacia el bloque de habilidades blandas — misma jerarquía de subtítulo,
