@@ -369,33 +369,36 @@ function buildProjectSheets() {
       <span class="sheet__no">HOJA <b>0${sheetIndex}</b> / 10</span>
       <div class="sheet__body">
         <span class="sheet__kicker" data-i18n="nav.projects">Proyectos</span>
-        <h2 class="sheet__title proj-title" style="font-size:clamp(22px,2.4vw,32px);margin-top:6px;"></h2>
 
-        <div class="proj__gallery" style="margin-top:16px;">
-          <div class="proj__gallery-frame">
-            <div class="proj__gallery-track proj-track"></div>
-          </div>
-          <div class="proj__gallery-bar">
-            <span class="proj-slide-label"></span>
-            <div class="proj__gallery-nav">
-              <div class="proj__gallery-dots proj-dots"></div>
-              <button class="proj-prev" aria-label="Imagen anterior"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M15 18l-6-6 6-6"/></svg></button>
-              <button class="proj-next" aria-label="Imagen siguiente"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M9 18l6-6-6-6"/></svg></button>
+        <div class="proj__grid">
+          <div class="proj__media">
+            <div class="proj__gallery">
+              <div class="proj__gallery-frame">
+                <div class="proj__gallery-track proj-track"></div>
+              </div>
+              <div class="proj__gallery-bar">
+                <span class="proj-slide-label"></span>
+                <div class="proj__gallery-nav">
+                  <div class="proj__gallery-dots proj-dots"></div>
+                  <button class="proj-prev" aria-label="Imagen anterior"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M15 18l-6-6 6-6"/></svg></button>
+                  <button class="proj-next" aria-label="Imagen siguiente"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M9 18l6-6-6-6"/></svg></button>
+                </div>
+              </div>
             </div>
+            <div class="proj__meta"><span class="proj-date"></span><span>·</span><span class="proj-location"></span></div>
           </div>
-        </div>
 
-        <div class="proj__meta"><span class="proj-date"></span><span>·</span><span class="proj-location"></span></div>
-
-        <div class="proj__info">
-          <div class="sheet__scroll" style="flex:1;min-height:0;">
-            <p class="proj__desc proj-desc"></p>
-            <p class="proj__block-label" data-i18n="proj.part.label">Mis logros en este proyecto</p>
-            <ul class="proj__list proj-participation"></ul>
-            <p class="proj__block-label" data-i18n="proj.tools.label">Herramientas y metodologías</p>
-            <div class="proj__tags proj-tools"></div>
-            <p class="proj__block-label" data-i18n="proj.badges.label">Categorías</p>
-            <div class="proj__badges proj-badges"></div>
+          <div class="proj__info">
+            <h2 class="sheet__title proj-title" style="font-size:clamp(22px,2.2vw,30px);margin-top:0;"></h2>
+            <div class="sheet__scroll" style="flex:1;min-height:0;margin-top:14px;">
+              <p class="proj__desc proj-desc"></p>
+              <p class="proj__block-label" data-i18n="proj.part.label">Mis logros en este proyecto</p>
+              <ul class="proj__list proj-participation"></ul>
+              <p class="proj__block-label" data-i18n="proj.tools.label">Herramientas y metodologías</p>
+              <div class="proj__tags proj-tools"></div>
+              <p class="proj__block-label" data-i18n="proj.badges.label">Categorías</p>
+              <div class="proj__badges proj-badges"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -734,6 +737,117 @@ function initMarkPanel() {
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
+   4c. BOCETOS DE FONDO — motivos variados de "memoria de cálculo" por hoja
+───────────────────────────────────────────────────────────────────────── */
+const SKETCH_MOTIFS = [
+  // 0 — Viga con carga distribuida
+  `<line class="sk-line" x1="20" y1="60" x2="260" y2="60"/>
+   <path class="sk-line" d="M20,60 L6,86 L34,86 Z"/>
+   <path class="sk-line" d="M260,60 L246,86 L274,86 Z"/>
+   <g class="sk-dim"><line x1="40" y1="14" x2="40" y2="58"/><line x1="80" y1="14" x2="80" y2="58"/><line x1="120" y1="14" x2="120" y2="58"/><line x1="160" y1="14" x2="160" y2="58"/><line x1="200" y1="14" x2="200" y2="58"/><line x1="240" y1="14" x2="240" y2="58"/></g>
+   <line class="sk-line" x1="20" y1="14" x2="260" y2="14"/>
+   <text class="sk-text-sm" x="88" y="6">w = 3.1 kN/m</text>
+   <line class="sk-dim" x1="20" y1="104" x2="260" y2="104"/>
+   <text class="sk-text-sm" x="108" y="122">L = 5.40 m</text>`,
+
+  // 1 — Diagramas de cortante (V) y momento (M)
+  `<line class="sk-dim" x1="10" y1="60" x2="280" y2="60"/>
+   <path class="sk-line" d="M10,60 L10,20 L145,60 L145,100 L280,60"/>
+   <text class="sk-text-sm" x="136" y="16">V(x)</text>
+   <line class="sk-dim" x1="10" y1="170" x2="280" y2="170"/>
+   <path class="sk-line" d="M10,170 Q145,110 280,170"/>
+   <text class="sk-text-sm" x="136" y="196">M(x)</text>
+   <text class="sk-text-sm" x="10" y="230">M_max = wL² / 8</text>`,
+
+  // 2 — Sección de columna con armado
+  `<rect class="sk-line" x="30" y="20" width="120" height="120"/>
+   <circle class="sk-dim" cx="46" cy="36" r="4"/><circle class="sk-dim" cx="134" cy="36" r="4"/>
+   <circle class="sk-dim" cx="46" cy="124" r="4"/><circle class="sk-dim" cx="134" cy="124" r="4"/>
+   <circle class="sk-dim" cx="90" cy="36" r="4"/><circle class="sk-dim" cx="90" cy="124" r="4"/>
+   <line class="sk-dim" x1="30" y1="150" x2="150" y2="150"/>
+   <text class="sk-text-sm" x="58" y="168">30 × 30 cm</text>
+   <text class="sk-text" x="30" y="6">Columna C-1</text>
+   <text class="sk-text-sm" x="168" y="66">6 Ø 5/8"</text>
+   <text class="sk-text-sm" x="168" y="84">estribo Ø3/8 @15</text>`,
+
+  // 3 — Zapata aislada (detalle de cimentación)
+  `<path class="sk-line" d="M20,100 L100,40 L200,40 L280,100 L280,120 L20,120 Z"/>
+   <g class="sk-dim">
+     <line x1="30" y1="100" x2="40" y2="90"/><line x1="50" y1="100" x2="60" y2="90"/>
+     <line x1="70" y1="100" x2="80" y2="90"/><line x1="90" y1="100" x2="100" y2="90"/>
+     <line x1="220" y1="100" x2="230" y2="90"/><line x1="240" y1="100" x2="250" y2="90"/>
+     <line x1="260" y1="100" x2="270" y2="90"/>
+   </g>
+   <line class="sk-dim" x1="20" y1="136" x2="280" y2="136"/>
+   <text class="sk-text-sm" x="116" y="154">Zapata aislada Z-1</text>
+   <text class="sk-text-sm" x="118" y="16">q_adm = 15 t/m²</text>`,
+
+  // 4 — Notas y fórmulas de cálculo
+  `<text class="sk-text-sm" x="10" y="20">f'c = 250 kg/cm²</text>
+   <text class="sk-text-sm" x="10" y="42">fy = 4200 kg/cm²</text>
+   <text class="sk-text-sm" x="10" y="64">As = 4.20 cm²</text>
+   <text class="sk-text-sm" x="10" y="86">ρ = As / b·d</text>
+   <line class="sk-dim" x1="10" y1="100" x2="150" y2="100"/>
+   <text class="sk-text-sm" x="10" y="122">e = 0.12 → OK ✓</text>
+   <circle class="sk-dim" cx="190" cy="60" r="30"/>
+   <text class="sk-text-sm" x="174" y="64">rev.</text>`,
+
+  // 5 — Conexión atornillada
+  `<rect class="sk-line" x="20" y="20" width="140" height="90"/>
+   <circle class="sk-fill" cx="40" cy="40" r="3"/><circle class="sk-fill" cx="140" cy="40" r="3"/>
+   <circle class="sk-fill" cx="40" cy="90" r="3"/><circle class="sk-fill" cx="140" cy="90" r="3"/>
+   <circle class="sk-fill" cx="90" cy="40" r="3"/><circle class="sk-fill" cx="90" cy="90" r="3"/>
+   <text class="sk-text-sm" x="20" y="10">PL 3/8" — conexión</text>
+   <line class="sk-dim" x1="20" y1="126" x2="160" y2="126"/>
+   <text class="sk-text-sm" x="52" y="144">6 pernos Ø3/4"</text>`,
+];
+
+const SKETCH_POSITIONS = [
+  { top: '96px', right: '5%', width: '290px' },
+  { bottom: '150px', left: '4%', width: '290px' },
+  { top: '130px', left: '38%', width: '260px' },
+  { bottom: '150px', right: '6%', width: '280px' },
+  { top: '110px', left: '6%', width: '270px' },
+  { bottom: '160px', right: '32%', width: '260px' },
+];
+
+function buildSketchSVG(motifIndex, uid) {
+  const seed = (uid % 9) + 1;
+  return `<svg viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg">
+    <filter id="pfx-${uid}" x="-25%" y="-25%" width="150%" height="150%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.022" numOctaves="2" seed="${seed}" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="2.6"/>
+    </filter>
+    <g filter="url(#pfx-${uid})">${SKETCH_MOTIFS[motifIndex % SKETCH_MOTIFS.length]}</g>
+  </svg>`;
+}
+
+function injectPageSketches() {
+  const sheets = [...document.querySelectorAll('.sheet')];
+  let uid = 0;
+  sheets.forEach((sheet, i) => {
+    if (sheet.classList.contains('sheet--hero')) return; // la hoja 00 ya tiene su propio boceto dedicado
+    uid++;
+    const motifIndex = (i + 1) % SKETCH_MOTIFS.length;
+    const pos = SKETCH_POSITIONS[i % SKETCH_POSITIONS.length];
+    const rotation = ((i * 37) % 10) - 5; // variación determinística -5°..4°
+
+    const wrap = document.createElement('div');
+    wrap.className = 'page-sketch sketch-art';
+    wrap.setAttribute('aria-hidden', 'true');
+    wrap.style.width = pos.width;
+    if (pos.top) wrap.style.top = pos.top;
+    if (pos.bottom) wrap.style.bottom = pos.bottom;
+    if (pos.left) wrap.style.left = pos.left;
+    if (pos.right) wrap.style.right = pos.right;
+    wrap.style.transform = `rotate(${rotation}deg)`;
+    wrap.innerHTML = buildSketchSVG(motifIndex, uid);
+
+    sheet.insertBefore(wrap, sheet.firstChild);
+  });
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
    5. IDIOMAS — BOTONES
 ───────────────────────────────────────────────────────────────────────── */
 function initLangButtons() {
@@ -765,6 +879,7 @@ document.addEventListener('DOMContentLoaded', () => {
   buildProjectSheets();
   initProjectGalleryControls();
   buildRuler();
+  injectPageSketches();
   initObserver();
   initWheelNav();
   initKeyboardNav();

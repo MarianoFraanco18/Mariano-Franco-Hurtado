@@ -350,10 +350,13 @@ body::before {
   font-size: 11px;
   letter-spacing: 0.08em;
   color: var(--ink-faint);
+  z-index: 2;
 }
 .sheet__no b { color: var(--red); font-weight: 600; }
 
 .sheet__body {
+  position: relative;
+  z-index: 1;
   flex: 1 1 auto;
   min-height: 0;
   display: flex;
@@ -375,6 +378,7 @@ body::before {
   left: var(--sheet-pad-x);
   right: var(--sheet-pad-x);
   bottom: 16px;
+  z-index: 2;
   display: grid;
   grid-template-columns: 1.6fr 1fr 1fr 0.7fr 0.6fr;
   border: 1px solid var(--hair-strong);
@@ -573,14 +577,28 @@ body::before {
   mix-blend-mode: multiply;
 }
 .hero__blueprint svg { width: 100%; height: 100%; }
-.hero__blueprint .sk-line { stroke: var(--ink-soft); fill: none; stroke-width: 1; stroke-linecap: round; }
-.hero__blueprint .sk-dim { stroke: var(--ink-faint); fill: none; stroke-width: 0.8; stroke-linecap: round; }
-.hero__blueprint .sk-fill { fill: var(--ink-faint); }
-.hero__blueprint .sk-text { font-family: var(--font-mono); fill: var(--ink-soft); font-size: 11px; letter-spacing: 0.02em; }
-.hero__blueprint .sk-text-sm { font-family: var(--font-mono); fill: var(--ink-faint); font-size: 9px; }
+.sketch-art .sk-line { stroke: var(--ink-soft); fill: none; stroke-width: 1; stroke-linecap: round; }
+.sketch-art .sk-dim { stroke: var(--ink-faint); fill: none; stroke-width: 0.8; stroke-linecap: round; }
+.sketch-art .sk-fill { fill: var(--ink-faint); }
+.sketch-art .sk-text { font-family: var(--font-mono); fill: var(--ink-soft); font-size: 11px; letter-spacing: 0.02em; }
+.sketch-art .sk-text-sm { font-family: var(--font-mono); fill: var(--ink-faint); font-size: 9px; }
 
 @media (max-width: 900px) {
   .hero__blueprint { display: none; }
+}
+
+/* Bocetos técnicos de fondo — variados por hoja (todas excepto la 00, que tiene el suyo propio) */
+.page-sketch {
+  position: absolute;
+  z-index: 0;
+  opacity: 0.22;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+.page-sketch svg { width: 100%; height: auto; display: block; }
+
+@media (max-width: 900px) {
+  .page-sketch { display: none; }
 }
 
 /* ═══════════════════════ ABOUT ═══════════════════════ */
@@ -643,11 +661,20 @@ body::before {
   flex-direction: column;
   flex: 1;
   min-height: 0;
-  max-width: 760px;
+  max-width: none;
 }
-.proj__info { display: flex; flex-direction: column; min-height: 0; flex: 1; }
-.proj__meta { display: flex; gap: 16px; font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); margin: 14px 0 6px; padding-bottom: 14px; border-bottom: 1px solid var(--hair-strong); }
-.proj__desc { color: var(--ink-soft); margin: 16px 0; font-size: 14px; max-width: 62ch; }
+.proj__grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(26px, 4vw, 54px);
+  flex: 1;
+  min-height: 0;
+  margin-top: 16px;
+}
+.proj__media { display: flex; flex-direction: column; min-height: 0; }
+.proj__info { display: flex; flex-direction: column; min-height: 0; }
+.proj__meta { display: flex; gap: 16px; font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); margin-top: 14px; flex: none; }
+.proj__desc { color: var(--ink-soft); margin: 0 0 16px; font-size: 14px; }
 .proj__block-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 8px; }
 .proj__list { margin-bottom: 18px; }
 .proj__list li { font-size: 13px; color: var(--ink-soft); position: relative; padding-left: 16px; margin-bottom: 6px; }
@@ -660,8 +687,7 @@ body::before {
   border: 1px solid var(--hair-strong);
   background: var(--paper-deep);
   min-height: 0;
-  height: clamp(240px, 34vh, 360px);
-  flex: none;
+  flex: 1;
   display: flex;
   flex-direction: column;
 }
@@ -840,6 +866,8 @@ body::before {
   .title-block__cell:nth-child(5) { border-top: 1px solid var(--hair-strong); grid-column: 1 / -1; }
 
   .about__grid { grid-template-columns: 1fr; }
+  .proj__grid { grid-template-columns: 1fr; }
+  .proj__gallery { flex: none; height: 300px; }
   .exp-row { grid-template-columns: 1fr; gap: 8px; }
   .skills__cols { grid-template-columns: 1fr 1fr; }
   .edu__cols { grid-template-columns: 1fr; }
