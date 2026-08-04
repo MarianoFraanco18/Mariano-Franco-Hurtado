@@ -224,6 +224,114 @@ const PROJECTS = {
 };
 
 /* ─────────────────────────────────────────────────────────────────────────
+   EVIDENCIA VISUAL POR EXPERIENCIA (galería compacta + lightbox)
+   Nota: agrega las imágenes reales al repo con estos nombres exactos —
+   mientras no existan, se muestra un ícono de reemplazo automáticamente.
+───────────────────────────────────────────────────────────────────────── */
+const EXPERIENCE_EVIDENCE = {
+  exp1: [
+    { img: 'EXP1-EVID1.jpg', caption_es: 'Levantamiento topográfico en campo', caption_en: 'Field topographic survey' },
+    { img: 'EXP1-EVID2.jpg', caption_es: 'Plano georreferenciado', caption_en: 'Georeferenced drawing' },
+    { img: 'EXP1-EVID3.jpg', caption_es: 'Equipo GNSS en sitio', caption_en: 'GNSS equipment on site' },
+  ],
+  exp2: [
+    { img: 'EXP2-EVID1.jpg', caption_es: 'Estudio de Georradar (GPR)', caption_en: 'Ground Penetrating Radar survey' },
+    { img: 'EXP2-EVID2.jpg', caption_es: 'Radargrama procesado', caption_en: 'Processed radargram' },
+  ],
+  exp3: [
+    { img: 'EXP3-EVID1.jpg', caption_es: 'Modelo estructural BIM', caption_en: 'BIM structural model' },
+    { img: 'EXP3-EVID2.jpg', caption_es: 'Plano técnico de nave industrial', caption_en: 'Industrial warehouse technical drawing' },
+  ],
+};
+
+let lightboxState = { expId: null, index: 0 };
+
+function renderExperienceEvidence() {
+  document.querySelectorAll('.exp-evidence').forEach(container => {
+    const expId = container.dataset.exp;
+    const items = EXPERIENCE_EVIDENCE[expId];
+    if (!items || !items.length) return;
+
+    const labelSpan = document.createElement('span');
+    labelSpan.className = 'exp-evidence__label';
+    labelSpan.setAttribute('data-i18n', 'exp.evidenceLabel');
+    labelSpan.textContent = T[currentLang]['exp.evidenceLabel'] || 'Evidencia';
+    container.appendChild(labelSpan);
+
+    items.slice(0, 4).forEach((item, i) => {
+      const thumb = document.createElement('button');
+      thumb.type = 'button';
+      thumb.className = 'exp-evidence__thumb';
+      thumb.setAttribute('aria-label', item.caption_es);
+      thumb.innerHTML = `
+        <img src="${item.img}" alt="${item.caption_es}" loading="lazy"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <span class="exp-evidence__thumb-fallback">🗎</span>
+      `;
+      thumb.addEventListener('click', () => openLightbox(expId, i));
+      container.appendChild(thumb);
+    });
+  });
+}
+
+function openLightbox(expId, index) {
+  const items = EXPERIENCE_EVIDENCE[expId];
+  if (!items || !items.length) return;
+  lightboxState = { expId, index: (index + items.length) % items.length };
+  renderLightboxSlide();
+  const lb = document.getElementById('lightbox');
+  lb.setAttribute('data-open', 'true');
+  lb.setAttribute('aria-hidden', 'false');
+}
+
+function closeLightbox() {
+  const lb = document.getElementById('lightbox');
+  lb.setAttribute('data-open', 'false');
+  lb.setAttribute('aria-hidden', 'true');
+}
+
+function renderLightboxSlide() {
+  const items = EXPERIENCE_EVIDENCE[lightboxState.expId];
+  const item = items[lightboxState.index];
+  const img = document.getElementById('lightboxImg');
+  const fallback = document.getElementById('lightboxFallback');
+  const caption = document.getElementById('lightboxCaption');
+  const counter = document.getElementById('lightboxCounter');
+
+  img.style.display = 'block';
+  fallback.style.display = 'none';
+  img.onerror = () => { img.style.display = 'none'; fallback.style.display = 'flex'; };
+  img.src = item.img;
+  img.alt = currentLang === 'en' ? item.caption_en : item.caption_es;
+
+  caption.textContent = currentLang === 'en' ? item.caption_en : item.caption_es;
+  counter.textContent = `${String(lightboxState.index + 1).padStart(2, '0')} / ${String(items.length).padStart(2, '0')}`;
+}
+
+function lightboxStep(delta) {
+  const items = EXPERIENCE_EVIDENCE[lightboxState.expId];
+  if (!items) return;
+  lightboxState.index = (lightboxState.index + delta + items.length) % items.length;
+  renderLightboxSlide();
+}
+
+function initLightbox() {
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  document.getElementById('lightboxPrev').addEventListener('click', () => lightboxStep(-1));
+  document.getElementById('lightboxNext').addEventListener('click', () => lightboxStep(1));
+  document.getElementById('lightbox').addEventListener('click', (e) => {
+    if (e.target.id === 'lightbox') closeLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    const lb = document.getElementById('lightbox');
+    if (lb.getAttribute('data-open') !== 'true') return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') lightboxStep(1);
+    if (e.key === 'ArrowLeft') lightboxStep(-1);
+  });
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
    DICCIONARIO I18N
 ───────────────────────────────────────────────────────────────────────── */
 const T = {
@@ -242,7 +350,7 @@ const T = {
     'hero.stamp': 'REV. 2026<br/>GDL · MX',
 
     'about.tag': 'Perfil', 'about.title': 'Sobre mí',
-    'about.stat1val': '+1.5 años', 'about.stat1lbl': 'Experiencia profesional',
+    'about.stat1val': '+2 años', 'about.stat1lbl': 'Experiencia profesional',
     'about.stat2lbl': 'Proyectos destacados', 'about.stat3lbl': 'Herramientas técnicas', 'about.stat4lbl': 'Guadalajara, Jalisco',
     'about.p1': 'Soy Ingeniero Civil egresado del <strong>Tecnológico de Monterrey, Campus Guadalajara</strong>, con experiencia en topografía, geofísica aplicada y documentación técnica para proyectos de infraestructura y construcción.',
     'about.p2': 'Combino bases sólidas de ingeniería con herramientas digitales como BIM, automatización de procesos e IA aplicada. Me interesa trabajar en entornos donde la <strong>precisión técnica, la innovación y la mejora continua</strong> sean parte central del trabajo.',
@@ -259,6 +367,8 @@ const T = {
     'exp.li3a': 'Contribuí al diseño estructural de una nave industrial, desarrollando análisis y especificaciones técnicas.',
     'exp.li3b': 'Elaboré planos técnicos y documentación MEP bajo metodología BIM.',
     'tag.topography': 'Topografía',
+    'exp.evidenceLabel': 'Evidencia',
+    'lightbox.missing': 'Imagen de evidencia pendiente de subir',
 
     'skills.tag': 'Competencias', 'skills.title': 'Habilidades',
     'skills.grp.cad': 'CAD & Diseño', 'skills.grp.geo': 'Geomática & Topografía', 'skills.grp.gpr': 'Georradar (GPR)',
@@ -298,7 +408,7 @@ const T = {
     'hero.stamp': 'REV. 2026<br/>GDL · MX',
 
     'about.tag': 'Profile', 'about.title': 'About me',
-    'about.stat1val': '+1.5 years', 'about.stat1lbl': 'Professional experience',
+    'about.stat1val': '+2 years', 'about.stat1lbl': 'Professional experience',
     'about.stat2lbl': 'Featured projects', 'about.stat3lbl': 'Technical tools', 'about.stat4lbl': 'Guadalajara, Jalisco',
     'about.p1': 'I am a Civil Engineer graduated from <strong>Tecnológico de Monterrey, Campus Guadalajara</strong>, with experience in surveying, applied geophysics, and technical documentation for infrastructure and construction projects.',
     'about.p2': 'I combine solid engineering fundamentals with digital tools such as BIM, process automation, and applied AI. I am driven to work in environments where <strong>technical precision, innovation, and continuous improvement</strong> are central to the work.',
@@ -315,6 +425,8 @@ const T = {
     'exp.li3a': 'Contributed to the structural design of an industrial warehouse, developing analyses and technical specifications.',
     'exp.li3b': 'Produced technical drawings and MEP documentation under BIM methodology.',
     'tag.topography': 'Surveying',
+    'exp.evidenceLabel': 'Evidence',
+    'lightbox.missing': 'Evidence image pending upload',
 
     'skills.tag': 'Competencies', 'skills.title': 'Skills',
     'skills.grp.cad': 'CAD & Design', 'skills.grp.geo': 'Geomatics & Surveying', 'skills.grp.gpr': 'Ground Penetrating Radar',
@@ -549,6 +661,11 @@ function applyLang(lang) {
 
   localStorage.setItem('portfolio-lang', lang);
   currentLang = lang;
+
+  document.querySelectorAll('.exp-evidence__label').forEach(el => { el.textContent = dict['exp.evidenceLabel']; });
+  if (document.getElementById('lightbox') && document.getElementById('lightbox').getAttribute('data-open') === 'true') {
+    renderLightboxSlide();
+  }
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
@@ -746,18 +863,21 @@ const SKETCH_MOTIFS = [
    <path class="sk-line" d="M260,60 L246,86 L274,86 Z"/>
    <g class="sk-dim"><line x1="40" y1="14" x2="40" y2="58"/><line x1="80" y1="14" x2="80" y2="58"/><line x1="120" y1="14" x2="120" y2="58"/><line x1="160" y1="14" x2="160" y2="58"/><line x1="200" y1="14" x2="200" y2="58"/><line x1="240" y1="14" x2="240" y2="58"/></g>
    <line class="sk-line" x1="20" y1="14" x2="260" y2="14"/>
-   <text class="sk-text-sm" x="88" y="6">w = 3.1 kN/m</text>
+   <text class="sk-text-sm" x="88" y="6">w = 12.5 kN/m</text>
+   <text class="sk-text-sm" x="4" y="72">A</text><text class="sk-text-sm" x="264" y="72">B</text>
    <line class="sk-dim" x1="20" y1="104" x2="260" y2="104"/>
-   <text class="sk-text-sm" x="108" y="122">L = 5.40 m</text>`,
+   <text class="sk-text-sm" x="108" y="122">L = 6000</text>`,
 
   // 1 — Diagramas de cortante (V) y momento (M)
-  `<line class="sk-dim" x1="10" y1="60" x2="280" y2="60"/>
-   <path class="sk-line" d="M10,60 L10,20 L145,60 L145,100 L280,60"/>
-   <text class="sk-text-sm" x="136" y="16">V(x)</text>
-   <line class="sk-dim" x1="10" y1="170" x2="280" y2="170"/>
-   <path class="sk-line" d="M10,170 Q145,110 280,170"/>
-   <text class="sk-text-sm" x="136" y="196">M(x)</text>
-   <text class="sk-text-sm" x="10" y="230">M_max = wL² / 8</text>`,
+  `<text class="sk-text" x="60" y="4">SHEAR FORCE DIAGRAM</text>
+   <line class="sk-dim" x1="10" y1="70" x2="280" y2="70"/>
+   <path class="sk-line" d="M10,70 L10,30 L145,70 L145,110 L280,70"/>
+   <text class="sk-text-sm" x="12" y="26">51.0</text>
+   <text class="sk-text-sm" x="252" y="122">-51.0</text>
+   <text class="sk-text" x="50" y="176">BENDING MOMENT DIAGRAM</text>
+   <line class="sk-dim" x1="10" y1="200" x2="280" y2="200"/>
+   <path class="sk-line" d="M10,200 Q145,150 280,200"/>
+   <text class="sk-text-sm" x="132" y="146">76.5</text>`,
 
   // 2 — Sección de columna con armado
   `<rect class="sk-line" x="30" y="20" width="120" height="120"/>
@@ -765,51 +885,68 @@ const SKETCH_MOTIFS = [
    <circle class="sk-dim" cx="46" cy="124" r="4"/><circle class="sk-dim" cx="134" cy="124" r="4"/>
    <circle class="sk-dim" cx="90" cy="36" r="4"/><circle class="sk-dim" cx="90" cy="124" r="4"/>
    <line class="sk-dim" x1="30" y1="150" x2="150" y2="150"/>
-   <text class="sk-text-sm" x="58" y="168">30 × 30 cm</text>
-   <text class="sk-text" x="30" y="6">Columna C-1</text>
-   <text class="sk-text-sm" x="168" y="66">6 Ø 5/8"</text>
-   <text class="sk-text-sm" x="168" y="84">estribo Ø3/8 @15</text>`,
+   <text class="sk-text-sm" x="58" y="168">300 × 300</text>
+   <text class="sk-text" x="30" y="6">COL. C1</text>
+   <text class="sk-text-sm" x="168" y="66">8 Ø16</text>
+   <text class="sk-text-sm" x="168" y="84">Ø10 @150</text>`,
 
-  // 3 — Zapata aislada (detalle de cimentación)
-  `<path class="sk-line" d="M20,100 L100,40 L200,40 L280,100 L280,120 L20,120 Z"/>
-   <g class="sk-dim">
-     <line x1="30" y1="100" x2="40" y2="90"/><line x1="50" y1="100" x2="60" y2="90"/>
-     <line x1="70" y1="100" x2="80" y2="90"/><line x1="90" y1="100" x2="100" y2="90"/>
-     <line x1="220" y1="100" x2="230" y2="90"/><line x1="240" y1="100" x2="250" y2="90"/>
-     <line x1="260" y1="100" x2="270" y2="90"/>
-   </g>
-   <line class="sk-dim" x1="20" y1="136" x2="280" y2="136"/>
-   <text class="sk-text-sm" x="116" y="154">Zapata aislada Z-1</text>
-   <text class="sk-text-sm" x="118" y="16">q_adm = 15 t/m²</text>`,
+  // 3 — Zapata / planta de cimentación
+  `<rect class="sk-line" x="20" y="16" width="220" height="140"/>
+   <rect class="sk-dim" x="90" y="60" width="80" height="54"/>
+   <line class="sk-dim" x1="20" y1="86" x2="0" y2="86"/><line class="sk-dim" x1="240" y1="86" x2="260" y2="86"/>
+   <text class="sk-text" x="60" y="4">FOOTING PLAN</text>
+   <text class="sk-text-sm" x="106" y="172">1800</text>
+   <text class="sk-text-sm" x="-4" y="90">A</text><text class="sk-text-sm" x="252" y="90">A</text>`,
 
   // 4 — Notas y fórmulas de cálculo
-  `<text class="sk-text-sm" x="10" y="20">f'c = 250 kg/cm²</text>
-   <text class="sk-text-sm" x="10" y="42">fy = 4200 kg/cm²</text>
-   <text class="sk-text-sm" x="10" y="64">As = 4.20 cm²</text>
-   <text class="sk-text-sm" x="10" y="86">ρ = As / b·d</text>
-   <line class="sk-dim" x1="10" y1="100" x2="150" y2="100"/>
-   <text class="sk-text-sm" x="10" y="122">e = 0.12 → OK ✓</text>
-   <circle class="sk-dim" cx="190" cy="60" r="30"/>
-   <text class="sk-text-sm" x="174" y="64">rev.</text>`,
+  `<text class="sk-text" x="0" y="8">4. FLEXURAL DESIGN</text>
+   <text class="sk-text-sm" x="0" y="30">Mu = 0.87 fy As d (1 - Asfy/f'cbd)</text>
+   <text class="sk-text-sm" x="0" y="52">f'c = 25 MPa , fy = 500 MPa</text>
+   <text class="sk-text-sm" x="0" y="74">As = 2Ø20 + 2Ø16 = 1256 mm²</text>
+   <line class="sk-dim" x1="0" y1="88" x2="180" y2="88"/>
+   <text class="sk-text-sm" x="0" y="110">φMn = 304.7 kN·m &gt; Mu OK ✓</text>`,
 
-  // 5 — Conexión atornillada
-  `<rect class="sk-line" x="20" y="20" width="140" height="90"/>
-   <circle class="sk-fill" cx="40" cy="40" r="3"/><circle class="sk-fill" cx="140" cy="40" r="3"/>
-   <circle class="sk-fill" cx="40" cy="90" r="3"/><circle class="sk-fill" cx="140" cy="90" r="3"/>
-   <circle class="sk-fill" cx="90" cy="40" r="3"/><circle class="sk-fill" cx="90" cy="90" r="3"/>
-   <text class="sk-text-sm" x="20" y="10">PL 3/8" — conexión</text>
-   <line class="sk-dim" x1="20" y1="126" x2="160" y2="126"/>
-   <text class="sk-text-sm" x="52" y="144">6 pernos Ø3/4"</text>`,
+  // 5 — Conexión atornillada / detalle de estribo
+  `<rect class="sk-line" x="20" y="20" width="140" height="90" rx="12"/>
+   <text class="sk-text-sm" x="150" y="18">135° HOOK</text>
+   <line class="sk-dim" x1="146" y1="26" x2="168" y2="14"/>
+   <text class="sk-text" x="20" y="10">STIRRUP DETAIL</text>
+   <line class="sk-dim" x1="20" y1="124" x2="160" y2="124"/>
+   <text class="sk-text-sm" x="62" y="142">10 Ø @ 150</text>`,
+
+  // 6 — Sección típica tipo T con armado
+  `<path class="sk-line" d="M20,20 H180 V50 H120 V140 H80 V50 H20 Z"/>
+   <circle class="sk-fill" cx="90" cy="66" r="2.5"/><circle class="sk-fill" cx="110" cy="66" r="2.5"/>
+   <circle class="sk-fill" cx="90" cy="120" r="2.5"/><circle class="sk-fill" cx="110" cy="120" r="2.5"/>
+   <line class="sk-dim" x1="20" y1="8" x2="180" y2="8"/>
+   <text class="sk-text-sm" x="82" y="4">b_f = 1200</text>
+   <line class="sk-dim" x1="194" y1="20" x2="194" y2="140"/>
+   <text class="sk-text-sm" x="198" y="82">h = 600</text>
+   <text class="sk-text" x="14" y="158">TYPICAL SECTION</text>`,
+
+  // 7 — Lista de notas generales (esquina tipo libreta de apuntes)
+  `<text class="sk-text" x="0" y="10">NOTES</text>
+   <text class="sk-text-sm" x="0" y="32">1. CONCRETE: f'c = 25 MPa</text>
+   <text class="sk-text-sm" x="0" y="52">2. STEEL: fy = 500 MPa</text>
+   <text class="sk-text-sm" x="0" y="72">3. COVER: 25 mm (BEAM)</text>
+   <text class="sk-text-sm" x="0" y="92">4. ALL DIMENSIONS ARE IN mm</text>
+   <text class="sk-text-sm" x="0" y="112">5. DO NOT SCALE DRAWINGS</text>`,
+
+  // 8 — Cortante de diseño (bloque de cálculo)
+  `<text class="sk-text" x="0" y="8">5. SHEAR DESIGN</text>
+   <text class="sk-text-sm" x="0" y="30">Vc = 0.17 √f'c · bw · d = 42.9 kN</text>
+   <text class="sk-text-sm" x="0" y="52">φVc = 0.75 × 42.9 = 32.2 kN</text>
+   <text class="sk-text-sm" x="0" y="74">Vs = (Vu/φ) − Vc = 25.1 kN</text>
+   <line class="sk-dim" x1="0" y1="88" x2="190" y2="88"/>
+   <text class="sk-text-sm" x="0" y="110">Use Ø10 @ 150 mm c/c</text>`,
 ];
 
-const SKETCH_POSITIONS = [
-  { top: '96px', right: '5%', width: '290px' },
-  { bottom: '150px', left: '4%', width: '290px' },
-  { top: '130px', left: '38%', width: '260px' },
-  { bottom: '150px', right: '6%', width: '280px' },
-  { top: '110px', left: '6%', width: '270px' },
-  { bottom: '160px', right: '32%', width: '260px' },
-];
+/* Generador determinístico pseudoaleatorio — mismo resultado en cada carga,
+   pero distinto por hoja/instancia, para el efecto "libreta desordenada" */
+function seededRand(seed) {
+  const x = Math.sin(seed * 12.9898) * 43758.5453;
+  return x - Math.floor(x);
+}
 
 function buildSketchSVG(motifIndex, uid) {
   const seed = (uid % 9) + 1;
@@ -822,28 +959,63 @@ function buildSketchSVG(motifIndex, uid) {
   </svg>`;
 }
 
+/* Zonas seguras (evitan header, regla inferior y cajetín) donde puede caer un boceto.
+   Dentro de cada zona la posición exacta se sortea con seededRand para el efecto libreta. */
+const SKETCH_ZONES = [
+  { side: 'top-right', top: [80, 150], right: [4, 12] },
+  { side: 'top-left', top: [90, 160], left: [4, 12] },
+  { side: 'mid-right', top: [220, 320], right: [3, 10] },
+  { side: 'mid-left', top: [220, 320], left: [3, 10] },
+  { side: 'bottom-right', bottom: [150, 220], right: [4, 14] },
+  { side: 'bottom-left', bottom: [150, 220], left: [4, 14] },
+];
+
+function placeSketch(sheet, motifIndex, uid, zoneIndex, salt) {
+  const zone = SKETCH_ZONES[zoneIndex % SKETCH_ZONES.length];
+  const r1 = seededRand(uid * 3.1 + salt);
+  const r2 = seededRand(uid * 7.7 + salt + 1);
+  const r3 = seededRand(uid * 5.3 + salt + 2);
+  const r4 = seededRand(uid * 9.1 + salt + 3);
+
+  const wrap = document.createElement('div');
+  wrap.className = 'page-sketch sketch-art';
+  wrap.setAttribute('aria-hidden', 'true');
+
+  const width = Math.round(220 + r3 * 110); // 220–330px
+  wrap.style.width = width + 'px';
+
+  if (zone.top) wrap.style.top = Math.round(zone.top[0] + r1 * (zone.top[1] - zone.top[0])) + 'px';
+  if (zone.bottom) wrap.style.bottom = Math.round(zone.bottom[0] + r1 * (zone.bottom[1] - zone.bottom[0])) + 'px';
+  if (zone.left) wrap.style.left = (zone.left[0] + r2 * (zone.left[1] - zone.left[0])).toFixed(1) + '%';
+  if (zone.right) wrap.style.right = (zone.right[0] + r2 * (zone.right[1] - zone.right[0])).toFixed(1) + '%';
+
+  const rotation = (r4 * 16) - 8; // -8°..8°, como si estuviera dibujado a mano alzada
+  const scale = 0.88 + r3 * 0.28; // 0.88–1.16
+  wrap.style.transform = `rotate(${rotation.toFixed(1)}deg) scale(${scale.toFixed(2)})`;
+
+  wrap.innerHTML = buildSketchSVG(motifIndex, uid);
+  sheet.insertBefore(wrap, sheet.firstChild);
+}
+
 function injectPageSketches() {
   const sheets = [...document.querySelectorAll('.sheet')];
   let uid = 0;
+
   sheets.forEach((sheet, i) => {
     if (sheet.classList.contains('sheet--hero')) return; // la hoja 00 ya tiene su propio boceto dedicado
+
+    // Primer boceto — siempre presente
     uid++;
-    const motifIndex = (i + 1) % SKETCH_MOTIFS.length;
-    const pos = SKETCH_POSITIONS[i % SKETCH_POSITIONS.length];
-    const rotation = ((i * 37) % 10) - 5; // variación determinística -5°..4°
+    const motifA = (i * 2 + 1) % SKETCH_MOTIFS.length;
+    placeSketch(sheet, motifA, uid, i, 0);
 
-    const wrap = document.createElement('div');
-    wrap.className = 'page-sketch sketch-art';
-    wrap.setAttribute('aria-hidden', 'true');
-    wrap.style.width = pos.width;
-    if (pos.top) wrap.style.top = pos.top;
-    if (pos.bottom) wrap.style.bottom = pos.bottom;
-    if (pos.left) wrap.style.left = pos.left;
-    if (pos.right) wrap.style.right = pos.right;
-    wrap.style.transform = `rotate(${rotation}deg)`;
-    wrap.innerHTML = buildSketchSVG(motifIndex, uid);
-
-    sheet.insertBefore(wrap, sheet.firstChild);
+    // Segundo boceto — aparece en ~55% de las hojas, para sensación de libreta desordenada
+    const chance = seededRand(i * 4.4 + 2);
+    if (chance > 0.45) {
+      uid++;
+      const motifB = (i * 2 + 4) % SKETCH_MOTIFS.length;
+      placeSketch(sheet, motifB, uid, i + 3, 10);
+    }
   });
 }
 
@@ -878,6 +1050,8 @@ function initLangBars() {
 document.addEventListener('DOMContentLoaded', () => {
   buildProjectSheets();
   initProjectGalleryControls();
+  renderExperienceEvidence();
+  initLightbox();
   buildRuler();
   injectPageSketches();
   initObserver();

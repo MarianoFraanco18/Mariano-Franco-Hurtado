@@ -655,6 +655,150 @@ body::before {
 .exp-row__list li::before { content: "—"; position: absolute; left: 0; color: var(--ink-faint); }
 .exp-row__tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
 
+/* Galería compacta de evidencia por experiencia */
+.exp-evidence {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+.exp-evidence__label {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-right: 4px;
+}
+.exp-evidence__thumb {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--hair-strong);
+  background: var(--paper-deep);
+  overflow: hidden;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.exp-evidence__thumb:hover { border-color: var(--ink); transform: translateY(-1px); }
+.exp-evidence__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.exp-evidence__thumb-fallback {
+  display: none;
+  width: 100%; height: 100%;
+  align-items: center; justify-content: center;
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+.exp-evidence__thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent 55%, rgba(23,21,15,0.35));
+  opacity: 0;
+  transition: opacity 0.2s var(--ease);
+}
+.exp-evidence__thumb:hover::after { opacity: 1; }
+.exp-evidence__more {
+  width: 40px; height: 40px;
+  border: 1px dashed var(--hair-strong);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--ink-faint);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+.exp-evidence__more:hover { border-color: var(--ink); color: var(--ink); }
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(23, 21, 15, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.22s var(--ease), visibility 0.22s;
+}
+.lightbox[data-open="true"] { opacity: 1; visibility: visible; }
+
+.lightbox__frame {
+  width: min(78vw, 900px);
+  height: min(74vh, 640px);
+  background: var(--paper);
+  border: 1px solid var(--hair-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.lightbox__frame img { width: 100%; height: 100%; object-fit: contain; }
+.lightbox__fallback {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-align: center;
+  padding: 0 40px;
+}
+.lightbox__fallback .ic { font-size: 34px; }
+
+.lightbox__close {
+  position: absolute;
+  top: 22px; right: 26px;
+  width: 38px; height: 38px;
+  border: 1px solid var(--white);
+  color: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s var(--ease), color 0.2s var(--ease);
+}
+.lightbox__close:hover { background: var(--white); color: var(--ink); }
+
+.lightbox__nav {
+  width: 44px; height: 44px;
+  border: 1px solid var(--white);
+  color: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 22px;
+  flex-shrink: 0;
+  transition: background 0.2s var(--ease), color 0.2s var(--ease);
+}
+.lightbox__nav:hover { background: var(--white); color: var(--ink); }
+
+.lightbox__bar {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  background: rgba(23,21,15,0.55);
+  padding: 6px 14px;
+  border: 1px solid rgba(251,249,242,0.3);
+}
+
+@media (max-width: 700px) {
+  .lightbox__nav { position: absolute; margin: 0; z-index: 2; }
+  .lightbox__nav--prev { left: 10px; }
+  .lightbox__nav--next { right: 10px; }
+  .lightbox__frame { width: 92vw; height: 60vh; }
+}
+
 /* ═══════════════════════ PROJECT SHEETS ═══════════════════════ */
 .sheet--project .sheet__body {
   display: flex;
