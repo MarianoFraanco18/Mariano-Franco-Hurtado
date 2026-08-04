@@ -237,7 +237,7 @@ const T = {
 
     'hero.label': 'Ingeniero Civil · Guadalajara, México',
     'hero.title': 'Topografía · BIM · Ingeniería Civil',
-    'hero.bio': 'Egresado del Tecnológico de Monterrey con experiencia en topografía de precisión, detección de instalaciones subterráneas y metodología BIM. Enfocado en integrar tecnología e ingeniería para generar soluciones técnicas con impacto real.',
+    'hero.bio': 'Egresado del <strong>Tecnológico de Monterrey</strong> con experiencia en <strong>topografía</strong> de precisión, detección de instalaciones subterráneas y metodología <strong>BIM</strong>. Enfocado en integrar tecnología e ingeniería para generar soluciones técnicas con impacto real.',
     'hero.cta': 'Ver proyectos', 'hero.downloadCV': 'CV', 'hero.emailBtn': 'Contactar por correo',
     'hero.stamp': 'REV. 2026<br/>GDL · MX',
 
@@ -278,7 +278,7 @@ const T = {
     'contact.email': 'Correo electrónico', 'contact.phone': 'Teléfono', 'contact.wa': 'WhatsApp', 'contact.waValue': 'Escríbeme directamente', 'contact.li': 'LinkedIn',
     'contact.location': 'Guadalajara, Jalisco / León, Guanajuato',
 
-    'proj.desc.label': 'Descripción', 'proj.part.label': 'Mi participación', 'proj.tools.label': 'Herramientas y metodologías', 'proj.badges.label': 'Categorías',
+    'proj.desc.label': 'Descripción', 'proj.part.label': 'Mis logros en este proyecto', 'proj.tools.label': 'Herramientas y metodologías', 'proj.badges.label': 'Categorías',
 
     'footer.copy': 'Topografía · BIM · Geofísica Aplicada · Guadalajara, México',
     'cv.file': 'CV_pdf_ES.pdf',
@@ -293,7 +293,7 @@ const T = {
 
     'hero.label': 'Civil Engineer · Guadalajara, Mexico',
     'hero.title': 'Surveying · BIM · Civil Engineering',
-    'hero.bio': 'Civil Engineering graduate from Tecnológico de Monterrey with experience in precision surveying, underground utility detection, and BIM methodology. Focused on integrating technology and engineering to deliver technical solutions with real-world impact.',
+    'hero.bio': 'Civil Engineering graduate from <strong>Tecnológico de Monterrey</strong> with experience in precision <strong>surveying</strong>, underground utility detection, and <strong>BIM</strong> methodology. Focused on integrating technology and engineering to deliver technical solutions with real-world impact.',
     'hero.cta': 'View projects', 'hero.downloadCV': 'Resume', 'hero.emailBtn': 'Contact by email',
     'hero.stamp': 'REV. 2026<br/>GDL · MX',
 
@@ -334,7 +334,7 @@ const T = {
     'contact.email': 'Email', 'contact.phone': 'Phone', 'contact.wa': 'WhatsApp', 'contact.waValue': 'Message me directly', 'contact.li': 'LinkedIn',
     'contact.location': 'Guadalajara, Jalisco / León, Guanajuato',
 
-    'proj.desc.label': 'Description', 'proj.part.label': 'My contribution', 'proj.tools.label': 'Tools & methodologies', 'proj.badges.label': 'Categories',
+    'proj.desc.label': 'Description', 'proj.part.label': 'My achievements on this project', 'proj.tools.label': 'Tools & methodologies', 'proj.badges.label': 'Categories',
 
     'footer.copy': 'Surveying · BIM · Applied Geophysics · Guadalajara, Mexico',
     'cv.file': 'CV_pdf_EN.pdf',
@@ -370,21 +370,8 @@ function buildProjectSheets() {
       <div class="sheet__body">
         <span class="sheet__kicker" data-i18n="nav.projects">Proyectos</span>
         <h2 class="sheet__title proj-title" style="font-size:clamp(22px,2.4vw,32px);margin-top:6px;"></h2>
-        <div class="proj__meta"><span class="proj-date"></span><span>·</span><span class="proj-location"></span></div>
 
-        <div class="proj__info">
-          <div class="sheet__scroll" style="flex:1;min-height:0;">
-            <p class="proj__desc proj-desc"></p>
-            <p class="proj__block-label" data-i18n="proj.part.label">Mi participación</p>
-            <ul class="proj__list proj-participation"></ul>
-            <p class="proj__block-label" data-i18n="proj.tools.label">Herramientas y metodologías</p>
-            <div class="proj__tags proj-tools"></div>
-            <p class="proj__block-label" data-i18n="proj.badges.label">Categorías</p>
-            <div class="proj__badges proj-badges"></div>
-          </div>
-        </div>
-
-        <div class="proj__gallery">
+        <div class="proj__gallery" style="margin-top:16px;">
           <div class="proj__gallery-frame">
             <div class="proj__gallery-track proj-track"></div>
           </div>
@@ -395,6 +382,20 @@ function buildProjectSheets() {
               <button class="proj-prev" aria-label="Imagen anterior"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M15 18l-6-6 6-6"/></svg></button>
               <button class="proj-next" aria-label="Imagen siguiente"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M9 18l6-6-6-6"/></svg></button>
             </div>
+          </div>
+        </div>
+
+        <div class="proj__meta"><span class="proj-date"></span><span>·</span><span class="proj-location"></span></div>
+
+        <div class="proj__info">
+          <div class="sheet__scroll" style="flex:1;min-height:0;">
+            <p class="proj__desc proj-desc"></p>
+            <p class="proj__block-label" data-i18n="proj.part.label">Mis logros en este proyecto</p>
+            <ul class="proj__list proj-participation"></ul>
+            <p class="proj__block-label" data-i18n="proj.tools.label">Herramientas y metodologías</p>
+            <div class="proj__tags proj-tools"></div>
+            <p class="proj__block-label" data-i18n="proj.badges.label">Categorías</p>
+            <div class="proj__badges proj-badges"></div>
           </div>
         </div>
       </div>

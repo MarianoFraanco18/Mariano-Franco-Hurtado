@@ -513,7 +513,7 @@ body::before {
 }
 
 /* ═══════════════════════ HERO ═══════════════════════ */
-.sheet--hero .sheet__body { justify-content: center; gap: 26px; max-width: 900px; }
+.sheet--hero .sheet__body { justify-content: center; gap: 26px; max-width: 900px; position: relative; z-index: 1; }
 .hero__name {
   font-family: var(--font-display);
   font-weight: 600;
@@ -522,7 +522,7 @@ body::before {
   letter-spacing: -0.02em;
   color: var(--ink);
 }
-.hero__name em { font-style: normal; color: var(--red); }
+.hero__name em { font-style: normal; color: var(--ink); }
 .hero__role {
   font-family: var(--font-mono);
   font-size: 13px;
@@ -533,6 +533,7 @@ body::before {
   padding-left: 12px;
 }
 .hero__bio { max-width: 560px; font-size: 15.5px; color: var(--ink-soft); }
+.hero__bio strong { color: var(--ink); font-weight: 600; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
 
 .hero__stamp {
@@ -547,6 +548,7 @@ body::before {
   justify-content: center;
   transform: rotate(-8deg);
   opacity: 0.85;
+  z-index: 2;
 }
 .hero__stamp span {
   font-family: var(--font-mono);
@@ -556,6 +558,29 @@ body::before {
   text-align: center;
   line-height: 1.5;
   text-transform: uppercase;
+}
+
+/* Boceto de fondo tipo "memoria de cálculo" — a lápiz, lado derecho del hero */
+.hero__blueprint {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(56%, 640px);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.4;
+  mix-blend-mode: multiply;
+}
+.hero__blueprint svg { width: 100%; height: 100%; }
+.hero__blueprint .sk-line { stroke: var(--ink-soft); fill: none; stroke-width: 1; stroke-linecap: round; }
+.hero__blueprint .sk-dim { stroke: var(--ink-faint); fill: none; stroke-width: 0.8; stroke-linecap: round; }
+.hero__blueprint .sk-fill { fill: var(--ink-faint); }
+.hero__blueprint .sk-text { font-family: var(--font-mono); fill: var(--ink-soft); font-size: 11px; letter-spacing: 0.02em; }
+.hero__blueprint .sk-text-sm { font-family: var(--font-mono); fill: var(--ink-faint); font-size: 9px; }
+
+@media (max-width: 900px) {
+  .hero__blueprint { display: none; }
 }
 
 /* ═══════════════════════ ABOUT ═══════════════════════ */
@@ -614,15 +639,15 @@ body::before {
 
 /* ═══════════════════════ PROJECT SHEETS ═══════════════════════ */
 .sheet--project .sheet__body {
-  display: grid;
-  grid-template-columns: 0.92fr 1.18fr;
-  gap: clamp(28px, 4vw, 56px);
+  display: flex;
+  flex-direction: column;
   flex: 1;
   min-height: 0;
+  max-width: 760px;
 }
-.proj__info { display: flex; flex-direction: column; min-height: 0; }
-.proj__meta { display: flex; gap: 16px; font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); margin-top: 10px; margin-bottom: 4px; }
-.proj__desc { color: var(--ink-soft); margin: 16px 0; font-size: 14px; max-width: 52ch; }
+.proj__info { display: flex; flex-direction: column; min-height: 0; flex: 1; }
+.proj__meta { display: flex; gap: 16px; font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); margin: 14px 0 6px; padding-bottom: 14px; border-bottom: 1px solid var(--hair-strong); }
+.proj__desc { color: var(--ink-soft); margin: 16px 0; font-size: 14px; max-width: 62ch; }
 .proj__block-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 8px; }
 .proj__list { margin-bottom: 18px; }
 .proj__list li { font-size: 13px; color: var(--ink-soft); position: relative; padding-left: 16px; margin-bottom: 6px; }
@@ -635,7 +660,8 @@ body::before {
   border: 1px solid var(--hair-strong);
   background: var(--paper-deep);
   min-height: 0;
-  height: 100%;
+  height: clamp(240px, 34vh, 360px);
+  flex: none;
   display: flex;
   flex-direction: column;
 }
@@ -813,7 +839,7 @@ body::before {
   .title-block__cell:nth-child(4) { border-top: 1px solid var(--hair-strong); }
   .title-block__cell:nth-child(5) { border-top: 1px solid var(--hair-strong); grid-column: 1 / -1; }
 
-  .about__grid, .sheet--project .sheet__body { grid-template-columns: 1fr; }
+  .about__grid { grid-template-columns: 1fr; }
   .exp-row { grid-template-columns: 1fr; gap: 8px; }
   .skills__cols { grid-template-columns: 1fr 1fr; }
   .edu__cols { grid-template-columns: 1fr; }
