@@ -638,6 +638,11 @@ function applyLang(lang) {
     el.setAttribute('title', lang === 'en' ? el.getAttribute('data-tooltip-en') : el.getAttribute('data-tooltip-es'));
   });
 
+  // Descripciones de habilidades técnicas (tooltip CSS vía attr(data-desc))
+  document.querySelectorAll('[data-desc-en]').forEach(el => {
+    el.setAttribute('data-desc', lang === 'en' ? el.getAttribute('data-desc-en') : el.getAttribute('data-desc-es'));
+  });
+
   const cvBtn = document.getElementById('cvDownloadBtn');
   if (cvBtn) {
     const cvFile = dict['cv.file'] || 'CV_pdf_ES.pdf';
@@ -1061,6 +1066,7 @@ function injectPageSketches() {
 
   sheets.forEach((sheet, i) => {
     if (sheet.classList.contains('sheet--hero')) return; // la hoja 00 tiene su propio boceto dedicado
+    if (sheet.id === 'hoja-01') return; // la hoja 01 (Sobre mí) también tiene boceto dedicado
 
     // 2 o 3 bocetos por hoja, según semilla propia de cada hoja
     const countRoll = seededRand(i * 6.6 + 1);

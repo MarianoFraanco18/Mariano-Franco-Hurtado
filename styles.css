@@ -578,6 +578,21 @@ body::before {
   mix-blend-mode: multiply;
 }
 .hero__blueprint svg { width: 100%; height: 100%; }
+
+/* Boceto dedicado de la hoja 01 (Sobre mí) — mismo lenguaje que el de la hoja 00,
+   pero más discreto ya que aquí el contenido ocupa más espacio de la hoja */
+.about__blueprint {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.22;
+  mix-blend-mode: multiply;
+}
+.about__blueprint svg { width: 100%; height: 100%; }
+@media (max-width: 900px) {
+  .about__blueprint { opacity: 0.12; }
+}
 .sketch-art .sk-line { stroke: var(--ink-soft); fill: none; stroke-width: 1.1; stroke-linecap: round; }
 .sketch-art .sk-dim { stroke: var(--ink-faint); fill: none; stroke-width: 0.9; stroke-linecap: round; }
 .sketch-art .sk-fill { fill: var(--ink-faint); }
@@ -962,28 +977,62 @@ body::before {
 }
 .skill-row { display: flex; flex-wrap: wrap; gap: 0 4px; }
 
-/* Separador hacia el bloque de habilidades blandas — menor jerarquía, sin rojo */
-.skills__divider {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+/* Tooltip de descripción — solo desktop (hover), CSS puro vía atributo data-desc */
+@media (hover: hover) and (pointer: fine) {
+  .skill-pill[data-desc] {
+    cursor: help;
+  }
+  .skill-pill[data-desc]::after {
+    content: attr(data-desc);
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 10px);
+    transform: translateX(-50%) translateY(4px);
+    width: max-content;
+    max-width: 220px;
+    background: var(--paper);
+    color: var(--ink-soft);
+    border: 1px solid var(--ink);
+    box-shadow: 3px 3px 0 var(--hair-strong);
+    font-family: var(--font-body);
+    font-size: 11px;
+    line-height: 1.4;
+    letter-spacing: 0;
+    text-transform: none;
+    padding: 8px 10px;
+    z-index: 20;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.16s var(--ease), transform 0.16s var(--ease);
+  }
+  .skill-pill[data-desc]::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 100%;
+    transform: translateX(-50%) translateY(6px);
+    border: 5px solid transparent;
+    border-top-color: var(--ink);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.16s var(--ease), transform 0.16s var(--ease);
+    z-index: 21;
+  }
+  .skill-pill[data-desc]:hover::after,
+  .skill-pill[data-desc]:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Separación hacia el bloque de habilidades blandas — misma jerarquía de subtítulo,
+   solo se distingue por estar más abajo y precedida de una línea fina */
+.skills__soft-wrap {
   margin-top: 30px;
-  margin-bottom: 16px;
-}
-.skills__divider::before {
-  content: "";
-  flex: 1 1 auto;
-  height: 1px;
-  background: var(--hair-strong);
-}
-.skills__divider-label {
-  font-family: var(--font-mono);
-  font-size: 9.5px;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  white-space: nowrap;
+  padding-top: 20px;
+  border-top: 1px solid var(--hair-strong);
 }
 
 .soft-row {
