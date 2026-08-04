@@ -233,6 +233,8 @@ const T = {
 
     'tb.project': 'Proyecto', 'tb.drawn': 'Elaboró', 'tb.scale': 'Escala', 'tb.sheet': 'Hoja', 'tb.rev': 'Rev.',
 
+    'markpanel.title': 'Contacto directo', 'markpanel.home': 'Ir a la hoja 00',
+
     'hero.label': 'Ingeniero Civil · Guadalajara, México',
     'hero.title': 'Topografía · BIM · Ingeniería Civil',
     'hero.bio': 'Egresado del Tecnológico de Monterrey con experiencia en topografía de precisión, detección de instalaciones subterráneas y metodología BIM. Enfocado en integrar tecnología e ingeniería para generar soluciones técnicas con impacto real.',
@@ -286,6 +288,8 @@ const T = {
     'nav.projects': 'Projects', 'nav.skills': 'Skills', 'nav.education': 'Education', 'nav.contact': 'Contact',
 
     'tb.project': 'Project', 'tb.drawn': 'Drawn by', 'tb.scale': 'Scale', 'tb.sheet': 'Sheet', 'tb.rev': 'Rev.',
+
+    'markpanel.title': 'Direct contact', 'markpanel.home': 'Go to sheet 00',
 
     'hero.label': 'Civil Engineer · Guadalajara, Mexico',
     'hero.title': 'Surveying · BIM · Civil Engineering',
@@ -368,7 +372,7 @@ function buildProjectSheets() {
         <h2 class="sheet__title proj-title" style="font-size:clamp(22px,2.4vw,32px);margin-top:6px;"></h2>
         <div class="proj__meta"><span class="proj-date"></span><span>·</span><span class="proj-location"></span></div>
 
-        <div class="proj__info" style="margin-top:14px;">
+        <div class="proj__info">
           <div class="sheet__scroll" style="flex:1;min-height:0;">
             <p class="proj__desc proj-desc"></p>
             <p class="proj__block-label" data-i18n="proj.part.label">Mi participación</p>
@@ -379,18 +383,18 @@ function buildProjectSheets() {
             <div class="proj__badges proj-badges"></div>
           </div>
         </div>
-      </div>
 
-      <div class="proj__gallery" style="position:absolute; top:calc(var(--header-h) + var(--sheet-pad-y)); bottom:calc(var(--ruler-h) + var(--sheet-pad-y) + 60px); right:var(--sheet-pad-x); width:min(46vw, 620px);">
-        <div class="proj__gallery-frame">
-          <div class="proj__gallery-track proj-track"></div>
-        </div>
-        <div class="proj__gallery-bar">
-          <span class="proj-slide-label"></span>
-          <div class="proj__gallery-nav">
-            <div class="proj__gallery-dots proj-dots"></div>
-            <button class="proj-prev" aria-label="Imagen anterior"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M15 18l-6-6 6-6"/></svg></button>
-            <button class="proj-next" aria-label="Imagen siguiente"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M9 18l6-6-6-6"/></svg></button>
+        <div class="proj__gallery">
+          <div class="proj__gallery-frame">
+            <div class="proj__gallery-track proj-track"></div>
+          </div>
+          <div class="proj__gallery-bar">
+            <span class="proj-slide-label"></span>
+            <div class="proj__gallery-nav">
+              <div class="proj__gallery-dots proj-dots"></div>
+              <button class="proj-prev" aria-label="Imagen anterior"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M15 18l-6-6 6-6"/></svg></button>
+              <button class="proj-next" aria-label="Imagen siguiente"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M9 18l6-6-6-6"/></svg></button>
+            </div>
           </div>
         </div>
       </div>
@@ -409,28 +413,6 @@ function buildProjectSheets() {
   });
 
   placeholder.replaceWith(frag);
-
-  // Adjust gallery panel for mobile stacked layout via CSS is complex inline;
-  // simplify by clearing inline positioning on small screens.
-  function fixMobileGallery() {
-    document.querySelectorAll('.proj__gallery').forEach(g => {
-      if (!isDesktop()) {
-        g.style.position = 'static';
-        g.style.width = '100%';
-        g.style.height = '320px';
-        g.style.marginTop = '20px';
-      } else {
-        g.style.position = 'absolute';
-        g.style.top = 'calc(var(--header-h) + var(--sheet-pad-y))';
-        g.style.bottom = 'calc(var(--ruler-h) + var(--sheet-pad-y) + 60px)';
-        g.style.right = 'var(--sheet-pad-x)';
-        g.style.width = 'min(46vw, 620px)';
-        g.style.height = 'auto';
-      }
-    });
-  }
-  fixMobileGallery();
-  window.addEventListener('resize', fixMobileGallery);
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
@@ -612,7 +594,9 @@ function buildRulerLabels() {
 
 function jumpToSheet(index) {
   const sheets = [...sheetsEl.querySelectorAll('.sheet')];
-  const target = sheets[Math.max(0, Math.min(index, sheets.length - 1))];
+  const len = sheets.length;
+  const wrapped = ((index % len) + len) % len; // loop circular: 10 -> 00, 00 -> 10
+  const target = sheets[wrapped];
   if (!target) return;
   if (isDesktop()) {
     sheetsEl.scrollTo({ left: target.offsetLeft, behavior: 'smooth' });
@@ -641,8 +625,9 @@ function setActive(index) {
     hdrLabel.textContent = label;
   }
 
-  rulerPrev.disabled = index === 0;
-  rulerNext.disabled = index === totalSheets - 1;
+  // Carrusel circular: los botones prev/next nunca se deshabilitan.
+  rulerPrev.disabled = false;
+  rulerNext.disabled = false;
 }
 
 function initObserver() {
@@ -706,6 +691,48 @@ function initJumpLinks() {
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
+   4b. PANEL DE CONTACTO (botón "M" del header)
+───────────────────────────────────────────────────────────────────────── */
+function initMarkPanel() {
+  const toggle = document.getElementById('markToggle');
+  const panel = document.getElementById('markPanel');
+  const homeBtn = document.getElementById('markHome');
+  if (!toggle || !panel) return;
+
+  function openPanel() {
+    panel.setAttribute('data-open', 'true');
+    panel.setAttribute('aria-hidden', 'false');
+    toggle.setAttribute('aria-expanded', 'true');
+  }
+  function closePanel() {
+    panel.setAttribute('data-open', 'false');
+    panel.setAttribute('aria-hidden', 'true');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+  function isOpen() { return panel.getAttribute('data-open') === 'true'; }
+
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    isOpen() ? closePanel() : openPanel();
+  });
+
+  document.addEventListener('click', (e) => {
+    if (isOpen() && !panel.contains(e.target) && !toggle.contains(e.target)) closePanel();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen()) closePanel();
+  });
+
+  if (homeBtn) {
+    homeBtn.addEventListener('click', () => {
+      closePanel();
+      jumpToSheet(0);
+    });
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
    5. IDIOMAS — BOTONES
 ───────────────────────────────────────────────────────────────────────── */
 function initLangButtons() {
@@ -743,6 +770,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPrevNextButtons();
   initJumpLinks();
   initLangButtons();
+  initMarkPanel();
   applyLang(currentLang);
   initLangBars();
   setActive(0);
