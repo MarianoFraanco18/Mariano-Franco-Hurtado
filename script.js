@@ -481,6 +481,7 @@ function buildProjectSheets() {
       <span class="sheet__no">HOJA <b>0${sheetIndex}</b> / 10</span>
       <div class="sheet__body">
         <span class="sheet__kicker" data-i18n="nav.projects">Proyectos</span>
+        <h2 class="sheet__title proj-title proj-title--mobile" style="display:none;"></h2>
 
         <div class="proj__grid">
           <div class="proj__media">
@@ -501,7 +502,7 @@ function buildProjectSheets() {
           </div>
 
           <div class="proj__info">
-            <h2 class="sheet__title proj-title" style="font-size:clamp(22px,2.2vw,30px);margin-top:0;"></h2>
+            <h2 class="sheet__title proj-title proj-title--desktop" style="font-size:clamp(22px,2.2vw,30px);margin-top:0;"></h2>
             <div class="sheet__scroll" style="flex:1;min-height:0;margin-top:14px;">
               <p class="proj__desc proj-desc"></p>
               <p class="proj__block-label" data-i18n="proj.part.label">Mis logros en este proyecto</p>
@@ -543,7 +544,7 @@ function renderProjectContent(lang) {
     const section = document.querySelector(`.sheet--project[data-project="${key}"]`);
     if (!section) return;
 
-    section.querySelector('.proj-title').textContent = data.title;
+    section.querySelectorAll('.proj-title').forEach(el => { el.textContent = data.title; });
     section.querySelector('.proj-date').textContent = data.date;
     section.querySelector('.proj-location').textContent = data.location;
     section.querySelector('.proj-desc').textContent = data.description;
@@ -1034,10 +1035,11 @@ function placeSketch(sheet, motifContent, uid, zoneIndex, salt) {
   wrap.className = 'page-sketch sketch-art';
   wrap.setAttribute('aria-hidden', 'true');
 
-  const width = Math.round(200 + r3 * 100); // 200–300px
+  const width = Math.round(200 + r3 * 100); // 200–300px (se recorta por CSS en móvil)
   wrap.style.width = width + 'px';
 
-  if (zone.top) wrap.style.top = Math.round(zone.top[0] + r1 * (zone.top[1] - zone.top[0])) + 'px';
+  const mobileTopBoost = isDesktop() ? 0 : 70; // en móvil, empuja las zonas superiores para no tapar título/kicker
+  if (zone.top) wrap.style.top = Math.round(zone.top[0] + mobileTopBoost + r1 * (zone.top[1] - zone.top[0])) + 'px';
   if (zone.bottom) wrap.style.bottom = Math.round(zone.bottom[0] + r1 * (zone.bottom[1] - zone.bottom[0])) + 'px';
   if (zone.left) wrap.style.left = (zone.left[0] + r2 * (zone.left[1] - zone.left[0])).toFixed(1) + '%';
   if (zone.right) wrap.style.right = (zone.right[0] + r2 * (zone.right[1] - zone.right[0])).toFixed(1) + '%';

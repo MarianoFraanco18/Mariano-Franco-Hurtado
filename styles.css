@@ -585,7 +585,19 @@ body::before {
 .sketch-art .sk-text-sm { font-family: var(--font-sketch); fill: var(--ink-faint); font-size: 12px; font-weight: 700; }
 
 @media (max-width: 900px) {
-  .hero__blueprint { display: none; }
+  .hero__blueprint {
+    top: auto;
+    left: auto;
+    bottom: 6px;
+    right: 4px;
+    width: 46%;
+    max-width: 220px;
+    height: 260px;
+    opacity: 0.16;
+  }
+}
+@media (max-width: 560px) {
+  .hero__blueprint { width: 52%; max-width: 190px; height: 220px; opacity: 0.13; }
 }
 
 /* Bocetos técnicos de fondo — variados por hoja (todas excepto la 00, que tiene el suyo propio) */
@@ -599,7 +611,10 @@ body::before {
 .page-sketch svg { width: 100%; height: auto; display: block; }
 
 @media (max-width: 900px) {
-  .page-sketch { display: none; }
+  .page-sketch { width: 130px !important; opacity: 0.09; }
+}
+@media (max-width: 560px) {
+  .page-sketch { width: 108px !important; opacity: 0.07; }
 }
 
 /* ═══════════════════════ ABOUT ═══════════════════════ */
@@ -985,6 +1000,7 @@ body::before {
 
 /* ═══════════════════════ RESPONSIVE — MÓVIL: apilado vertical ═══════════════════════ */
 @media (max-width: 900px) {
+  /* ---- 1) Scroll: solo vertical natural, sin contenedores internos atrapando el gesto ---- */
   body { overflow-y: auto; overflow-x: hidden; }
   .hdr__center { display: none; }
   .hdr__hamburger { display: none; }
@@ -1002,31 +1018,83 @@ body::before {
     flex: none;
     border-right: none;
     border-bottom: 1px solid var(--hair-strong);
-    padding: calc(var(--header-h) + 24px) 22px 90px;
+    padding: calc(var(--header-h) + 20px) 20px 84px;
   }
-  .sheet__scroll { overflow-y: visible; }
-  .title-block { position: static; margin-top: 24px; grid-template-columns: 1fr 1fr; }
-  .title-block__cell:nth-child(3) { border-top: 1px solid var(--hair-strong); }
-  .title-block__cell:nth-child(4) { border-top: 1px solid var(--hair-strong); }
-  .title-block__cell:nth-child(5) { border-top: 1px solid var(--hair-strong); grid-column: 1 / -1; }
+  /* Ningún contenedor interno debe capturar el scroll: todo fluye con la página */
+  .sheet__scroll { overflow-y: visible; flex: none; min-height: 0; height: auto; }
+  .sheet__body { overflow: visible; }
+  .proj__info .sheet__scroll { margin-top: 12px; }
 
-  .about__grid { grid-template-columns: 1fr; }
-  .proj__grid { grid-template-columns: 1fr; }
-  .proj__gallery { flex: none; height: 300px; }
-  .exp-row { grid-template-columns: 1fr; gap: 8px; }
-  .skills__cols { grid-template-columns: 1fr 1fr; }
-  .edu__cols { grid-template-columns: 1fr; }
+  /* ---- 2) Jerarquía tipográfica: nombre y subtítulos más discretos ---- */
+  .hero__name { font-size: clamp(34px, 12vw, 48px); line-height: 1.05; }
+  .eyebrow { font-size: 9.5px; gap: 6px; }
+  .eyebrow::before { width: 12px; }
+  .hero__role { font-size: 10.5px; padding-left: 9px; }
+  .hero__bio { font-size: 14.5px; line-height: 1.55; max-width: 100%; }
+  .sheet__title { font-size: clamp(24px, 7vw, 32px); margin-top: 6px; }
+  .sheet__kicker { font-size: 10px; }
+
+  /* ---- 3) Cajetín (title-block) compacto en 2 filas ---- */
+  .title-block {
+    position: static;
+    margin-top: 22px;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    grid-template-areas:
+      "project project drawn"
+      "scale sheet rev";
+  }
+  .title-block__cell { padding: 5px 8px; }
+  .title-block__label { font-size: 7.5px; margin-bottom: 1px; }
+  .title-block__value { font-size: 9px; }
+  .title-block__cell:nth-child(1) { grid-area: project; }
+  .title-block__cell:nth-child(2) { grid-area: drawn; }
+  .title-block__cell:nth-child(3) { grid-area: scale; border-top: 1px solid var(--hair-strong); }
+  .title-block__cell:nth-child(4) { grid-area: sheet; border-top: 1px solid var(--hair-strong); }
+  .title-block__cell:nth-child(5) { grid-area: rev; border-top: 1px solid var(--hair-strong); }
+
+  .about__grid { grid-template-columns: 1fr; gap: 26px; }
+  .stat-cell { padding: 16px 14px; }
+
+  /* ---- 6) Proyectos: título → imagen → fecha/ubicación → texto → logros ---- */
+  .proj__grid { grid-template-columns: 1fr; gap: 18px; }
+  .proj-title--desktop { display: none; }
+  .proj-title--mobile { display: block !important; font-size: clamp(22px, 6.5vw, 28px); margin-bottom: 4px; }
+  .proj__gallery { flex: none; height: 46vh; min-height: 240px; max-height: 360px; }
+  .proj__meta { margin-top: 12px; flex-wrap: wrap; }
+  .proj__desc { max-width: 100%; }
+
+  /* ---- 5) Experiencia: más aire entre puestos, ancho completo ---- */
+  .exp-row { grid-template-columns: 1fr; gap: 10px; padding: 28px 0; }
+  .exp-row__role { font-size: 16px; }
+  .exp-row__list { margin-top: 4px; }
+  .exp-row__list li { font-size: 13.5px; line-height: 1.5; }
+  .exp-evidence__thumb, .exp-evidence__more { width: 44px; height: 44px; }
+
+  .skills__cols { grid-template-columns: 1fr 1fr; gap: 22px 20px; }
+  .edu__cols { grid-template-columns: 1fr; gap: 26px; }
   .contact__links { grid-template-columns: 1fr; }
-  .hero__stamp { position: static; margin-bottom: 10px; transform: rotate(-4deg); }
-  .sheet--hero .sheet__body { max-width: 100%; }
+  .hero__stamp { position: static; margin-bottom: 12px; transform: rotate(-4deg); }
+  .sheet--hero .sheet__body { max-width: 100%; gap: 18px; }
 
-  .ruler { position: fixed; }
-  .ruler__track { justify-content: flex-start; }
+  /* ---- 7) Barra inferior de navegación: más compacta y sin conflicto con el swipe ---- */
+  :root { --ruler-h: 50px; }
+  .ruler { position: fixed; touch-action: pan-x; }
+  .ruler__track { justify-content: flex-start; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; }
+  .ruler__tick { min-width: 68px; }
+  .ruler__tick-no { font-size: 9px; }
+  .ruler__tick-label { font-size: 8.5px; }
+  .ruler__prev, .ruler__next { flex-basis: var(--ruler-h); }
+
+  /* ---- 8) Botones: área táctil cómoda sin verse desproporcionados ---- */
+  .hero__actions { gap: 10px; }
+  .btn { height: 46px; padding: 0 18px; font-size: 11.5px; }
 }
 
 @media (max-width: 560px) {
   .skills__cols { grid-template-columns: 1fr; }
   :root { --sheet-pad-x: 20px; }
+  .hero__actions .btn { flex: 1 1 auto; justify-content: center; }
+  .proj__gallery { height: 42vh; min-height: 220px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
