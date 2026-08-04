@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="light">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,181 +9,105 @@
   <meta property="og:type" content="website" />
   <title>Mariano Franco Hurtado — Ingeniero Civil</title>
 
-  <link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700&display=swap" rel="stylesheet" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300..700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%236C3FC5'/><text x='16' y='23' font-size='18' font-family='serif' font-weight='700' text-anchor='middle' fill='white'>M</text></svg>" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2317150F'/><text x='16' y='22' font-size='16' font-family='monospace' font-weight='700' text-anchor='middle' fill='%23ECE7D8'>M</text></svg>" />
 </head>
 <body>
 
-  <!-- ═══════════════════════════════════ NAV ═══════════════════════════════════ -->
-  <header class="nav" id="nav">
-    <div class="nav__inner container">
-      <a href="#inicio" class="nav__logo" aria-label="Mariano Franco — Inicio">
-        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <circle cx="18" cy="18" r="16" stroke="var(--color-primary)" stroke-width="1.5"/>
-          <ellipse cx="18" cy="18" rx="9" ry="6" stroke="var(--color-primary)" stroke-width="1" opacity="0.5"/>
-          <path d="M18 6 L21 18 L18 16 L15 18 Z" fill="var(--color-primary)"/>
-          <path d="M18 30 L15 18 L18 20 L21 18 Z" fill="var(--color-primary)" opacity="0.4"/>
-          <circle cx="18" cy="18" r="2" fill="var(--color-primary)"/>
-        </svg>
-        <span class="nav__logo-text">MFH</span>
-      </a>
+  <!-- ═══════════════════════ HEADER FIJO ═══════════════════════ -->
+  <header class="hdr">
+    <a href="#hoja-00" class="hdr__mark" data-jump aria-label="Ir al inicio">
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="1" y="1" width="24" height="24" stroke="var(--ink)" stroke-width="1"/>
+        <path d="M6 19L13 6L20 19" stroke="var(--ink)" stroke-width="1.2"/>
+        <line x1="9" y1="14" x2="17" y2="14" stroke="var(--ink)" stroke-width="1"/>
+      </svg>
+      <span class="hdr__mark-label">MFH<small>ING. CIVIL</small></span>
+    </a>
 
-      <nav aria-label="Navegación principal">
-        <ul class="nav__links" role="list">
-          <li><a href="#sobre-mi" class="nav__link" data-i18n="nav.about">Sobre mí</a></li>
-          <li><a href="#experiencia" class="nav__link" data-i18n="nav.experience">Experiencia</a></li>
-          <li><a href="#proyectos" class="nav__link" data-i18n="nav.projects">Proyectos</a></li>
-          <li><a href="#habilidades" class="nav__link" data-i18n="nav.skills">Habilidades</a></li>
-          <li><a href="#educacion" class="nav__link" data-i18n="nav.education">Educación</a></li>
-          <li><a href="#contacto" class="nav__link nav__link--cta" data-i18n="nav.contact">Contacto</a></li>
-        </ul>
-      </nav>
-
-      <div class="nav__actions">
-        <!-- Selector de idioma -->
-        <div class="lang-switcher" role="group" aria-label="Selector de idioma">
-          <button class="lang-btn lang-btn--active" data-lang="es" aria-pressed="true">
-            <span class="lang-btn__flag" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="20" height="14" style="border-radius:2px;display:block">
-                <rect width="900" height="600" fill="#006847"/>
-                <rect x="300" width="300" height="600" fill="#fff"/>
-                <rect x="600" width="300" height="600" fill="#CE1126"/>
-                <ellipse cx="450" cy="300" rx="52" ry="52" fill="#A0522D" opacity=".3"/>
-              </svg>
-            </span>
-            <span class="lang-btn__label">ES</span>
-          </button>
-          <span class="lang-switcher__divider" aria-hidden="true"></span>
-          <button class="lang-btn" data-lang="en" aria-pressed="false">
-            <span class="lang-btn__flag" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="20" height="14" style="border-radius:2px;display:block">
-                <rect width="900" height="600" fill="#B22234"/>
-                <rect y="46" width="900" height="92" fill="#fff"/>
-                <rect y="184" width="900" height="92" fill="#fff"/>
-                <rect y="322" width="900" height="92" fill="#fff"/>
-                <rect y="460" width="900" height="92" fill="#fff"/>
-                <rect width="363" height="323" fill="#3C3B6E"/>
-              </svg>
-            </span>
-            <span class="lang-btn__label">EN</span>
-          </button>
-        </div>
-
-        <button class="theme-toggle" data-theme-toggle aria-label="Cambiar tema">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="5"/>
-            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-          </svg>
-        </button>
-        <button class="nav__hamburger" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
+    <div class="hdr__center" id="hdrCenter" aria-hidden="true">
+      <span id="hdrIndex">00</span><span class="sep">/</span><span id="hdrTotal">10</span>
+      <span class="sep">—</span>
+      <b id="hdrLabel" data-i18n="nav.about">Sobre mí</b>
     </div>
 
-    <div class="nav__mobile" id="mobileMenu" aria-hidden="true">
-      <ul role="list">
-        <li><a href="#sobre-mi" class="nav__link" data-i18n="nav.about">Sobre mí</a></li>
-        <li><a href="#experiencia" class="nav__link" data-i18n="nav.experience">Experiencia</a></li>
-        <li><a href="#proyectos" class="nav__link" data-i18n="nav.projects">Proyectos</a></li>
-        <li><a href="#habilidades" class="nav__link" data-i18n="nav.skills">Habilidades</a></li>
-        <li><a href="#educacion" class="nav__link" data-i18n="nav.education">Educación</a></li>
-        <li><a href="#idiomas" class="nav__link" data-i18n="nav.languages">Idiomas</a></li>
-        <li><a href="#contacto" class="nav__link" data-i18n="nav.contact">Contacto</a></li>
-      </ul>
+    <div class="hdr__actions">
+      <div class="lang-switcher" role="group" aria-label="Selector de idioma">
+        <button class="lang-btn lang-btn--active" data-lang="es" aria-pressed="true">
+          <span class="lang-btn__flag" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="18" height="13" style="display:block">
+              <rect width="900" height="600" fill="#006847"/><rect x="300" width="300" height="600" fill="#fff"/><rect x="600" width="300" height="600" fill="#CE1126"/>
+            </svg>
+          </span>
+          <span>ES</span>
+        </button>
+        <span class="lang-switcher__divider" aria-hidden="true"></span>
+        <button class="lang-btn" data-lang="en" aria-pressed="false">
+          <span class="lang-btn__flag" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="18" height="13" style="display:block">
+              <rect width="900" height="600" fill="#B22234"/><rect y="66" width="900" height="66" fill="#fff"/><rect y="200" width="900" height="66" fill="#fff"/><rect y="333" width="900" height="66" fill="#fff"/><rect y="466" width="900" height="66" fill="#fff"/><rect width="363" height="323" fill="#3C3B6E"/>
+            </svg>
+          </span>
+          <span>EN</span>
+        </button>
+      </div>
+
+      <a href="CV_pdf_ES.pdf" class="hdr__cv" download id="cvDownloadBtn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span data-i18n="hero.downloadCV">CV</span>
+      </a>
     </div>
   </header>
 
-  <main>
+  <!-- ═══════════════════════ HOJAS — SCROLL HORIZONTAL ═══════════════════════ -->
+  <main class="sheets" id="sheets">
 
-    <!-- ═══════════════════════════════════ HERO ══════════════════════════════════ -->
-    <section class="hero" id="inicio" aria-label="Presentación">
-      <div class="hero__topo" aria-hidden="true">
-        <svg class="topo-svg" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-          <g opacity="0.12" stroke="var(--color-primary)" stroke-width="1" fill="none">
-            <ellipse cx="900" cy="350" rx="500" ry="280"/>
-            <ellipse cx="900" cy="350" rx="420" ry="230"/>
-            <ellipse cx="900" cy="350" rx="340" ry="185"/>
-            <ellipse cx="900" cy="350" rx="270" ry="145"/>
-            <ellipse cx="900" cy="350" rx="200" ry="110"/>
-            <ellipse cx="900" cy="350" rx="135" ry="72"/>
-            <ellipse cx="900" cy="350" rx="75" ry="40"/>
-            <ellipse cx="120" cy="600" rx="300" ry="180"/>
-            <ellipse cx="120" cy="600" rx="230" ry="135"/>
-            <ellipse cx="120" cy="600" rx="165" ry="95"/>
-            <ellipse cx="120" cy="600" rx="105" ry="60"/>
-          </g>
-          <g opacity="0.05" stroke="var(--color-primary)" stroke-width="0.8">
-            <line x1="0" y1="100" x2="1200" y2="100"/>
-            <line x1="0" y1="200" x2="1200" y2="200"/>
-            <line x1="0" y1="300" x2="1200" y2="300"/>
-            <line x1="0" y1="400" x2="1200" y2="400"/>
-            <line x1="0" y1="500" x2="1200" y2="500"/>
-            <line x1="0" y1="600" x2="1200" y2="600"/>
-            <line x1="150" y1="0" x2="150" y2="700"/>
-            <line x1="300" y1="0" x2="300" y2="700"/>
-            <line x1="450" y1="0" x2="450" y2="700"/>
-            <line x1="600" y1="0" x2="600" y2="700"/>
-            <line x1="750" y1="0" x2="750" y2="700"/>
-            <line x1="900" y1="0" x2="900" y2="700"/>
-            <line x1="1050" y1="0" x2="1050" y2="700"/>
-          </g>
-          <g opacity="0.15" transform="translate(900,350)">
-            <line x1="-20" y1="0" x2="20" y2="0" stroke="var(--color-primary)" stroke-width="1.5"/>
-            <line x1="0" y1="-20" x2="0" y2="20" stroke="var(--color-primary)" stroke-width="1.5"/>
-            <circle cx="0" cy="0" r="5" stroke="var(--color-primary)" stroke-width="1.5" fill="none"/>
-          </g>
-        </svg>
+    <!-- ───────── 00 · HERO ───────── -->
+    <section class="sheet sheet--hero" id="hoja-00" data-sheet="0" data-label-i18n="nav.home" data-label-fallback="Inicio">
+      <span class="sheet__reg-bl" aria-hidden="true"></span><span class="sheet__reg-br" aria-hidden="true"></span>
+      <span class="sheet__no">HOJA <b>00</b> / 10</span>
+
+      <div class="hero__stamp" aria-hidden="true">
+        <span data-i18n="hero.stamp">REV. 2026<br/>GDL · MX</span>
       </div>
 
-      <div class="hero__content container">
-        <div class="hero__label" data-i18n="hero.label">Ingeniero Civil · Guadalajara, México</div>
-        <h1 class="hero__name">Mariano Franco<br/><span class="hero__surname">Hurtado</span></h1>
-        <p class="hero__title" data-i18n="hero.title">Topografía · BIM · Ingeniería Civil</p>
+      <div class="sheet__body">
+        <span class="eyebrow" data-i18n="hero.label">Ingeniero Civil · Guadalajara, México</span>
+        <h1 class="hero__name">Mariano Franco<br/><em>Hurtado</em></h1>
+        <p class="hero__role" data-i18n="hero.title">Topografía · BIM · Ingeniería Civil</p>
         <p class="hero__bio" data-i18n="hero.bio">
           Egresado del Tecnológico de Monterrey con experiencia en topografía de precisión,
           detección de instalaciones subterráneas y metodología BIM. Enfocado en integrar
           tecnología e ingeniería para generar soluciones técnicas con impacto real.
         </p>
         <div class="hero__actions">
-          <a href="#proyectos" class="btn btn--primary" data-i18n="hero.cta">Ver proyectos</a>
-          <a href="CV_pdf_ES.pdf" class="btn btn--outline" download id="cvDownloadBtn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
-            <span data-i18n="hero.downloadCV">Descargar CV</span>
-          </a>
+          <a href="#hoja-03" class="btn btn--primary" data-jump data-i18n="hero.cta">Ver proyectos</a>
           <a href="mailto:marianofraanco5@gmail.com" class="btn btn--outline" data-i18n="hero.emailBtn">Contactar por correo</a>
-          <a href="https://wa.me/524777010910" class="btn btn--whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-            </svg>
-            WhatsApp
-          </a>
+          <a href="https://wa.me/524777010910" class="btn btn--wa" target="_blank" rel="noopener noreferrer">WhatsApp</a>
         </div>
-        <div class="hero__scroll-hint" aria-hidden="true">
-          <span data-i18n="hero.scroll">Desplázate</span>
-          <svg width="16" height="20" viewBox="0 0 16 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <rect x="1" y="1" width="14" height="22" rx="7"/>
-            <circle cx="8" cy="7" r="2" fill="currentColor" class="scroll-dot"/>
-          </svg>
-        </div>
+      </div>
+
+      <div class="title-block">
+        <div class="title-block__cell"><span class="title-block__label" data-i18n="tb.project">Proyecto</span><span class="title-block__value">MFH — Portafolio de Ingeniería</span></div>
+        <div class="title-block__cell"><span class="title-block__label" data-i18n="tb.drawn">Elaboró</span><span class="title-block__value">M. Franco Hurtado</span></div>
+        <div class="title-block__cell"><span class="title-block__label" data-i18n="tb.scale">Escala</span><span class="title-block__value">S/E</span></div>
+        <div class="title-block__cell"><span class="title-block__label" data-i18n="tb.sheet">Hoja</span><span class="title-block__value">00 / 10</span></div>
+        <div class="title-block__cell"><span class="title-block__label" data-i18n="tb.rev">Rev.</span><span class="title-block__value title-block__value--rev" id="tbRev">ES</span></div>
       </div>
     </section>
 
-    <!-- ═══════════════════════════════════ SOBRE MÍ ══════════════════════════════ -->
-    <section class="section sobre-mi" id="sobre-mi">
-      <div class="container">
-        <div class="section__header reveal">
-          <span class="section__tag" data-i18n="about.tag">Perfil</span>
-          <h2 class="section__title" data-i18n="about.title">Sobre mí</h2>
-        </div>
-        <div class="sobre-mi__grid">
-          <div class="sobre-mi__text reveal">
+    <!-- ───────── 01 · SOBRE MÍ ───────── -->
+    <section class="sheet" id="hoja-01" data-sheet="1" data-label-i18n="nav.about" data-label-fallback="Sobre mí">
+      <span class="sheet__reg-bl" aria-hidden="true"></span><span class="sheet__reg-br" aria-hidden="true"></span>
+      <span class="sheet__no">HOJA <b>01</b> / 10</span>
+      <div class="sheet__body">
+        <span class="sheet__kicker" data-i18n="about.tag">Perfil</span>
+        <h2 class="sheet__title" data-i18n="about.title">Sobre mí</h2>
+        <div class="about__grid" style="margin-top:28px;">
+          <div class="about__text">
             <p data-i18n-html="about.p1">
               Soy Ingeniero Civil egresado del <strong>Tecnológico de Monterrey, Campus Guadalajara</strong>,
               con experiencia en topografía, geofísica aplicada y documentación técnica para
@@ -196,1094 +120,263 @@
               parte central del trabajo.
             </p>
           </div>
-          <div class="sobre-mi__cards reveal">
-            <div class="stat-card">
-              <div class="stat-card__icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
-                  <polyline points="9,22 9,12 15,12 15,22"/>
-                </svg>
-              </div>
-              <div>
-                <div class="stat-card__value" data-i18n="about.stat1val">+1.5 años</div>
-                <div class="stat-card__label" data-i18n="about.stat1lbl">Experiencia profesional</div>
-              </div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-card__icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <polygon points="3,11 22,2 13,21 11,13 3,11"/>
-                </svg>
-              </div>
-              <div>
-                <div class="stat-card__value">5+</div>
-                <div class="stat-card__label" data-i18n="about.stat2lbl">Proyectos destacados</div>
-              </div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-card__icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
-                </svg>
-              </div>
-              <div>
-                <div class="stat-card__value">14+</div>
-                <div class="stat-card__label" data-i18n="about.stat3lbl">Herramientas técnicas</div>
-              </div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-card__icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <circle cx="12" cy="12" r="10"/>
-                  <line x1="2" y1="12" x2="22" y2="12"/>
-                  <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
-                </svg>
-              </div>
-              <div>
-                <div class="stat-card__value">GDL</div>
-                <div class="stat-card__label" data-i18n="about.stat4lbl">Guadalajara, Jalisco</div>
-              </div>
-            </div>
+          <div class="stat-grid">
+            <div class="stat-cell"><div class="stat-cell__value" data-i18n="about.stat1val">+1.5 años</div><div class="stat-cell__label" data-i18n="about.stat1lbl">Experiencia profesional</div></div>
+            <div class="stat-cell"><div class="stat-cell__value">5+</div><div class="stat-cell__label" data-i18n="about.stat2lbl">Proyectos destacados</div></div>
+            <div class="stat-cell"><div class="stat-cell__value">14+</div><div class="stat-cell__label" data-i18n="about.stat3lbl">Herramientas técnicas</div></div>
+            <div class="stat-cell"><div class="stat-cell__value">GDL</div><div class="stat-cell__label" data-i18n="about.stat4lbl">Guadalajara, Jalisco</div></div>
           </div>
         </div>
       </div>
+      <div class="title-block">
+        <div class="title-block__cell"><span class="title-block__label" data-i18n="tb.project">Proyecto</span><span class="title-block__value" data-i18n="about.title">Sobre mí</span></div>
+        <div class="title-block__cell"><span class="title-block__label" data-i18n="tb.drawn">Elaboró</span><span class="title-block__value">M. Franco Hurtado</span></div>
+        <div class="title-block__cell"><span class="title-block__label" data-i18n="tb.scale">Escala</span><span class="title-block__value">S/E</span></div>
+        <div class="title-block__cell"><span class="title-block__label" data-i18n="tb.sheet">Hoja</span><span class="title-block__value">01 / 10</span></div>
+        <div class="title-block__cell"><span class="title-block__label" data-i18n="tb.rev">Rev.</span><span class="title-block__value title-block__value--rev tb-rev">ES</span></div>
+      </div>
     </section>
 
-    <!-- ══════════════════════════════════ EXPERIENCIA ════════════════════════════ -->
-    <section class="section experiencia" id="experiencia">
-      <div class="section__bg-grid" aria-hidden="true"></div>
-      <div class="container">
-        <div class="section__header reveal">
-          <span class="section__tag" data-i18n="exp.tag">Trayectoria</span>
-          <h2 class="section__title" data-i18n="exp.title">Experiencia profesional</h2>
-        </div>
-        <div class="timeline">
-
-          <!-- Techno Terra — Gerente -->
-          <article class="timeline__item reveal">
-            <div class="timeline__marker">
-              <div class="timeline__dot"></div>
-              <div class="timeline__line"></div>
-            </div>
-            <div class="timeline__content">
-              <div class="timeline__header">
-                <div>
-                  <h3 class="timeline__role" data-i18n="exp.role1">Gerente de Topografía e Ingeniero en Operaciones</h3>
-                  <div class="timeline__company">Tecno Terra, Georadar y Polímeros S.A. de C.V.</div>
-                </div>
-                <span class="timeline__date" data-i18n="exp.date1">Ene. 2026 – Presente · Guadalajara, Jalisco</span>
+    <!-- ───────── 02 · EXPERIENCIA ───────── -->
+    <section class="sheet" id="hoja-02" data-sheet="2" data-label-i18n="nav.experience" data-label-fallback="Experiencia">
+      <span class="sheet__reg-bl" aria-hidden="true"></span><span class="sheet__reg-br" aria-hidden="true"></span>
+      <span class="sheet__no">HOJA <b>02</b> / 10</span>
+      <div class="sheet__body">
+        <span class="sheet__kicker" data-i18n="exp.tag">Trayectoria</span>
+        <h2 class="sheet__title" data-i18n="exp.title">Experiencia profesional</h2>
+        <div class="sheet__scroll" style="margin-top:20px;">
+          <div class="exp-list">
+            <div class="exp-row">
+              <div class="exp-row__date" data-i18n="exp.date1">Ene. 2026 – Presente · Guadalajara, Jalisco</div>
+              <div>
+                <div class="exp-row__role" data-i18n="exp.role1">Gerente de Topografía e Ingeniero en Operaciones</div>
+                <div class="exp-row__co">Tecno Terra, Georadar y Polímeros S.A. de C.V.</div>
+                <div class="exp-row__tags"><span class="tag">GNSS Leica</span><span class="tag">GPR</span><span class="tag" data-i18n="tag.topography">Topografía</span><span class="tag">BIM</span></div>
               </div>
-              <ul class="timeline__list" role="list">
+              <ul class="exp-row__list">
                 <li data-i18n="exp.li1a">Creé y consolidé el departamento de topografía, definiendo procesos y estándares de trabajo desde cero.</li>
                 <li data-i18n="exp.li1b">Desarrollé estudios topográficos y elaboré planos georreferenciados para proyectos de detección de instalaciones subterráneas.</li>
                 <li data-i18n="exp.li1c">Implementé automatizaciones con macros que redujeron significativamente los tiempos de procesamiento y el margen de error.</li>
               </ul>
-              <div class="timeline__tags">
-                <span class="tag">GNSS Leica</span>
-                <span class="tag">GPR</span>
-                <span class="tag" data-i18n="tag.topography">Topografía</span>
-                <span class="tag">BIM</span>
-                <span class="tag" data-i18n="tag.automation">Automatización</span>
-              </div>
             </div>
-          </article>
-
-          <!-- Techno Terra — Ingeniero -->
-          <article class="timeline__item reveal">
-            <div class="timeline__marker">
-              <div class="timeline__dot"></div>
-              <div class="timeline__line"></div>
-            </div>
-            <div class="timeline__content">
-              <div class="timeline__header">
-                <div>
-                  <h3 class="timeline__role" data-i18n="exp.role2">Ingeniero en Operaciones</h3>
-                  <div class="timeline__company">Tecno Terra, Georadar y Polímeros S.A. de C.V.</div>
-                </div>
-                <span class="timeline__date" data-i18n="exp.date2">Oct. 2025 – Ene. 2026 · Guadalajara, Jalisco</span>
+            <div class="exp-row">
+              <div class="exp-row__date" data-i18n="exp.date2">Oct. 2025 – Ene. 2026 · Guadalajara, Jalisco</div>
+              <div>
+                <div class="exp-row__role" data-i18n="exp.role2">Ingeniero en Operaciones</div>
+                <div class="exp-row__co">Tecno Terra, Georadar y Polímeros S.A. de C.V.</div>
+                <div class="exp-row__tags"><span class="tag">GPR-Slice</span><span class="tag">GSSI</span><span class="tag">Leica Infinity</span></div>
               </div>
-              <ul class="timeline__list" role="list">
+              <ul class="exp-row__list">
                 <li data-i18n="exp.li2a">Ejecuté estudios de Georradar (GPR) en proyectos a lo largo de la República Mexicana.</li>
                 <li data-i18n="exp.li2b">Procesé e interpreté radargramas para la detección de instalaciones subterráneas y evaluación de condiciones del terreno.</li>
                 <li data-i18n="exp.li2c">Apoyé la toma de decisiones en obra a partir del análisis de condiciones del subsuelo.</li>
               </ul>
-              <div class="timeline__tags">
-                <span class="tag">GPR-Slice</span>
-                <span class="tag">GSSI</span>
-                <span class="tag">Leica Infinity</span>
-                <span class="tag">AutoCAD</span>
-              </div>
             </div>
-          </article>
-
-          <!-- AIO Constructora -->
-          <article class="timeline__item reveal">
-            <div class="timeline__marker">
-              <div class="timeline__dot"></div>
-            </div>
-            <div class="timeline__content">
-              <div class="timeline__header">
-                <div>
-                  <h3 class="timeline__role" data-i18n="exp.role3">Ingeniero Junior</h3>
-                  <div class="timeline__company">AIO Constructora</div>
-                </div>
-                <span class="timeline__date" data-i18n="exp.date3">Feb. 2025 – Jun. 2025 · Zapopan, Jalisco</span>
+            <div class="exp-row">
+              <div class="exp-row__date" data-i18n="exp.date3">Feb. 2025 – Jun. 2025 · Zapopan, Jalisco</div>
+              <div>
+                <div class="exp-row__role" data-i18n="exp.role3">Ingeniero Junior</div>
+                <div class="exp-row__co">AIO Constructora</div>
+                <div class="exp-row__tags"><span class="tag">STAAD.Pro</span><span class="tag">RAM Elements</span><span class="tag">BIM</span></div>
               </div>
-              <ul class="timeline__list" role="list">
+              <ul class="exp-row__list">
                 <li data-i18n="exp.li3a">Contribuí al diseño estructural de una nave industrial, desarrollando análisis y especificaciones técnicas.</li>
                 <li data-i18n="exp.li3b">Elaboré planos técnicos y documentación MEP bajo metodología BIM.</li>
               </ul>
-              <div class="timeline__tags">
-                <span class="tag">STAAD.Pro</span>
-                <span class="tag">RAM Elements</span>
-                <span class="tag">EPANET</span>
-                <span class="tag">BIM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="title-block">
+        <div class="title-block__cell"><span class="title-block__label" data-i18n="tb.project">Proyecto</span><span class="title-block__value" data-i18n="exp.title">Experiencia profesional</span></div>
+        <div class="title-block__cell"><span class="title-block__label" data-i18n="tb.drawn">Elaboró</span><span class="title-block__value">M. Franco Hurtado</span></div>
+        <div class="title-block__cell"><span class="title-block__label" data-i18n="tb.scale">Escala</span><span class="title-block__value">S/E</span></div>
+        <div class="title-block__cell"><span class="title-block__label" data-i18n="tb.sheet">Hoja</span><span class="title-block__value">02 / 10</span></div>
+        <div class="title-block__cell"><span class="title-block__label" data-i18n="tb.rev">Rev.</span><span class="title-block__value title-block__value--rev tb-rev">ES</span></div>
+      </div>
+    </section>
+
+    <!-- ───────── 03-07 · PROYECTOS (generados por JS desde PROJECTS) ───────── -->
+    <div id="projectSheets"></div>
+
+    <!-- ───────── 08 · HABILIDADES ───────── -->
+    <section class="sheet" id="hoja-08" data-sheet="8" data-label-i18n="nav.skills" data-label-fallback="Habilidades">
+      <span class="sheet__reg-bl" aria-hidden="true"></span><span class="sheet__reg-br" aria-hidden="true"></span>
+      <span class="sheet__no">HOJA <b>08</b> / 10</span>
+      <div class="sheet__body">
+        <span class="sheet__kicker" data-i18n="skills.tag">Competencias</span>
+        <h2 class="sheet__title" data-i18n="skills.title">Habilidades</h2>
+        <div class="sheet__scroll" style="margin-top:20px;">
+          <div class="skills__cols">
+            <div class="skill-group">
+              <div class="skill-group__title" data-i18n="skills.grp.cad">CAD & Diseño</div>
+              <div class="skill-row">
+                <span class="skill-pill">AutoCAD</span><span class="skill-pill">CivilCAD</span><span class="skill-pill">Revit (BIM)</span><span class="skill-pill">SketchUp</span>
               </div>
             </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ════════════════════════════════ PROYECTOS ════════════════════════════════ -->
-    <section class="section proyectos" id="proyectos">
-      <div class="container">
-        <div class="section__header reveal">
-          <span class="section__tag" data-i18n="proj.tag">Portafolio</span>
-          <h2 class="section__title" data-i18n="proj.title">Proyectos destacados</h2>
-        </div>
-        <div class="projects__grid">
-
-          <!-- Diageo -->
-          <article class="project-card reveal" role="button" tabindex="0" aria-label="Ver detalles del proyecto Economía Circular — Diageo" data-project="diageo">
-            <div class="project-card__accent"></div>
-            <div class="project-card__meta">
-              <span class="project-card__date" data-i18n="proj.diageo.date">Ene. 2025 – May. 2025</span>
-              <span class="project-card__location" data-i18n="proj.diageo.location">Jalisco, México</span>
+            <div class="skill-group">
+              <div class="skill-group__title" data-i18n="skills.grp.geo">Geomática & Topografía</div>
+              <div class="skill-row">
+                <span class="skill-pill">Leica Infinity</span><span class="skill-pill">Equipos GNSS</span><span class="skill-pill">Estación Total</span><span class="skill-pill">QGIS</span>
+              </div>
             </div>
-            <div class="project-card__icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
-                <circle cx="12" cy="10" r="3"/>
-              </svg>
+            <div class="skill-group">
+              <div class="skill-group__title" data-i18n="skills.grp.gpr">Georradar (GPR)</div>
+              <div class="skill-row">
+                <span class="skill-pill">GPR-Slice</span><span class="skill-pill">GSSI (SIR System)</span><span class="skill-pill">RADAN 7</span><span class="skill-pill">Radargramas</span>
+              </div>
             </div>
-            <h3 class="project-card__title" data-i18n="proj.diageo.title">Economía Circular — Diageo</h3>
-            <p class="project-card__desc" data-i18n="proj.diageo.desc">
-              Desarrollé una propuesta de revalorización de vidrio dentro de la industria
-              tequilera para reducir el impacto ambiental y apoyar metas de sustentabilidad
-              empresarial de Diageo.
-            </p>
-            <div class="project-card__tags">
-              <span class="tag" data-i18n="tag.sustainability">Sustentabilidad</span>
-              <span class="tag" data-i18n="tag.circularEconomy">Economía Circular</span>
-              <span class="tag" data-i18n="tag.tequilaInd">Industria Tequilera</span>
+            <div class="skill-group">
+              <div class="skill-group__title" data-i18n="skills.grp.data">Datos & Automatización</div>
+              <div class="skill-row">
+                <span class="skill-pill">MS Excel (macros)</span><span class="skill-pill">Power BI</span><span class="skill-pill">IA generativa</span><span class="skill-pill">Diseño de prompts</span>
+              </div>
             </div>
-            <div class="project-card__cta" aria-hidden="true">
-              <span data-i18n="proj.cta">Ver más</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </div>
-          </article>
-
-          <!-- CLJ -->
-          <article class="project-card reveal" role="button" tabindex="0" aria-label="Ver detalles del proyecto Aeródromo Multimodal — CLJ" data-project="clj">
-            <div class="project-card__accent"></div>
-            <div class="project-card__meta">
-              <span class="project-card__date" data-i18n="proj.clj.date">Ene. 2024 – Jun. 2024</span>
-              <span class="project-card__location" data-i18n="proj.clj.location">Jalisco, México</span>
-            </div>
-            <div class="project-card__icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <rect x="3" y="3" width="18" height="18" rx="2"/>
-                <path d="M3 9h18M9 21V9"/>
-              </svg>
-            </div>
-            <h3 class="project-card__title" data-i18n="proj.clj.title">Aeródromo Multimodal — CLJ</h3>
-            <p class="project-card__desc" data-i18n="proj.clj.desc">
-              Participé en el diseño de una propuesta de infraestructura logística que integra
-              aeropista y conexiones ferroviarias para mejorar la conectividad del Centro
-              Logístico de Jalisco.
-            </p>
-            <div class="project-card__tags">
-              <span class="tag" data-i18n="tag.infrastructure">Infraestructura</span>
-              <span class="tag" data-i18n="tag.logistics">Logística</span>
-              <span class="tag" data-i18n="tag.multimodal">Diseño multimodal</span>
-            </div>
-            <div class="project-card__cta" aria-hidden="true">
-              <span data-i18n="proj.cta">Ver más</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </div>
-          </article>
-
-          <!-- CONAGUA -->
-          <article class="project-card reveal" role="button" tabindex="0" aria-label="Ver detalles del proyecto Red de Abastecimiento — CONAGUA" data-project="conagua">
-            <div class="project-card__accent"></div>
-            <div class="project-card__meta">
-              <span class="project-card__date" data-i18n="proj.conagua.date">Ago. 2023 – Dic. 2023</span>
-              <span class="project-card__location" data-i18n="proj.conagua.location">Guadalajara, Jalisco</span>
-            </div>
-            <div class="project-card__icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/>
-              </svg>
-            </div>
-            <h3 class="project-card__title" data-i18n="proj.conagua.title">Red de Abastecimiento — CONAGUA</h3>
-            <p class="project-card__desc" data-i18n="proj.conagua.desc">
-              Diseñé una red de abastecimiento de agua y alcantarillado para la comunidad
-              de Mezquitic, Jalisco, aplicando criterios técnicos de cobertura y funcionalidad.
-            </p>
-            <div class="project-card__tags">
-              <span class="tag" data-i18n="tag.hydraulics">Hidráulica</span>
-              <span class="tag">EPANET</span>
-              <span class="tag" data-i18n="tag.infrastructure">Infraestructura</span>
-            </div>
-            <div class="project-card__cta" aria-hidden="true">
-              <span data-i18n="proj.cta">Ver más</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </div>
-          </article>
-
-          <!-- Automatización Excel–AutoCAD -->
-          <article class="project-card reveal" role="button" tabindex="0" aria-label="Ver detalles del proyecto Automatización de datos topográficos en AutoCAD mediante Excel" data-project="excel-autocad">
-            <div class="project-card__accent"></div>
-            <div class="project-card__meta">
-              <span class="project-card__date" data-i18n="proj.excel.date">2025 – 2026</span>
-              <span class="project-card__location" data-i18n="proj.excel.location">Guadalajara, Jalisco</span>
-            </div>
-            <div class="project-card__icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <rect x="3" y="3" width="18" height="18" rx="2"/>
-                <path d="M3 9h18M9 3v18M15 3v18"/>
-              </svg>
-            </div>
-            <h3 class="project-card__title" data-i18n="proj.excel.title">Automatización de datos topográficos en AutoCAD mediante Excel</h3>
-            <p class="project-card__desc" data-i18n="proj.excel.desc">
-              Desarrollé una solución en Excel para estructurar datos topográficos y generar
-              información lista para su uso en AutoCAD, reduciendo tiempos de trabajo manual
-              y mejorando la consistencia del proceso.
-            </p>
-            <div class="project-card__tags">
-              <span class="tag" data-i18n="tag.topography">Topografía</span>
-              <span class="tag">AutoCAD</span>
-              <span class="tag">Excel</span>
-              <span class="tag" data-i18n="tag.automation">Automatización</span>
-            </div>
-            <div class="project-card__cta" aria-hidden="true">
-              <span data-i18n="proj.cta">Ver más</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </div>
-          </article>
-
-          <!-- Automatización GPR-SLICE con AutoHotkey -->
-          <article class="project-card reveal" role="button" tabindex="0" aria-label="Ver detalles del proyecto Automatización operativa de GPR-SLICE con AutoHotkey" data-project="gpr-autohotkey">
-            <div class="project-card__accent"></div>
-            <div class="project-card__meta">
-              <span class="project-card__date" data-i18n="proj.gpr.date">2025 – 2026</span>
-              <span class="project-card__location" data-i18n="proj.gpr.location">Guadalajara, Jalisco</span>
-            </div>
-            <div class="project-card__icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M4 6h16M4 10h16M4 14h8M4 18h4"/>
-                <path d="M16 13l4 4-4 4"/>
-                <path d="M20 17H12"/>
-              </svg>
-            </div>
-            <h3 class="project-card__title" data-i18n="proj.gpr.title">Automatización GPR-SLICE con AutoHotkey</h3>
-            <p class="project-card__desc" data-i18n="proj.gpr.desc">
-              Implementé scripts en AutoHotkey para automatizar tareas repetitivas dentro
-              de GPR-SLICE, agilizando la generación de radargramas y mejorando la
-              eficiencia operativa del flujo de trabajo.
-            </p>
-            <div class="project-card__tags">
-              <span class="tag" data-i18n="tag.georadar">Georradar</span>
-              <span class="tag">GPR-SLICE</span>
-              <span class="tag">AutoHotkey</span>
-              <span class="tag" data-i18n="tag.automation">Automatización</span>
-            </div>
-            <div class="project-card__cta" aria-hidden="true">
-              <span data-i18n="proj.cta">Ver más</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ══════════════════════════════ HABILIDADES ════════════════════════════════ -->
-    <section class="section habilidades" id="habilidades">
-      <div class="section__bg-grid" aria-hidden="true"></div>
-      <div class="container">
-        <div class="section__header reveal">
-          <span class="section__tag" data-i18n="skills.tag">Competencias</span>
-          <h2 class="section__title" data-i18n="skills.title">Habilidades</h2>
-        </div>
-
-        <!-- Habilidades técnicas -->
-        <div class="skills__subtitle reveal">
-          <h3 class="skills__sub-heading" data-i18n="skills.technical">Técnicas</h3>
-        </div>
-        <div class="skills__grid">
-
-          <div class="skill-group reveal">
-            <h3 class="skill-group__title">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <polygon points="1,6 1,22 8,18 16,22 23,18 23,2 16,6 8,2 1,6"/>
-                <line x1="8" y1="2" x2="8" y2="18"/>
-                <line x1="16" y1="6" x2="16" y2="22"/>
-              </svg>
-              <span data-i18n="skills.grp.cad">CAD & Diseño</span>
-            </h3>
-            <div class="skill-pills">
-              <span class="skill-pill" tabindex="0" data-tooltip="Software de diseño técnico y dibujo CAD para la elaboración de planos y documentación de ingeniería." data-tooltip-en="Technical design and CAD drafting software for producing engineering drawings and documentation.">AutoCAD</span>
-              <span class="skill-pill" tabindex="0" data-tooltip="Extensión para AutoCAD enfocada en topografía, vialidades, plataformas y proyectos de infraestructura." data-tooltip-en="AutoCAD extension focused on surveying, road design, platforms, and infrastructure projects.">CivilCAD</span>
-              <span class="skill-pill" tabindex="0" data-tooltip="Software BIM para modelado de información de la construcción y coordinación multidisciplinaria de proyectos." data-tooltip-en="BIM software for building information modelling and multidisciplinary project coordination.">Revit (BIM)</span>
-              <span class="skill-pill" tabindex="0" data-tooltip="Herramienta de modelado 3D útil para conceptualización, volumétrica y presentación de proyectos." data-tooltip-en="3D modelling tool useful for conceptualisation, massing, and project presentation.">SketchUp</span>
+            <div class="skill-group">
+              <div class="skill-group__title" data-i18n="skills.grp.struct">Estructuras & Hidráulica</div>
+              <div class="skill-row">
+                <span class="skill-pill">STAAD.Pro</span><span class="skill-pill">RAM Elements</span><span class="skill-pill">RAM Connection</span><span class="skill-pill">EPANET</span>
+              </div>
             </div>
           </div>
-
-          <div class="skill-group reveal">
-            <h3 class="skill-group__title">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <circle cx="12" cy="12" r="3"/>
-                <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
-              </svg>
-              <span data-i18n="skills.grp.geo">Geomática & Topografía</span>
-            </h3>
-            <div class="skill-pills">
-              <span class="skill-pill" tabindex="0" data-tooltip="Software para procesamiento, ajuste y gestión de datos topográficos y geodésicos." data-tooltip-en="Software for processing, adjusting, and managing topographic and geodetic data.">Leica Infinity</span>
-              <span class="skill-pill" tabindex="0" data-tooltip="Tecnología de posicionamiento satelital para levantamientos, georreferenciación y control topográfico." data-tooltip-en="Satellite positioning technology for surveys, georeferencing, and topographic control.">Equipos GNSS</span>
-              <span class="skill-pill" tabindex="0" data-tooltip="Instrumento topográfico para medir ángulos, distancias y coordenadas con alta precisión en campo." data-tooltip-en="Surveying instrument for measuring angles, distances, and coordinates with high field precision.">Estación Total</span>
-              <span class="skill-pill" tabindex="0" data-tooltip="Software de geomática para la creación de mapas, análisis espacial y gestión de información geográfica." data-tooltip-en="Geomatics software for map creation, spatial analysis, and geographic information management.">QGIS</span>
-            </div>
-          </div>
-
-          <div class="skill-group reveal">
-            <h3 class="skill-group__title">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <path d="M2 12h4M18 12h4M12 2v4M12 18v4"/>
-                <circle cx="12" cy="12" r="4"/>
-              </svg>
-              <span data-i18n="skills.grp.gpr">Georradar (GPR)</span>
-            </h3>
-            <div class="skill-pills">
-              <span class="skill-pill" tabindex="0" data-tooltip="Software especializado en procesamiento e interpretación de datos de georradar." data-tooltip-en="Specialised software for processing and interpreting ground-penetrating radar data.">GPR-Slice</span>
-              <span class="skill-pill" tabindex="0" data-tooltip="Plataforma de adquisición y análisis de datos de georradar para detección e inspección subterránea." data-tooltip-en="GPR data acquisition and analysis platform for underground utility detection and subsurface inspection.">GSSI (SIR System)</span>
-              <span class="skill-pill" tabindex="0" data-tooltip="Software de procesamiento de radargramas para interpretar información obtenida con equipos GPR." data-tooltip-en="Radargram processing software for interpreting data collected with GPR equipment.">RADAN 7</span>
-              <span class="skill-pill" tabindex="0" data-tooltip="Representaciones gráficas de datos GPR usadas para analizar capas, objetos y anomalías del subsuelo." data-tooltip-en="Graphical representations of GPR data used to analyse subsurface layers, objects, and anomalies.">Radargramas</span>
-            </div>
-          </div>
-
-          <div class="skill-group reveal">
-            <h3 class="skill-group__title">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <rect x="2" y="3" width="20" height="14" rx="2"/>
-                <path d="M8 21h8M12 17v4"/>
-              </svg>
-              <span data-i18n="skills.grp.data">Datos & Automatización</span>
-            </h3>
-            <div class="skill-pills">
-              <span class="skill-pill" tabindex="0" data-tooltip="Herramienta de análisis y automatización de datos mediante hojas de cálculo, fórmulas avanzadas y macros." data-tooltip-en="Data analysis and automation tool using spreadsheets, advanced formulas, and macros.">MS Excel (macros)</span>
-              <span class="skill-pill" tabindex="0" data-tooltip="Plataforma de visualización y análisis de datos para crear dashboards e informes interactivos." data-tooltip-en="Data visualisation and analytics platform for building interactive dashboards and reports.">Power BI</span>
-              <span class="skill-pill" tabindex="0" data-tooltip="Uso de inteligencia artificial para automatizar tareas, generar contenido y mejorar flujos de trabajo." data-tooltip-en="Use of artificial intelligence to automate tasks, generate content, and improve workflows.">IA generativa</span>
-              <span class="skill-pill" tabindex="0" data-tooltip="Capacidad para estructurar instrucciones precisas que optimizan resultados en herramientas de IA." data-tooltip-en="Ability to craft precise instructions that optimise outputs from AI tools.">Diseño de prompts</span>
-            </div>
-          </div>
-
-          <div class="skill-group reveal">
-            <h3 class="skill-group__title">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <path d="M2 20h20M4 20V10l8-6 8 6v10"/>
-                <path d="M9 20v-6h6v6"/>
-              </svg>
-              <span data-i18n="skills.grp.struct">Estructuras & Hidráulica</span>
-            </h3>
-            <div class="skill-pills">
-              <span class="skill-pill" tabindex="0" data-tooltip="Software de análisis y diseño estructural para evaluar elementos y sistemas constructivos." data-tooltip-en="Structural analysis and design software for evaluating structural elements and systems.">STAAD.Pro</span>
-              <span class="skill-pill" tabindex="0" data-tooltip="Herramienta para análisis estructural y diseño de elementos de concreto y acero." data-tooltip-en="Tool for structural analysis and design of concrete and steel elements.">RAM Elements</span>
-              <span class="skill-pill" tabindex="0" data-tooltip="Software para diseño y verificación de conexiones estructurales en acero." data-tooltip-en="Software for design and verification of steel structural connections.">RAM Connection</span>
-              <span class="skill-pill" tabindex="0" data-tooltip="Software para modelado hidráulico de redes de distribución de agua y simulación de su comportamiento." data-tooltip-en="Software for hydraulic modelling of water distribution networks and flow simulation.">EPANET</span>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Habilidades profesionales -->
-        <div class="skills__subtitle reveal" style="margin-top: var(--space-16);">
-          <h3 class="skills__sub-heading" data-i18n="skills.professional">Profesionales</h3>
-        </div>
-        <div class="soft-skills__grid reveal">
-          <div class="soft-skill">
-            <div class="soft-skill__icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
-                <circle cx="9" cy="7" r="4"/>
-                <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
-              </svg>
-            </div>
+          <div class="soft-row">
             <span data-i18n="skills.soft1">Liderazgo y gestión de equipos</span>
-          </div>
-          <div class="soft-skill">
-            <div class="soft-skill__icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/>
-              </svg>
-            </div>
             <span data-i18n="skills.soft2">Resolución de problemas complejos</span>
-          </div>
-          <div class="soft-skill">
-            <div class="soft-skill__icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
-              </svg>
-            </div>
             <span data-i18n="skills.soft3">Comunicación técnica efectiva</span>
-          </div>
-          <div class="soft-skill">
-            <div class="soft-skill__icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
-              </svg>
-            </div>
             <span data-i18n="skills.soft4">Pensamiento crítico y analítico</span>
-          </div>
-          <div class="soft-skill">
-            <div class="soft-skill__icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
-              </svg>
-            </div>
             <span data-i18n="skills.soft5">Adaptabilidad e innovación</span>
-          </div>
-          <div class="soft-skill">
-            <div class="soft-skill__icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                <circle cx="12" cy="12" r="3"/>
-              </svg>
-            </div>
             <span data-i18n="skills.soft6">Atención al detalle</span>
           </div>
         </div>
-
+      </div>
+      <div class="title-block">
+        <div class="title-block__cell"><span class="title-block__label" data-i18n="tb.project">Proyecto</span><span class="title-block__value" data-i18n="skills.title">Habilidades</span></div>
+        <div class="title-block__cell"><span class="title-block__label" data-i18n="tb.drawn">Elaboró</span><span class="title-block__value">M. Franco Hurtado</span></div>
+        <div class="title-block__cell"><span class="title-block__label" data-i18n="tb.scale">Escala</span><span class="title-block__value">S/E</span></div>
+        <div class="title-block__cell"><span class="title-block__label" data-i18n="tb.sheet">Hoja</span><span class="title-block__value">08 / 10</span></div>
+        <div class="title-block__cell"><span class="title-block__label" data-i18n="tb.rev">Rev.</span><span class="title-block__value title-block__value--rev tb-rev">ES</span></div>
       </div>
     </section>
 
-    <!-- ════════════════════════════ EDUCACIÓN, IDIOMAS & CERTS ══════════════════ -->
-    <section class="section educacion" id="educacion">
-      <div class="container">
-        <div class="section__header reveal">
-          <span class="section__tag" data-i18n="edu.tag">Formación</span>
-          <h2 class="section__title" data-i18n="edu.title">Educación, idiomas y certificaciones</h2>
+    <!-- ───────── 09 · EDUCACIÓN ───────── -->
+    <section class="sheet" id="hoja-09" data-sheet="9" data-label-i18n="nav.education" data-label-fallback="Educación">
+      <span class="sheet__reg-bl" aria-hidden="true"></span><span class="sheet__reg-br" aria-hidden="true"></span>
+      <span class="sheet__no">HOJA <b>09</b> / 10</span>
+      <div class="sheet__body">
+        <span class="sheet__kicker" data-i18n="edu.tag">Formación</span>
+        <h2 class="sheet__title" data-i18n="edu.title">Educación, idiomas y certificaciones</h2>
+        <div class="sheet__scroll" style="margin-top:20px;">
+          <div class="edu__cols">
+            <div class="edu__col">
+              <div class="edu__col-title" data-i18n="edu.colEdu">Educación</div>
+              <div class="edu__item">
+                <img src="logo-tec-round.jpg" alt="Tecnológico de Monterrey" />
+                <div>
+                  <div class="edu__item-title" data-i18n="edu.degree1">Licenciatura en Ingeniería Civil</div>
+                  <div class="edu__item-inst" data-i18n="edu.inst1">Tecnológico de Monterrey, Campus Guadalajara</div>
+                  <div class="edu__item-date" data-i18n="edu.date1">Ago. 2021 – Jun. 2025</div>
+                </div>
+              </div>
+              <div class="edu__item">
+                <img src="UCLM-Logo.jpg" alt="Universidad de Castilla-La Mancha" />
+                <div>
+                  <div class="edu__item-title" data-i18n="edu.degree2">Programa de Intercambio Internacional</div>
+                  <div class="edu__item-inst" data-i18n="edu.inst2">Universidad de Castilla-La Mancha, Ciudad Real, España</div>
+                  <div class="edu__item-date" data-i18n="edu.date2">Ago. 2024 – Ene. 2025</div>
+                </div>
+              </div>
+            </div>
+            <div class="edu__col">
+              <div class="edu__col-title" data-i18n="edu.colLang">Idiomas</div>
+              <div class="lang-row">
+                <div class="lang-row__top"><span data-i18n="edu.lang1">Español</span><span class="lang-row__level" data-i18n="edu.langNative">Nativo</span></div>
+                <div class="lang-row__bar"><div class="lang-row__bar-fill" style="--w:100%"></div></div>
+              </div>
+              <div class="lang-row">
+                <div class="lang-row__top"><span data-i18n="edu.lang2">Inglés</span><span class="lang-row__level" data-i18n="edu.langB2">Intermedio Alto · IELTS B2</span></div>
+                <div class="lang-row__bar"><div class="lang-row__bar-fill" style="--w:70%"></div></div>
+              </div>
+            </div>
+            <div class="edu__col">
+              <div class="edu__col-title" data-i18n="edu.colCerts">Certificaciones</div>
+              <div class="cert-row">
+                <div class="cert-row__dot"></div>
+                <div><a href="https://www.credential.net/3228dc9f-5ace-4323-acaf-bbcff37ff805" target="_blank" rel="noopener noreferrer" data-i18n="edu.cert1">Introducción a la Era Digital y Big Data</a><div class="cert-row__issuer" data-i18n="edu.certIssuer">Tecnológico de Monterrey · 2025</div></div>
+              </div>
+              <div class="cert-row">
+                <div class="cert-row__dot"></div>
+                <div><a href="https://www.credential.net/175dce6c-1c49-4273-8ec6-d15fd7633fd1" target="_blank" rel="noopener noreferrer" data-i18n="edu.cert2">Fundamentos de Análisis de Datos con Power BI</a><div class="cert-row__issuer" data-i18n="edu.certIssuer">Tecnológico de Monterrey · 2025</div></div>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div class="edu__grid">
-
-          <!-- Educación -->
-          <div class="edu__col reveal">
-            <h3 class="edu__col-title">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
-              </svg>
-              <span data-i18n="edu.colEdu">Educación</span>
-            </h3>
-            <div class="edu__item">
-              <!-- Logo Tecnológico de Monterrey -->
-              <div class="edu__item-logo">
-                <img src="logo-tec-round.jpg" alt="Tecnológico de Monterrey" width="56" height="56" />
-              </div>
-              <div>
-                <div class="edu__item-title" data-i18n="edu.degree1">Licenciatura en Ingeniería Civil</div>
-                <div class="edu__item-inst" data-i18n="edu.inst1">Tecnológico de Monterrey, Campus Guadalajara</div>
-                <div class="edu__item-date" data-i18n="edu.date1">Ago. 2021 – Jun. 2025</div>
-              </div>
-            </div>
-            <div class="edu__item">
-              <!-- Logo UCLM -->
-              <div class="edu__item-logo">
-                <img src="UCLM-Logo.jpg" alt="Universidad de Castilla-La Mancha" width="56" height="56" />
-              </div>
-              <div>
-                <div class="edu__item-title" data-i18n="edu.degree2">Programa de Intercambio Internacional</div>
-                <div class="edu__item-inst" data-i18n="edu.inst2">Universidad de Castilla-La Mancha, Ciudad Real, España</div>
-                <div class="edu__item-date" data-i18n="edu.date2">Ago. 2024 – Ene. 2025</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Idiomas -->
-          <div class="edu__col reveal">
-            <h3 class="edu__col-title">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <circle cx="12" cy="12" r="10"/>
-                <line x1="2" y1="12" x2="22" y2="12"/>
-                <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
-              </svg>
-              <span data-i18n="edu.colLang">Idiomas</span>
-            </h3>
-            <div class="lang-item">
-              <div class="lang-item__header">
-                <span class="lang-item__name">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="18" height="13" style="border-radius:2px;display:inline-block;vertical-align:middle;margin-right:5px">
-                    <rect width="900" height="600" fill="#006847"/>
-                    <rect x="300" width="300" height="600" fill="#fff"/>
-                    <rect x="600" width="300" height="600" fill="#CE1126"/>
-                    <ellipse cx="450" cy="300" rx="52" ry="52" fill="#A0522D" opacity=".35"/>
-                    <ellipse cx="450" cy="300" rx="38" ry="38" fill="#8B4513" opacity=".2"/>
-                  </svg><span data-i18n="edu.lang1">Español</span>
-                </span>
-                <span class="lang-item__level" data-i18n="edu.langNative">Nativo</span>
-              </div>
-              <div class="lang-bar">
-                <div class="lang-bar__fill" style="--width: 100%"></div>
-              </div>
-            </div>
-            <div class="lang-item">
-              <div class="lang-item__header">
-                <span class="lang-item__name">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="18" height="13" style="border-radius:2px;display:inline-block;vertical-align:middle;margin-right:5px">
-                    <rect width="900" height="600" fill="#B22234"/>
-                    <rect y="46" width="900" height="92" fill="#fff"/>
-                    <rect y="184" width="900" height="92" fill="#fff"/>
-                    <rect y="322" width="900" height="92" fill="#fff"/>
-                    <rect y="460" width="900" height="92" fill="#fff"/>
-                    <rect width="363" height="323" fill="#3C3B6E"/>
-                  </svg><span data-i18n="edu.lang2">Inglés</span>
-                </span>
-                <span class="lang-item__level" data-i18n="edu.langB2">Intermedio Alto · IELTS B2</span>
-              </div>
-              <div class="lang-bar">
-                <div class="lang-bar__fill" style="--width: 70%"></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Certificaciones -->
-          <div class="edu__col reveal">
-            <h3 class="edu__col-title">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <circle cx="12" cy="8" r="6"/>
-                <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
-              </svg>
-              <span data-i18n="edu.colCerts">Certificaciones</span>
-            </h3>
-            <div class="cert-item">
-              <div class="cert-item__dot"></div>
-              <div>
-                <a href="https://www.credential.net/3228dc9f-5ace-4323-acaf-bbcff37ff805" target="_blank" rel="noopener noreferrer" class="cert-item__link" data-i18n="edu.cert1">Introducción a la Era Digital y Big Data</a>
-                <div class="cert-item__issuer" data-i18n="edu.certIssuer">Tecnológico de Monterrey · 2025</div>
-              </div>
-            </div>
-            <div class="cert-item">
-              <div class="cert-item__dot"></div>
-              <div>
-                <a href="https://www.credential.net/175dce6c-1c49-4273-8ec6-d15fd7633fd1" target="_blank" rel="noopener noreferrer" class="cert-item__link" data-i18n="edu.cert2">Fundamentos de Análisis de Datos con Power BI</a>
-                <div class="cert-item__issuer" data-i18n="edu.certIssuer">Tecnológico de Monterrey · 2025</div>
-              </div>
-            </div>
-          </div>
-
-        </div>
+      </div>
+      <div class="title-block">
+        <div class="title-block__cell"><span class="title-block__label" data-i18n="tb.project">Proyecto</span><span class="title-block__value" data-i18n="edu.tag">Formación</span></div>
+        <div class="title-block__cell"><span class="title-block__label" data-i18n="tb.drawn">Elaboró</span><span class="title-block__value">M. Franco Hurtado</span></div>
+        <div class="title-block__cell"><span class="title-block__label" data-i18n="tb.scale">Escala</span><span class="title-block__value">S/E</span></div>
+        <div class="title-block__cell"><span class="title-block__label" data-i18n="tb.sheet">Hoja</span><span class="title-block__value">09 / 10</span></div>
+        <div class="title-block__cell"><span class="title-block__label" data-i18n="tb.rev">Rev.</span><span class="title-block__value title-block__value--rev tb-rev">ES</span></div>
       </div>
     </section>
 
-    <!-- ════════════════════════════════ CONTACTO ════════════════════════════════ -->
-    <section class="section contacto" id="contacto">
-      <div class="container">
-        <div class="section__header reveal">
-          <span class="section__tag" data-i18n="contact.tag">Contacto</span>
-          <h2 class="section__title" data-i18n="contact.title">Hablemos</h2>
+    <!-- ───────── 10 · CONTACTO ───────── -->
+    <section class="sheet" id="hoja-10" data-sheet="10" data-label-i18n="nav.contact" data-label-fallback="Contacto">
+      <span class="sheet__reg-bl" aria-hidden="true"></span><span class="sheet__reg-br" aria-hidden="true"></span>
+      <span class="sheet__no">HOJA <b>10</b> / 10</span>
+      <div class="sheet__body contact__body">
+        <span class="sheet__kicker" data-i18n="contact.tag">Contacto</span>
+        <h2 class="sheet__title" data-i18n="contact.title">Hablemos</h2>
+        <p class="contact__lead" data-i18n="contact.lead">
+          ¿Tienes un proyecto en mente o quieres conocer más sobre mi experiencia?
+          Estoy disponible para oportunidades profesionales y colaboraciones técnicas.
+        </p>
+        <div class="contact__links">
+          <a href="mailto:marianofraanco5@gmail.com" class="contact-link">
+            <span class="contact-link__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+            <div><div class="contact-link__label" data-i18n="contact.email">Correo electrónico</div><div class="contact-link__value">marianofraanco5@gmail.com</div></div>
+          </a>
+          <a href="tel:+524777010910" class="contact-link">
+            <span class="contact-link__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg></span>
+            <div><div class="contact-link__label" data-i18n="contact.phone">Teléfono</div><div class="contact-link__value">+52 (477) 701-0910</div></div>
+          </a>
+          <a href="https://wa.me/524777010910" class="contact-link" target="_blank" rel="noopener noreferrer">
+            <span class="contact-link__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span>
+            <div><div class="contact-link__label" data-i18n="contact.wa">WhatsApp</div><div class="contact-link__value" data-i18n="contact.waValue">Escríbeme directamente</div></div>
+          </a>
+          <a href="https://linkedin.com/in/marianofrancoingenieria" class="contact-link" target="_blank" rel="noopener noreferrer">
+            <span class="contact-link__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
+            <div><div class="contact-link__label" data-i18n="contact.li">LinkedIn</div><div class="contact-link__value">Mariano Franco Hurtado</div></div>
+          </a>
         </div>
-        <div class="contacto__inner reveal">
-          <p class="contacto__lead" data-i18n="contact.lead">
-            ¿Tienes un proyecto en mente o quieres conocer más sobre mi experiencia?
-            Estoy disponible para oportunidades profesionales y colaboraciones técnicas.
-          </p>
-          <div class="contacto__links">
-
-            <a href="mailto:marianofraanco5@gmail.com" class="contact-link">
-              <div class="contact-link__icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                  <polyline points="22,6 12,13 2,6"/>
-                </svg>
-              </div>
-              <div>
-                <div class="contact-link__label" data-i18n="contact.email">Correo electrónico</div>
-                <div class="contact-link__value">marianofraanco5@gmail.com</div>
-              </div>
-              <svg class="contact-link__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </a>
-
-            <a href="tel:+524777010910" class="contact-link">
-              <div class="contact-link__icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/>
-                </svg>
-              </div>
-              <div>
-                <div class="contact-link__label" data-i18n="contact.phone">Teléfono</div>
-                <div class="contact-link__value">+52 (477) 701-0910</div>
-              </div>
-              <svg class="contact-link__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </a>
-
-            <a href="https://wa.me/524777010910" class="contact-link contact-link--whatsapp" target="_blank" rel="noopener noreferrer">
-              <div class="contact-link__icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                </svg>
-              </div>
-              <div>
-                <div class="contact-link__label" data-i18n="contact.wa">WhatsApp</div>
-                <div class="contact-link__value" data-i18n="contact.waValue">Escríbeme directamente</div>
-              </div>
-              <svg class="contact-link__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </a>
-
-            <a href="https://linkedin.com/in/marianofrancoingenieria" class="contact-link" target="_blank" rel="noopener noreferrer">
-              <div class="contact-link__icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                </svg>
-              </div>
-              <div>
-                <div class="contact-link__label" data-i18n="contact.li">LinkedIn</div>
-                <div class="contact-link__value">Mariano Franco Hurtado</div>
-              </div>
-              <svg class="contact-link__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </a>
-
-          </div>
-
-          <div class="contacto__location">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
-              <circle cx="12" cy="10" r="3"/>
-            </svg>
-            <span data-i18n="contact.location">Guadalajara, Jalisco / León, Guanajuato</span>
-          </div>
+        <div class="contact__location">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span data-i18n="contact.location">Guadalajara, Jalisco / León, Guanajuato</span>
         </div>
+        <div class="contact__closing" id="footerClosing" data-i18n="footer.copy">Topografía · BIM · Geofísica Aplicada · Guadalajara, México</div>
+      </div>
+      <div class="title-block">
+        <div class="title-block__cell"><span class="title-block__label" data-i18n="tb.project">Proyecto</span><span class="title-block__value" data-i18n="contact.tag">Contacto</span></div>
+        <div class="title-block__cell"><span class="title-block__label" data-i18n="tb.drawn">Elaboró</span><span class="title-block__value">M. Franco Hurtado</span></div>
+        <div class="title-block__cell"><span class="title-block__label" data-i18n="tb.scale">Escala</span><span class="title-block__value">S/E</span></div>
+        <div class="title-block__cell"><span class="title-block__label" data-i18n="tb.sheet">Hoja</span><span class="title-block__value">10 / 10</span></div>
+        <div class="title-block__cell"><span class="title-block__label" data-i18n="tb.rev">Rev.</span><span class="title-block__value title-block__value--rev tb-rev">ES</span></div>
       </div>
     </section>
 
   </main>
 
-  <!-- ═══════════════════════════════ MODAL PROYECTOS ═══════════════════════════════ -->
-  <div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal" id="modalContent">
-      <button class="modal__close" id="modalClose" aria-label="Cerrar">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
-      </button>
-
-      <div class="modal__header">
-        <div class="modal__meta">
-          <span class="modal__date" id="modalDate"></span>
-          <span class="modal__location" id="modalLocation"></span>
-        </div>
-        <h2 class="modal__title" id="modalTitle"></h2>
-      </div>
-
-      <div class="modal__body">
-
-        <!-- Galería / Carrusel -->
-        <div class="modal__gallery" id="modalGallery">
-          <div class="modal__gallery-track" id="modalTrack"></div>
-          <button class="modal__gallery-btn modal__gallery-btn--prev" id="galleryPrev" aria-label="Anterior">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-          <button class="modal__gallery-btn modal__gallery-btn--next" id="galleryNext" aria-label="Siguiente">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
-          </button>
-          <div class="modal__gallery-dots" id="galleryDots"></div>
-        </div>
-
-        <!-- Descripción -->
-        <div>
-          <p class="modal__section-label" data-i18n="modal.desc">Descripción</p>
-          <p class="modal__description" id="modalDescription"></p>
-        </div>
-
-        <!-- Mi participación -->
-        <div class="modal__participation">
-          <p class="modal__section-label" data-i18n="modal.part">Mi participación</p>
-          <ul id="modalParticipation"></ul>
-        </div>
-
-        <!-- Herramientas -->
-        <div>
-          <p class="modal__section-label" data-i18n="modal.tools">Herramientas y metodologías</p>
-          <div class="modal__tools" id="modalTools"></div>
-        </div>
-
-        <!-- Etiquetas -->
-        <div>
-          <p class="modal__section-label" data-i18n="modal.cats">Categorías</p>
-          <div class="modal__badges" id="modalBadges"></div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- ═════════════════════════════════ FOOTER ═════════════════════════════════ -->
-  <footer class="footer">
-    <div class="container footer__inner">
-      <div class="footer__brand">
-        <svg width="26" height="26" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <circle cx="18" cy="18" r="16" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
-          <ellipse cx="18" cy="18" rx="9" ry="6" stroke="currentColor" stroke-width="1" opacity="0.3"/>
-          <path d="M18 6 L21 18 L18 16 L15 18 Z" fill="currentColor" opacity="0.7"/>
-          <circle cx="18" cy="18" r="2" fill="currentColor" opacity="0.7"/>
-        </svg>
-        <span data-i18n="footer.name">Mariano Franco Hurtado · Ingeniero Civil</span>
-      </div>
-      <p class="footer__copy" data-i18n="footer.copy">Topografía · BIM · Geofísica Aplicada · Guadalajara, México</p>
-      <div class="footer__links">
-        <a href="#inicio">Inicio</a>
-        <a href="mailto:marianofraanco5@gmail.com">Email</a>
-        <a href="https://wa.me/524777010910" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-      </div>
-    </div>
-  </footer>
+  <!-- ═══════════════════════ REGLA / NAVEGACIÓN INFERIOR ═══════════════════════ -->
+  <nav class="ruler" aria-label="Navegación entre hojas">
+    <button class="ruler__prev" id="rulerPrev" aria-label="Hoja anterior">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <div class="ruler__track" id="rulerTrack"></div>
+    <button class="ruler__next" id="rulerNext" aria-label="Hoja siguiente">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  </nav>
 
   <script src="script.js"></script>
-<script data-pplx-inline-edit>
-(function () {
-  if (window === window.top) return;
-
-  const allowedParentOrigins = ["https://www.perplexity.ai","https://perplexity.ai","https://testing.perplexity.ai","https://staging.perplexity.ai","https://*.preview.i.perplexity.ai","http://localhost:3000","http://127.0.0.1:3000","http://localhost:5173","http://127.0.0.1:5173"];
-  const MAX_FONT_BYTES = 500 * 1024;
-  const MAX_TOTAL_FONT_BYTES = 2 * 1024 * 1024;
-  let scrollForwarding = false;
-  let scrollRaf = 0;
-  let trustedTopOrigin = null;
-
-  // Allow entries like "https://*.preview.i.perplexity.ai" — the wildcard
-  // matches a single DNS label (no dots), so "https://*.foo" cannot stretch
-  // across multiple labels.
-  function matchesAllowedOrigin(origin) {
-    if (!origin) return false;
-    for (const entry of allowedParentOrigins) {
-      if (!entry.includes("*")) {
-        if (entry === origin) return true;
-        continue;
-      }
-      const pattern = new RegExp(
-        "^" +
-          entry.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, "[^.]+") +
-          "$",
-      );
-      if (pattern.test(origin)) return true;
-    }
-    return false;
-  }
-
-  // Trust decision: when the sender is same-origin-visible (event.origin is a
-  // real origin like https://www.perplexity.ai) we trust event.origin directly.
-  // When event.origin is "null" (opaque broker srcdoc), we fall back to the
-  // broker's stamped `parentOrigin` to identify the top window. The fallback
-  // is claim-only — we rely on the browser's native `targetOrigin` enforcement
-  // on the response path (see postToTrustedTop) to ensure replies can't be
-  // delivered to anyone but the actual top window of that claimed origin.
-  function getTrustedParentOrigin(event) {
-    const forwardedParentOrigin =
-      typeof event.data.parentOrigin === "string" ? event.data.parentOrigin : null;
-    const parentOrigin = event.origin === "null" ? forwardedParentOrigin : event.origin;
-    return matchesAllowedOrigin(parentOrigin) ? parentOrigin : null;
-  }
-
-  // All responses go to window.top with targetOrigin = the allowlisted origin.
-  // An attacker that iframes us inside their own null-origin broker can claim
-  // any parentOrigin they like, but the browser will drop the reply whenever
-  // the real top's origin doesn't match — so the screenshot never leaves.
-  function postToTrustedTop(message) {
-    if (!trustedTopOrigin) return;
-    try {
-      window.top.postMessage(message, trustedTopOrigin);
-    } catch (_error) {}
-  }
-
-  function inlineAll(original, clone) {
-    if (original.nodeType !== 1 || clone.nodeType !== 1) return;
-
-    try {
-      const computedStyle = getComputedStyle(original);
-      // cssText on a computed style is the serialized declaration in modern
-      // Chromium/Safari — a single read beats enumerating ~400 longhand
-      // properties. Firefox returns "" here, so we fall back on empty.
-      const serialized = computedStyle.cssText;
-      if (serialized) {
-        clone.style.cssText = serialized;
-      } else {
-        const parts = new Array(computedStyle.length);
-        for (let index = 0; index < computedStyle.length; index += 1) {
-          const property = computedStyle[index];
-          parts[index] = `${property}:${computedStyle.getPropertyValue(property)};`;
-        }
-        clone.style.cssText = parts.join("");
-      }
-    } catch (_error) {}
-
-    const originalChildren = original.children;
-    const clonedChildren = clone.children;
-    for (
-      let index = 0;
-      index < originalChildren.length && index < clonedChildren.length;
-      index += 1
-    ) {
-      inlineAll(originalChildren[index], clonedChildren[index]);
-    }
-  }
-
-  function extractFontUrl(srcValue) {
-    const matches = [
-      ...srcValue.matchAll(
-        /url\(["']?([^"')]+)["']?\)(?:\s*format\(["']?([^"')]+)["']?\))?/gi,
-      ),
-    ];
-    if (matches.length === 0) return null;
-    const woff2 = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff2"));
-    if (woff2) return woff2[1];
-    const woff = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff"));
-    if (woff) return woff[1];
-    return matches[0][1];
-  }
-
-  // Cache resolved font URL -> data URI across captures. Fonts on a page
-  // essentially never change, and a batch run emits multiple captures back to
-  // back — without this we'd refetch + re-base64 every time.
-  const fontDataUriCache = new Map();
-  const SRC_DECLARATION_RE = /src\s*:\s*[^;}]+/i;
-
-  async function fetchAsDataUri(url) {
-    if (fontDataUriCache.has(url)) return fontDataUriCache.get(url);
-    let dataUri = null;
-    try {
-      const response = await fetch(url, { mode: "cors", credentials: "omit" });
-      if (response.ok) {
-        const blob = await response.blob();
-        if (blob.size <= MAX_FONT_BYTES) {
-          dataUri = await new Promise((resolve) => {
-            const reader = new FileReader();
-            reader.onloadend = () =>
-              resolve(typeof reader.result === "string" ? reader.result : null);
-            reader.onerror = () => resolve(null);
-            reader.readAsDataURL(blob);
-          });
-        }
-      }
-    } catch (_error) {
-      dataUri = null;
-    }
-    fontDataUriCache.set(url, dataUri);
-    return dataUri;
-  }
-
-  function collectFontFaceRuleTexts() {
-    const rules = [];
-    for (const sheet of document.styleSheets) {
-      let cssRules;
-      try {
-        cssRules = sheet.cssRules;
-      } catch (_error) {
-        continue;
-      }
-      if (!cssRules) continue;
-      for (const rule of cssRules) {
-        const cssText = rule.cssText || "";
-        if (cssText.startsWith("@font-face")) rules.push(cssText);
-      }
-    }
-    return rules;
-  }
-
-  async function buildInlinedFontCss() {
-    const ruleTexts = collectFontFaceRuleTexts();
-    if (ruleTexts.length === 0) return null;
-
-    const resolved = ruleTexts.map((cssText) => {
-      if (!SRC_DECLARATION_RE.test(cssText)) return null;
-      const srcMatch = cssText.match(/src\s*:\s*([^;}]+)[;}]/i);
-      if (!srcMatch) return null;
-      const url = extractFontUrl(srcMatch[1]);
-      if (!url) return null;
-      try {
-        return { cssText, url: new URL(url, document.baseURI).href };
-      } catch (_error) {
-        return null;
-      }
-    });
-
-    const dataUris = await Promise.all(
-      resolved.map((entry) => (entry ? fetchAsDataUri(entry.url) : Promise.resolve(null))),
-    );
-
-    const inlined = [];
-    let totalBytes = 0;
-    for (let index = 0; index < resolved.length; index += 1) {
-      const entry = resolved[index];
-      const dataUri = dataUris[index];
-      if (!entry || !dataUri) continue;
-      const approxBytes = dataUri.length * 0.75;
-      if (totalBytes + approxBytes > MAX_TOTAL_FONT_BYTES) break;
-      totalBytes += approxBytes;
-      inlined.push(entry.cssText.replace(SRC_DECLARATION_RE, `src: url("${dataUri}")`));
-    }
-    return inlined.length > 0 ? inlined.join("\n") : null;
-  }
-
-  function stripExternal(clone) {
-    const images = clone.querySelectorAll("img");
-    for (let index = 0; index < images.length; index += 1) {
-      const src = images[index].getAttribute("src");
-      if (src && !src.startsWith("data:")) images[index].removeAttribute("src");
-    }
-
-    const elements = clone.querySelectorAll("*");
-    for (let index = 0; index < elements.length; index += 1) {
-      const style = elements[index].style.cssText;
-      if (style && style.includes("url(")) {
-        elements[index].style.cssText = style.replace(
-          /url\(["']?(?!data:)[^)"']*["']?\)/gi,
-          "none",
-        );
-      }
-    }
-  }
-
-  function emitScroll() {
-    scrollRaf = 0;
-    if (!scrollForwarding) return;
-    postToTrustedTop({
-      type: "INLINE_EDIT_SCROLL",
-      scrollX: window.scrollX,
-      scrollY: window.scrollY,
-    });
-  }
-
-  window.addEventListener(
-    "scroll",
-    function () {
-      if (!scrollForwarding || scrollRaf) return;
-      scrollRaf = requestAnimationFrame(emitScroll);
-    },
-    { passive: true, capture: true },
-  );
-
-  async function handleCaptureRequest(event) {
-    const requestId = event.data.requestId;
-    const scrollX = window.scrollX;
-    const scrollY = window.scrollY;
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-
-    function postResult(dataUrl) {
-      postToTrustedTop({
-        type: "INLINE_EDIT_SCREENSHOT_RESULT",
-        requestId,
-        dataUrl,
-        scrollX,
-        scrollY,
-      });
-    }
-
-    try {
-      // Wait for any pending web fonts to resolve so both inline metrics and
-      // the @font-face inlining below see the same loaded faces.
-      if (document.fonts && document.fonts.ready) {
-        try {
-          await document.fonts.ready;
-        } catch (_error) {}
-      }
-
-      const clone = document.documentElement.cloneNode(true);
-      inlineAll(document.documentElement, clone);
-
-      const removedNodes = clone.querySelectorAll("script,link[rel=\"stylesheet\"],style");
-      for (let index = 0; index < removedNodes.length; index += 1) {
-        removedNodes[index].remove();
-      }
-
-      stripExternal(clone);
-
-      // Re-embed web fonts as data-URI @font-face rules so the SVG rasterizer
-      // can resolve them — external font URLs aren't fetched during
-      // foreignObject rendering, which would otherwise force a fallback face
-      // and change text metrics.
-      const inlinedFontCss = await buildInlinedFontCss();
-      if (inlinedFontCss) {
-        const styleEl = document.createElement("style");
-        styleEl.textContent = inlinedFontCss;
-        const head = clone.querySelector("head");
-        if (head) head.appendChild(styleEl);
-        else clone.insertBefore(styleEl, clone.firstChild);
-      }
-
-      const html = new XMLSerializer().serializeToString(clone);
-      const svg =
-        `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">` +
-        '<foreignObject width="100%" height="100%">' +
-        `<div xmlns="http://www.w3.org/1999/xhtml" style="width:${width}px;height:${height}px;overflow:hidden">` +
-        `<div style="transform:translate(-${scrollX}px,-${scrollY}px);transform-origin:top left">` +
-        html +
-        "</div></div></foreignObject></svg>";
-      const svgUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
-      const image = new Image();
-      image.onload = function () {
-        const canvas = document.createElement("canvas");
-        canvas.width = width;
-        canvas.height = height;
-        canvas.getContext("2d").drawImage(image, 0, 0);
-        postResult(canvas.toDataURL("image/png"));
-      };
-      image.onerror = function () {
-        postResult(null);
-      };
-      image.src = svgUrl;
-    } catch (_error) {
-      postResult(null);
-    }
-  }
-
-  window.addEventListener("message", function (event) {
-    if (!event.data) return;
-    // Only accept messages from the direct parent frame. Blocks sibling /
-    // unrelated-window postMessage senders that could otherwise reach us.
-    if (event.source !== window.parent) return;
-
-    const trustedParentOrigin = getTrustedParentOrigin(event);
-    if (!trustedParentOrigin) return;
-    trustedTopOrigin = trustedParentOrigin;
-
-    if (event.data.type === "INLINE_EDIT_SCROLL_START") {
-      scrollForwarding = true;
-      emitScroll();
-      return;
-    }
-
-    if (event.data.type === "INLINE_EDIT_SCROLL_STOP") {
-      scrollForwarding = false;
-      if (scrollRaf) cancelAnimationFrame(scrollRaf);
-      scrollRaf = 0;
-      return;
-    }
-
-    if (event.data.type !== "INLINE_EDIT_CAPTURE_REQUEST") return;
-
-    handleCaptureRequest(event);
-  });
-})();
-
-</script></body>
+</body>
 </html>
