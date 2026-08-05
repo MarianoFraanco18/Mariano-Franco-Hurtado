@@ -19,9 +19,9 @@ const PROJECTS = {
       date: 'Ene. 2025 – May. 2025',
       location: 'Jalisco, México',
       slides: [
-        { label: 'Propuesta de revalorización de vidrio', img: 'DIAGEO-IMG1.png' },
-        { label: 'Análisis de cadena de valor', img: 'DIAGEO-IMG2.png' },
-        { label: 'Modelo de economía circular', img: 'DIAGEO-IMG3.png' },
+        { label: 'Propuesta de revalorización de vidrio', img: 'images/projects/diageo/diageo-img1.png' },
+        { label: 'Análisis de cadena de valor', img: 'images/projects/diageo/diageo-img2.png' },
+        { label: 'Modelo de economía circular', img: 'images/projects/diageo/diageo-img3.png' },
       ],
       description: 'Proyecto para la revalorización de residuos de vidrio generados en la industria tequilera, en el marco de las metas de sustentabilidad corporativa de Diageo. Se analizó el ciclo de vida del vidrio, se identificaron puntos de mejora en la cadena de valor y se diseñó un modelo de economía circular aplicado al contexto de producción de bebidas en Jalisco.',
       participation: [
@@ -38,9 +38,9 @@ const PROJECTS = {
       date: 'Jan. 2025 – May 2025',
       location: 'Jalisco, Mexico',
       slides: [
-        { label: 'Glass waste recovery proposal', img: 'DIAGEO-IMG1-EN.png' },
-        { label: 'Value chain analysis', img: 'DIAGEO-IMG2-EN.png' },
-        { label: 'Circular economy model design', img: 'DIAGEO-IMG3-EN.png' },
+        { label: 'Glass waste recovery proposal', img: 'images/projects/diageo/diageo-img1-en.png' },
+        { label: 'Value chain analysis', img: 'images/projects/diageo/diageo-img2-en.png' },
+        { label: 'Circular economy model design', img: 'images/projects/diageo/diageo-img3-en.png' },
       ],
       description: "Project focused on recovering glass waste generated in the tequila industry, within the scope of Diageo\u2019s corporate sustainability goals. The glass life cycle was analysed, improvement points in the value chain were identified, and a circular economy model was designed for the beverage production context in Jalisco.",
       participation: [
@@ -61,9 +61,9 @@ const PROJECTS = {
       date: 'Ene. 2024 – Jun. 2024',
       location: 'Jalisco, México',
       slides: [
-        { label: 'Diseño de aeropista e infraestructura', img: 'CLJ-IMG1.png' },
-        { label: 'Integración de conectividad ferroviaria', img: 'CLJ-IMG2.png' },
-        { label: 'Propuesta logística multimodal', img: 'CLJ-IMG3.png' },
+        { label: 'Diseño de aeropista e infraestructura', img: 'images/projects/clj/clj-img1.png' },
+        { label: 'Integración de conectividad ferroviaria', img: 'images/projects/clj/clj-img2.png' },
+        { label: 'Propuesta logística multimodal', img: 'images/projects/clj/clj-img3.png' },
       ],
       description: 'Diseño de una propuesta de infraestructura logística para el Centro Logístico de Jalisco (CLJ), integrando una aeropista de uso privado con conexiones ferroviarias y carreteras. El objetivo fue crear un hub de conectividad multimodal que potenciara la cadena logística de la región y redujera tiempos de trasiego de mercancías.',
       participation: [
@@ -80,9 +80,9 @@ const PROJECTS = {
       date: 'Jan. 2024 – Jun. 2024',
       location: 'Jalisco, Mexico',
       slides: [
-        { label: 'Airstrip and infrastructure design', img: 'CLJ-IMG1-EN.png' },
-        { label: 'Railway connectivity integration', img: 'CLJ-IMG2-EN.png' },
-        { label: 'Multimodal logistics proposal', img: 'CLJ-IMG3-EN.png' },
+        { label: 'Airstrip and infrastructure design', img: 'images/projects/clj/clj-img1-en.png' },
+        { label: 'Railway connectivity integration', img: 'images/projects/clj/clj-img2-en.png' },
+        { label: 'Multimodal logistics proposal', img: 'images/projects/clj/clj-img3-en.png' },
       ],
       description: 'Design of a logistics infrastructure proposal for the Jalisco Logistics Center (CLJ), integrating a private-use airstrip with railway and road connections. The goal was to create a multimodal connectivity hub that would strengthen the regional logistics chain and reduce cargo transit times.',
       participation: [
@@ -103,9 +103,9 @@ const PROJECTS = {
       date: 'Ago. 2023 – Dic. 2023',
       location: 'Guadalajara, Jalisco',
       slides: [
-        { label: 'Diseño de red hidráulica', img: 'CONAGUA-IMG1.png' },
-        { label: 'Modelado en EPANET', img: 'CONAGUA-IMG2.png' },
-        { label: 'Red de alcantarillado', img: 'CONAGUA-IMG3.png' },
+        { label: 'Diseño de red hidráulica', img: 'images/projects/conagua/conagua-img1.png' },
+        { label: 'Modelado en EPANET', img: 'images/projects/conagua/conagua-img2.png' },
+        { label: 'Red de alcantarillado', img: 'images/projects/conagua/conagua-img3.png' },
       ],
       description: 'Proyecto aplicado al caso real de la comunidad de Mezquitic, Jalisco. Se diseñó una red de abastecimiento de agua potable y un sistema de alcantarillado sanitario, con base en criterios técnicos de cobertura, presión, velocidades de flujo y proyección de demanda poblacional.',
       participation: [
@@ -122,9 +122,9 @@ const PROJECTS = {
       date: 'Aug. 2023 – Dec. 2023',
       location: 'Guadalajara, Jalisco',
       slides: [
-        { label: 'Hydraulic network design', img: 'CONAGUA-IMG1-EN.png' },
-        { label: 'EPANET hydraulic modelling', img: 'CONAGUA-IMG2-EN.png' },
-        { label: 'Sewage network design', img: 'CONAGUA-IMG3-EN.png' },
+        { label: 'Hydraulic network design', img: 'images/projects/conagua/conagua-img1-en.png' },
+        { label: 'EPANET hydraulic modelling', img: 'images/projects/conagua/conagua-img2-en.png' },
+        { label: 'Sewage network design', img: 'images/projects/conagua/conagua-img3-en.png' },
       ],
       description: 'Project applied to the real case of the Mezquitic community in Jalisco. A potable water distribution network and a sanitary sewage system were designed based on technical criteria for coverage, pressure, flow velocities, and population demand projection.',
       participation: [
@@ -145,9 +145,9 @@ const PROJECTS = {
       date: '2025 – 2026',
       location: 'Guadalajara, Jalisco',
       slides: [
-        { label: 'Estructuración y nomenclatura de datos topográficos', img: 'MACROCAD-IMG1.png' },
-        { label: 'Preparación de coordenadas para AutoCAD', img: 'MACROCAD-IMG2.png' },
-        { label: 'Estandarización del flujo de trabajo técnico', img: 'MACROCAD-IMG3.png' },
+        { label: 'Estructuración y nomenclatura de datos topográficos', img: 'images/projects/macro-cad/macro-cad-img1.png' },
+        { label: 'Preparación de coordenadas para AutoCAD', img: 'images/projects/macro-cad/macro-cad-img2.png' },
+        { label: 'Estandarización del flujo de trabajo técnico', img: 'images/projects/macro-cad/macro-cad-img3.png' },
       ],
       description: 'Este proyecto consistió en automatizar parte del flujo de trabajo entre Excel y AutoCAD para el procesamiento de datos topográficos y de líneas relacionadas con estudios de georradar. La solución permitió ordenar datos, generar nomenclaturas, estructurar tablas y preparar información utilizable dentro del entorno CAD, disminuyendo errores operativos y acelerando tareas repetitivas que antes se realizaban manualmente.',
       participation: [
@@ -164,9 +164,9 @@ const PROJECTS = {
       date: '2025 – 2026',
       location: 'Guadalajara, Jalisco',
       slides: [
-        { label: 'Topographic data structuring and naming', img: 'MACROCAD-IMG1-EN.png' },
-        { label: 'Coordinate preparation for AutoCAD', img: 'MACROCAD-IMG2-EN.png' },
-        { label: 'Technical workflow standardisation', img: 'MACROCAD-IMG3-EN.png' },
+        { label: 'Topographic data structuring and naming', img: 'images/projects/macro-cad/macro-cad-img1-en.png' },
+        { label: 'Coordinate preparation for AutoCAD', img: 'images/projects/macro-cad/macro-cad-img2-en.png' },
+        { label: 'Technical workflow standardisation', img: 'images/projects/macro-cad/macro-cad-img3-en.png' },
       ],
       description: 'This project consisted of automating part of the workflow between Excel and AutoCAD for the processing of topographic and GPR line data. The solution enabled data ordering, nomenclature generation, table structuring, and preparation of CAD-ready information, reducing operational errors and accelerating repetitive tasks previously done manually.',
       participation: [
@@ -187,9 +187,9 @@ const PROJECTS = {
       date: '2025 – 2026',
       location: 'Guadalajara, Jalisco',
       slides: [
-        { label: 'Captura secuencial automática de radargramas', img: 'MACROHOTKEY-IMG1.png' },
-        { label: 'Control de ventanas emergentes y campos de entrada', img: 'MACROHOTKEY-IMG2.png' },
-        { label: 'Estandarización del proceso de exportación', img: 'MACROHOTKEY-IMG3.png' },
+        { label: 'Captura secuencial automática de radargramas', img: 'images/projects/macro-hotkey/macro-hotkey-img1.png' },
+        { label: 'Control de ventanas emergentes y campos de entrada', img: 'images/projects/macro-hotkey/macro-hotkey-img2.png' },
+        { label: 'Estandarización del proceso de exportación', img: 'images/projects/macro-hotkey/macro-hotkey-img3.png' },
       ],
       description: 'Este proyecto se enfocó en automatizar acciones repetitivas dentro del software GPR-SLICE mediante AutoHotkey, incluyendo la captura secuencial de radargramas, el control de campos de entrada, el manejo de ventanas emergentes y la estandarización del proceso de exportación. La automatización permitió reducir la intervención manual, ahorrar tiempo y hacer más eficiente el procesamiento operativo de información de georradar.',
       participation: [
@@ -206,9 +206,9 @@ const PROJECTS = {
       date: '2025 – 2026',
       location: 'Guadalajara, Jalisco',
       slides: [
-        { label: 'Automated sequential radargram capture', img: 'MACROHOTKEY-IMG1-EN.png' },
-        { label: 'Pop-up window and input field control', img: 'MACROHOTKEY-IMG2-EN.png' },
-        { label: 'Export process standardisation', img: 'MACROHOTKEY-IMG3-EN.png' },
+        { label: 'Automated sequential radargram capture', img: 'images/projects/macro-hotkey/macro-hotkey-img1-en.png' },
+        { label: 'Pop-up window and input field control', img: 'images/projects/macro-hotkey/macro-hotkey-img2-en.png' },
+        { label: 'Export process standardisation', img: 'images/projects/macro-hotkey/macro-hotkey-img3-en.png' },
       ],
       description: 'This project focused on automating repetitive actions within GPR-SLICE using AutoHotkey, including sequential radargram capture, input field control, pop-up window handling, and export process standardisation. The automation reduced manual intervention, saved time, and made GPR data processing operationally more efficient.',
       participation: [
@@ -230,17 +230,17 @@ const PROJECTS = {
 ───────────────────────────────────────────────────────────────────────── */
 const EXPERIENCE_EVIDENCE = {
   exp1: [
-    { img: 'EXP1-EVID1.jpg', caption_es: 'Levantamiento topográfico en campo', caption_en: 'Field topographic survey' },
-    { img: 'EXP1-EVID2.jpg', caption_es: 'Plano georreferenciado', caption_en: 'Georeferenced drawing' },
-    { img: 'EXP1-EVID3.jpg', caption_es: 'Equipo GNSS en sitio', caption_en: 'GNSS equipment on site' },
+    { img: 'images/experience/tecnoterra-gerente/evid1.jpg', caption_es: 'Levantamiento topográfico en campo', caption_en: 'Field topographic survey' },
+    { img: 'images/experience/tecnoterra-gerente/evid2.jpg', caption_es: 'Plano georreferenciado', caption_en: 'Georeferenced drawing' },
+    { img: 'images/experience/tecnoterra-gerente/evid3.jpg', caption_es: 'Equipo GNSS en sitio', caption_en: 'GNSS equipment on site' },
   ],
   exp2: [
-    { img: 'EXP2-EVID1.jpg', caption_es: 'Estudio de Georradar (GPR)', caption_en: 'Ground Penetrating Radar survey' },
-    { img: 'EXP2-EVID2.jpg', caption_es: 'Radargrama procesado', caption_en: 'Processed radargram' },
+    { img: 'images/experience/tecnoterra-operaciones/evid1.jpg', caption_es: 'Estudio de Georradar (GPR)', caption_en: 'Ground Penetrating Radar survey' },
+    { img: 'images/experience/tecnoterra-operaciones/evid2.jpg', caption_es: 'Radargrama procesado', caption_en: 'Processed radargram' },
   ],
   exp3: [
-    { img: 'EXP3-EVID1.jpg', caption_es: 'Modelo estructural BIM', caption_en: 'BIM structural model' },
-    { img: 'EXP3-EVID2.jpg', caption_es: 'Plano técnico de nave industrial', caption_en: 'Industrial warehouse technical drawing' },
+    { img: 'images/experience/aio-constructora/evid1.jpg', caption_es: 'Modelo estructural BIM', caption_en: 'BIM structural model' },
+    { img: 'images/experience/aio-constructora/evid2.jpg', caption_es: 'Plano técnico de nave industrial', caption_en: 'Industrial warehouse technical drawing' },
   ],
 };
 
@@ -392,7 +392,7 @@ const T = {
     'proj.desc.label': 'Descripción', 'proj.part.label': 'Mis logros en este proyecto', 'proj.tools.label': 'Herramientas y metodologías', 'proj.badges.label': 'Categorías',
 
     'footer.copy': 'Topografía · BIM · Geofísica Aplicada · Guadalajara, México',
-    'cv.file': 'CV_pdf_ES.pdf',
+    'cv.file': 'docs/CV_pdf_ES.pdf',
   },
   en: {
     'nav.home': 'Home', 'nav.about': 'About', 'nav.experience': 'Experience',
@@ -451,7 +451,7 @@ const T = {
     'proj.desc.label': 'Description', 'proj.part.label': 'My achievements on this project', 'proj.tools.label': 'Tools & methodologies', 'proj.badges.label': 'Categories',
 
     'footer.copy': 'Surveying · BIM · Applied Geophysics · Guadalajara, Mexico',
-    'cv.file': 'CV_pdf_EN.pdf',
+    'cv.file': 'docs/CV_pdf_EN.pdf',
   },
 };
 
@@ -645,7 +645,7 @@ function applyLang(lang) {
 
   const cvBtn = document.getElementById('cvDownloadBtn');
   if (cvBtn) {
-    const cvFile = dict['cv.file'] || 'CV_pdf_ES.pdf';
+    const cvFile = dict['cv.file'] || 'docs/CV_pdf_ES.pdf';
     cvBtn.setAttribute('href', cvFile);
     cvBtn.setAttribute('download', cvFile);
   }
@@ -1082,6 +1082,71 @@ function injectPageSketches() {
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
+   4d. TOOLTIP DE HABILIDADES — un único elemento, posicionado con
+   getBoundingClientRect() para que NUNCA se salga del viewport,
+   sin importar si la píldora está al centro, al inicio o al final de su fila.
+───────────────────────────────────────────────────────────────────────── */
+function initSkillTooltip() {
+  const tooltip = document.getElementById('skillTooltip');
+  const textEl = document.getElementById('skillTooltipText');
+  if (!tooltip || !textEl) return;
+
+  const canHover = () => window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const GAP = 10;
+  const MARGIN = 16;
+
+  function showTooltip(pill) {
+    const desc = pill.getAttribute('data-desc');
+    if (!desc || !canHover()) return;
+    textEl.textContent = desc;
+
+    tooltip.style.left = '0px';
+    tooltip.style.top = '0px';
+    tooltip.setAttribute('data-open', 'true');
+
+    const pillRect = pill.getBoundingClientRect();
+    const ttRect = tooltip.getBoundingClientRect();
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+
+    // Horizontal: centrado sobre la píldora, pero acotado a los márgenes del viewport
+    let left = pillRect.left + pillRect.width / 2 - ttRect.width / 2;
+    left = Math.max(MARGIN, Math.min(left, vw - ttRect.width - MARGIN));
+
+    // Vertical: preferentemente arriba de la píldora; si no cabe, se coloca debajo
+    let top = pillRect.top - ttRect.height - GAP;
+    let arrow = 'top'; // la flecha apunta hacia abajo, hacia la píldora
+    if (top < MARGIN) {
+      top = pillRect.bottom + GAP;
+      arrow = 'bottom';
+    }
+    top = Math.max(MARGIN, Math.min(top, vh - ttRect.height - MARGIN));
+
+    tooltip.style.left = `${Math.round(left)}px`;
+    tooltip.style.top = `${Math.round(top)}px`;
+    tooltip.setAttribute('data-arrow', arrow);
+
+    // La flecha apunta horizontalmente hacia el centro de la píldora, acotada al ancho del tooltip
+    const arrowLeft = Math.max(12, Math.min(pillRect.left + pillRect.width / 2 - left - 4.5, ttRect.width - 20));
+    tooltip.querySelector('.skill-tooltip__arrow').style.left = `${arrowLeft}px`;
+  }
+
+  function hideTooltip() {
+    tooltip.setAttribute('data-open', 'false');
+  }
+
+  document.querySelectorAll('.skill-pill[data-desc-en]').forEach(pill => {
+    pill.addEventListener('mouseenter', () => showTooltip(pill));
+    pill.addEventListener('mouseleave', hideTooltip);
+    pill.addEventListener('focus', () => showTooltip(pill));
+    pill.addEventListener('blur', hideTooltip);
+  });
+
+  window.addEventListener('scroll', hideTooltip, true);
+  window.addEventListener('resize', hideTooltip);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
    5. IDIOMAS — BOTONES
 ───────────────────────────────────────────────────────────────────────── */
 function initLangButtons() {
@@ -1114,6 +1179,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initProjectGalleryControls();
   renderExperienceEvidence();
   initLightbox();
+  initSkillTooltip();
   buildRuler();
   injectPageSketches();
   initObserver();

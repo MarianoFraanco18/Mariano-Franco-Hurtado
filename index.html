@@ -76,7 +76,7 @@
         </button>
       </div>
 
-      <a href="CV_pdf_ES.pdf" class="hdr__cv" download id="cvDownloadBtn">
+      <a href="docs/CV_pdf_ES.pdf" class="hdr__cv" download id="cvDownloadBtn">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         <span data-i18n="hero.downloadCV">CV</span>
       </a>
@@ -417,7 +417,7 @@
             <div class="edu__col">
               <div class="edu__col-title" data-i18n="edu.colEdu">Educación</div>
               <div class="edu__item">
-                <img src="logo-tec-round.jpg" alt="Tecnológico de Monterrey" />
+                <img src="images/ui/logo-tec-round.jpg" alt="Tecnológico de Monterrey" />
                 <div>
                   <div class="edu__item-title" data-i18n="edu.degree1">Licenciatura en Ingeniería Civil</div>
                   <div class="edu__item-inst" data-i18n="edu.inst1">Tecnológico de Monterrey, Campus Guadalajara</div>
@@ -425,7 +425,7 @@
                 </div>
               </div>
               <div class="edu__item">
-                <img src="UCLM-Logo.jpg" alt="Universidad de Castilla-La Mancha" />
+                <img src="images/ui/uclm-logo.jpg" alt="Universidad de Castilla-La Mancha" />
                 <div>
                   <div class="edu__item-title" data-i18n="edu.degree2">Programa de Intercambio Internacional</div>
                   <div class="edu__item-inst" data-i18n="edu.inst2">Universidad de Castilla-La Mancha, Ciudad Real, España</div>
@@ -523,6 +523,12 @@
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
     </button>
   </nav>
+
+  <!-- ═══════════════════════ TOOLTIP DE HABILIDADES ═══════════════════════ -->
+  <div class="skill-tooltip" id="skillTooltip" role="tooltip" aria-hidden="true">
+    <span id="skillTooltipText"></span>
+    <span class="skill-tooltip__arrow" aria-hidden="true"></span>
+  </div>
 
   <!-- ═══════════════════════ LIGHTBOX DE EVIDENCIA ═══════════════════════ -->
   <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true">

@@ -977,85 +977,47 @@ body::before {
 }
 .skill-row { display: flex; flex-wrap: wrap; gap: 0 4px; }
 
-/* Tooltip de descripción — solo desktop (hover), CSS puro vía atributo data-desc */
-@media (hover: hover) and (pointer: fine) {
-  .skill-pill[data-desc] {
-    cursor: help;
-  }
-  .skill-pill[data-desc]::after {
-    content: attr(data-desc);
-    position: absolute;
-    left: 50%;
-    bottom: calc(100% + 10px);
-    transform: translateX(-50%) translateY(4px);
-    width: max-content;
-    max-width: min(220px, calc(100vw - 56px));
-    background: var(--paper);
-    color: var(--ink-soft);
-    border: 1px solid var(--ink);
-    box-shadow: 3px 3px 0 var(--hair-strong);
-    font-family: var(--font-body);
-    font-size: 11px;
-    line-height: 1.4;
-    letter-spacing: 0;
-    text-transform: none;
-    padding: 8px 10px;
-    z-index: 20;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.16s var(--ease), transform 0.16s var(--ease);
-  }
-  .skill-pill[data-desc]::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: 100%;
-    transform: translateX(-50%) translateY(6px);
-    border: 5px solid transparent;
-    border-top-color: var(--ink);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.16s var(--ease), transform 0.16s var(--ease);
-    z-index: 21;
-  }
-  .skill-pill[data-desc]:hover::after,
-  .skill-pill[data-desc]:hover::before {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
-  }
+/* Tooltip de descripción — un único elemento posicionado por JS (ver initSkillTooltip),
+   que se ajusta con getBoundingClientRect() para NUNCA salirse del viewport,
+   sin importar si la píldora está al centro, al inicio o al final de su fila. */
+.skill-pill[data-desc] { cursor: help; }
 
-  /* FIX: centrar el tooltip sobre la píldora hacía que, cerca del borde de la pantalla
-     (p. ej. la primera píldora de cada fila, como "AutoCAD"), el cuadro se saliera del
-     viewport y quedara recortado por el overflow-x:hidden del body. Se ancla al borde
-     de la píldora en vez de centrarse cuando es la primera o última de su fila. */
-  .skill-row .skill-pill:first-child[data-desc]::after,
-  .skill-row .skill-pill:first-child[data-desc]::before {
-    left: 0;
-    transform: translateX(0) translateY(4px);
-  }
-  .skill-row .skill-pill:first-child[data-desc]::before { left: 14px; }
-  .skill-row .skill-pill:first-child[data-desc]:hover::after,
-  .skill-row .skill-pill:first-child[data-desc]:hover::before {
-    transform: translateX(0) translateY(0);
-  }
-
-  .skill-row .skill-pill:last-child[data-desc]::after,
-  .skill-row .skill-pill:last-child[data-desc]::before {
-    left: auto;
-    right: 0;
-    transform: translateX(0) translateY(4px);
-  }
-  .skill-row .skill-pill:last-child[data-desc]::before { right: 14px; left: auto; }
-  .skill-row .skill-pill:last-child[data-desc]:hover::after,
-  .skill-row .skill-pill:last-child[data-desc]:hover::before {
-    transform: translateX(0) translateY(0);
-  }
+.skill-tooltip {
+  position: fixed;
+  z-index: 90;
+  max-width: min(230px, calc(100vw - 32px));
+  background: var(--paper);
+  color: var(--ink-soft);
+  border: 1px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--hair-strong);
+  font-family: var(--font-body);
+  font-size: 11px;
+  line-height: 1.4;
+  padding: 8px 10px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(4px);
+  transition: opacity 0.15s var(--ease), transform 0.15s var(--ease);
 }
+.skill-tooltip[data-open="true"] {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.skill-tooltip__arrow {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  background: var(--paper);
+  border-right: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+.skill-tooltip[data-arrow="top"] .skill-tooltip__arrow { bottom: -5px; transform: rotate(45deg); }
+.skill-tooltip[data-arrow="bottom"] .skill-tooltip__arrow { top: -5px; transform: rotate(225deg); }
 
-@media (hover: hover) and (pointer: fine) and (max-width: 700px) {
-  .skill-pill[data-desc]::after { max-width: min(180px, calc(100vw - 40px)); font-size: 10.5px; }
+@media not all and (hover: hover) and (pointer: fine) {
+  .skill-tooltip { display: none; } /* solo desktop con mouse real */
 }
 
 /* Separación hacia el bloque de habilidades blandas — misma jerarquía de subtítulo,
