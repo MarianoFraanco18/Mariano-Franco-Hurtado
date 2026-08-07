@@ -686,35 +686,45 @@ body::before {
 .exp-row__list li::before { content: "—"; position: absolute; left: 0; color: var(--ink-faint); }
 .exp-row__tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
 
-/* Galería compacta de evidencia por experiencia */
+/* Galería compacta de evidencia por experiencia — pila de fotografías */
+.exp-evidence-wrap { margin-top: 14px; }
+
 .exp-evidence {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
-  margin-top: 12px;
-  flex-wrap: wrap;
+  gap: 12px;
+  cursor: pointer;
+  padding: 4px 4px 4px 0;
 }
-.exp-evidence__label {
-  font-family: var(--font-mono);
-  font-size: 9.5px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  margin-right: 4px;
-}
-.exp-evidence__thumb {
+
+.exp-evidence__stack {
   position: relative;
-  width: 40px;
-  height: 40px;
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+}
+.exp-evidence__card {
+  position: absolute;
+  inset: 0;
   border: 1px solid var(--hair-strong);
   background: var(--paper-deep);
   overflow: hidden;
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
 }
-.exp-evidence__thumb:hover { border-color: var(--ink); transform: translateY(-1px); }
-.exp-evidence__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* tarjetas de fondo, ligeramente desplazadas y rotadas — efecto "expediente visual" */
+.exp-evidence__card--2 { transform: translate(4px, -4px) rotate(4deg); z-index: 1; }
+.exp-evidence__card--3 { transform: translate(7px, -7px) rotate(-3deg); z-index: 0; }
+.exp-evidence__card--main {
+  position: relative;
+  z-index: 2;
+  background: var(--paper-deep);
+  box-shadow: 2px 2px 0 var(--paper), 2px 2px 0 1px var(--hair-strong);
+}
+.exp-evidence:hover .exp-evidence__card--2 { transform: translate(5px, -5px) rotate(5deg); }
+.exp-evidence:hover .exp-evidence__card--3 { transform: translate(9px, -9px) rotate(-4deg); }
+.exp-evidence:hover .exp-evidence__card--main { transform: translateY(-1px); }
+
+.exp-evidence__card--main img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .exp-evidence__thumb-fallback {
   display: none;
   width: 100%; height: 100%;
@@ -722,27 +732,32 @@ body::before {
   font-size: 13px;
   color: var(--ink-faint);
 }
-.exp-evidence__thumb::after {
-  content: "";
+.exp-evidence__icon {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(transparent 55%, rgba(23,21,15,0.35));
-  opacity: 0;
-  transition: opacity 0.2s var(--ease);
+  right: -5px;
+  bottom: -5px;
+  width: 18px;
+  height: 18px;
+  background: var(--ink);
+  color: var(--white);
+  border: 1px solid var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
 }
-.exp-evidence__thumb:hover::after { opacity: 1; }
-.exp-evidence__more {
-  width: 40px; height: 40px;
-  border: 1px dashed var(--hair-strong);
-  display: flex; align-items: center; justify-content: center;
+
+.exp-evidence__label {
   font-family: var(--font-mono);
   font-size: 10px;
-  color: var(--ink-faint);
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  border-bottom: 1px dotted var(--hair-strong);
+  padding-bottom: 2px;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
 }
-.exp-evidence__more:hover { border-color: var(--ink); color: var(--ink); }
+.exp-evidence:hover .exp-evidence__label { color: var(--red); border-color: var(--red); }
 
 /* Lightbox */
 .lightbox {
@@ -863,32 +878,35 @@ body::before {
   position: relative;
   border: 1px solid var(--hair-strong);
   background: var(--paper-deep);
-  min-height: 0;
-  flex: 1;
+  flex: none;
   display: flex;
   flex-direction: column;
 }
 .proj__gallery-frame {
   position: relative;
-  flex: 1;
-  min-height: 0;
+  aspect-ratio: 4 / 3; /* mismo marco y proporción en todos los proyectos, sin importar el tamaño original de cada imagen */
+  width: 100%;
+  background: var(--paper-deep);
+  display: grid;
+  place-items: center;
   overflow: hidden;
 }
 .proj__gallery-track {
   display: flex;
+  width: 100%;
   height: 100%;
   transition: transform 0.5s var(--ease);
 }
 .proj__slide {
   flex: 0 0 100%;
+  width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
   position: relative;
   background: var(--paper-deep);
 }
-.proj__slide img { width: 100%; height: 100%; object-fit: contain; }
+.proj__slide img { width: 100%; height: 100%; object-fit: contain; object-position: center; }
 .proj__slide-fallback {
   display: none;
   flex-direction: column;
@@ -1176,8 +1194,8 @@ body::before {
   .proj__grid { grid-template-columns: 1fr; gap: 18px; }
   .proj-title--desktop { display: none; }
   .proj-title--mobile { display: block !important; font-size: clamp(22px, 6.5vw, 28px); margin-bottom: 4px; }
-  .proj__gallery { flex: none; width: 100%; max-width: 100%; height: 46vh; height: 46dvh; min-height: 220px; max-height: 340px; }
-  .proj__gallery-frame { width: 100%; max-width: 100%; }
+  .proj__gallery { flex: none; width: 100%; max-width: 100%; }
+  .proj__gallery-frame { width: 100%; max-width: 100%; aspect-ratio: 4 / 3; }
   .proj__slide img { max-width: 100%; }
   .proj__meta { margin-top: 12px; flex-wrap: wrap; }
   .proj__desc { max-width: 100%; }
@@ -1187,7 +1205,7 @@ body::before {
   .exp-row__role { font-size: 16px; }
   .exp-row__list { margin-top: 4px; }
   .exp-row__list li { font-size: 13.5px; line-height: 1.5; }
-  .exp-evidence__thumb, .exp-evidence__more { width: 44px; height: 44px; }
+  .exp-evidence__stack { width: 50px; height: 50px; }
 
   .skills__cols { grid-template-columns: 1fr 1fr; gap: 22px 20px; }
   .edu__cols { grid-template-columns: 1fr; gap: 26px; }
@@ -1231,7 +1249,7 @@ body::before {
   .skills__cols { grid-template-columns: 1fr; }
   :root { --sheet-pad-x: 20px; }
   .hero__actions .btn { flex: 1 1 auto; justify-content: center; }
-  .proj__gallery { height: 42vh; min-height: 220px; }
+  .proj__gallery-frame { aspect-ratio: 4 / 3; }
 }
 
 @media (prefers-reduced-motion: reduce) {

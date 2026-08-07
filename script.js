@@ -260,6 +260,7 @@ const EXPERIENCE_EVIDENCE = {
   ],
   exp3: [
     { img: 'imagenes/experience/aio-constructora/evid1.jpg', caption_es: 'Modelo estructural BIM', caption_en: 'BIM structural model' },
+    { img: 'imagenes/experience/aio-constructora/evid2.jpg', caption_es: 'Modelo Revit/BIM de la nave industrial', caption_en: 'Revit/BIM model of the industrial warehouse' },
     { img: 'imagenes/experience/aio-constructora/evid3.jpg', caption_es: 'Detalle de especificaciones técnicas', caption_en: 'Technical specifications detail' },
     { img: 'imagenes/experience/aio-constructora/evid4.jpg', caption_es: 'Documentación MEP del proyecto', caption_en: 'Project MEP documentation' },
   ],
@@ -268,30 +269,40 @@ const EXPERIENCE_EVIDENCE = {
 let lightboxState = { expId: null, index: 0 };
 
 function renderExperienceEvidence() {
-  document.querySelectorAll('.exp-evidence').forEach(container => {
+  document.querySelectorAll('.exp-evidence-wrap').forEach(container => {
     const expId = container.dataset.exp;
     const items = EXPERIENCE_EVIDENCE[expId];
     if (!items || !items.length) return;
 
-    const labelSpan = document.createElement('span');
-    labelSpan.className = 'exp-evidence__label';
-    labelSpan.setAttribute('data-i18n', 'exp.evidenceLabel');
-    labelSpan.textContent = T[currentLang]['exp.evidenceLabel'] || 'Evidencia';
-    container.appendChild(labelSpan);
+    const mainItem = items[0];
+    const stackCount = Math.min(items.length - 1, 2); // hasta 2 tarjetas detrás de la principal
 
-    items.slice(0, 4).forEach((item, i) => {
-      const thumb = document.createElement('button');
-      thumb.type = 'button';
-      thumb.className = 'exp-evidence__thumb';
-      thumb.setAttribute('aria-label', item.caption_es);
-      thumb.innerHTML = `
-        <img src="${item.img}" alt="${item.caption_es}" loading="lazy"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-        <span class="exp-evidence__thumb-fallback">🗎</span>
-      `;
-      thumb.addEventListener('click', () => openLightbox(expId, i));
-      container.appendChild(thumb);
-    });
+    let stackCards = '';
+    for (let i = 0; i < stackCount; i++) {
+      stackCards += `<span class="exp-evidence__card exp-evidence__card--${i + 2}" aria-hidden="true"></span>`;
+    }
+
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'exp-evidence';
+    btn.dataset.count = String(items.length);
+    btn.setAttribute('aria-label', `${T[currentLang]['exp.evidenceLabel'] || 'Evidencia'} (${items.length})`);
+    btn.innerHTML = `
+      <span class="exp-evidence__stack">
+        ${stackCards}
+        <span class="exp-evidence__card exp-evidence__card--main">
+          <img src="${mainItem.img}" alt="${mainItem.caption_es}" loading="lazy"
+            onerror="this.style.display='none'; this.parentElement.querySelector('.exp-evidence__thumb-fallback').style.display='flex';" />
+          <span class="exp-evidence__thumb-fallback">🗎</span>
+          <span class="exp-evidence__icon" aria-hidden="true">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </span>
+        </span>
+      </span>
+      <span class="exp-evidence__label exp-evidence__count">${T[currentLang]['exp.evidenceLabel'] || 'Evidencia'} (${items.length})</span>
+    `;
+    btn.addEventListener('click', () => openLightbox(expId, 0));
+    container.appendChild(btn);
   });
 }
 
@@ -350,6 +361,19 @@ function initLightbox() {
     if (e.key === 'ArrowRight') lightboxStep(1);
     if (e.key === 'ArrowLeft') lightboxStep(-1);
   });
+
+  // Swipe horizontal en móvil para navegar entre imágenes
+  const frame = document.querySelector('.lightbox__frame');
+  if (frame) {
+    let touchStartX = null;
+    frame.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
+    frame.addEventListener('touchend', (e) => {
+      if (touchStartX === null) return;
+      const deltaX = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(deltaX) > 40) lightboxStep(deltaX < 0 ? 1 : -1);
+      touchStartX = null;
+    }, { passive: true });
+  }
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
@@ -554,8 +578,7 @@ function buildProjectSheets() {
       </div>
     `;
 
-    section.querySelector('.proj-code').textContent =
-      (section.dataset.labelI18n && dict[section.dataset.labelI18n]) || project.code;
+    section.querySelector('.proj-code').textContent = project.code;
     frag.appendChild(section);
   });
 
@@ -597,6 +620,8 @@ function renderProjectContent(lang) {
         el.textContent = data.title;
       }
     });
+    section.querySelector('.proj-code').textContent =
+      (section.dataset.labelI18n && dict[section.dataset.labelI18n]) || project.code;
     section.querySelector('.proj-date').textContent = data.date;
     section.querySelector('.proj-location').textContent = data.location;
     section.querySelector('.proj-desc').textContent = data.description;
@@ -721,7 +746,14 @@ function applyLang(lang) {
 
   buildRulerLabels();
 
-  document.querySelectorAll('.exp-evidence__label').forEach(el => { el.textContent = dict['exp.evidenceLabel']; });
+  document.querySelectorAll('.exp-evidence').forEach(btn => {
+    const label = dict['exp.evidenceLabel'] || 'Evidencia';
+    const count = btn.dataset.count || '';
+    const text = count ? `${label} (${count})` : label;
+    const countSpan = btn.querySelector('.exp-evidence__count');
+    if (countSpan) countSpan.textContent = text;
+    btn.setAttribute('aria-label', text);
+  });
   if (document.getElementById('lightbox') && document.getElementById('lightbox').getAttribute('data-open') === 'true') {
     renderLightboxSlide();
   }
