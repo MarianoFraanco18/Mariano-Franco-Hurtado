@@ -8,6 +8,25 @@
 /* ─────────────────────────────────────────────────────────────────────────
    DATOS DE PROYECTOS (bilingüe) — igual origen de datos que la versión anterior
 ───────────────────────────────────────────────────────────────────────── */
+/* Descripciones de empresa/cliente — se muestran como tooltip al pasar el cursor
+   (o al tocar, en móvil) sobre el nombre de la empresa dentro del título del proyecto.
+   Solo aplica a los proyectos con un cliente externo (Diageo, CLJ, CONAGUA); los dos
+   proyectos de automatización interna no tienen una empresa cliente asociada. */
+const COMPANY_DESC = {
+  diageo: {
+    es: 'Compañía global líder en bebidas alcohólicas y espirituosas premium, dedicada a la fabricación y distribución de una amplia gama de destilados, cervezas y licores reconocidos internacionalmente. Opera en más de 180 países y gestiona marcas icónicas como Don Julio.',
+    en: 'Global leader in premium alcoholic beverages and spirits, manufacturing and distributing internationally recognised distilled spirits, beers and liquors. Operates in more than 180 countries and manages iconic brands such as Don Julio.',
+  },
+  clj: {
+    es: 'Parque industrial y centro logístico estratégico diseñado para albergar operaciones de manufactura, almacenamiento y distribución en un entorno multimodal y moderno. Ofrece infraestructura de clase mundial y servicios integrales para la industria ligera, pesada y de logística nacional e internacional.',
+    en: 'Strategic industrial park and logistics center for manufacturing, storage and distribution operations in a modern multimodal environment. Offers world-class infrastructure and comprehensive services for light and heavy industry and national/international logistics.',
+  },
+  conagua: {
+    es: 'Organismo público encargado de administrar, regular y proteger las aguas nacionales, gestionando de forma sustentable los recursos hídricos del país, desarrollando y operando infraestructura hidráulica, y previniendo riesgos asociados a fenómenos meteorológicos e hidrometeorológicos.',
+    en: "Public agency responsible for administering, regulating and protecting national waters, sustainably managing the country's water resources, developing and operating hydraulic infrastructure, and preventing risks associated with meteorological and hydrometeorological phenomena.",
+  },
+};
+
 const PROJECTS_ORDER = ['diageo', 'clj', 'conagua', 'excel-autocad', 'gpr-autohotkey'];
 
 const PROJECTS = {
@@ -372,6 +391,8 @@ const T = {
     'exp.evidenceLabel': 'Evidencia',
     'lightbox.missing': 'Imagen de evidencia pendiente de subir',
 
+    'proj.clj.short': 'AEROPISTA', 'proj.gpr.short': 'GPR-SLICE',
+
     'skills.tag': 'Competencias', 'skills.title': 'Habilidades',
     'skills.techTag': 'Habilidades técnicas', 'skills.softTag': 'Habilidades blandas',
     'skills.grp.cad': 'CAD & Diseño', 'skills.grp.geo': 'Geomática & Topografía', 'skills.grp.gpr': 'Georradar (GPR)',
@@ -431,6 +452,8 @@ const T = {
     'exp.evidenceLabel': 'Evidence',
     'lightbox.missing': 'Evidence image pending upload',
 
+    'proj.clj.short': 'AIRSTRIP', 'proj.gpr.short': 'GPR-SLICE',
+
     'skills.tag': 'Competencies', 'skills.title': 'Skills',
     'skills.techTag': 'Technical skills', 'skills.softTag': 'Soft skills',
     'skills.grp.cad': 'CAD & Design', 'skills.grp.geo': 'Geomatics & Surveying', 'skills.grp.gpr': 'Ground Penetrating Radar',
@@ -479,6 +502,8 @@ function buildProjectSheets() {
     section.dataset.sheet = String(sheetIndex);
     section.dataset.project = key;
     section.dataset.label = project.code;
+    if (key === 'clj') section.dataset.labelI18n = 'proj.clj.short';
+    if (key === 'gpr-autohotkey') section.dataset.labelI18n = 'proj.gpr.short';
 
     section.innerHTML = `
       <span class="sheet__reg-bl" aria-hidden="true"></span><span class="sheet__reg-br" aria-hidden="true"></span>
@@ -529,7 +554,8 @@ function buildProjectSheets() {
       </div>
     `;
 
-    section.querySelector('.proj-code').textContent = project.code;
+    section.querySelector('.proj-code').textContent =
+      (section.dataset.labelI18n && dict[section.dataset.labelI18n]) || project.code;
     frag.appendChild(section);
   });
 
@@ -542,13 +568,35 @@ function buildProjectSheets() {
 const galleryState = {}; // { key: { current, total } }
 
 function renderProjectContent(lang) {
+  const dict = T[lang];
   PROJECTS_ORDER.forEach(key => {
     const project = PROJECTS[key];
     const data = project[lang] || project.es;
     const section = document.querySelector(`.sheet--project[data-project="${key}"]`);
     if (!section) return;
 
-    section.querySelectorAll('.proj-title').forEach(el => { el.textContent = data.title; });
+    // Si el título tiene forma "Nombre del proyecto — EMPRESA" y esa empresa tiene
+    // descripción, se envuelve solo esa parte en un span con tooltip (hover/tap).
+    const companyDesc = COMPANY_DESC[key];
+    const dashIdx = data.title.lastIndexOf(' — ');
+    section.querySelectorAll('.proj-title').forEach(el => {
+      if (companyDesc && dashIdx > -1) {
+        const before = data.title.slice(0, dashIdx + 3);
+        const company = data.title.slice(dashIdx + 3);
+        el.textContent = '';
+        el.appendChild(document.createTextNode(before));
+        const span = document.createElement('span');
+        span.className = 'proj-company';
+        span.setAttribute('data-desc-es', companyDesc.es);
+        span.setAttribute('data-desc-en', companyDesc.en);
+        span.setAttribute('data-desc', lang === 'en' ? companyDesc.en : companyDesc.es);
+        span.setAttribute('tabindex', '0');
+        span.textContent = company;
+        el.appendChild(span);
+      } else {
+        el.textContent = data.title;
+      }
+    });
     section.querySelector('.proj-date').textContent = data.date;
     section.querySelector('.proj-location').textContent = data.location;
     section.querySelector('.proj-desc').textContent = data.description;
@@ -667,10 +715,11 @@ function applyLang(lang) {
   document.title = lang === 'en' ? 'Mariano Franco Hurtado — Civil Engineer' : 'Mariano Franco Hurtado — Ingeniero Civil';
 
   renderProjectContent(lang);
-  buildRulerLabels();
 
   localStorage.setItem('portfolio-lang', lang);
-  currentLang = lang;
+  currentLang = lang; // debe actualizarse antes de buildRulerLabels(), que lee currentLang
+
+  buildRulerLabels();
 
   document.querySelectorAll('.exp-evidence__label').forEach(el => { el.textContent = dict['exp.evidenceLabel']; });
   if (document.getElementById('lightbox') && document.getElementById('lightbox').getAttribute('data-open') === 'true') {
@@ -1088,38 +1137,37 @@ function injectPageSketches() {
    getBoundingClientRect() para que NUNCA se salga del viewport,
    sin importar si la píldora está al centro, al inicio o al final de su fila.
 ───────────────────────────────────────────────────────────────────────── */
-function initSkillTooltip() {
+function initDescTooltips() {
   const tooltip = document.getElementById('skillTooltip');
   const textEl = document.getElementById('skillTooltipText');
   if (!tooltip || !textEl) return;
 
-  const canHover = () => window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   const GAP = 10;
   const MARGIN = 16;
 
-  function showTooltip(pill) {
-    const desc = pill.getAttribute('data-desc');
-    if (!desc || !canHover()) return;
+  function showTooltip(el) {
+    const desc = el.getAttribute('data-desc');
+    if (!desc) return;
     textEl.textContent = desc;
 
     tooltip.style.left = '0px';
     tooltip.style.top = '0px';
     tooltip.setAttribute('data-open', 'true');
 
-    const pillRect = pill.getBoundingClientRect();
+    const elRect = el.getBoundingClientRect();
     const ttRect = tooltip.getBoundingClientRect();
     const vw = window.innerWidth;
     const vh = window.innerHeight;
 
-    // Horizontal: centrado sobre la píldora, pero acotado a los márgenes del viewport
-    let left = pillRect.left + pillRect.width / 2 - ttRect.width / 2;
+    // Horizontal: centrado sobre el elemento, pero acotado a los márgenes del viewport
+    let left = elRect.left + elRect.width / 2 - ttRect.width / 2;
     left = Math.max(MARGIN, Math.min(left, vw - ttRect.width - MARGIN));
 
-    // Vertical: preferentemente arriba de la píldora; si no cabe, se coloca debajo
-    let top = pillRect.top - ttRect.height - GAP;
-    let arrow = 'top'; // la flecha apunta hacia abajo, hacia la píldora
+    // Vertical: preferentemente arriba del elemento; si no cabe, se coloca debajo
+    let top = elRect.top - ttRect.height - GAP;
+    let arrow = 'top';
     if (top < MARGIN) {
-      top = pillRect.bottom + GAP;
+      top = elRect.bottom + GAP;
       arrow = 'bottom';
     }
     top = Math.max(MARGIN, Math.min(top, vh - ttRect.height - MARGIN));
@@ -1128,8 +1176,7 @@ function initSkillTooltip() {
     tooltip.style.top = `${Math.round(top)}px`;
     tooltip.setAttribute('data-arrow', arrow);
 
-    // La flecha apunta horizontalmente hacia el centro de la píldora, acotada al ancho del tooltip
-    const arrowLeft = Math.max(12, Math.min(pillRect.left + pillRect.width / 2 - left - 4.5, ttRect.width - 20));
+    const arrowLeft = Math.max(12, Math.min(elRect.left + elRect.width / 2 - left - 4.5, ttRect.width - 20));
     tooltip.querySelector('.skill-tooltip__arrow').style.left = `${arrowLeft}px`;
   }
 
@@ -1137,15 +1184,34 @@ function initSkillTooltip() {
     tooltip.setAttribute('data-open', 'false');
   }
 
-  document.querySelectorAll('.skill-pill[data-desc-en]').forEach(pill => {
-    pill.addEventListener('mouseenter', () => showTooltip(pill));
-    pill.addEventListener('mouseleave', hideTooltip);
-    pill.addEventListener('focus', () => showTooltip(pill));
-    pill.addEventListener('blur', hideTooltip);
+  // Delegación en document: cubre tanto elementos estáticos (píldoras de habilidades,
+  // nombres de empresa en experiencia) como dinámicos (nombre de empresa en el título
+  // de proyecto, que se reconstruye cada vez que cambia el idioma).
+  document.addEventListener('mouseover', (e) => {
+    const el = e.target.closest('[data-desc-en]');
+    if (el) showTooltip(el);
+  });
+  document.addEventListener('mouseout', (e) => {
+    const el = e.target.closest('[data-desc-en]');
+    if (el && !el.contains(e.relatedTarget)) hideTooltip();
+  });
+  // En móvil no hay hover: el foco (al tocar, si el elemento es enfocable) muestra el tooltip
+  document.addEventListener('focusin', (e) => {
+    const el = e.target.closest('[data-desc-en]');
+    if (el) showTooltip(el);
+  });
+  document.addEventListener('focusout', (e) => {
+    const el = e.target.closest('[data-desc-en]');
+    if (el) hideTooltip();
   });
 
   window.addEventListener('scroll', hideTooltip, true);
   window.addEventListener('resize', hideTooltip);
+
+  // Hace que los elementos con descripción sean enfocables (necesario para el tap en móvil)
+  document.querySelectorAll('[data-desc-en]').forEach(el => {
+    if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+  });
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
@@ -1181,7 +1247,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initProjectGalleryControls();
   renderExperienceEvidence();
   initLightbox();
-  initSkillTooltip();
+  initDescTooltips();
   buildRuler();
   injectPageSketches();
   initObserver();

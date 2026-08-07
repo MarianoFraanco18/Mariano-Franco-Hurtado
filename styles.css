@@ -977,10 +977,11 @@ body::before {
 }
 .skill-row { display: flex; flex-wrap: wrap; gap: 0 4px; }
 
-/* Tooltip de descripción — un único elemento posicionado por JS (ver initSkillTooltip),
+/* Tooltip de descripción — un único elemento posicionado por JS (ver initDescTooltips),
    que se ajusta con getBoundingClientRect() para NUNCA salirse del viewport,
-   sin importar si la píldora está al centro, al inicio o al final de su fila. */
-.skill-pill[data-desc] { cursor: help; }
+   sin importar si el elemento está al centro, al inicio o al final de su fila.
+   Funciona con hover en desktop y con tap/foco en móvil (ver JS). */
+.skill-pill[data-desc], .exp-row__co[data-desc], .proj-company[data-desc] { cursor: help; }
 
 .skill-tooltip {
   position: fixed;
@@ -1016,9 +1017,7 @@ body::before {
 .skill-tooltip[data-arrow="top"] .skill-tooltip__arrow { bottom: -5px; transform: rotate(45deg); }
 .skill-tooltip[data-arrow="bottom"] .skill-tooltip__arrow { top: -5px; transform: rotate(225deg); }
 
-@media not all and (hover: hover) and (pointer: fine) {
-  .skill-tooltip { display: none; } /* solo desktop con mouse real */
-}
+.proj-company { border-bottom: 1px dotted var(--hair-strong); }
 
 /* Separación hacia el bloque de habilidades blandas — misma jerarquía de subtítulo,
    solo se distingue por estar más abajo y precedida de una línea fina */
@@ -1049,7 +1048,15 @@ body::before {
   margin-bottom: 14px;
 }
 .edu__item { display: flex; gap: 12px; margin-bottom: 18px; }
-.edu__item img { width: 40px; height: 40px; object-fit: contain; border: 1px solid var(--hair-strong); background: var(--white); }
+.edu__item img {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid var(--hair-strong);
+  background: var(--white);
+  flex-shrink: 0;
+}
 .edu__item-title { font-size: 13.5px; font-weight: 600; color: var(--ink); }
 .edu__item-inst { font-size: 12px; color: var(--ink-soft); margin-top: 2px; }
 .edu__item-date { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-faint); margin-top: 3px; }
