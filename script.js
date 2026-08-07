@@ -266,7 +266,7 @@ const EXPERIENCE_EVIDENCE = {
   ],
 };
 
-let lightboxState = { expId: null, index: 0 };
+let lightboxState = { type: 'exp', id: null, index: 0 };
 
 function renderExperienceEvidence() {
   document.querySelectorAll('.exp-evidence-wrap').forEach(container => {
@@ -293,7 +293,9 @@ function renderExperienceEvidence() {
         <span class="exp-evidence__card exp-evidence__card--main">
           <img src="${mainItem.img}" alt="${mainItem.caption_es}" loading="lazy"
             onerror="this.style.display='none'; this.parentElement.querySelector('.exp-evidence__thumb-fallback').style.display='flex';" />
-          <span class="exp-evidence__thumb-fallback">🗎</span>
+          <span class="exp-evidence__thumb-fallback">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="15" height="13" rx="1"/><path d="M7 7V4a1 1 0 011-1h13a1 1 0 011 1v13a1 1 0 01-1 1h-3"/><circle cx="7.5" cy="11.5" r="1.3"/><path d="M4 17l3-3.1a1 1 0 011.4-.05L11.5 16.5"/></svg>
+          </span>
           <span class="exp-evidence__icon" aria-hidden="true">
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
           </span>
@@ -301,15 +303,30 @@ function renderExperienceEvidence() {
       </span>
       <span class="exp-evidence__label exp-evidence__count">${T[currentLang]['exp.evidenceLabel'] || 'Evidencia'} (${items.length})</span>
     `;
-    btn.addEventListener('click', () => openLightbox(expId, 0));
+    btn.addEventListener('click', () => openLightbox('exp', expId, 0));
     container.appendChild(btn);
   });
 }
 
-function openLightbox(expId, index) {
-  const items = EXPERIENCE_EVIDENCE[expId];
+function getLightboxItems() {
+  if (lightboxState.type === 'project') {
+    const project = PROJECTS[lightboxState.id];
+    if (!project) return [];
+    const data = project[currentLang] || project.es;
+    return data.slides;
+  }
+  return EXPERIENCE_EVIDENCE[lightboxState.id] || [];
+}
+
+function getLightboxCaption(item) {
+  if (lightboxState.type === 'project') return item.label; // ya viene en el idioma correcto
+  return currentLang === 'en' ? item.caption_en : item.caption_es;
+}
+
+function openLightbox(type, id, index) {
+  const items = type === 'project' ? (PROJECTS[id] ? (PROJECTS[id][currentLang] || PROJECTS[id].es).slides : []) : (EXPERIENCE_EVIDENCE[id] || []);
   if (!items || !items.length) return;
-  lightboxState = { expId, index: (index + items.length) % items.length };
+  lightboxState = { type, id, index: (index + items.length) % items.length };
   renderLightboxSlide();
   const lb = document.getElementById('lightbox');
   lb.setAttribute('data-open', 'true');
@@ -323,8 +340,9 @@ function closeLightbox() {
 }
 
 function renderLightboxSlide() {
-  const items = EXPERIENCE_EVIDENCE[lightboxState.expId];
+  const items = getLightboxItems();
   const item = items[lightboxState.index];
+  if (!item) return;
   const img = document.getElementById('lightboxImg');
   const fallback = document.getElementById('lightboxFallback');
   const caption = document.getElementById('lightboxCaption');
@@ -334,15 +352,15 @@ function renderLightboxSlide() {
   fallback.style.display = 'none';
   img.onerror = () => { img.style.display = 'none'; fallback.style.display = 'flex'; };
   img.src = item.img;
-  img.alt = currentLang === 'en' ? item.caption_en : item.caption_es;
+  img.alt = getLightboxCaption(item);
 
-  caption.textContent = currentLang === 'en' ? item.caption_en : item.caption_es;
+  caption.textContent = getLightboxCaption(item);
   counter.textContent = `${String(lightboxState.index + 1).padStart(2, '0')} / ${String(items.length).padStart(2, '0')}`;
 }
 
 function lightboxStep(delta) {
-  const items = EXPERIENCE_EVIDENCE[lightboxState.expId];
-  if (!items) return;
+  const items = getLightboxItems();
+  if (!items.length) return;
   lightboxState.index = (lightboxState.index + delta + items.length) % items.length;
   renderLightboxSlide();
 }
@@ -541,6 +559,9 @@ function buildProjectSheets() {
             <div class="proj__gallery">
               <div class="proj__gallery-frame">
                 <div class="proj__gallery-track proj-track"></div>
+                <button class="proj__gallery-expand proj-expand" type="button" aria-label="Ampliar imagen">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                </button>
               </div>
               <div class="proj__gallery-bar">
                 <span class="proj-slide-label"></span>
@@ -678,6 +699,10 @@ function initProjectGalleryControls() {
       const idx = dots.indexOf(e.target);
       if (idx > -1) goToProjectSlide(key, idx);
     });
+    const expandBtn = section.querySelector('.proj-expand');
+    if (expandBtn) {
+      expandBtn.addEventListener('click', () => openLightbox('project', key, galleryState[key] ? galleryState[key].current : 0));
+    }
   });
 }
 
@@ -1176,15 +1201,20 @@ function initDescTooltips() {
 
   const GAP = 10;
   const MARGIN = 16;
+  let activeEl = null;
+  let lastShowAt = 0;
 
   function showTooltip(el) {
     const desc = el.getAttribute('data-desc');
     if (!desc) return;
     textEl.textContent = desc;
+    tooltip.classList.toggle('skill-tooltip--wide', !el.classList.contains('skill-pill'));
 
     tooltip.style.left = '0px';
     tooltip.style.top = '0px';
     tooltip.setAttribute('data-open', 'true');
+    activeEl = el;
+    lastShowAt = Date.now();
 
     const elRect = el.getBoundingClientRect();
     const ttRect = tooltip.getBoundingClientRect();
@@ -1214,6 +1244,7 @@ function initDescTooltips() {
 
   function hideTooltip() {
     tooltip.setAttribute('data-open', 'false');
+    activeEl = null;
   }
 
   // Delegación en document: cubre tanto elementos estáticos (píldoras de habilidades,
@@ -1227,7 +1258,7 @@ function initDescTooltips() {
     const el = e.target.closest('[data-desc-en]');
     if (el && !el.contains(e.relatedTarget)) hideTooltip();
   });
-  // En móvil no hay hover: el foco (al tocar, si el elemento es enfocable) muestra el tooltip
+  // Teclado: Tab enfoca el elemento y muestra el tooltip
   document.addEventListener('focusin', (e) => {
     const el = e.target.closest('[data-desc-en]');
     if (el) showTooltip(el);
@@ -1235,6 +1266,17 @@ function initDescTooltips() {
   document.addEventListener('focusout', (e) => {
     const el = e.target.closest('[data-desc-en]');
     if (el) hideTooltip();
+  });
+  // Táctil: un tap alterna abrir/cerrar. Se ignora el click si ocurrió justo después
+  // de mostrarse por el "focus" del mismo tap (evita que se abra y cierre de golpe).
+  document.addEventListener('click', (e) => {
+    const el = e.target.closest('[data-desc-en]');
+    if (el) {
+      if (Date.now() - lastShowAt < 350 && activeEl === el) return;
+      if (activeEl === el) hideTooltip(); else showTooltip(el);
+    } else if (!e.target.closest('.skill-tooltip')) {
+      hideTooltip();
+    }
   });
 
   window.addEventListener('scroll', hideTooltip, true);

@@ -887,8 +887,6 @@ body::before {
   aspect-ratio: 4 / 3; /* mismo marco y proporción en todos los proyectos, sin importar el tamaño original de cada imagen */
   width: 100%;
   background: var(--paper-deep);
-  display: grid;
-  place-items: center;
   overflow: hidden;
 }
 .proj__gallery-track {
@@ -901,8 +899,9 @@ body::before {
   flex: 0 0 100%;
   width: 100%;
   height: 100%;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   background: var(--paper-deep);
 }
@@ -920,6 +919,24 @@ body::before {
   letter-spacing: 0.03em;
 }
 .proj__slide-fallback span.ic { font-size: 30px; }
+
+.proj__gallery-expand {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(251, 249, 242, 0.9);
+  border: 1px solid var(--hair-strong);
+  color: var(--ink-soft);
+  z-index: 2;
+  touch-action: manipulation;
+  transition: background 0.2s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.proj__gallery-expand:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
 
 .proj__gallery-bar {
   display: flex;
@@ -1018,6 +1035,13 @@ body::before {
   pointer-events: none;
   transform: translateY(4px);
   transition: opacity 0.15s var(--ease), transform 0.15s var(--ease);
+}
+/* Descripciones largas (empresas) — más ancho y letra más grande que las píldoras de habilidades */
+.skill-tooltip--wide {
+  max-width: min(420px, calc(100vw - 32px));
+  font-size: 12.5px;
+  line-height: 1.55;
+  padding: 12px 16px;
 }
 .skill-tooltip[data-open="true"] {
   opacity: 1;
