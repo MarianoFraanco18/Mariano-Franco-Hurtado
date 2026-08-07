@@ -294,7 +294,7 @@ function renderExperienceEvidence() {
           <img src="${mainItem.img}" alt="${mainItem.caption_es}" loading="lazy"
             onerror="this.style.display='none'; this.parentElement.querySelector('.exp-evidence__thumb-fallback').style.display='flex';" />
           <span class="exp-evidence__thumb-fallback">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="15" height="13" rx="1"/><path d="M7 7V4a1 1 0 011-1h13a1 1 0 011 1v13a1 1 0 01-1 1h-3"/><circle cx="7.5" cy="11.5" r="1.3"/><path d="M4 17l3-3.1a1 1 0 011.4-.05L11.5 16.5"/></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="15" height="13" rx="1"/><path d="M7 7V4a1 1 0 011-1h13a1 1 0 011 1v13a1 1 0 01-1 1h-3"/><circle cx="7.5" cy="11.5" r="1.3"/><path d="M4 17l3-3.1a1 1 0 011.4-.05L11.5 16.5"/></svg>
           </span>
           <span class="exp-evidence__icon" aria-hidden="true">
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
@@ -701,7 +701,38 @@ function initProjectGalleryControls() {
     });
     const expandBtn = section.querySelector('.proj-expand');
     if (expandBtn) {
-      expandBtn.addEventListener('click', () => openLightbox('project', key, galleryState[key] ? galleryState[key].current : 0));
+      expandBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // el frame también abre el lightbox al hacer clic; evita abrirlo dos veces
+        openLightbox('project', key, galleryState[key] ? galleryState[key].current : 0);
+      });
+    }
+
+    // Clic directo sobre la imagen activa: abre el lightbox maximizado
+    // Swipe táctil sobre el marco: navega el carrusel normal (sin maximizar)
+    const frame = section.querySelector('.proj__gallery-frame');
+    if (frame) {
+      let touchStartX = null;
+      let wasSwipe = false;
+      frame.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].clientX;
+        wasSwipe = false;
+      }, { passive: true });
+      frame.addEventListener('touchmove', () => { wasSwipe = true; }, { passive: true });
+      frame.addEventListener('touchend', (e) => {
+        if (touchStartX === null) return;
+        const deltaX = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(deltaX) > 40) {
+          goToProjectSlide(key, galleryState[key].current + (deltaX < 0 ? 1 : -1));
+          wasSwipe = true;
+        }
+        touchStartX = null;
+      }, { passive: true });
+
+      frame.addEventListener('click', (e) => {
+        if (e.target.closest('.proj-expand')) return;
+        if (wasSwipe) { wasSwipe = false; return; } // fue un swipe, no un tap sobre la imagen
+        openLightbox('project', key, galleryState[key] ? galleryState[key].current : 0);
+      });
     }
   });
 }

@@ -686,61 +686,62 @@ body::before {
 .exp-row__list li::before { content: "—"; position: absolute; left: 0; color: var(--ink-faint); }
 .exp-row__tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
 
-/* Galería compacta de evidencia por experiencia — pila de fotografías */
-.exp-evidence-wrap { margin-top: 14px; }
+/* Galería compacta de evidencia por experiencia — pila de fotografías orgánica */
+.exp-evidence-wrap { margin: 10px 0 4px; }
 
 .exp-evidence {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   cursor: pointer;
-  padding: 4px 4px 4px 0;
+  padding: 6px 6px 6px 0;
 }
 
 .exp-evidence__stack {
   position: relative;
-  width: 46px;
-  height: 46px;
+  width: 64px;
+  height: 64px;
   flex-shrink: 0;
 }
 .exp-evidence__card {
   position: absolute;
   inset: 0;
   border: 1px solid var(--hair-strong);
+  border-radius: 8px;
   background: var(--paper-deep);
   overflow: hidden;
-  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
-/* tarjetas de fondo, ligeramente desplazadas y rotadas — efecto "expediente visual" */
-.exp-evidence__card--2 { transform: translate(4px, -4px) rotate(4deg); z-index: 1; }
-.exp-evidence__card--3 { transform: translate(7px, -7px) rotate(-3deg); z-index: 0; }
+/* tarjetas de fondo, desplazadas y rotadas — efecto orgánico de fotos apiladas */
+.exp-evidence__card--2 { transform: translate(6px, -5px) rotate(7deg); z-index: 1; box-shadow: 1px 2px 5px rgba(23,21,15,0.10); }
+.exp-evidence__card--3 { transform: translate(11px, -9px) rotate(-6deg); z-index: 0; box-shadow: 1px 2px 5px rgba(23,21,15,0.08); }
 .exp-evidence__card--main {
   position: relative;
   z-index: 2;
   background: var(--paper-deep);
-  box-shadow: 2px 2px 0 var(--paper), 2px 2px 0 1px var(--hair-strong);
+  box-shadow: 0 3px 10px rgba(23, 21, 15, 0.16);
 }
-.exp-evidence:hover .exp-evidence__card--2 { transform: translate(5px, -5px) rotate(5deg); }
-.exp-evidence:hover .exp-evidence__card--3 { transform: translate(9px, -9px) rotate(-4deg); }
-.exp-evidence:hover .exp-evidence__card--main { transform: translateY(-1px); }
+.exp-evidence:hover .exp-evidence__card--2 { transform: translate(8px, -7px) rotate(9deg); }
+.exp-evidence:hover .exp-evidence__card--3 { transform: translate(14px, -12px) rotate(-8deg); }
+.exp-evidence:hover .exp-evidence__card--main { transform: translateY(-2px); box-shadow: 0 5px 14px rgba(23, 21, 15, 0.2); }
 
 .exp-evidence__card--main img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .exp-evidence__thumb-fallback {
   display: none;
   width: 100%; height: 100%;
   align-items: center; justify-content: center;
-  font-size: 13px;
   color: var(--ink-faint);
 }
 .exp-evidence__icon {
   position: absolute;
-  right: -5px;
-  bottom: -5px;
-  width: 18px;
-  height: 18px;
+  right: -6px;
+  bottom: -6px;
+  width: 22px;
+  height: 22px;
   background: var(--ink);
   color: var(--white);
-  border: 1px solid var(--paper);
+  border: 2px solid var(--paper);
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -749,7 +750,7 @@ body::before {
 
 .exp-evidence__label {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 10.5px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-soft);
@@ -888,6 +889,7 @@ body::before {
   width: 100%;
   background: var(--paper-deep);
   overflow: hidden;
+  cursor: zoom-in;
 }
 .proj__gallery-track {
   display: flex;
@@ -1038,7 +1040,7 @@ body::before {
 }
 /* Descripciones largas (empresas) — más ancho y letra más grande que las píldoras de habilidades */
 .skill-tooltip--wide {
-  max-width: min(420px, calc(100vw - 32px));
+  max-width: min(480px, calc(100vw - 32px));
   font-size: 12.5px;
   line-height: 1.55;
   padding: 12px 16px;
@@ -1229,7 +1231,7 @@ body::before {
   .exp-row__role { font-size: 16px; }
   .exp-row__list { margin-top: 4px; }
   .exp-row__list li { font-size: 13.5px; line-height: 1.5; }
-  .exp-evidence__stack { width: 50px; height: 50px; }
+  .exp-evidence__stack { width: 60px; height: 60px; }
 
   .skills__cols { grid-template-columns: 1fr 1fr; gap: 22px 20px; }
   .edu__cols { grid-template-columns: 1fr; gap: 26px; }
