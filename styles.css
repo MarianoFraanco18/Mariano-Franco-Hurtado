@@ -30,6 +30,10 @@
   --ruler-h: 56px;
 
   --ease: cubic-bezier(.16, 1, .3, 1);
+
+  /* Proporción del marco de imágenes de proyecto — ajusta este único valor
+     si cambias el lienzo/formato en Canva (ej. 1/1, 3/2, 16/9...) */
+  --project-image-ratio: 4 / 3;
 }
 
 /* ───────────────────────── RESET ───────────────────────── */
@@ -372,6 +376,9 @@ body::before {
 }
 .sheet__scroll::-webkit-scrollbar { width: 5px; }
 .sheet__scroll::-webkit-scrollbar-thumb { background: var(--hair-strong); }
+/* Mientras un tooltip de empresa está abierto dentro de este contenedor, se libera
+   el overflow para que el tooltip no quede recortado por el scroll interno. */
+.sheet__scroll--tooltip-open { overflow: visible; }
 
 /* Cajetín — bloque de título tipo plano de ingeniería, pie de cada hoja */
 .title-block {
@@ -879,7 +886,7 @@ body::before {
 }
 .proj__gallery-frame {
   position: relative;
-  aspect-ratio: 4 / 3; /* mismo marco y proporción en todos los proyectos, sin importar el tamaño original de cada imagen */
+  aspect-ratio: var(--project-image-ratio); /* mismo marco y proporción en todos los proyectos */
   width: 100%;
   background: var(--paper-deep);
   overflow: hidden;
@@ -901,7 +908,7 @@ body::before {
   position: relative;
   background: var(--paper-deep);
 }
-.proj__slide img { width: 100%; height: 100%; object-fit: contain; object-position: center; }
+.proj__slide img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .proj__slide-fallback {
   display: none;
   flex-direction: column;
@@ -946,10 +953,11 @@ body::before {
 }
 .proj__gallery-nav { display: flex; gap: 8px; }
 .proj__gallery-nav button {
-  width: 26px; height: 26px;
+  width: 32px; height: 32px;
   border: 1px solid var(--hair-strong);
   display: flex; align-items: center; justify-content: center;
   touch-action: manipulation;
+  flex-shrink: 0;
   transition: background 0.2s var(--ease), color 0.2s var(--ease);
 }
 .proj__gallery-nav button:hover { background: var(--ink); color: var(--white); }
@@ -1012,7 +1020,7 @@ body::before {
    que se ajusta con getBoundingClientRect() para NUNCA salirse del viewport,
    sin importar si el elemento está al centro, al inicio o al final de su fila.
    Funciona con hover en desktop y con tap/foco en móvil (ver JS). */
-.skill-pill[data-desc], .exp-row__co[data-desc], .proj-company[data-desc] { cursor: help; }
+.skill-pill[data-desc] { cursor: help; }
 
 .skill-tooltip {
   position: fixed;
@@ -1056,7 +1064,99 @@ body::before {
 .skill-tooltip[data-arrow="top"] .skill-tooltip__arrow { bottom: -5px; transform: rotate(45deg); }
 .skill-tooltip[data-arrow="bottom"] .skill-tooltip__arrow { top: -5px; transform: rotate(225deg); }
 
-.proj-company { border-bottom: 1px dotted var(--hair-strong); }
+/* ─── Tooltip de empresa — anclado al propio nombre (no a la pantalla) ───
+   El trigger es position:relative; el tooltip es su hijo directo position:absolute,
+   así que SIEMPRE se posiciona respecto al nombre, nunca respecto al centro de la página. */
+.company-tooltip-trigger {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+  border-bottom: 1px dotted var(--hair-strong);
+}
+
+.company-tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 12px);
+  transform: translateX(calc(-50% + var(--tt-shift, 0px))) translateY(4px);
+  width: min(720px, calc(100vw - 48px));
+  max-width: 720px;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  box-shadow: 0 6px 18px rgba(23, 21, 15, 0.16);
+  z-index: 100;
+  padding: 14px 18px;
+  text-align: left;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.18s var(--ease), transform 0.18s var(--ease);
+}
+.company-tooltip__text {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  white-space: normal;
+}
+
+/* Flecha — centrada en el NOMBRE (no en el cuadro), así siempre apunta al texto
+   aunque el cuadro se desplace horizontalmente para no salirse de la pantalla */
+.company-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 9px solid transparent;
+  border-top-color: var(--ink);
+}
+.company-tooltip::before {
+  content: "";
+  position: absolute;
+  top: calc(100% - 1px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 8px solid transparent;
+  border-top-color: var(--paper);
+  z-index: 1;
+}
+
+/* Si no cabe arriba (el nombre está muy cerca del borde superior), se abre debajo */
+.company-tooltip-trigger.company-tooltip--below .company-tooltip {
+  bottom: auto;
+  top: calc(100% + 12px);
+  transform: translateX(calc(-50% + var(--tt-shift, 0px))) translateY(-4px);
+}
+.company-tooltip-trigger.company-tooltip--below .company-tooltip::after {
+  top: auto; bottom: 100%;
+  border-top-color: transparent;
+  border-bottom-color: var(--ink);
+}
+.company-tooltip-trigger.company-tooltip--below .company-tooltip::before {
+  top: auto; bottom: calc(100% - 1px);
+  border-top-color: transparent;
+  border-bottom-color: var(--paper);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .company-tooltip-trigger:hover .company-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(calc(-50% + var(--tt-shift, 0px))) translateY(0);
+  }
+}
+/* Móvil / táctil: se abre con un tap (ver JS), vía data-open */
+.company-tooltip-trigger[data-open="true"] .company-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(calc(-50% + var(--tt-shift, 0px))) translateY(0);
+}
+
+@media (max-width: 900px) {
+  .company-tooltip { width: calc(100vw - 32px); max-width: 720px; }
+}
 
 /* Separación hacia el bloque de habilidades blandas — misma jerarquía de subtítulo,
    solo se distingue por estar más abajo y precedida de una línea fina */
@@ -1216,7 +1316,7 @@ body::before {
   .proj-title--desktop { display: none; }
   .proj-title--mobile { display: block !important; font-size: clamp(22px, 6.5vw, 28px); margin-bottom: 4px; }
   .proj__gallery { flex: none; width: 100%; max-width: 100%; }
-  .proj__gallery-frame { width: 100%; max-width: 100%; aspect-ratio: 4 / 3; }
+  .proj__gallery-frame { width: 100%; max-width: 100%; aspect-ratio: var(--project-image-ratio); }
   .proj__slide img { max-width: 100%; }
   .proj__meta { margin-top: 12px; flex-wrap: wrap; }
   .proj__desc { max-width: 100%; }
@@ -1271,7 +1371,7 @@ body::before {
   .skills__cols { grid-template-columns: 1fr; }
   :root { --sheet-pad-x: 20px; }
   .hero__actions .btn { flex: 1 1 auto; justify-content: center; }
-  .proj__gallery-frame { aspect-ratio: 4 / 3; }
+  .proj__gallery-frame { aspect-ratio: var(--project-image-ratio); }
 }
 
 @media (prefers-reduced-motion: reduce) {

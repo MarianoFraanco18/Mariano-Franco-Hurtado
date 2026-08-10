@@ -426,6 +426,9 @@ const T = {
 
     'proj.clj.short': 'AEROPISTA', 'proj.gpr.short': 'GPR-SLICE',
 
+    'company.tecnoterra': 'Realiza estudios del subsuelo mediante tecnología de georradar (Radar de Penetración Terrestre) para identificar con precisión la posición, profundidad y longitud de grietas, oquedades, instalaciones subterráneas y cualquier objeto o material enterrado, con una técnica confiable, segura, indirecta y no destructiva.',
+    'company.aio': 'Grupo multidisciplinario de diseño y construcción enfocado en generar valor y potenciar la rentabilidad de los proyectos de sus clientes, con amplia experiencia proyectando, construyendo y supervisando obras. Integrado por profesionales especializados en diseño, ingenierías y construcción de proyectos industriales, comerciales y corporativos.',
+
     'skills.tag': 'Competencias', 'skills.title': 'Habilidades',
     'skills.techTag': 'Habilidades técnicas', 'skills.softTag': 'Habilidades blandas',
     'skills.grp.cad': 'CAD & Diseño', 'skills.grp.geo': 'Geomática & Topografía', 'skills.grp.gpr': 'Georradar (GPR)',
@@ -487,6 +490,9 @@ const T = {
     'lightbox.missing': 'Evidence image pending upload',
 
     'proj.clj.short': 'AIRSTRIP', 'proj.gpr.short': 'GPR-SLICE',
+
+    'company.tecnoterra': 'Conducts subsurface studies using Ground Penetrating Radar technology to precisely identify the position, depth and length of cracks, voids, underground utilities and any buried object or material, using a reliable, safe, indirect and non-destructive technique.',
+    'company.aio': 'Multidisciplinary design and construction group focused on generating value and boosting client project profitability, with extensive experience planning, building and supervising works. Staffed by professionals specialised in design, engineering and construction of industrial, commercial and corporate projects.',
 
     'skills.tag': 'Competencies', 'skills.title': 'Skills',
     'skills.techTag': 'Technical skills', 'skills.softTag': 'Soft skills',
@@ -612,7 +618,7 @@ function renderProjectContent(lang) {
     if (!section) return;
 
     // Si el título tiene forma "Nombre del proyecto — EMPRESA" y esa empresa tiene
-    // descripción, se envuelve solo esa parte en un span con tooltip (hover/tap).
+    // descripción, se envuelve solo esa parte en el trigger anclado del tooltip.
     const companyDesc = COMPANY_DESC[key];
     const dashIdx = data.title.lastIndexOf(' — ');
     section.querySelectorAll('.proj-title').forEach(el => {
@@ -621,14 +627,21 @@ function renderProjectContent(lang) {
         const company = data.title.slice(dashIdx + 3);
         el.textContent = '';
         el.appendChild(document.createTextNode(before));
-        const span = document.createElement('span');
-        span.className = 'proj-company';
-        span.setAttribute('data-desc-es', companyDesc.es);
-        span.setAttribute('data-desc-en', companyDesc.en);
-        span.setAttribute('data-desc', lang === 'en' ? companyDesc.en : companyDesc.es);
-        span.setAttribute('tabindex', '0');
-        span.textContent = company;
-        el.appendChild(span);
+
+        const trigger = document.createElement('span');
+        trigger.className = 'company-tooltip-trigger proj-company';
+        trigger.dataset.company = key;
+        trigger.appendChild(document.createTextNode(company));
+
+        const tip = document.createElement('span');
+        tip.className = 'company-tooltip';
+        const tipText = document.createElement('span');
+        tipText.className = 'company-tooltip__text';
+        tipText.textContent = lang === 'en' ? companyDesc.en : companyDesc.es;
+        tip.appendChild(tipText);
+        trigger.appendChild(tip);
+
+        el.appendChild(trigger);
       } else {
         el.textContent = data.title;
       }
@@ -660,6 +673,10 @@ function renderProjectContent(lang) {
     galleryState[key] = { current: 0, total: data.slides.length, labels: data.slides.map(s => s.label) };
     updateGalleryLabel(key);
     track.style.transform = 'translateX(0)';
+
+    const singleImage = data.slides.length <= 1;
+    const navEl = section.querySelector('.proj__gallery-nav');
+    if (navEl) navEl.style.visibility = singleImage ? 'hidden' : 'visible';
   });
 }
 
@@ -1312,6 +1329,79 @@ function initDescTooltips() {
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
+   4e. TOOLTIP DE EMPRESA — anclado al nombre (position:relative/absolute puro).
+   El JS solo resuelve 3 cosas que el CSS no puede: (1) si no cabe arriba, abrir
+   debajo; (2) si el cuadro se saldría de la pantalla por los lados, desplazarlo
+   sin mover la flecha; (3) que el contenedor con scroll interno no lo recorte.
+───────────────────────────────────────────────────────────────────────── */
+function positionCompanyTooltip(trigger) {
+  const tip = trigger.querySelector('.company-tooltip');
+  if (!tip) return;
+
+  const rect = trigger.getBoundingClientRect();
+  trigger.classList.toggle('company-tooltip--below', rect.top < 170);
+
+  tip.style.setProperty('--tt-shift', '0px');
+  requestAnimationFrame(() => {
+    const ttRect = tip.getBoundingClientRect();
+    const margin = 16;
+    let shift = 0;
+    if (ttRect.left < margin) shift = margin - ttRect.left;
+    else if (ttRect.right > window.innerWidth - margin) shift = (window.innerWidth - margin) - ttRect.right;
+    tip.style.setProperty('--tt-shift', `${Math.round(shift)}px`);
+  });
+}
+
+function initCompanyTooltips() {
+  let openTrigger = null;
+
+  function releaseScrollClip(trigger) {
+    const scrollAncestor = trigger.closest('.sheet__scroll');
+    if (scrollAncestor) scrollAncestor.classList.add('sheet__scroll--tooltip-open');
+  }
+  function restoreScrollClip(trigger) {
+    const scrollAncestor = trigger.closest('.sheet__scroll');
+    if (scrollAncestor) scrollAncestor.classList.remove('sheet__scroll--tooltip-open');
+  }
+
+  // Desktop: hover puro en CSS ya muestra el tooltip; el JS solo calcula posición
+  // y libera el overflow del contenedor con scroll mientras está visible.
+  document.addEventListener('mouseover', (e) => {
+    const trigger = e.target.closest('.company-tooltip-trigger');
+    if (!trigger) return;
+    positionCompanyTooltip(trigger);
+    releaseScrollClip(trigger);
+  });
+  document.addEventListener('mouseout', (e) => {
+    const trigger = e.target.closest('.company-tooltip-trigger');
+    if (trigger && !trigger.contains(e.relatedTarget)) restoreScrollClip(trigger);
+  });
+
+  // Táctil: un tap alterna abrir/cerrar (el hover de CSS no aplica en touch)
+  document.addEventListener('click', (e) => {
+    const trigger = e.target.closest('.company-tooltip-trigger');
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) return; // desktop ya usa hover
+
+    if (trigger) {
+      const willOpen = openTrigger !== trigger;
+      if (openTrigger) { openTrigger.setAttribute('data-open', 'false'); restoreScrollClip(openTrigger); }
+      if (willOpen) {
+        positionCompanyTooltip(trigger);
+        releaseScrollClip(trigger);
+        trigger.setAttribute('data-open', 'true');
+        openTrigger = trigger;
+      } else {
+        openTrigger = null;
+      }
+    } else if (openTrigger) {
+      openTrigger.setAttribute('data-open', 'false');
+      restoreScrollClip(openTrigger);
+      openTrigger = null;
+    }
+  });
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
    5. IDIOMAS — BOTONES
 ───────────────────────────────────────────────────────────────────────── */
 function initLangButtons() {
@@ -1345,6 +1435,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderExperienceEvidence();
   initLightbox();
   initDescTooltips();
+  initCompanyTooltips();
   buildRuler();
   injectPageSketches();
   initObserver();
