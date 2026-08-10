@@ -270,17 +270,12 @@ let lightboxState = { type: 'exp', id: null, index: 0 };
 
 function renderExperienceEvidence() {
   document.querySelectorAll('.exp-evidence-wrap').forEach(container => {
+    container.innerHTML = ''; // defensa: evita duplicados si esta función se llamara más de una vez
     const expId = container.dataset.exp;
     const items = EXPERIENCE_EVIDENCE[expId];
     if (!items || !items.length) return;
 
     const mainItem = items[0];
-    const stackCount = Math.min(items.length - 1, 2); // hasta 2 tarjetas detrás de la principal
-
-    let stackCards = '';
-    for (let i = 0; i < stackCount; i++) {
-      stackCards += `<span class="exp-evidence__card exp-evidence__card--${i + 2}" aria-hidden="true"></span>`;
-    }
 
     const btn = document.createElement('button');
     btn.type = 'button';
@@ -288,20 +283,15 @@ function renderExperienceEvidence() {
     btn.dataset.count = String(items.length);
     btn.setAttribute('aria-label', `${T[currentLang]['exp.evidenceLabel'] || 'Evidencia'} (${items.length})`);
     btn.innerHTML = `
-      <span class="exp-evidence__stack">
-        ${stackCards}
-        <span class="exp-evidence__card exp-evidence__card--main">
-          <img src="${mainItem.img}" alt="${mainItem.caption_es}" loading="lazy"
-            onerror="this.style.display='none'; this.parentElement.querySelector('.exp-evidence__thumb-fallback').style.display='flex';" />
-          <span class="exp-evidence__thumb-fallback">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="15" height="13" rx="1"/><path d="M7 7V4a1 1 0 011-1h13a1 1 0 011 1v13a1 1 0 01-1 1h-3"/><circle cx="7.5" cy="11.5" r="1.3"/><path d="M4 17l3-3.1a1 1 0 011.4-.05L11.5 16.5"/></svg>
-          </span>
-          <span class="exp-evidence__icon" aria-hidden="true">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-          </span>
+      <span class="exp-evidence__thumb">
+        <img src="${mainItem.img}" alt="${mainItem.caption_es}" loading="lazy"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <span class="exp-evidence__thumb-fallback">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="15" height="13" rx="1"/><path d="M7 7V4a1 1 0 011-1h13a1 1 0 011 1v13a1 1 0 01-1 1h-3"/><circle cx="7.5" cy="11.5" r="1.3"/><path d="M4 17l3-3.1a1 1 0 011.4-.05L11.5 16.5"/></svg>
         </span>
+        <span class="exp-evidence__badge" aria-hidden="true">${items.length}</span>
       </span>
-      <span class="exp-evidence__label exp-evidence__count">${T[currentLang]['exp.evidenceLabel'] || 'Evidencia'} (${items.length})</span>
+      <span class="exp-evidence__label exp-evidence__count">${T[currentLang]['exp.evidenceViewLabel'] || 'Ver evidencia'}</span>
     `;
     btn.addEventListener('click', () => openLightbox('exp', expId, 0));
     container.appendChild(btn);
@@ -431,6 +421,7 @@ const T = {
     'exp.li3b': 'Elaboré planos técnicos y documentación MEP bajo metodología BIM.',
     'tag.topography': 'Topografía',
     'exp.evidenceLabel': 'Evidencia',
+    'exp.evidenceViewLabel': 'Ver evidencia',
     'lightbox.missing': 'Imagen de evidencia pendiente de subir',
 
     'proj.clj.short': 'AEROPISTA', 'proj.gpr.short': 'GPR-SLICE',
@@ -492,6 +483,7 @@ const T = {
     'exp.li3b': 'Produced technical drawings and MEP documentation under BIM methodology.',
     'tag.topography': 'Surveying',
     'exp.evidenceLabel': 'Evidence',
+    'exp.evidenceViewLabel': 'View evidence',
     'lightbox.missing': 'Evidence image pending upload',
 
     'proj.clj.short': 'AIRSTRIP', 'proj.gpr.short': 'GPR-SLICE',
@@ -803,12 +795,12 @@ function applyLang(lang) {
   buildRulerLabels();
 
   document.querySelectorAll('.exp-evidence').forEach(btn => {
-    const label = dict['exp.evidenceLabel'] || 'Evidencia';
+    const viewLabel = dict['exp.evidenceViewLabel'] || 'Ver evidencia';
+    const ariaLabel = dict['exp.evidenceLabel'] || 'Evidencia';
     const count = btn.dataset.count || '';
-    const text = count ? `${label} (${count})` : label;
     const countSpan = btn.querySelector('.exp-evidence__count');
-    if (countSpan) countSpan.textContent = text;
-    btn.setAttribute('aria-label', text);
+    if (countSpan) countSpan.textContent = viewLabel;
+    btn.setAttribute('aria-label', count ? `${ariaLabel} (${count})` : ariaLabel);
   });
   if (document.getElementById('lightbox') && document.getElementById('lightbox').getAttribute('data-open') === 'true') {
     renderLightboxSlide();

@@ -686,66 +686,56 @@ body::before {
 .exp-row__list li::before { content: "—"; position: absolute; left: 0; color: var(--ink-faint); }
 .exp-row__tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
 
-/* Galería compacta de evidencia por experiencia — pila de fotografías orgánica */
+/* Galería compacta de evidencia por experiencia — una sola miniatura con contador */
 .exp-evidence-wrap { margin: 10px 0 4px; }
 
 .exp-evidence {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   cursor: pointer;
-  padding: 6px 6px 6px 0;
+  padding: 4px 4px 4px 0;
 }
 
-.exp-evidence__stack {
+.exp-evidence__thumb {
   position: relative;
-  width: 64px;
-  height: 64px;
+  width: 96px;
+  height: 96px;
   flex-shrink: 0;
-}
-.exp-evidence__card {
-  position: absolute;
-  inset: 0;
   border: 1px solid var(--hair-strong);
-  border-radius: 8px;
-  background: var(--paper-deep);
+  border-radius: 6px;
   overflow: hidden;
-  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
-}
-/* tarjetas de fondo, desplazadas y rotadas — efecto orgánico de fotos apiladas */
-.exp-evidence__card--2 { transform: translate(6px, -5px) rotate(7deg); z-index: 1; box-shadow: 1px 2px 5px rgba(23,21,15,0.10); }
-.exp-evidence__card--3 { transform: translate(11px, -9px) rotate(-6deg); z-index: 0; box-shadow: 1px 2px 5px rgba(23,21,15,0.08); }
-.exp-evidence__card--main {
-  position: relative;
-  z-index: 2;
   background: var(--paper-deep);
-  box-shadow: 0 3px 10px rgba(23, 21, 15, 0.16);
+  transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
 }
-.exp-evidence:hover .exp-evidence__card--2 { transform: translate(8px, -7px) rotate(9deg); }
-.exp-evidence:hover .exp-evidence__card--3 { transform: translate(14px, -12px) rotate(-8deg); }
-.exp-evidence:hover .exp-evidence__card--main { transform: translateY(-2px); box-shadow: 0 5px 14px rgba(23, 21, 15, 0.2); }
+.exp-evidence:hover .exp-evidence__thumb { border-color: var(--ink); transform: translateY(-1px); }
 
-.exp-evidence__card--main img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.exp-evidence__thumb img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
 .exp-evidence__thumb-fallback {
   display: none;
   width: 100%; height: 100%;
   align-items: center; justify-content: center;
   color: var(--ink-faint);
 }
-.exp-evidence__icon {
+
+.exp-evidence__badge {
   position: absolute;
-  right: -6px;
-  bottom: -6px;
-  width: 22px;
-  height: 22px;
+  right: 5px;
+  bottom: 5px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
   background: var(--ink);
-  color: var(--white);
-  border: 2px solid var(--paper);
-  border-radius: 50%;
+  color: var(--paper);
+  border: 1px solid var(--paper);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 3;
+  z-index: 2;
 }
 
 .exp-evidence__label {
@@ -771,7 +761,7 @@ body::before {
   justify-content: center;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.22s var(--ease), visibility 0.22s;
+  transition: opacity 0.25s cubic-bezier(.16,1,.3,1), visibility 0.25s;
 }
 .lightbox[data-open="true"] { opacity: 1; visibility: visible; }
 
@@ -785,7 +775,11 @@ body::before {
   justify-content: center;
   position: relative;
   overflow: hidden;
+  transform: scale(0.96);
+  opacity: 0;
+  transition: transform 0.25s cubic-bezier(.16,1,.3,1), opacity 0.25s cubic-bezier(.16,1,.3,1);
 }
+.lightbox[data-open="true"] .lightbox__frame { transform: scale(1); opacity: 1; }
 .lightbox__frame img { width: 100%; height: 100%; object-fit: contain; }
 .lightbox__fallback {
   display: none;
@@ -1040,10 +1034,11 @@ body::before {
 }
 /* Descripciones largas (empresas) — más ancho y letra más grande que las píldoras de habilidades */
 .skill-tooltip--wide {
-  max-width: min(480px, calc(100vw - 32px));
+  width: min(720px, calc(100vw - 48px));
+  max-width: 720px;
   font-size: 12.5px;
   line-height: 1.55;
-  padding: 12px 16px;
+  padding: 14px 18px;
 }
 .skill-tooltip[data-open="true"] {
   opacity: 1;
@@ -1231,7 +1226,8 @@ body::before {
   .exp-row__role { font-size: 16px; }
   .exp-row__list { margin-top: 4px; }
   .exp-row__list li { font-size: 13.5px; line-height: 1.5; }
-  .exp-evidence__stack { width: 60px; height: 60px; }
+  .exp-evidence__thumb { width: 84px; height: 84px; }
+  .skill-tooltip--wide { width: calc(100vw - 32px); max-width: 720px; }
 
   .skills__cols { grid-template-columns: 1fr 1fr; gap: 22px 20px; }
   .edu__cols { grid-template-columns: 1fr; gap: 26px; }
