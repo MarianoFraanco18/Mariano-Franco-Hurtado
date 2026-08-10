@@ -1287,27 +1287,42 @@ body::before {
   .sheet__title { font-size: clamp(24px, 7vw, 32px); margin-top: 6px; }
   .sheet__kicker { font-size: 10px; }
 
-  /* ---- 3) Cajetín (title-block): decoración secundaria, no contenido principal ---- */
+  /* ---- 3) Cajetín (title-block): versión muy compacta para móvil.
+     Se simplifica a una sola fila con los 3 campos esenciales (PROJECT / DRAWN BY / SHEET);
+     SCALE y REV. se ocultan aquí (siguen visibles en desktop) para reducir la altura
+     a aprox. 1/3–1/2 de lo que ocupaba antes. ---- */
   .title-block {
     position: static;
-    margin-top: 26px;
-    grid-template-columns: 1.4fr 1fr 1fr;
-    grid-template-areas:
-      "project project drawn"
-      "scale sheet rev";
+    margin-top: 14px;
+    display: flex;
     border-color: var(--hair);
     background: transparent;
-    opacity: 0.68;
+    opacity: 0.7;
+    overflow: hidden; /* nunca debe generar scroll horizontal */
   }
-  .title-block__cell { padding: 4px 7px; border-color: var(--hair); }
-  .title-block__label { font-size: 7px; margin-bottom: 1px; }
-  .title-block__value { font-size: 8.5px; }
+  .title-block__cell {
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 30px;
+    padding: 4px 6px;
+    border-color: var(--hair);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .title-block__label { font-size: 6.5px; margin-bottom: 0; }
+  .title-block__value {
+    font-size: 8px;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   .title-block__value--rev { color: var(--ink-faint); font-weight: 500; }
-  .title-block__cell:nth-child(1) { grid-area: project; }
-  .title-block__cell:nth-child(2) { grid-area: drawn; }
-  .title-block__cell:nth-child(3) { grid-area: scale; border-top: 1px solid var(--hair); }
-  .title-block__cell:nth-child(4) { grid-area: sheet; border-top: 1px solid var(--hair); }
-  .title-block__cell:nth-child(5) { grid-area: rev; border-top: 1px solid var(--hair); }
+  /* Oculta SCALE (celda 3) y REV. (celda 5); quedan PROJECT, DRAWN BY, SHEET */
+  .title-block__cell:nth-child(3),
+  .title-block__cell:nth-child(5) { display: none; }
+  .title-block__cell:nth-child(4) { border-right: none; } /* ahora es la última celda visible */
 
   .about__grid { grid-template-columns: 1fr; gap: 26px; }
   .stat-cell { padding: 16px 14px; }
@@ -1336,14 +1351,23 @@ body::before {
   .hero__stamp { position: static; margin-bottom: 12px; transform: rotate(-4deg); }
   .sheet--hero .sheet__body { max-width: 100%; gap: 18px; }
 
-  /* ---- 7) Barra inferior de navegación: compacta, y SIEMPRE tocable ---- */
+  /* ---- 7) Barra inferior de navegación: compacta, SIEMPRE visible y tocable ---- */
   :root { --ruler-h: 50px; }
   .ruler {
     position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
     z-index: 65;
     touch-action: manipulation;
     padding-bottom: env(safe-area-inset-bottom, 0px);
     isolation: isolate;
+    /* Fuerza su propia capa de composición: evita el parpadeo/desaparición de
+       elementos position:fixed durante scroll rápido en iOS/Android (bug conocido
+       de renderizado en páginas largas con Safari/Chrome móvil). */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform;
   }
   .ruler__track {
     justify-content: flex-start;

@@ -894,7 +894,18 @@ function jumpToSheet(index) {
   if (isDesktop()) {
     sheetsEl.scrollTo({ left: target.offsetLeft, behavior: 'smooth' });
   } else {
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Móvil: la hoja siguiente siempre debe abrir desde arriba, nunca conservar
+    // la posición de scroll de la hoja anterior. Se espera un frame a que la hoja
+    // esté activa/renderizada antes de medir su posición real.
+    requestAnimationFrame(() => {
+      const rect = target.getBoundingClientRect();
+      const targetTop = window.scrollY + rect.top;
+      window.scrollTo({ top: targetTop, behavior: 'smooth' });
+
+      // Por si algún contenedor interno conservara su propio scroll
+      const innerScroll = target.querySelector('.sheet__scroll');
+      if (innerScroll) innerScroll.scrollTop = 0;
+    });
   }
 }
 
