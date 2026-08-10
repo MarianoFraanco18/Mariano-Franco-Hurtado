@@ -25,6 +25,14 @@ const COMPANY_DESC = {
     es: 'Organismo público encargado de administrar, regular y proteger las aguas nacionales, gestionando de forma sustentable los recursos hídricos del país, desarrollando y operando infraestructura hidráulica, y previniendo riesgos asociados a fenómenos meteorológicos e hidrometeorológicos.',
     en: "Public agency responsible for administering, regulating and protecting national waters, sustainably managing the country's water resources, developing and operating hydraulic infrastructure, and preventing risks associated with meteorological and hydrometeorological phenomena.",
   },
+  tecnoterra: {
+    es: 'Realiza estudios del subsuelo mediante tecnología de georradar (Radar de Penetración Terrestre) para identificar con precisión la posición, profundidad y longitud de grietas, oquedades, instalaciones subterráneas y cualquier objeto o material enterrado, con una técnica confiable, segura, indirecta y no destructiva.',
+    en: 'Conducts subsurface studies using Ground Penetrating Radar technology to precisely identify the position, depth and length of cracks, voids, underground utilities and any buried object or material, using a reliable, safe, indirect and non-destructive technique.',
+  },
+  aio: {
+    es: 'Grupo multidisciplinario de diseño y construcción enfocado en generar valor y potenciar la rentabilidad de los proyectos de sus clientes, con amplia experiencia proyectando, construyendo y supervisando obras. Integrado por profesionales especializados en diseño, ingenierías y construcción de proyectos industriales, comerciales y corporativos.',
+    en: 'Multidisciplinary design and construction group focused on generating value and boosting client project profitability, with extensive experience planning, building and supervising works. Staffed by professionals specialised in design, engineering and construction of industrial, commercial and corporate projects.',
+  },
 };
 
 const PROJECTS_ORDER = ['diageo', 'clj', 'conagua', 'excel-autocad', 'gpr-autohotkey'];
@@ -426,9 +434,6 @@ const T = {
 
     'proj.clj.short': 'AEROPISTA', 'proj.gpr.short': 'GPR-SLICE',
 
-    'company.tecnoterra': 'Realiza estudios del subsuelo mediante tecnología de georradar (Radar de Penetración Terrestre) para identificar con precisión la posición, profundidad y longitud de grietas, oquedades, instalaciones subterráneas y cualquier objeto o material enterrado, con una técnica confiable, segura, indirecta y no destructiva.',
-    'company.aio': 'Grupo multidisciplinario de diseño y construcción enfocado en generar valor y potenciar la rentabilidad de los proyectos de sus clientes, con amplia experiencia proyectando, construyendo y supervisando obras. Integrado por profesionales especializados en diseño, ingenierías y construcción de proyectos industriales, comerciales y corporativos.',
-
     'skills.tag': 'Competencias', 'skills.title': 'Habilidades',
     'skills.techTag': 'Habilidades técnicas', 'skills.softTag': 'Habilidades blandas',
     'skills.grp.cad': 'CAD & Diseño', 'skills.grp.geo': 'Geomática & Topografía', 'skills.grp.gpr': 'Georradar (GPR)',
@@ -490,9 +495,6 @@ const T = {
     'lightbox.missing': 'Evidence image pending upload',
 
     'proj.clj.short': 'AIRSTRIP', 'proj.gpr.short': 'GPR-SLICE',
-
-    'company.tecnoterra': 'Conducts subsurface studies using Ground Penetrating Radar technology to precisely identify the position, depth and length of cracks, voids, underground utilities and any buried object or material, using a reliable, safe, indirect and non-destructive technique.',
-    'company.aio': 'Multidisciplinary design and construction group focused on generating value and boosting client project profitability, with extensive experience planning, building and supervising works. Staffed by professionals specialised in design, engineering and construction of industrial, commercial and corporate projects.',
 
     'skills.tag': 'Competencies', 'skills.title': 'Skills',
     'skills.techTag': 'Technical skills', 'skills.softTag': 'Soft skills',
@@ -557,6 +559,12 @@ function buildProjectSheets() {
             <div class="proj__gallery">
               <div class="proj__gallery-frame">
                 <div class="proj__gallery-track proj-track"></div>
+                <button class="proj__gallery-arrow proj__gallery-arrow--prev proj-prev" type="button" aria-label="Imagen anterior">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <button class="proj__gallery-arrow proj__gallery-arrow--next proj-next" type="button" aria-label="Imagen siguiente">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
                 <button class="proj__gallery-expand proj-expand" type="button" aria-label="Ampliar imagen">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
                 </button>
@@ -565,8 +573,6 @@ function buildProjectSheets() {
                 <span class="proj-slide-label"></span>
                 <div class="proj__gallery-nav">
                   <div class="proj__gallery-dots proj-dots"></div>
-                  <button class="proj-prev" aria-label="Imagen anterior"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M15 18l-6-6 6-6"/></svg></button>
-                  <button class="proj-next" aria-label="Imagen siguiente"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M9 18l6-6-6-6"/></svg></button>
                 </div>
               </div>
             </div>
@@ -618,7 +624,7 @@ function renderProjectContent(lang) {
     if (!section) return;
 
     // Si el título tiene forma "Nombre del proyecto — EMPRESA" y esa empresa tiene
-    // descripción, se envuelve solo esa parte en el trigger anclado del tooltip.
+    // descripción, se envuelve solo esa parte en el trigger del tooltip global.
     const companyDesc = COMPANY_DESC[key];
     const dashIdx = data.title.lastIndexOf(' — ');
     section.querySelectorAll('.proj-title').forEach(el => {
@@ -628,19 +634,11 @@ function renderProjectContent(lang) {
         el.textContent = '';
         el.appendChild(document.createTextNode(before));
 
-        const trigger = document.createElement('span');
+        const trigger = document.createElement('button');
+        trigger.type = 'button';
         trigger.className = 'company-tooltip-trigger proj-company';
         trigger.dataset.company = key;
-        trigger.appendChild(document.createTextNode(company));
-
-        const tip = document.createElement('span');
-        tip.className = 'company-tooltip';
-        const tipText = document.createElement('span');
-        tipText.className = 'company-tooltip__text';
-        tipText.textContent = lang === 'en' ? companyDesc.en : companyDesc.es;
-        tip.appendChild(tipText);
-        trigger.appendChild(tip);
-
+        trigger.textContent = company;
         el.appendChild(trigger);
       } else {
         el.textContent = data.title;
@@ -677,6 +675,9 @@ function renderProjectContent(lang) {
     const singleImage = data.slides.length <= 1;
     const navEl = section.querySelector('.proj__gallery-nav');
     if (navEl) navEl.style.visibility = singleImage ? 'hidden' : 'visible';
+    section.querySelectorAll('.proj__gallery-arrow').forEach(arrow => {
+      arrow.style.display = singleImage ? 'none' : 'grid';
+    });
   });
 }
 
@@ -701,8 +702,15 @@ function goToProjectSlide(key, idx) {
 function initProjectGalleryControls() {
   document.querySelectorAll('.sheet--project').forEach(section => {
     const key = section.dataset.project;
-    section.querySelector('.proj-prev').addEventListener('click', () => goToProjectSlide(key, galleryState[key].current - 1));
-    section.querySelector('.proj-next').addEventListener('click', () => goToProjectSlide(key, galleryState[key].current + 1));
+
+    section.querySelector('.proj-prev').addEventListener('click', (e) => {
+      e.stopPropagation(); // las flechas solo cambian de imagen, nunca abren el modal
+      goToProjectSlide(key, galleryState[key].current - 1);
+    });
+    section.querySelector('.proj-next').addEventListener('click', (e) => {
+      e.stopPropagation();
+      goToProjectSlide(key, galleryState[key].current + 1);
+    });
     section.querySelector('.proj-dots').addEventListener('click', (e) => {
       const dots = [...section.querySelectorAll('.proj-dots span')];
       const idx = dots.indexOf(e.target);
@@ -716,30 +724,38 @@ function initProjectGalleryControls() {
       });
     }
 
-    // Clic directo sobre la imagen activa: abre el lightbox maximizado
-    // Swipe táctil sobre el marco: navega el carrusel normal (sin maximizar)
+    // Clic/tap directo sobre la imagen activa: abre el lightbox maximizado.
+    // Arrastre con mouse (desktop) o swipe (móvil) sobre el marco: navega el
+    // carrusel normal sin maximizar. Pointer Events unifica ambos casos.
     const frame = section.querySelector('.proj__gallery-frame');
     if (frame) {
-      let touchStartX = null;
-      let wasSwipe = false;
-      frame.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].clientX;
-        wasSwipe = false;
-      }, { passive: true });
-      frame.addEventListener('touchmove', () => { wasSwipe = true; }, { passive: true });
-      frame.addEventListener('touchend', (e) => {
-        if (touchStartX === null) return;
-        const deltaX = e.changedTouches[0].clientX - touchStartX;
+      frame.style.touchAction = 'pan-y'; // dejar pasar el scroll vertical de la página; el gesto horizontal lo maneja este JS
+      let startX = null;
+      let dragged = false;
+
+      frame.addEventListener('pointerdown', (e) => {
+        if (e.target.closest('.proj-expand, .proj__gallery-arrow')) return;
+        startX = e.clientX;
+        dragged = false;
+      });
+      frame.addEventListener('pointermove', (e) => {
+        if (startX === null) return;
+        if (Math.abs(e.clientX - startX) > 8) dragged = true;
+      });
+      frame.addEventListener('pointerup', (e) => {
+        if (startX === null) return;
+        const deltaX = e.clientX - startX;
         if (Math.abs(deltaX) > 40) {
           goToProjectSlide(key, galleryState[key].current + (deltaX < 0 ? 1 : -1));
-          wasSwipe = true;
+          dragged = true;
         }
-        touchStartX = null;
-      }, { passive: true });
+        startX = null;
+      });
+      frame.addEventListener('pointercancel', () => { startX = null; });
 
       frame.addEventListener('click', (e) => {
-        if (e.target.closest('.proj-expand')) return;
-        if (wasSwipe) { wasSwipe = false; return; } // fue un swipe, no un tap sobre la imagen
+        if (e.target.closest('.proj-expand, .proj__gallery-arrow')) return;
+        if (dragged) { dragged = false; return; } // fue un arrastre/swipe, no un tap sobre la imagen
         openLightbox('project', key, galleryState[key] ? galleryState[key].current : 0);
       });
     }
@@ -1329,76 +1345,90 @@ function initDescTooltips() {
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
-   4e. TOOLTIP DE EMPRESA — anclado al nombre (position:relative/absolute puro).
-   El JS solo resuelve 3 cosas que el CSS no puede: (1) si no cabe arriba, abrir
-   debajo; (2) si el cuadro se saldría de la pantalla por los lados, desplazarlo
-   sin mover la flecha; (3) que el contenedor con scroll interno no lo recorte.
+   4e. TOOLTIP DE EMPRESA — overlay global (portal), fixed, calculado por JS.
+   Un único elemento reutilizado (#companyTooltip) vive fuera de cualquier fila
+   de contenido, así que abrirlo NUNCA puede mover, ensanchar ni cambiar la
+   altura de ninguna experiencia o proyecto.
 ───────────────────────────────────────────────────────────────────────── */
-function positionCompanyTooltip(trigger) {
-  const tip = trigger.querySelector('.company-tooltip');
-  if (!tip) return;
-
-  const rect = trigger.getBoundingClientRect();
-  trigger.classList.toggle('company-tooltip--below', rect.top < 170);
-
-  tip.style.setProperty('--tt-shift', '0px');
-  requestAnimationFrame(() => {
-    const ttRect = tip.getBoundingClientRect();
-    const margin = 16;
-    let shift = 0;
-    if (ttRect.left < margin) shift = margin - ttRect.left;
-    else if (ttRect.right > window.innerWidth - margin) shift = (window.innerWidth - margin) - ttRect.right;
-    tip.style.setProperty('--tt-shift', `${Math.round(shift)}px`);
-  });
-}
-
 function initCompanyTooltips() {
-  let openTrigger = null;
+  const tooltip = document.getElementById('companyTooltip');
+  const textEl = document.getElementById('companyTooltipText');
+  const arrowEl = document.getElementById('companyTooltipArrow');
+  if (!tooltip || !textEl || !arrowEl) return;
 
-  function releaseScrollClip(trigger) {
-    const scrollAncestor = trigger.closest('.sheet__scroll');
-    if (scrollAncestor) scrollAncestor.classList.add('sheet__scroll--tooltip-open');
-  }
-  function restoreScrollClip(trigger) {
-    const scrollAncestor = trigger.closest('.sheet__scroll');
-    if (scrollAncestor) scrollAncestor.classList.remove('sheet__scroll--tooltip-open');
+  const MARGIN = 16;
+  const GAP = 12;
+  let activeTrigger = null;
+
+  function show(trigger) {
+    const desc = COMPANY_DESC[trigger.dataset.company];
+    if (!desc) return;
+    textEl.textContent = currentLang === 'en' ? desc.en : desc.es;
+    activeTrigger = trigger;
+
+    tooltip.classList.add('is-visible'); // visible para poder medir su tamaño real
+    const rect = trigger.getBoundingClientRect();
+    const ttRect = tooltip.getBoundingClientRect();
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+
+    let left = rect.left + rect.width / 2 - ttRect.width / 2;
+    left = Math.max(MARGIN, Math.min(left, vw - ttRect.width - MARGIN));
+
+    let top = rect.top - ttRect.height - GAP;
+    let arrow = 'top';
+    if (top < MARGIN) { top = rect.bottom + GAP; arrow = 'bottom'; }
+    top = Math.max(MARGIN, Math.min(top, vh - ttRect.height - MARGIN));
+
+    tooltip.style.left = `${Math.round(left)}px`;
+    tooltip.style.top = `${Math.round(top)}px`;
+    tooltip.setAttribute('data-arrow', arrow);
+
+    // La flecha apunta al centro del NOMBRE, no al centro del cuadro
+    const arrowLeft = Math.max(14, Math.min(rect.left + rect.width / 2 - left - 6.5, ttRect.width - 28));
+    arrowEl.style.left = `${Math.round(arrowLeft)}px`;
   }
 
-  // Desktop: hover puro en CSS ya muestra el tooltip; el JS solo calcula posición
-  // y libera el overflow del contenedor con scroll mientras está visible.
+  function hide() {
+    tooltip.classList.remove('is-visible');
+    activeTrigger = null;
+  }
+
+  // Desktop: hover
   document.addEventListener('mouseover', (e) => {
     const trigger = e.target.closest('.company-tooltip-trigger');
-    if (!trigger) return;
-    positionCompanyTooltip(trigger);
-    releaseScrollClip(trigger);
+    if (trigger) show(trigger);
   });
   document.addEventListener('mouseout', (e) => {
     const trigger = e.target.closest('.company-tooltip-trigger');
-    if (trigger && !trigger.contains(e.relatedTarget)) restoreScrollClip(trigger);
+    if (trigger && !trigger.contains(e.relatedTarget)) hide();
   });
-
-  // Táctil: un tap alterna abrir/cerrar (el hover de CSS no aplica en touch)
+  // Teclado: foco (accesible con Tab)
+  document.addEventListener('focusin', (e) => {
+    const trigger = e.target.closest('.company-tooltip-trigger');
+    if (trigger) show(trigger);
+  });
+  document.addEventListener('focusout', (e) => {
+    const trigger = e.target.closest('.company-tooltip-trigger');
+    if (trigger) hide();
+  });
+  // Táctil: un tap alterna abrir/cerrar; tocar fuera cierra
   document.addEventListener('click', (e) => {
     const trigger = e.target.closest('.company-tooltip-trigger');
-    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) return; // desktop ya usa hover
-
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      if (trigger) e.preventDefault(); // desktop: el hover ya lo maneja, el click no debe hacer nada más
+      return;
+    }
     if (trigger) {
-      const willOpen = openTrigger !== trigger;
-      if (openTrigger) { openTrigger.setAttribute('data-open', 'false'); restoreScrollClip(openTrigger); }
-      if (willOpen) {
-        positionCompanyTooltip(trigger);
-        releaseScrollClip(trigger);
-        trigger.setAttribute('data-open', 'true');
-        openTrigger = trigger;
-      } else {
-        openTrigger = null;
-      }
-    } else if (openTrigger) {
-      openTrigger.setAttribute('data-open', 'false');
-      restoreScrollClip(openTrigger);
-      openTrigger = null;
+      e.preventDefault();
+      if (activeTrigger === trigger) hide(); else show(trigger);
+    } else {
+      hide();
     }
   });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hide(); });
+  window.addEventListener('scroll', hide, true);
+  window.addEventListener('resize', hide);
 }
 
 /* ─────────────────────────────────────────────────────────────────────────

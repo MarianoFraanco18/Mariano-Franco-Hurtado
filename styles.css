@@ -32,7 +32,10 @@
   --ease: cubic-bezier(.16, 1, .3, 1);
 
   /* Proporción del marco de imágenes de proyecto — ajusta este único valor
-     si cambias el lienzo/formato en Canva (ej. 1/1, 3/2, 16/9...) */
+     si cambias el lienzo/formato en Canva (ej. 1/1, 3/2, 16/9...)
+     ⚠️ PENDIENTE: reemplaza 4/3 por la proporción REAL de clj-img3.jpg en cuanto
+     la conozcas (ancho/alto en px de esa imagen, ej. si mide 1600×1200 → 1600/1200).
+     No tengo acceso al archivo de imagen para medirlo automáticamente. */
   --project-image-ratio: 4 / 3;
 }
 
@@ -376,9 +379,6 @@ body::before {
 }
 .sheet__scroll::-webkit-scrollbar { width: 5px; }
 .sheet__scroll::-webkit-scrollbar-thumb { background: var(--hair-strong); }
-/* Mientras un tooltip de empresa está abierto dentro de este contenedor, se libera
-   el overflow para que el tooltip no quede recortado por el scroll interno. */
-.sheet__scroll--tooltip-open { overflow: visible; }
 
 /* Cajetín — bloque de título tipo plano de ingeniería, pie de cada hoja */
 .title-block {
@@ -935,11 +935,43 @@ body::before {
   background: rgba(251, 249, 242, 0.9);
   border: 1px solid var(--hair-strong);
   color: var(--ink-soft);
-  z-index: 2;
+  z-index: 4;
   touch-action: manipulation;
   transition: background 0.2s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease);
 }
 .proj__gallery-expand:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
+
+/* Flechas superpuestas directamente sobre la imagen — a los lados, centradas verticalmente.
+   Quedan por encima de la imagen (z-index:3) pero por debajo del botón de ampliar (z-index:4). */
+.proj__gallery-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  transform: translateY(-50%);
+  border: 1px solid var(--ink);
+  background: rgba(244, 239, 226, 0.88);
+  color: var(--ink);
+  touch-action: manipulation;
+  opacity: 0.72;
+  transition: opacity 0.2s var(--ease), background 0.2s var(--ease), color 0.2s var(--ease);
+}
+.proj__gallery-arrow--prev { left: 12px; }
+.proj__gallery-arrow--next { right: 12px; }
+.proj__gallery-frame:hover .proj__gallery-arrow,
+.proj__gallery-arrow:hover,
+.proj__gallery-arrow:focus-visible {
+  opacity: 1;
+  background: var(--ink);
+  color: var(--white);
+}
+/* En móvil no hay hover: se mantienen siempre visibles */
+@media (hover: none) {
+  .proj__gallery-arrow { opacity: 0.9; }
+}
 
 .proj__gallery-bar {
   display: flex;
@@ -951,16 +983,7 @@ body::before {
   font-size: 10.5px;
   color: var(--ink-faint);
 }
-.proj__gallery-nav { display: flex; gap: 8px; }
-.proj__gallery-nav button {
-  width: 32px; height: 32px;
-  border: 1px solid var(--hair-strong);
-  display: flex; align-items: center; justify-content: center;
-  touch-action: manipulation;
-  flex-shrink: 0;
-  transition: background 0.2s var(--ease), color 0.2s var(--ease);
-}
-.proj__gallery-nav button:hover { background: var(--ink); color: var(--white); }
+.proj__gallery-nav { display: flex; align-items: center; gap: 8px; }
 .proj__gallery-dots { display: flex; gap: 5px; }
 .proj__gallery-dots span { width: 5px; height: 5px; border: 1px solid var(--ink-faint); border-radius: 50%; }
 .proj__gallery-dots span[data-active="true"] { background: var(--red); border-color: var(--red); }
@@ -1064,33 +1087,51 @@ body::before {
 .skill-tooltip[data-arrow="top"] .skill-tooltip__arrow { bottom: -5px; transform: rotate(45deg); }
 .skill-tooltip[data-arrow="bottom"] .skill-tooltip__arrow { top: -5px; transform: rotate(225deg); }
 
-/* ─── Tooltip de empresa — anclado al propio nombre (no a la pantalla) ───
-   El trigger es position:relative; el tooltip es su hijo directo position:absolute,
-   así que SIEMPRE se posiciona respecto al nombre, nunca respecto al centro de la página. */
+/* ─── Tooltip de empresa — overlay global (portal), NO anidado en la fila ───
+   #company-tooltip-layer vive al final del <body>, fuera de cualquier contenedor
+   de contenido. El tooltip es position:fixed y su posición se calcula en JS con
+   getBoundingClientRect() sobre el trigger activo — por eso NUNCA puede empujar,
+   ensanchar ni modificar la altura de ninguna fila de experiencia o proyecto. */
+#company-tooltip-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
 .company-tooltip-trigger {
-  position: relative;
-  display: inline-block;
   cursor: help;
   border-bottom: 1px dotted var(--hair-strong);
+  background: none;
+  border-width: 0 0 1px 0;
+  border-style: dotted;
+  border-color: var(--hair-strong);
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
 }
 
 .company-tooltip {
-  position: absolute;
-  left: 50%;
-  bottom: calc(100% + 12px);
-  transform: translateX(calc(-50% + var(--tt-shift, 0px))) translateY(4px);
+  position: fixed;
   width: min(720px, calc(100vw - 48px));
   max-width: 720px;
+  padding: 20px 24px;
   background: var(--paper);
   border: 1px solid var(--ink);
-  box-shadow: 0 6px 18px rgba(23, 21, 15, 0.16);
-  z-index: 100;
-  padding: 14px 18px;
-  text-align: left;
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.12);
   opacity: 0;
   visibility: hidden;
+  transform: translateY(6px);
   pointer-events: none;
-  transition: opacity 0.18s var(--ease), transform 0.18s var(--ease);
+  transition: opacity 180ms var(--ease), transform 180ms var(--ease), visibility 180ms;
+}
+.company-tooltip.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 .company-tooltip__text {
   display: block;
@@ -1098,61 +1139,21 @@ body::before {
   font-size: 12.5px;
   line-height: 1.55;
   color: var(--ink-soft);
-  white-space: normal;
 }
 
-/* Flecha — centrada en el NOMBRE (no en el cuadro), así siempre apunta al texto
-   aunque el cuadro se desplace horizontalmente para no salirse de la pantalla */
-.company-tooltip::after {
-  content: "";
+/* Flecha — su posición horizontal se recalcula en JS para apuntar siempre al
+   trigger activo, incluso si el cuadro tuvo que desplazarse para no salirse de pantalla */
+.company-tooltip__arrow {
   position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 9px solid transparent;
-  border-top-color: var(--ink);
+  width: 13px;
+  height: 13px;
+  background: var(--paper);
+  border-right: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  transform: rotate(45deg);
 }
-.company-tooltip::before {
-  content: "";
-  position: absolute;
-  top: calc(100% - 1px);
-  left: 50%;
-  transform: translateX(-50%);
-  border: 8px solid transparent;
-  border-top-color: var(--paper);
-  z-index: 1;
-}
-
-/* Si no cabe arriba (el nombre está muy cerca del borde superior), se abre debajo */
-.company-tooltip-trigger.company-tooltip--below .company-tooltip {
-  bottom: auto;
-  top: calc(100% + 12px);
-  transform: translateX(calc(-50% + var(--tt-shift, 0px))) translateY(-4px);
-}
-.company-tooltip-trigger.company-tooltip--below .company-tooltip::after {
-  top: auto; bottom: 100%;
-  border-top-color: transparent;
-  border-bottom-color: var(--ink);
-}
-.company-tooltip-trigger.company-tooltip--below .company-tooltip::before {
-  top: auto; bottom: calc(100% - 1px);
-  border-top-color: transparent;
-  border-bottom-color: var(--paper);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .company-tooltip-trigger:hover .company-tooltip {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(calc(-50% + var(--tt-shift, 0px))) translateY(0);
-  }
-}
-/* Móvil / táctil: se abre con un tap (ver JS), vía data-open */
-.company-tooltip-trigger[data-open="true"] .company-tooltip {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(calc(-50% + var(--tt-shift, 0px))) translateY(0);
-}
+.company-tooltip[data-arrow="top"] .company-tooltip__arrow { bottom: -7px; }
+.company-tooltip[data-arrow="bottom"] .company-tooltip__arrow { top: -7px; transform: rotate(225deg); }
 
 @media (max-width: 900px) {
   .company-tooltip { width: calc(100vw - 32px); max-width: 720px; }
