@@ -88,8 +88,8 @@ const PROJECTS = {
       date: 'Ene. 2024 – Jun. 2024',
       location: 'Jalisco, México',
       slides: [
-        { label: 'Diseño de aeropista e infraestructura', img: 'imagenes/projects/clj/clj-img1.jpg' },
-        { label: 'Integración de conectividad ferroviaria', img: 'imagenes/projects/clj/clj-img2.jpg' },
+        { label: 'Diseño de aeropista e infraestructura', img: 'imagenes/projects/clj/clj-img1.png' },
+        { label: 'Integración de conectividad ferroviaria', img: 'imagenes/projects/clj/clj-img2.png' },
         { label: 'Propuesta logística multimodal', img: 'imagenes/projects/clj/clj-img3.png' },
       ],
       description: 'Diseño de una propuesta de infraestructura logística para el Centro Logístico de Jalisco (CLJ), integrando una aeropista de uso privado con conexiones ferroviarias y carreteras. El objetivo fue crear un hub de conectividad multimodal que potenciara la cadena logística de la región y redujera tiempos de trasiego de mercancías.',
@@ -107,8 +107,8 @@ const PROJECTS = {
       date: 'Jan. 2024 – Jun. 2024',
       location: 'Jalisco, Mexico',
       slides: [
-        { label: 'Airstrip and infrastructure design', img: 'imagenes/projects/clj/clj-img1.jpg' },
-        { label: 'Railway connectivity integration', img: 'imagenes/projects/clj/clj-img2.jpg' },
+        { label: 'Airstrip and infrastructure design', img: 'imagenes/projects/clj/clj-img1.png' },
+        { label: 'Railway connectivity integration', img: 'imagenes/projects/clj/clj-img2.png' },
         { label: 'Multimodal logistics proposal', img: 'imagenes/projects/clj/clj-img3.png' },
       ],
       description: 'Design of a logistics infrastructure proposal for the Jalisco Logistics Center (CLJ), integrating a private-use airstrip with railway and road connections. The goal was to create a multimodal connectivity hub that would strengthen the regional logistics chain and reduce cargo transit times.',
@@ -172,8 +172,8 @@ const PROJECTS = {
       date: '2025 – 2026',
       location: 'Guadalajara, Jalisco',
       slides: [
-        { label: 'Estructuración y nomenclatura de datos topográficos', img: 'imagenes/projects/macro-cad/MACROCAD-IMG1.jpeg' },
-        { label: 'Preparación de coordenadas para AutoCAD', img: 'imagenes/projects/macro-cad/MACROCAD-IMG2.jpeg' },
+        { label: 'Estructuración y nomenclatura de datos topográficos', img: 'imagenes/projects/macro-cad/MACROCAD-IMG1.png' },
+        { label: 'Preparación de coordenadas para AutoCAD', img: 'imagenes/projects/macro-cad/MACROCAD-IMG2.png' },
         { label: 'Estandarización del flujo de trabajo técnico', img: 'imagenes/projects/macro-cad/MACROCAD-IMG3.png' },
       ],
       description: 'Este proyecto consistió en automatizar parte del flujo de trabajo entre Excel y AutoCAD para el procesamiento de datos topográficos y de líneas relacionadas con estudios de georradar. La solución permitió ordenar datos, generar nomenclaturas, estructurar tablas y preparar información utilizable dentro del entorno CAD, disminuyendo errores operativos y acelerando tareas repetitivas que antes se realizaban manualmente.',
@@ -191,8 +191,8 @@ const PROJECTS = {
       date: '2025 – 2026',
       location: 'Guadalajara, Jalisco',
       slides: [
-        { label: 'Topographic data structuring and naming', img: 'imagenes/projects/macro-cad/MACROCAD-IMG1.jpeg' },
-        { label: 'Coordinate preparation for AutoCAD', img: 'imagenes/projects/macro-cad/MACROCAD-IMG2.jpeg' },
+        { label: 'Topographic data structuring and naming', img: 'imagenes/projects/macro-cad/MACROCAD-IMG1.png' },
+        { label: 'Coordinate preparation for AutoCAD', img: 'imagenes/projects/macro-cad/MACROCAD-IMG2.png' },
         { label: 'Technical workflow standardisation', img: 'imagenes/projects/macro-cad/MACROCAD-IMG3.png' },
       ],
       description: 'This project consisted of automating part of the workflow between Excel and AutoCAD for the processing of topographic and GPR line data. The solution enabled data ordering, nomenclature generation, table structuring, and preparation of CAD-ready information, reducing operational errors and accelerating repetitive tasks previously done manually.',
@@ -214,9 +214,9 @@ const PROJECTS = {
       date: '2025 – 2026',
       location: 'Guadalajara, Jalisco',
       slides: [
-        { label: 'Captura secuencial automática de radargramas', img: 'imagenes/projects/macro-hotkey/MACROHOTKEY-IMG1.jpeg' },
+        { label: 'Captura secuencial automática de radargramas', img: 'imagenes/projects/macro-hotkey/MACROHOTKEY-IMG1.png' },
         { label: 'Control de ventanas emergentes y campos de entrada', img: 'imagenes/projects/macro-hotkey/MACROHOTKEY-IMG2.png' },
-        { label: 'Estandarización del proceso de exportación', img: 'imagenes/projects/macro-hotkey/MACROHOTKEY-IMG3.jpeg' },
+        { label: 'Estandarización del proceso de exportación', img: 'imagenes/projects/macro-hotkey/MACROHOTKEY-IMG3.png' },
       ],
       description: 'Este proyecto se enfocó en automatizar acciones repetitivas dentro del software GPR-SLICE mediante AutoHotkey, incluyendo la captura secuencial de radargramas, el control de campos de entrada, el manejo de ventanas emergentes y la estandarización del proceso de exportación. La automatización permitió reducir la intervención manual, ahorrar tiempo y hacer más eficiente el procesamiento operativo de información de georradar.',
       participation: [
@@ -233,9 +233,9 @@ const PROJECTS = {
       date: '2025 – 2026',
       location: 'Guadalajara, Jalisco',
       slides: [
-        { label: 'Automated sequential radargram capture', img: 'imagenes/projects/macro-hotkey/MACROHOTKEY-IMG1.jpeg' },
+        { label: 'Automated sequential radargram capture', img: 'imagenes/projects/macro-hotkey/MACROHOTKEY-IMG1.png' },
         { label: 'Pop-up window and input field control', img: 'imagenes/projects/macro-hotkey/MACROHOTKEY-IMG2.png' },
-        { label: 'Export process standardisation', img: 'imagenes/projects/macro-hotkey/MACROHOTKEY-IMG3.jpeg' },
+        { label: 'Export process standardisation', img: 'imagenes/projects/macro-hotkey/MACROHOTKEY-IMG3.png' },
       ],
       description: 'This project focused on automating repetitive actions within GPR-SLICE using AutoHotkey, including sequential radargram capture, input field control, pop-up window handling, and export process standardisation. The automation reduced manual intervention, saved time, and made GPR data processing operationally more efficient.',
       participation: [
@@ -335,6 +335,17 @@ function closeLightbox() {
   const lb = document.getElementById('lightbox');
   lb.setAttribute('data-open', 'false');
   lb.setAttribute('aria-hidden', 'true');
+  setLightboxZoom(false);
+}
+
+function setLightboxZoom(on) {
+  const frame = document.getElementById('lightboxFrame');
+  const zoomBtn = document.getElementById('lightboxZoom');
+  if (!frame) return;
+  frame.classList.toggle('is-zoomed', on);
+  frame.scrollTop = 0;
+  frame.scrollLeft = 0;
+  if (zoomBtn) zoomBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
 }
 
 function renderLightboxSlide() {
@@ -345,6 +356,8 @@ function renderLightboxSlide() {
   const fallback = document.getElementById('lightboxFallback');
   const caption = document.getElementById('lightboxCaption');
   const counter = document.getElementById('lightboxCounter');
+
+  setLightboxZoom(false); // cada imagen nueva empieza ajustada al marco, sin zoom heredado
 
   img.style.display = 'block';
   fallback.style.display = 'none';
@@ -378,13 +391,33 @@ function initLightbox() {
     if (e.key === 'ArrowLeft') lightboxStep(-1);
   });
 
-  // Swipe horizontal en móvil para navegar entre imágenes
-  const frame = document.querySelector('.lightbox__frame');
+  // Ampliar/reducir: botón dedicado o clic directo sobre la imagen
+  const frame = document.getElementById('lightboxFrame');
+  const zoomBtn = document.getElementById('lightboxZoom');
+  const img = document.getElementById('lightboxImg');
+  if (zoomBtn) {
+    zoomBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setLightboxZoom(!frame.classList.contains('is-zoomed'));
+    });
+  }
+  if (img) {
+    img.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setLightboxZoom(!frame.classList.contains('is-zoomed'));
+    });
+  }
+
+  // Swipe horizontal en móvil para navegar entre imágenes — se desactiva mientras
+  // la imagen está ampliada, para que el gesto se use para hacer scroll/pan en su lugar.
   if (frame) {
     let touchStartX = null;
-    frame.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
+    frame.addEventListener('touchstart', (e) => {
+      if (frame.classList.contains('is-zoomed')) return;
+      touchStartX = e.changedTouches[0].clientX;
+    }, { passive: true });
     frame.addEventListener('touchend', (e) => {
-      if (touchStartX === null) return;
+      if (touchStartX === null || frame.classList.contains('is-zoomed')) return;
       const deltaX = e.changedTouches[0].clientX - touchStartX;
       if (Math.abs(deltaX) > 40) lightboxStep(deltaX < 0 ? 1 : -1);
       touchStartX = null;

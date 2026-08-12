@@ -33,10 +33,8 @@
 
   /* Proporción del marco de imágenes de proyecto — ajusta este único valor
      si cambias el lienzo/formato en Canva (ej. 1/1, 3/2, 16/9...)
-     ⚠️ PENDIENTE: reemplaza 4/3 por la proporción REAL de clj-img3.jpg en cuanto
-     la conozcas (ancho/alto en px de esa imagen, ej. si mide 1600×1200 → 1600/1200).
-     No tengo acceso al archivo de imagen para medirlo automáticamente. */
-  --project-image-ratio: 4 / 3;
+     Actualizado según el lienzo de Canva: 1920 × 1080 px = 16/9 */
+  --project-image-ratio: 16 / 9;
 }
 
 /* ───────────────────────── RESET ───────────────────────── */
@@ -787,7 +785,36 @@ body::before {
   transition: transform 0.25s cubic-bezier(.16,1,.3,1), opacity 0.25s cubic-bezier(.16,1,.3,1);
 }
 .lightbox[data-open="true"] .lightbox__frame { transform: scale(1); opacity: 1; }
-.lightbox__frame img { width: 100%; height: 100%; object-fit: contain; }
+.lightbox__frame img { width: 100%; height: 100%; object-fit: contain; cursor: zoom-in; }
+
+/* Estado ampliado: la imagen crece más allá del marco y el marco se vuelve
+   scrolleable, para poder revisar el detalle de planos/diagramas de cerca. */
+.lightbox__frame.is-zoomed {
+  overflow: auto;
+  align-items: flex-start;
+  justify-content: flex-start;
+  cursor: grab;
+}
+.lightbox__frame.is-zoomed:active { cursor: grabbing; }
+.lightbox__frame.is-zoomed img {
+  width: 200%;
+  height: 200%;
+  max-width: none;
+  cursor: zoom-out;
+}
+
+.lightbox__zoom {
+  position: absolute;
+  top: 22px; right: 74px;
+  width: 38px; height: 38px;
+  border: 1px solid var(--white);
+  color: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s var(--ease), color 0.2s var(--ease);
+  touch-action: manipulation;
+  z-index: 2;
+}
+.lightbox__zoom:hover, .lightbox__zoom[aria-pressed="true"] { background: var(--white); color: var(--ink); }
 .lightbox__fallback {
   display: none;
   flex-direction: column;
@@ -908,7 +935,7 @@ body::before {
   position: relative;
   background: var(--paper-deep);
 }
-.proj__slide img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.proj__slide img { width: 100%; height: 100%; object-fit: contain; object-position: center; }
 .proj__slide-fallback {
   display: none;
   flex-direction: column;
