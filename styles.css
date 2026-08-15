@@ -1000,6 +1000,22 @@ body::before {
   .proj__gallery-arrow { opacity: 0.9; }
 }
 
+.proj__gallery-caption {
+  margin: 0;
+  padding: 9px 4px 0;
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  /* Altura fija para exactamente 2 líneas: el marco del carrusel nunca cambia de
+     tamaño sin importar qué tan largo o corto sea el caption de cada imagen. */
+  min-height: calc(1.45em * 2);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 .proj__gallery-bar {
   display: flex;
   align-items: center;

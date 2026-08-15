@@ -84,13 +84,13 @@ const PROJECTS = {
     code: 'CLJ',
     icon: '✈️',
     es: {
-      title: 'Aeródromo Multimodal — CLJ',
+      title: 'Aeropista y vialidades',
       date: 'Ene. 2024 – Jun. 2024',
       location: 'Jalisco, México',
       slides: [
-        { label: 'Diseño de aeropista e infraestructura', img: 'imagenes/projects/clj/clj-img1.png' },
-        { label: 'Integración de conectividad ferroviaria', img: 'imagenes/projects/clj/clj-img2.png' },
-        { label: 'Propuesta logística multimodal', img: 'imagenes/projects/clj/clj-img3.png' },
+        { label: 'Integración de conectividad ferroviaria', img: 'imagenes/projects/clj/clj-img1.png' },
+        { label: 'Diseño geométrico de vialidades internas', img: 'imagenes/projects/clj/clj-img2.png' },
+        { label: 'Dimensionamiento estructural del pavimento aeronáutico', img: 'imagenes/projects/clj/clj-img3.png' },
       ],
       description: 'Diseño de una propuesta de infraestructura logística para el Centro Logístico de Jalisco (CLJ), integrando una aeropista de uso privado con conexiones ferroviarias y carreteras. El objetivo fue crear un hub de conectividad multimodal que potenciara la cadena logística de la región y redujera tiempos de trasiego de mercancías.',
       participation: [
@@ -103,13 +103,13 @@ const PROJECTS = {
       badges: ['Infraestructura', 'Logística', 'Diseño multimodal', 'Aviación Civil'],
     },
     en: {
-      title: 'Multimodal Airstrip — CLJ',
+      title: 'Airfield and roadways',
       date: 'Jan. 2024 – Jun. 2024',
       location: 'Jalisco, Mexico',
       slides: [
-        { label: 'Airstrip and infrastructure design', img: 'imagenes/projects/clj/clj-img1.png' },
-        { label: 'Railway connectivity integration', img: 'imagenes/projects/clj/clj-img2.png' },
-        { label: 'Multimodal logistics proposal', img: 'imagenes/projects/clj/clj-img3.png' },
+        { label: 'Railway Connectivity Integration', img: 'imagenes/projects/clj/clj-img1-en.png' },
+        { label: 'Internal Roadway Geometric Design', img: 'imagenes/projects/clj/clj-img2-en.png' },
+        { label: 'Airfield Pavement Structural Design', img: 'imagenes/projects/clj/clj-img3-en.png' },
       ],
       description: 'Design of a logistics infrastructure proposal for the Jalisco Logistics Center (CLJ), integrating a private-use airstrip with railway and road connections. The goal was to create a multimodal connectivity hub that would strengthen the regional logistics chain and reduce cargo transit times.',
       participation: [
@@ -126,13 +126,13 @@ const PROJECTS = {
     code: 'CONAGUA',
     icon: '💧',
     es: {
-      title: 'Red de Abastecimiento — CONAGUA',
+      title: 'Pueblo Nuevo',
       date: 'Ago. 2023 – Dic. 2023',
       location: 'Guadalajara, Jalisco',
       slides: [
-        { label: 'Diseño de red hidráulica', img: 'imagenes/projects/conagua/conagua-img1.png' },
-        { label: 'Modelado en EPANET', img: 'imagenes/projects/conagua/conagua-img2.png' },
-        { label: 'Red de alcantarillado', img: 'imagenes/projects/conagua/conagua-img3.png' },
+        { label: 'Diagnóstico territorial para infraestructura hidráulica', img: 'imagenes/projects/conagua/conagua-img1.png' },
+        { label: 'Diseño de red de agua potable por gravedad', img: 'imagenes/projects/conagua/conagua-img2.png' },
+        { label: 'Diseño de alcantarillado sanitario y pozos de visita', img: 'imagenes/projects/conagua/conagua-img3.png' },
       ],
       description: 'Proyecto aplicado al caso real de la comunidad de Mezquitic, Jalisco. Se diseñó una red de abastecimiento de agua potable y un sistema de alcantarillado sanitario, con base en criterios técnicos de cobertura, presión, velocidades de flujo y proyección de demanda poblacional.',
       participation: [
@@ -145,13 +145,13 @@ const PROJECTS = {
       badges: ['Hidráulica', 'EPANET', 'Infraestructura', 'Agua Potable'],
     },
     en: {
-      title: 'Water Supply Network — CONAGUA',
+      title: 'Pueblo Nuevo',
       date: 'Aug. 2023 – Dec. 2023',
       location: 'Guadalajara, Jalisco',
       slides: [
-        { label: 'Hydraulic network design', img: 'imagenes/projects/conagua/conagua-img1-en.png' },
-        { label: 'EPANET hydraulic modelling', img: 'imagenes/projects/conagua/conagua-img2-en.png' },
-        { label: 'Sewage network design', img: 'imagenes/projects/conagua/conagua-img3-en.png' },
+        { label: 'Territorial Assessment for Hydraulic Infrastructure', img: 'imagenes/projects/conagua/conagua-img1-en.png' },
+        { label: 'Gravity-Fed Drinking Water Network Design', img: 'imagenes/projects/conagua/conagua-img2-en.png' },
+        { label: 'Sanitary Sewer and Manhole Design', img: 'imagenes/projects/conagua/conagua-img3-en.png' },
       ],
       description: 'Project applied to the real case of the Mezquitic community in Jalisco. A potable water distribution network and a sanitary sewage system were designed based on technical criteria for coverage, pressure, flow velocities, and population demand projection.',
       participation: [
@@ -168,13 +168,13 @@ const PROJECTS = {
     code: 'EXCEL→CAD',
     icon: '📐',
     es: {
-      title: 'Automatización de datos topográficos en AutoCAD mediante Excel',
+      title: 'Automatización AutoCAD',
       date: '2025 – 2026',
       location: 'Guadalajara, Jalisco',
       slides: [
-        { label: 'Estructuración y nomenclatura de datos topográficos', img: 'imagenes/projects/macro-cad/MACROCAD-IMG1.png' },
-        { label: 'Preparación de coordenadas para AutoCAD', img: 'imagenes/projects/macro-cad/MACROCAD-IMG2.png' },
-        { label: 'Estandarización del flujo de trabajo técnico', img: 'imagenes/projects/macro-cad/MACROCAD-IMG3.png' },
+        { label: 'Captura de datos topográficos con GNSS', img: 'imagenes/projects/macro-cad/MACROCAD-IMG1.png' },
+        { label: 'Procesamiento de coordenadas para replanteo', img: 'imagenes/projects/macro-cad/MACROCAD-IMG2.png' },
+        { label: 'Generación automatizada de líneas georreferenciadas', img: 'imagenes/projects/macro-cad/MACROCAD-IMG3.png' },
       ],
       description: 'Este proyecto consistió en automatizar parte del flujo de trabajo entre Excel y AutoCAD para el procesamiento de datos topográficos y de líneas relacionadas con estudios de georradar. La solución permitió ordenar datos, generar nomenclaturas, estructurar tablas y preparar información utilizable dentro del entorno CAD, disminuyendo errores operativos y acelerando tareas repetitivas que antes se realizaban manualmente.',
       participation: [
@@ -187,13 +187,13 @@ const PROJECTS = {
       badges: ['Topografía', 'AutoCAD', 'Excel', 'Automatización', 'Datos técnicos'],
     },
     en: {
-      title: 'Topographic Data Automation — Excel to AutoCAD',
+      title: 'AutoCAD automation',
       date: '2025 – 2026',
       location: 'Guadalajara, Jalisco',
       slides: [
-        { label: 'Topographic data structuring and naming', img: 'imagenes/projects/macro-cad/MACROCAD-IMG1.png' },
-        { label: 'Coordinate preparation for AutoCAD', img: 'imagenes/projects/macro-cad/MACROCAD-IMG2.png' },
-        { label: 'Technical workflow standardisation', img: 'imagenes/projects/macro-cad/MACROCAD-IMG3.png' },
+        { label: 'GNSS Topographic Data Capture', img: 'imagenes/projects/macro-cad/MACROCAD-IMG1-en.png' },
+        { label: 'Coordinate Processing for Layout', img: 'imagenes/projects/macro-cad/MACROCAD-IMG2-en.png' },
+        { label: 'Automated Georeferenced Line Generation', img: 'imagenes/projects/macro-cad/MACROCAD-IMG3-en.png' },
       ],
       description: 'This project consisted of automating part of the workflow between Excel and AutoCAD for the processing of topographic and GPR line data. The solution enabled data ordering, nomenclature generation, table structuring, and preparation of CAD-ready information, reducing operational errors and accelerating repetitive tasks previously done manually.',
       participation: [
@@ -210,13 +210,13 @@ const PROJECTS = {
     code: 'GPR-AHK',
     icon: '📡',
     es: {
-      title: 'Automatización operativa GPR-SLICE con AutoHotkey',
+      title: 'Procesamiento GPR',
       date: '2025 – 2026',
       location: 'Guadalajara, Jalisco',
       slides: [
-        { label: 'Captura secuencial automática de radargramas', img: 'imagenes/projects/macro-hotkey/MACROHOTKEY-IMG1.png' },
-        { label: 'Control de ventanas emergentes y campos de entrada', img: 'imagenes/projects/macro-hotkey/MACROHOTKEY-IMG2.png' },
-        { label: 'Estandarización del proceso de exportación', img: 'imagenes/projects/macro-hotkey/MACROHOTKEY-IMG3.png' },
+        { label: 'Procesamiento manual de radargramas', img: 'imagenes/projects/macro-hotkey/MACROHOTKEY-IMG1.png' },
+        { label: 'Automatización de secuencias en GPR-SLICE', img: 'imagenes/projects/macro-hotkey/MACROHOTKEY-IMG2.png' },
+        { label: 'Reducción de tiempos en generación de radargramas', img: 'imagenes/projects/macro-hotkey/MACROHOTKEY-IMG3.png' },
       ],
       description: 'Este proyecto se enfocó en automatizar acciones repetitivas dentro del software GPR-SLICE mediante AutoHotkey, incluyendo la captura secuencial de radargramas, el control de campos de entrada, el manejo de ventanas emergentes y la estandarización del proceso de exportación. La automatización permitió reducir la intervención manual, ahorrar tiempo y hacer más eficiente el procesamiento operativo de información de georradar.',
       participation: [
@@ -229,13 +229,13 @@ const PROJECTS = {
       badges: ['Georradar', 'GPR-SLICE', 'AutoHotkey', 'Automatización', 'Radargramas'],
     },
     en: {
-      title: 'GPR-SLICE Operational Automation with AutoHotkey',
+      title: 'GPR processing',
       date: '2025 – 2026',
       location: 'Guadalajara, Jalisco',
       slides: [
-        { label: 'Automated sequential radargram capture', img: 'imagenes/projects/macro-hotkey/MACROHOTKEY-IMG1.png' },
-        { label: 'Pop-up window and input field control', img: 'imagenes/projects/macro-hotkey/MACROHOTKEY-IMG2.png' },
-        { label: 'Export process standardisation', img: 'imagenes/projects/macro-hotkey/MACROHOTKEY-IMG3.png' },
+        { label: 'Manual Radargram Processing', img: 'imagenes/projects/macro-hotkey/MACROHOTKEY-IMG1-en.png' },
+        { label: 'GPR-SLICE Sequence Automation', img: 'imagenes/projects/macro-hotkey/MACROHOTKEY-IMG2-en.png' },
+        { label: 'Reduced Radargram Generation Time', img: 'imagenes/projects/macro-hotkey/MACROHOTKEY-IMG3-en.png' },
       ],
       description: 'This project focused on automating repetitive actions within GPR-SLICE using AutoHotkey, including sequential radargram capture, input field control, pop-up window handling, and export process standardisation. The automation reduced manual intervention, saved time, and made GPR data processing operationally more efficient.',
       participation: [
@@ -602,6 +602,7 @@ function buildProjectSheets() {
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
                 </button>
               </div>
+              <p class="proj__gallery-caption proj-caption"></p>
               <div class="proj__gallery-bar">
                 <span class="proj-slide-label"></span>
                 <div class="proj__gallery-nav">
@@ -701,9 +702,16 @@ function renderProjectContent(lang) {
     const dotsWrap = section.querySelector('.proj-dots');
     dotsWrap.innerHTML = data.slides.map((_, i) => `<span data-active="${i === 0}"></span>`).join('');
 
-    galleryState[key] = { current: 0, total: data.slides.length, labels: data.slides.map(s => s.label) };
+    // Preserva la imagen que el usuario ya estaba viendo al cambiar de idioma
+    // (en vez de reiniciar siempre a la primera).
+    const prevIndex = galleryState[key] ? galleryState[key].current : 0;
+    const restoredIndex = Math.min(prevIndex, data.slides.length - 1);
+
+    galleryState[key] = { current: restoredIndex, total: data.slides.length, labels: data.slides.map(s => s.label) };
     updateGalleryLabel(key);
-    track.style.transform = 'translateX(0)';
+    track.style.transform = `translateX(-${restoredIndex * 100}%)`;
+    section.querySelectorAll('.proj-dots span').forEach((d, i) => d.setAttribute('data-active', i === restoredIndex));
+    updateProjectCaption(key, restoredIndex);
 
     const singleImage = data.slides.length <= 1;
     const navEl = section.querySelector('.proj__gallery-nav');
@@ -722,6 +730,14 @@ function updateGalleryLabel(key) {
   if (label) label.textContent = `${String(state.current + 1).padStart(2, '0')} / ${String(state.total).padStart(2, '0')}`;
 }
 
+function updateProjectCaption(key, idx) {
+  const section = document.querySelector(`.sheet--project[data-project="${key}"]`);
+  if (!section) return;
+  const captionEl = section.querySelector('.proj-caption');
+  const state = galleryState[key];
+  if (captionEl && state && state.labels) captionEl.textContent = state.labels[idx] || '';
+}
+
 function goToProjectSlide(key, idx) {
   const state = galleryState[key];
   if (!state) return;
@@ -730,6 +746,7 @@ function goToProjectSlide(key, idx) {
   section.querySelector('.proj-track').style.transform = `translateX(-${state.current * 100}%)`;
   section.querySelectorAll('.proj-dots span').forEach((d, i) => d.setAttribute('data-active', i === state.current));
   updateGalleryLabel(key);
+  updateProjectCaption(key, state.current);
 }
 
 function initProjectGalleryControls() {
