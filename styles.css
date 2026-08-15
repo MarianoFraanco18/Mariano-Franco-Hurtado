@@ -868,6 +868,15 @@ body::before {
   padding: 6px 14px;
   border: 1px solid rgba(251,249,242,0.3);
 }
+/* Evidencia de Experiencia: sin caption — el contador se recorre solo a una
+   esquina discreta, en vez de quedar centrado como si acompañara a un texto. */
+.lightbox__bar--counter-only {
+  left: auto;
+  right: 22px;
+  transform: none;
+  gap: 0;
+  padding: 5px 10px;
+}
 
 @media (max-width: 700px) {
   .lightbox__nav { position: absolute; margin: 0; z-index: 2; }

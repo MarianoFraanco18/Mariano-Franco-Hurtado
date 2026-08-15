@@ -356,6 +356,7 @@ function renderLightboxSlide() {
   const fallback = document.getElementById('lightboxFallback');
   const caption = document.getElementById('lightboxCaption');
   const counter = document.getElementById('lightboxCounter');
+  const bar = document.getElementById('lightboxBar');
 
   setLightboxZoom(false); // cada imagen nueva empieza ajustada al marco, sin zoom heredado
 
@@ -365,7 +366,19 @@ function renderLightboxSlide() {
   img.src = item.img;
   img.alt = getLightboxCaption(item);
 
-  caption.textContent = getLightboxCaption(item);
+  // La evidencia de Experiencia no debe mostrar ningún texto descriptivo — solo
+  // la imagen, navegación y el contador. Los proyectos conservan su caption normal.
+  const isExperience = lightboxState.type === 'exp';
+  if (isExperience) {
+    caption.textContent = '';
+    caption.style.display = 'none';
+    if (bar) bar.classList.add('lightbox__bar--counter-only');
+  } else {
+    caption.textContent = getLightboxCaption(item);
+    caption.style.display = '';
+    if (bar) bar.classList.remove('lightbox__bar--counter-only');
+  }
+
   counter.textContent = `${String(lightboxState.index + 1).padStart(2, '0')} / ${String(items.length).padStart(2, '0')}`;
 }
 
