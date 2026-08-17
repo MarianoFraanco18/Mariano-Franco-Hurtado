@@ -33,6 +33,24 @@ const COMPANY_DESC = {
     es: 'Grupo multidisciplinario de diseño y construcción enfocado en generar valor y potenciar la rentabilidad de los proyectos de sus clientes, con amplia experiencia proyectando, construyendo y supervisando obras. Integrado por profesionales especializados en diseño, ingenierías y construcción de proyectos industriales, comerciales y corporativos.',
     en: 'Multidisciplinary design and construction group focused on generating value and boosting client project profitability, with extensive experience planning, building and supervising works. Staffed by professionals specialised in design, engineering and construction of industrial, commercial and corporate projects.',
   },
+  gprslice: {
+    es: 'Software especializado en el procesamiento, interpretación y visualización de datos de georradar (GPR), utilizado para generar mapas y perfiles del subsuelo a partir de los radargramas capturados en campo.',
+    en: 'Specialized software for processing, interpreting and visualizing Ground Penetrating Radar (GPR) data, used to generate subsurface maps and profiles from field-captured radargrams.',
+  },
+  autohotkey: {
+    es: 'Lenguaje de scripting para Windows que permite automatizar tareas repetitivas de software mediante macros, atajos de teclado y control programático de ventanas.',
+    en: 'Windows scripting language used to automate repetitive software tasks through macros, keyboard shortcuts, and programmatic window control.',
+  },
+};
+
+// Términos específicos a envolver con tooltip dentro del TÍTULO de un proyecto
+// (además del patrón general "Nombre — EMPRESA"). Útil cuando el título menciona
+// más de un elemento con descripción propia, como nombres de software.
+const TITLE_TERMS = {
+  'gpr-autohotkey': [
+    { match: 'GPR-SLICE', key: 'gprslice' },
+    { match: 'AutoHotkey', key: 'autohotkey' },
+  ],
 };
 
 const PROJECTS_ORDER = ['diageo', 'clj', 'conagua', 'excel-autocad', 'gpr-autohotkey'];
@@ -670,6 +688,31 @@ function buildProjectSheets() {
 ───────────────────────────────────────────────────────────────────────── */
 const galleryState = {}; // { key: { current, total } }
 
+// Envuelve varios términos dentro de un título (ej. dos nombres de software),
+// cada uno con su propio trigger de tooltip, conservando el texto entre ellos.
+function renderTitleWithTerms(el, title, terms) {
+  const matches = [];
+  terms.forEach(t => {
+    const idx = title.indexOf(t.match);
+    if (idx > -1) matches.push({ idx, len: t.match.length, key: t.key, text: t.match });
+  });
+  matches.sort((a, b) => a.idx - b.idx);
+
+  el.textContent = '';
+  let pos = 0;
+  matches.forEach(m => {
+    if (m.idx > pos) el.appendChild(document.createTextNode(title.slice(pos, m.idx)));
+    const trigger = document.createElement('button');
+    trigger.type = 'button';
+    trigger.className = 'company-tooltip-trigger proj-company';
+    trigger.dataset.company = m.key;
+    trigger.textContent = m.text;
+    el.appendChild(trigger);
+    pos = m.idx + m.len;
+  });
+  if (pos < title.length) el.appendChild(document.createTextNode(title.slice(pos)));
+}
+
 function renderProjectContent(lang) {
   const dict = T[lang];
   PROJECTS_ORDER.forEach(key => {
@@ -678,12 +721,16 @@ function renderProjectContent(lang) {
     const section = document.querySelector(`.sheet--project[data-project="${key}"]`);
     if (!section) return;
 
-    // Si el título tiene forma "Nombre del proyecto — EMPRESA" y esa empresa tiene
-    // descripción, se envuelve solo esa parte en el trigger del tooltip global.
+    // Si el proyecto define TITLE_TERMS (varios términos con tooltip propio, como
+    // nombres de software), se envuelve cada uno; si no, se usa el patrón general
+    // "Nombre del proyecto — EMPRESA".
     const companyDesc = COMPANY_DESC[key];
     const dashIdx = data.title.lastIndexOf(' — ');
+    const titleTerms = TITLE_TERMS[key];
     section.querySelectorAll('.proj-title').forEach(el => {
-      if (companyDesc && dashIdx > -1) {
+      if (titleTerms) {
+        renderTitleWithTerms(el, data.title, titleTerms);
+      } else if (companyDesc && dashIdx > -1) {
         const before = data.title.slice(0, dashIdx + 3);
         const company = data.title.slice(dashIdx + 3);
         el.textContent = '';
