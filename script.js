@@ -84,7 +84,7 @@ const PROJECTS = {
     code: 'CLJ',
     icon: '✈️',
     es: {
-      title: 'Aeropista y vialidades',
+      title: 'Aeródromo Multimodal — CLJ',
       date: 'Ene. 2024 – Jun. 2024',
       location: 'Jalisco, México',
       slides: [
@@ -103,7 +103,7 @@ const PROJECTS = {
       badges: ['Infraestructura', 'Logística', 'Diseño multimodal', 'Aviación Civil'],
     },
     en: {
-      title: 'Airfield and roadways',
+      title: 'Multimodal Airstrip — CLJ',
       date: 'Jan. 2024 – Jun. 2024',
       location: 'Jalisco, Mexico',
       slides: [
@@ -126,15 +126,15 @@ const PROJECTS = {
     code: 'CONAGUA',
     icon: '💧',
     es: {
-      title: 'Pueblo Nuevo',
+      title: 'Red de Abastecimiento — CONAGUA',
       date: 'Ago. 2023 – Dic. 2023',
-      location: 'Guadalajara, Jalisco',
+      location: 'Pueblo Nuevo, Mezquitic, Jalisco',
       slides: [
         { label: 'Diagnóstico territorial para infraestructura hidráulica', img: 'imagenes/projects/conagua/conagua-img1.png' },
         { label: 'Diseño de red de agua potable por gravedad', img: 'imagenes/projects/conagua/conagua-img2.png' },
         { label: 'Diseño de alcantarillado sanitario y pozos de visita', img: 'imagenes/projects/conagua/conagua-img3.png' },
       ],
-      description: 'Proyecto aplicado al caso real de la comunidad de Mezquitic, Jalisco. Se diseñó una red de abastecimiento de agua potable y un sistema de alcantarillado sanitario, con base en criterios técnicos de cobertura, presión, velocidades de flujo y proyección de demanda poblacional.',
+      description: 'Proyecto aplicado al caso real de la localidad de Pueblo Nuevo, municipio de Mezquitic, Jalisco. Se diseñó una red de abastecimiento de agua potable y un sistema de alcantarillado sanitario para una comunidad de 223 habitantes, con base en criterios técnicos de cobertura, presión, velocidades de flujo y proyección de demanda poblacional.',
       participation: [
         'Diseño de la red de distribución de agua potable con criterios normativos.',
         'Modelado de la red hidráulica en EPANET y verificación de presiones y velocidades.',
@@ -145,15 +145,15 @@ const PROJECTS = {
       badges: ['Hidráulica', 'EPANET', 'Infraestructura', 'Agua Potable'],
     },
     en: {
-      title: 'Pueblo Nuevo',
+      title: 'Water Supply Network — CONAGUA',
       date: 'Aug. 2023 – Dec. 2023',
-      location: 'Guadalajara, Jalisco',
+      location: 'Pueblo Nuevo, Mezquitic, Jalisco',
       slides: [
         { label: 'Territorial Assessment for Hydraulic Infrastructure', img: 'imagenes/projects/conagua/conagua-img1-en.png' },
         { label: 'Gravity-Fed Drinking Water Network Design', img: 'imagenes/projects/conagua/conagua-img2-en.png' },
         { label: 'Sanitary Sewer and Manhole Design', img: 'imagenes/projects/conagua/conagua-img3-en.png' },
       ],
-      description: 'Project applied to the real case of the Mezquitic community in Jalisco. A potable water distribution network and a sanitary sewage system were designed based on technical criteria for coverage, pressure, flow velocities, and population demand projection.',
+      description: 'Project applied to the real case of Pueblo Nuevo, a locality in the municipality of Mezquitic, Jalisco. A potable water distribution network and a sanitary sewage system were designed for a community of 223 residents, based on technical criteria for coverage, pressure, flow velocities, and population demand projection.',
       participation: [
         'Design of the water distribution network following regulatory standards.',
         'Hydraulic network modelling in EPANET and verification of pressures and velocities.',
@@ -168,7 +168,7 @@ const PROJECTS = {
     code: 'EXCEL→CAD',
     icon: '📐',
     es: {
-      title: 'Automatización AutoCAD',
+      title: 'Automatización de datos topográficos en AutoCAD mediante Excel',
       date: '2025 – 2026',
       location: 'Guadalajara, Jalisco',
       slides: [
@@ -187,7 +187,7 @@ const PROJECTS = {
       badges: ['Topografía', 'AutoCAD', 'Excel', 'Automatización', 'Datos técnicos'],
     },
     en: {
-      title: 'AutoCAD automation',
+      title: 'Topographic Data Automation — Excel to AutoCAD',
       date: '2025 – 2026',
       location: 'Guadalajara, Jalisco',
       slides: [
@@ -210,7 +210,7 @@ const PROJECTS = {
     code: 'GPR-AHK',
     icon: '📡',
     es: {
-      title: 'Procesamiento GPR',
+      title: 'Automatización GPR-SLICE con AutoHotkey',
       date: '2025 – 2026',
       location: 'Guadalajara, Jalisco',
       slides: [
@@ -229,7 +229,7 @@ const PROJECTS = {
       badges: ['Georradar', 'GPR-SLICE', 'AutoHotkey', 'Automatización', 'Radargramas'],
     },
     en: {
-      title: 'GPR processing',
+      title: 'GPR-SLICE Automation with AutoHotkey',
       date: '2025 – 2026',
       location: 'Guadalajara, Jalisco',
       slides: [
@@ -452,7 +452,7 @@ const T = {
 
     'hero.label': 'Ingeniero Civil · Guadalajara, México',
     'hero.title': 'Topografía · BIM · Ingeniería Civil',
-    'hero.bio': 'Egresado del <strong>Tecnológico de Monterrey</strong> con experiencia en <strong>topografía</strong> de precisión, detección de instalaciones subterráneas y metodología <strong>BIM</strong>. Enfocado en integrar tecnología e ingeniería para generar soluciones técnicas con impacto real.',
+    'hero.bio': 'Egresado del <strong>Tecnológico de Monterrey</strong> con experiencia en <strong>gestión de la construcción</strong>, <strong>topografía</strong> de precisión y metodología <strong>BIM</strong>, integrando Inteligencia Artificial para generar soluciones técnicas con impacto real.',
     'hero.cta': 'Ver proyectos', 'hero.downloadCV': 'CV', 'hero.emailBtn': 'Contactar por correo',
     'hero.stamp': 'REV. 2026<br/>GDL · MX',
 
@@ -463,11 +463,11 @@ const T = {
     'about.p2': 'Combino bases sólidas de ingeniería con herramientas digitales como BIM, automatización de procesos e IA aplicada. Me interesa trabajar en entornos donde la <strong>precisión técnica, la innovación y la mejora continua</strong> sean parte central del trabajo.',
 
     'exp.tag': 'Trayectoria', 'exp.title': 'Experiencia profesional',
-    'exp.role1': 'Gerente de Topografía e Ingeniero en Operaciones', 'exp.role2': 'Ingeniero en Operaciones', 'exp.role3': 'Ingeniero Junior',
+    'exp.role1': 'Gerente de Topografía e Ingeniero en Operaciones', 'exp.role2': 'Ingeniero en Operaciones', 'exp.role3': 'Ingeniero Junior — Diseño Estructural y BIM',
     'exp.date1': 'Ene. 2026 – Presente · Guadalajara, Jalisco', 'exp.date2': 'Oct. 2025 – Ene. 2026 · Guadalajara, Jalisco', 'exp.date3': 'Feb. 2025 – Jun. 2025 · Zapopan, Jalisco',
-    'exp.li1a': 'Creé y consolidé el departamento de topografía, definiendo procesos y estándares de trabajo desde cero.',
+    'exp.li1a': 'Contribuí a la creación y estandarización del área de Topografía, definiendo procesos, criterios de calidad y flujos de entrega.',
     'exp.li1b': 'Desarrollé estudios topográficos y elaboré planos georreferenciados para proyectos de detección de instalaciones subterráneas.',
-    'exp.li1c': 'Implementé automatizaciones con macros que redujeron significativamente los tiempos de procesamiento y el margen de error.',
+    'exp.li1c': 'Implementé automatizaciones con macros que redujeron el procesamiento manual en un 70% por proyecto, disminuyendo errores de transcripción.',
     'exp.li2a': 'Ejecuté estudios de Georradar (GPR) en proyectos a lo largo de la República Mexicana.',
     'exp.li2b': 'Procesé e interpreté radargramas para la detección de instalaciones subterráneas y evaluación de condiciones del terreno.',
     'exp.li2c': 'Apoyé la toma de decisiones en obra a partir del análisis de condiciones del subsuelo.',
@@ -487,11 +487,12 @@ const T = {
     'skills.soft1': 'Liderazgo y gestión de equipos', 'skills.soft2': 'Resolución de problemas complejos',
     'skills.soft3': 'Comunicación técnica efectiva', 'skills.soft4': 'Pensamiento crítico y analítico',
     'skills.soft5': 'Adaptabilidad e innovación', 'skills.soft6': 'Atención al detalle',
+    'skills.soft7': 'Trabajo en equipo', 'skills.soft8': 'Proactividad',
 
     'edu.tag': 'Formación', 'edu.title': 'Educación, idiomas y certificaciones',
     'edu.colEdu': 'Educación', 'edu.degree1': 'Licenciatura en Ingeniería Civil', 'edu.inst1': 'Tecnológico de Monterrey, Campus Guadalajara', 'edu.date1': 'Ago. 2021 – Jun. 2025',
     'edu.degree2': 'Programa de Intercambio Internacional', 'edu.inst2': 'Universidad de Castilla-La Mancha, Ciudad Real, España', 'edu.date2': 'Ago. 2024 – Ene. 2025',
-    'edu.colLang': 'Idiomas', 'edu.lang1': 'Español', 'edu.langNative': 'Nativo', 'edu.lang2': 'Inglés', 'edu.langB2': 'Intermedio Alto · IELTS B2',
+    'edu.colLang': 'Idiomas', 'edu.lang1': 'Español', 'edu.langNative': 'Nativo', 'edu.lang2': 'Inglés', 'edu.langB2': 'Intermedio Alto · IELTS B2, feb. 2024',
     'edu.colCerts': 'Certificaciones', 'edu.cert1': 'Introducción a la Era Digital y Big Data', 'edu.cert2': 'Fundamentos de Análisis de Datos con Power BI', 'edu.certIssuer': 'Tecnológico de Monterrey · 2025',
 
     'contact.tag': 'Contacto', 'contact.title': 'Hablemos',
@@ -514,7 +515,7 @@ const T = {
 
     'hero.label': 'Civil Engineer · Guadalajara, Mexico',
     'hero.title': 'Surveying · BIM · Civil Engineering',
-    'hero.bio': 'Civil Engineering graduate from <strong>Tecnológico de Monterrey</strong> with experience in precision <strong>surveying</strong>, underground utility detection, and <strong>BIM</strong> methodology. Focused on integrating technology and engineering to deliver technical solutions with real-world impact.',
+    'hero.bio': 'Civil Engineering graduate from <strong>Tecnológico de Monterrey</strong> with experience in <strong>construction management</strong>, precision <strong>surveying</strong>, and <strong>BIM</strong> methodology, integrating Artificial Intelligence to deliver technical solutions with real-world impact.',
     'hero.cta': 'View projects', 'hero.downloadCV': 'Resume', 'hero.emailBtn': 'Contact by email',
     'hero.stamp': 'REV. 2026<br/>GDL · MX',
 
@@ -525,11 +526,11 @@ const T = {
     'about.p2': 'I combine solid engineering fundamentals with digital tools such as BIM, process automation, and applied AI. I am driven to work in environments where <strong>technical precision, innovation, and continuous improvement</strong> are central to the work.',
 
     'exp.tag': 'Career', 'exp.title': 'Professional experience',
-    'exp.role1': 'Surveying Manager & Operations Engineer', 'exp.role2': 'Operations Engineer', 'exp.role3': 'Junior Engineer',
+    'exp.role1': 'Surveying Manager & Operations Engineer', 'exp.role2': 'Operations Engineer', 'exp.role3': 'Junior Engineer — Structural Design & BIM',
     'exp.date1': 'Jan. 2026 – Present · Guadalajara, Jalisco', 'exp.date2': 'Oct. 2025 – Jan. 2026 · Guadalajara, Jalisco', 'exp.date3': 'Feb. 2025 – Jun. 2025 · Zapopan, Jalisco',
-    'exp.li1a': 'Created and consolidated the surveying department, defining workflows and standards from scratch.',
+    'exp.li1a': 'Contributed to the creation and standardisation of the Surveying department, defining processes, quality criteria and delivery workflows.',
     'exp.li1b': 'Carried out topographic surveys and produced georeferenced drawings for underground utility detection projects.',
-    'exp.li1c': 'Implemented macro-based automations that significantly reduced processing time and error margin.',
+    'exp.li1c': 'Implemented macro-based automations that reduced manual processing by 70% per project, lowering transcription errors.',
     'exp.li2a': 'Performed Ground Penetrating Radar (GPR) surveys on projects across Mexico.',
     'exp.li2b': 'Processed and interpreted radargrams for underground utility detection and subsurface condition assessment.',
     'exp.li2c': 'Supported on-site decision-making based on subsurface condition analysis.',
@@ -549,11 +550,12 @@ const T = {
     'skills.soft1': 'Leadership & team management', 'skills.soft2': 'Complex problem solving',
     'skills.soft3': 'Effective technical communication', 'skills.soft4': 'Critical & analytical thinking',
     'skills.soft5': 'Adaptability & innovation', 'skills.soft6': 'Attention to detail',
+    'skills.soft7': 'Teamwork', 'skills.soft8': 'Proactivity',
 
     'edu.tag': 'Background', 'edu.title': 'Education, languages & certifications',
     'edu.colEdu': 'Education', 'edu.degree1': 'Bachelor of Civil Engineering', 'edu.inst1': 'Tecnológico de Monterrey, Campus Guadalajara', 'edu.date1': 'Aug. 2021 – Jun. 2025',
     'edu.degree2': 'International Exchange Program', 'edu.inst2': 'University of Castilla-La Mancha, Ciudad Real, Spain', 'edu.date2': 'Aug. 2024 – Jan. 2025',
-    'edu.colLang': 'Languages', 'edu.lang1': 'Spanish', 'edu.langNative': 'Native', 'edu.lang2': 'English', 'edu.langB2': 'Upper Intermediate · IELTS B2',
+    'edu.colLang': 'Languages', 'edu.lang1': 'Spanish', 'edu.langNative': 'Native', 'edu.lang2': 'English', 'edu.langB2': 'Upper Intermediate · IELTS B2, Feb. 2024',
     'edu.colCerts': 'Certifications', 'edu.cert1': 'Introduction to the Digital Era and Big Data', 'edu.cert2': 'Fundamentals of Data Analysis with Power BI', 'edu.certIssuer': 'Tecnológico de Monterrey · 2025',
 
     'contact.tag': 'Contact', 'contact.title': "Let's talk",
